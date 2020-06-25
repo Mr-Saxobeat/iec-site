@@ -1,0 +1,95 @@
+{% load static %}
+<html>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-129681391-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-129681391-1');
+	</script>
+
+	<title>IEC - Ufes</title>
+	<meta name="description" content="Daniel Viviroli's research on water in mountain areas, and selected photographs; mountain hydrology, water resources, natural hazards, flood estimation, hydrological modelling, regionalisation, climate change, global change, water towers">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{% static 'home/css/main.css' %}">
+	<link rel="stylesheet" href="{% static 'home/css/typography.css' %}">
+</head>
+
+	<body class="landing">
+		<header id="header" class="alt">
+      <h1>IEC-UFES</h1>
+
+      <nav id="nav">
+        <ul>
+            <li><a href="{% url 'home:index' %}">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+    <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+		<section id="banner">
+			<div class="centered">
+        <div class="strokeme" style="font-size: 150%;">
+          <h2>
+            Guia de Mudanças <br> Climáticas no <br> Espírito Santo
+          </h2>
+        </div>
+      </div>
+
+			<section id="section_scrolldown" class="scrolldown">
+		      <a href="#fo"><span></span></a>
+			</section>
+		</section>
+
+
+		<footer id="footer">
+      <a class="anchor" id="fo"></a>
+      	<link rel="stylesheet" href="{% static 'home/css/fontawesome_all.css' %}">
+      	<link rel="stylesheet" href="{% static 'home/css/academicons.min.css' %}">
+      	<div class="container">
+      		<ul class="copyright">
+      			<li>
+      				Design by<br>
+      				Daniel Viviroli<br>
+      				CC BY-NC-SA<br>
+      				<br>
+      				<a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode">
+      					<i class="fab fa-creative-commons fa-lg"></i>
+      					<i class="fab fa-creative-commons-by fa-lg"></i>
+      					<i class="fab fa-creative-commons-nc fa-lg"></i>
+      					<i class="fab fa-creative-commons-sa fa-lg"></i>
+      				</a>
+      			</li>
+      			<li style="text-align:left">
+      				  <i class="fas fa-home fa-sm"></i>
+      					<a target="_blank" rel="noopener noreferrer" href="http://impactoclima.ufes.br">IEC-UFES</a>
+      					<i class="fas fa-home fa-sm" style="opacity:0.0"></i>
+      					<i class="fas fa-home fa-sm" style="opacity:0.0"></i>
+      					<br>Universidade Federal do Espírito Santo
+      					<i class="fas fa-home fa-sm" style="opacity:0.0"></i>
+      					<br>Av. Fernando Ferrari, 514
+      					<br>Goiabeiras, Vitória - ES | CEP 29075-910
+      					<i class="fas fa-home fa-sm" style="opacity:0.0"></i>
+      					<br>Brazil
+      			</li>
+      			<li style="text-align:left">
+      					<a target="_blank" rel="noopener noreferrer" href="mailto:clima.ufes@gmail.com"><i class="far fa-envelope fa-sm"></i> email</a><br>
+      					<a target="_blank" rel="noopener noreferrer" href="https://twitter.com/katarenamatos"><i class="fab fa-twitter fa-am"></i> @impactoclima</a><br>
+      					<br>
+      					<br>
+      					<br>
+      			</li>
+      		</ul>
+      	</div>
+  </footer>
+
+		<script src="{% static 'home/js/jquery.min.js' %}"></script>
+		<script src="{% static 'home/js/scroll.js' %}"></script>
+		<script src="{% static 'home/js/skel.min.js' %}"></script>
+		<script src="{% static 'home/js/util.js' %}"></script>
+		<script src="{% static 'home/js/main.js' %}"></script>
+</body>
+</html>
