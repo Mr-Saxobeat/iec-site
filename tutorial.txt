@@ -1,0 +1,2 @@
+- Instalar pipenv com python 3.8
+- Instalar: pipenv install django python-decouple psycopg2-binary dj-database-url
