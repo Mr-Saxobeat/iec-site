@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'libs/leaflet/leaflet.css' %}">
+  <link rel="stylesheet" href="{% static 'css/map.css' %}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+{% endblock extra_css %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-md-12">
+      <div id="map"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <form action="#" method="get">
+        {% csrf_token %}
+        <label for="input_stationId">Id</label>
+        <input type="text" name="stationId" value="1" id="input_stationId">
+        <label for="startDate">Data inicial:</label>
+        <input type="text" id="startDate" name="startDate">
+        <label for="finalDate">Data final:</label>
+        <input type="text" id="finalDate" name="finalDate">
+        <button type="button" id="btn_submit" value="coe">Vai</button>
+      </form>
+    </div>
+
+    <div class="col-md-9">
+      <canvas id="chart" height="65"></canvas>
+    </div>
+  </div>
+
+
+  <input type="hidden"  id="xavierweathergeojson" value="{% url 'stations:xavierweathergeojson' %}">
+{% endblock content %}
+
+{% block extra_js %}
+  <script src="{% static 'libs/leaflet/leaflet.js' %}"></script>
+  <script src="{% static 'js/map.js' %}"></script>
+  <script src="{% static 'js/chart.js' %}"></script>
+  <script src="{% static 'js/my_ajax.js' %}"></script>
+{% endblock extra_js %}
