@@ -11,7 +11,7 @@ def VisMetView(request):
 
 class XavierStationWeatherGeoJson(GeoJSONLayerView):
     model = XavierWeatherStation
-    properties = ('popup_content', 'stationId', 'name', 'state', 'omm_code')
+    properties = ('popup_content', 'stationId', 'name', 'state', 'omm_code', 'latitude'. 'longitude')
 
 def ajaxrequest(request):
     stationId = request.GET.get('stationId')
