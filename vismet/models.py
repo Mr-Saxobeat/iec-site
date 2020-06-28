@@ -1,3 +1,42 @@
-from django.db import models
+from django.contrib.gis.db import models
 
-# Create your models here.
+class XavierWeatherStation(models.Model):
+    station_id = models.BigIntegerField()
+    omm_code = models.BigIntegerField()
+    inmet_code = models.CharField(max_length=254)
+    name = models.CharField(max_length=254)
+    type = models.CharField(max_length=254)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    altitude = models.FloatField()
+    state = models.CharField(max_length=254)
+    geom = models.PointField(srid=4326)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def popup_content(self):
+        popup = "<span>Código OMM: </span>{}<br>".format(self.omm_code)
+        popup += "<span>Código Inmet: </span>{}<br>".format(self.inmet_code)
+        popup += "<span>Cidade: </span>{}<br>".format(self.name)
+        popup += "<span>Tipo: </span>{}<br>".format(self.type)
+        popup += "<span>Latitude: </span>{}<br>".format(self.latitude)
+        popup += "<span>Longitude: </span>{}<br>".format(self.longitude)
+        popup += "<span>Altitude: </span>{}<br>".format(self.latitude)
+        popup += "<span>Estado: </span>{}<br>".format(self.state)
+
+        return popup
+
+    @property
+    def stationId(self):
+        return self.station_id
+
+class StationMaxTemp(models.Model):
+    # station_id = models.ForeignKey(XavierWeatherStation, related_name='max_temp', on_delete=models.CASCADE)
+    station_id = models.IntegerField()
+    date = models.DateField()
+    temp = models.FloatField()
+
+    def __str__(self):
+        return str(self.temp)
