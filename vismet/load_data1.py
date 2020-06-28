@@ -15,7 +15,7 @@ xavierweatherstation_mapping = {
     'geom': 'POINT',
 }
 
-shp_xavierWeather = os.path.abspath(os.path.join('data', 'data', 'Weather2_XavierDomain_Shapefile.shp'))
+shp_xavierWeather = os.path.abspath(os.path.join('stations_data', 'data', 'Weather2_XavierDomain_Shapefile.shp'))
 
 def run_xavier_weather_stations(verbose=True):
     lm = LayerMapping(XavierWeatherStation, shp_xavierWeather, xavierweatherstation_mapping)
