@@ -38,7 +38,7 @@ var xaviewrWeatherStation = L.geoJson([], {
     pointToLayer: function(feature, latlng) {
       lat = feature.properties.latitude;
       lng = feature.properties.longitude;
-      latlng = L.latLng(lng, lat);
+      latlng = L.latLng(lat, lng);
       return new L.CircleMarker(latlng, {radius: 5});
     },
     onEachFeature: onEachFeature,
