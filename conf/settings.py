@@ -22,12 +22,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+#SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = '-_bp9$l8$$ys$8j1ea28xgu8&6x-&4&@bwy)myp4hrvg2)0j3w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default='False', cast=bool)
+#DEBUG = config('DEBUG', default='False', cast=bool)
+DEBUG = True
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
+#ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
+ALLOWED_HOSTS = ['iec.ufes.br']
 
 
 # Application definition
@@ -77,8 +80,28 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+#DATABASES = {
+#    'default': config('DATABASE_URL', cast=db_url)
+#}
+
 DATABASES = {
-    'default': config('DATABASE_URL', cast=db_url)
+
+    'default': {
+
+	'ENGINE': 'django.contrib.gis.db.backends.postgis',
+
+        'NAME': 'iec',
+
+        'USER': 'postgres',
+
+        'PASSWORD': '',
+
+        'HOST': 'localhost',
+
+        'PORT': '',
+
+    }
+
 }
 
 
