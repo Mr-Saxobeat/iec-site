@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from djgeojson.views import GeoJSONLayerView
-from .models import XavierWeatherStation, StationMaxTemp
+from .models import XavierWeatherStation, StationData
 from django.http import HttpResponse
 import json
 import datetime
