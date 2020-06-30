@@ -1,34 +1,18 @@
+var selectedOption = $("#variable");
 
-var myData;
-var stationNum;
-var optTempMax = $('#tempMax');
-var optTempMin = $('#tempMin');
-var optSolRad = $('#solRad');
-var fileUrl = 'https://gist.githubusercontent.com/Mr-Saxobeat/f4ce6b69e5d3457ae52215edf57445c4/raw/705cfaf2cb35afc1b595495a7de9ca4b333c800a/tMax-inmet.csv';
-var selectedOption;
-
-d3.csv(fileUrl).then(getCsv);
-
-function getCsv(csvData) {
-  myData = csvData;
-}
-
-function choose(csvData){
-    myData = csvData;
-    updateChart(stationNum);
-}
+selectedOption.change(function () { updateChart(chart, selectedOption.val()); });
 
 var chart = new Chart('chart', {
   options: {
     title: {
       display: true,
       fontSize: 20,
-      text: 'Temperaturas máximas:',
+      text: '',
     },
       scales:{
           yAxes: [{
               display: true,
-              labelString: "ºC",
+              labelString: "",
               fontColor: '#666',
           }],
           xAxes: [{
@@ -67,7 +51,7 @@ function addData(chart, labels, data) {
 
     chart.data.datasets.forEach((dataset) => {
       data.forEach((dt) => {
-        if(dt == 0 || dt == "NaN"){
+        if(dt == 0 || dt == "NaN" || dt == "-9999"){
           dataset.data.push(null);
         }
         else{
@@ -77,39 +61,13 @@ function addData(chart, labels, data) {
     });
 }
 
-function updateChart(id){
-        stationNum = id;
-        var stationData = myData[id];
-        var labels = Object.keys(myData);
-
-        labels.pop();
-
-        var stationLevels = [];
-
-        myData.forEach(dt => {
-            stationLevels.push(dt[id]);
-        });
-
+function updateChart(chart, variable){
         removeData(chart);
-        addData(chart, labels, stationLevels);
+        chart_data.forEach((obj) => {
+          array_date = [String(obj.fields.date)];
+          array_data = [obj.fields[variable]];
 
-        chart.update();
+          addData(chart, array_date, array_data);
+          chart.update();
+        });
 }
-
-optTempMax.click(function(){
-    fileUrl = 'https://gist.githubusercontent.com/Mr-Saxobeat/f4ce6b69e5d3457ae52215edf57445c4/raw/705cfaf2cb35afc1b595495a7de9ca4b333c800a/tMax-inmet.csv';
-    chart.options.title.text = "Temperaturas máximas";
-    d3.csv(fileUrl).then(choose);
-});
-
-optTempMin.click(function(){
-    fileUrl = 'https://gist.githubusercontent.com/Mr-Saxobeat/208642a743eb6ef0bf649b6f1e1138e3/raw/968676550eb5f0acdba4140f82a79aefe6baf9e0/tMin-inmet.csv';
-    chart.options.title.text = "Temperaturas mínimas";
-    d3.csv(fileUrl).then(choose);
-});
-
-optSolRad.click(function(){
-    fileUrl = 'https://gist.githubusercontent.com/Mr-Saxobeat/afb28a15b4497e6c0ac255779523fb02/raw/27c0b7273acd6b5ce57353f1e00b3bc95ac956f3/sRadiation-inmet.csv';
-    chart.options.title.text = "Radiação solar";
-    d3.csv(fileUrl).then(choose);
-})

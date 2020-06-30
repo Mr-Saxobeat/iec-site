@@ -1,7 +1,11 @@
+var chart_data;
+var chart_labels;
+
 $("#btn_submit").click(function () {
   var stationId = $("#input_stationId").val();
   var startDate = $("#startDate").val();
   var finalDate = $("#finalDate").val();
+  var variable = $("#variable").val();
 
   $.ajax({
     url: "ajaxrequest/",
@@ -12,20 +16,11 @@ $("#btn_submit").click(function () {
     },
     dataType: 'json',
     success: function (data) {
-      removeData(chart);
-      console.log(data);
-
-      data.forEach((obj) => {
-        date = [String(obj.fields.date)];
-        console.log(date);
-        temp = [obj.fields.temp];
-
-        addData(chart, date, temp);
-        chart.update();
-      });
+      chart_data = data;
+      updateChart(chart, variable);
     },
     error: function (error) {
-      console.log(eval(error));
+      console.log(error)
     }
   });
 });

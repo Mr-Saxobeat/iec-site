@@ -46,4 +46,4 @@ class StationData(models.Model):
     windSpeed = models.FloatField('wind speed')
 
     def __str__(self):
-        return str('nº ' + self.station_id + '---' + self.date)
+        return str('nº ' + str(self.station_id.station_id) + '---' + str(self.date))

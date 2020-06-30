@@ -1,11 +1,12 @@
-from .models import StationData
+from .models import StationData, XavierWeatherStation
 import datetime
 import os
 import csv
 
 def load_csv(verbose=True):
     cont = 1
-    csv_path = os.path.join(os.getcwd(), 'data', 'janeiro-1980-estacao-1.csv')
+    # csv_path = os.path.join(os.getcwd(), 'data', 'entire-data.csv')
+    csv_path = os.path.join(os.getcwd(), 'data', 'janeiro-1980.csv')
     with open(csv_path, 'r') as file:
         reader = csv.reader(file)
 
@@ -19,15 +20,40 @@ def load_csv(verbose=True):
             str_year = str_date[6:10]
             date = datetime.date(int(str_year), int(str_month), int(str_day))
 
-            created = StationMaxTemp.objects.get_or_create(
+            if row[2] == "NaN":
+                evapo = "-9999"
+            else:
+                evapo = row[2]
+            if row[3] == "NaN":
+                relHum = "-9999"
+            else:
+                relHum = row[3]
+            if row[4] == "NaN":
+                solarRad = "-9999"
+            else:
+                solarRad = row[4]
+            if row[5] == "NaN":
+                maxTemp = "-9999"
+            else:
+                maxTemp = row[5]
+            if row[6] == "NaN":
+                minTemp = "-9999"
+            else:
+                minTemp = row[6]
+            if row[7] == "NaN":
+                windSpeed = "-9999"
+            else:
+                windSpeed = row[7]
+
+            created = StationData.objects.get_or_create(
                 date = date,
-                station_id = int(row[1]),
-                evapo = float(row[2]),
-                relHum = float(row[3]),
-                solarRad = float(row[4]),
-                maxTemp = float(row[5]),
-                minTemp = float(row[6]),
-                windSpeed = float(row[7]),
+                station_id = XavierWeatherStation.objects.get(station_id=row[1]),
+                evapo = float(evapo),
+                relHum = float(relHum),
+                solarRad = float(solarRad),
+                maxTemp = float(maxTemp),
+                minTemp = float(minTemp),
+                windSpeed = float(windSpeed),
             )
             print(cont)
             cont = cont + 1
