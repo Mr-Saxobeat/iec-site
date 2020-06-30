@@ -7,7 +7,13 @@ For more information on this file, see
 https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
 """
 
-import os
+import os, sys
+
+# add the project path into the sys.path
+sys.path.append(os.path.join(BASE_DIR, 'conf/'))
+
+# add the virtualenv path to the sys.path
+sys.path.append('/home/iec/.local/share/virtualenvs/iec-site-xuOu31gI')
 
 from django.core.wsgi import get_wsgi_application
 
