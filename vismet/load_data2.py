@@ -6,7 +6,7 @@ import csv
 def load_csv(verbose=True):
     cont = 1
     # csv_path = os.path.join(os.getcwd(), 'data', 'entire-data.csv')
-    csv_path = os.path.join(os.getcwd(), 'data', 'janeiro-1980.csv')
+    csv_path = os.path.join(os.getcwd(), 'data', 'estacao-1-janeiro-1980.csv')
     with open(csv_path, 'r') as file:
         reader = csv.reader(file)
 
