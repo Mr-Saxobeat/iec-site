@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
 
 import os, sys
 
+BASE_DIR2 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # add the project path into the sys.path
-sys.path.append(os.path.join(BASE_DIR, 'conf/'))
+sys.path.append(os.path.join(BASE_DIR2, 'conf/'))
 
 # add the virtualenv path to the sys.path
 sys.path.append('/home/iec/.local/share/virtualenvs/iec-site-xuOu31gI')
