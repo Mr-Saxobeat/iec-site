@@ -12,10 +12,10 @@ import os, sys
 BASE_DIR2 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # add the project path into the sys.path
-sys.path.append(os.path.join(BASE_DIR2, 'conf/'))
+sys.path.append('/var/www/html/iec-site/')
 
 # add the virtualenv path to the sys.path
-sys.path.append('/home/iec/.local/share/virtualenvs/iec-site-xuOu31gI')
+sys.path.append('/var/www/html/iec-site/.venv/lib/python3.8/site-packages/')
 
 from django.core.wsgi import get_wsgi_application
 
