@@ -30,7 +30,7 @@ SECRET_KEY = '-_bp9$l8$$ys$8j1ea28xgu8&6x-&4&@bwy)myp4hrvg2)0j3w'
 DEBUG = True
 
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
-ALLOWED_HOSTS = ['iec.ufes.br']
+ALLOWED_HOSTS = ['iec.ufes.br', '127.0.0.1']
 
 
 # Application definition

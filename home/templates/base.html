@@ -1,0 +1,38 @@
+{% load static %}
+<html>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-129681391-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-129681391-1');
+	</script>
+
+	<title>Instituto de Estudos Climáticos do Espírito Santo</title>
+	<meta name="description" content="Plataforma do Instituto de Estudos Climáticos do Espírito Santo.">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{% static 'home/css/main.css' %}">
+	<link rel="stylesheet" href="{% static 'home/css/typography.css' %}">
+
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body class="landing">
+  {% include 'includes/navbar.html' %}
+
+  {% block content %}
+  {% endblock %}
+
+  {% include 'includes/footer.html' %}
+
+  <script src="{% static 'home/js/jquery.min.js' %}"></script>
+  <script src="{% static 'home/js/scroll.js' %}"></script>
+  <script src="{% static 'home/js/skel.min.js' %}"></script>
+  <script src="{% static 'home/js/util.js' %}"></script>
+  <script src="{% static 'home/js/main.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
