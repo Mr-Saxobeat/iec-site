@@ -1,4 +1,7 @@
+# This is an auto-generated Django model module created by ogrinspect.
 from django.contrib.gis.db import models
+import os
+import csv
 
 class XavierWeatherStation(models.Model):
     station_id = models.BigIntegerField()
@@ -32,11 +35,15 @@ class XavierWeatherStation(models.Model):
     def stationId(self):
         return self.station_id
 
-class StationMaxTemp(models.Model):
-    # station_id = models.ForeignKey(XavierWeatherStation, related_name='max_temp', on_delete=models.CASCADE)
-    station_id = models.IntegerField()
+class StationData(models.Model):
     date = models.DateField()
-    temp = models.FloatField()
+    station_id = models.ForeignKey(XavierWeatherStation, related_name='data', on_delete=models.CASCADE)
+    evapo = models.FloatField('evapotranspiration')
+    relHum = models.FloatField('relative humidity')
+    solarRad = models.FloatField('solar radiation')
+    maxTemp = models.FloatField('maximum temperature')
+    minTemp = models.FloatField('minimum temperature')
+    windSpeed = models.FloatField('wind speed')
 
     def __str__(self):
-        return str(self.temp)
+        return str('nº ' + str(self.station_id.station_id) + '---' + str(self.date))
