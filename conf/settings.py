@@ -22,15 +22,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = config('SECRET_KEY')
-SECRET_KEY = '-_bp9$l8$$ys$8j1ea28xgu8&6x-&4&@bwy)myp4hrvg2)0j3w'
+SECRET_KEY = config('SECRET_KEY')
+
+# Essa chave não está sendo usada no .env
+# SECRET_KEY = '-_bp9$l8$$ys$8j1ea28xgu8&6x-&4&@bwy)myp4hrvg2)0j3w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = config('DEBUG', default='False', cast=bool)
-DEBUG = True
+DEBUG = config('DEBUG', default='False', cast=bool)
+# DEBUG = True
 
-# ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
-ALLOWED_HOSTS = ['iec.ufes.br', '127.0.0.1']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
+# ALLOWED_HOSTS = ['iec.ufes.br', '127.0.0.1']
 
 
 # Application definition
