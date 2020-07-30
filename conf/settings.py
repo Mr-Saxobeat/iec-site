@@ -83,29 +83,29 @@ WSGI_APPLICATION = 'conf.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#    'default': config('DATABASE_URL', cast=db_url)
-# }
-
 DATABASES = {
-
-    'default': {
-
-	'ENGINE': 'django.contrib.gis.db.backends.postgis',
-
-        'NAME': 'iec',
-
-        'USER': 'postgres',
-
-        'PASSWORD': '',
-
-        'HOST': 'localhost',
-
-        'PORT': '',
-
-    }
-
+   'default': config('DATABASE_URL', cast=db_url)
 }
+
+# DATABASES = {
+#
+#     'default': {
+#
+# 	'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#
+#         'NAME': 'iec',
+#
+#         'USER': 'postgres',
+#
+#         'PASSWORD': '',
+#
+#         'HOST': 'localhost',
+#
+#         'PORT': '',
+#
+#     }
+#
+# }
 
 
 # Password validation
