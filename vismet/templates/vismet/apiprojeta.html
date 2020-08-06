@@ -1,0 +1,49 @@
+{% load static %}
+<form method="GET">
+  <label for="model_id">Cenário Climático: </label>
+  <select id="model_id" name="model_id">
+    {% for model in climate_models %}
+      <option value="{{ model.id }}">{{ model.name }}</option>
+    {% endfor %}
+  </select>
+
+  <label for="interval_id">Frequência: </label>
+  <select id="interval_id" name="interval_id">
+    {% for interval in intervals %}
+      <option value="{{ interval.id }}">{{ interval.name }}</option>
+    {% endfor %}
+  </select>
+  <br>
+
+  <label for="start_month">Mês Inicial: </label>
+  <input id="start_month" type="text" name="start_month" value="">
+  <br>
+  <label for="start_year">Ano Inicial: </label>
+  <input id="start_year" type="text" name="start_year" value="">
+  <br>
+
+  <label for="final_month">Mês Final: </label>
+  <input id="final_month" type="text" name="final_month" value="">
+  <br>
+  <label for="final_year">Ano Final: </label>
+  <input id="final_year" type="text" name="final_year" value="">
+  <br>
+
+  <label for="variable">Variável: </label>
+  <select id="variable" name="variable">
+    {% for var in variables %}
+      <option value="{{ var.nickname }}">{{ var.description }}</option>
+    {% endfor %}
+  </select>
+
+  <label for="latitude">Latitude: </label>
+  <input id="latitude" type="text" name="latitude" value="">
+  <label for="longitude">Longitude: </label>
+  <input id="longitude" type="text" name="longitude" value="">
+
+  <input id="btn_submit" type="submit" name="submit" value="Vai">
+</form>
+
+<script src="{% static 'vismet/js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'vismet/js/popper.js' %}"></script>
+<script src="{% static 'vismet/js/api-projeta-ajax.js' %}"></script>
