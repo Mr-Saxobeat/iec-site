@@ -47,3 +47,12 @@ class StationData(models.Model):
 
     def __str__(self):
         return str('nº ' + str(self.station_id.station_id) + '---' + str(self.date))
+
+class HeatPixel(models.Model):
+    pixel_id = models.BigIntegerField()
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    geom = models.PointField(srid=4326)
+
+    def __str__(self):
+        return f'{{ self.pixel_id }}: {{ self.latitude }} / {{ self.longitude }}'
