@@ -1,5 +1,6 @@
 {% extends 'vismet/base.html' %}
 {% load static %}
+{% load json_filters %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'vismet/libs/leaflet/leaflet.css' %}">
@@ -49,7 +50,9 @@
 
 {% block extra_js %}
   <script src="{% static 'vismet/libs/leaflet/leaflet.js' %}"></script>
-  <script src="{% static 'vismet/js/map.js' %}"></script>
   <script src="{% static 'vismet/js/my_ajax.js' %}"></script>
   <script src="{% static 'vismet/js/chart.js' %}"></script>
+  <script src="{% static 'vismet/js/map.js' %}"></script>
+  <script src="{% static 'vismet/js/heat_pixel.js' %}"></script>
+
 {% endblock extra_js %}

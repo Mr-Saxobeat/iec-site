@@ -55,4 +55,12 @@ class HeatPixel(models.Model):
     geom = models.PointField(srid=4326)
 
     def __str__(self):
-        return f'{{ self.pixel_id }}: {{ self.latitude }} / {{ self.longitude }}'
+        return f'{ self.latitude }, { self.longitude }'
+
+class HeatPixelData(models.Model):
+    date = models.DateField()
+    pixel = models.ForeignKey(HeatPixel, related_name='data', on_delete=models.CASCADE)
+    preciptation = models.FloatField()
+
+    def __str__(self):
+        return f'{ self.pixel.pixel_id }: { self.date }'

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from djgeojson.views import GeoJSONLayerView
-from .models import XavierWeatherStation, StationData
+from .models import XavierWeatherStation, StationData, HeatPixel, HeatPixelData
 from django.http import HttpResponse, JsonResponse
 import json
 import datetime
@@ -66,3 +66,25 @@ def Download(request, variable, station_id, start_day, start_month, start_year, 
     # response = JsonResponse(myData, safe=False)
     # response['Content-Disposition'] = "attachment; filename=%s" %'time_series.json'
     return response
+
+def HeatPixelDataView(request):
+    startDate = datetime.date(1960, 1, 1)
+    finalDate = datetime.date(1960, 12, 31)
+    heat_pixels_data = HeatPixelData.objects.filter(date=startDate)
+
+    queryset = []
+
+    for heat_pixel_data in heat_pixels_data:
+        pixel_id = heat_pixel_data.pixel.pixel_id
+        coords = [heat_pixel_data.pixel.longitude, heat_pixel_data.pixel.latitude]
+        preciptation = heat_pixel_data.preciptation
+
+        pixel_data = {
+            'pixel_id': pixel_id,
+            'coords': coords,
+            'preciptation': preciptation
+        }
+
+        queryset.append(pixel_data)
+
+    return JsonResponse(queryset, safe=False)

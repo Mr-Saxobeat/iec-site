@@ -57,7 +57,6 @@ var map = L.map('map', {
 });
 
 var baseLayers = {
-  "Grayscale": grayscale,
   "Streets": streets,
 };
 
