@@ -53,6 +53,7 @@ class HeatPixel(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     geom = models.PointField(srid=4326)
+    boundings = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
         return f'{ self.latitude }, { self.longitude }'

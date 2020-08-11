@@ -7,6 +7,7 @@ import datetime
 import requests
 from django.core import serializers
 from rest_framework import serializers as rest_serializers
+from django.core.serializers import serialize as sr
 
 def VisMetView(request):
     return render(request, 'vismet/vismet.html')
@@ -88,3 +89,7 @@ def HeatPixelDataView(request):
         queryset.append(pixel_data)
 
     return JsonResponse(queryset, safe=False)
+
+class HeatPixelGeoJson(GeoJSONLayerView):
+    model = HeatPixel
+    properties = ['boundings']

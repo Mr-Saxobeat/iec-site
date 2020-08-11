@@ -2,6 +2,7 @@ from .models import HeatPixel, HeatPixelData
 import os
 import csv
 from datetime import datetime
+import json
 
 def load_pixel_timeseries():
     csv_path = os.path.join(os.getcwd(), 'PREC ES Eta5km Hist. 1960-2005.csv')
@@ -34,18 +35,19 @@ def load_pixel_timeseries():
         file.close()
         print('ACABOOOOOOOOOOOOOOOOU')
 
-def fix_date():
-    pixels_data = HeatPixelData.objects.all()
+def add_bounding():
+    pixels = HeatPixel.objects.all()
+    dist = 0.025
 
-    for pixel_data in pixels_data:
-        date = pixel_data.date
-        year = date.year
-        month = date.month
-        day = date.day
-        new_date = datetime.date(year - 100, month, day)
+    for px in pixels:
+        x1 = px.longitude - dist
+        y1 = px.latitude + dist
 
-        print('old = ', date, ' -- new = ', new_date)
-        pixel_data.date = new_date
-        pixel_data.save()
+        x2 = px.longitude + dist
+        y2 = px.latitude - dist
 
-    print('louvado seja o senhor nosso deus acabou')
+        px.boundings = json.dumps([[x1, y1], [x2, y2]])
+        px.save()
+        print(px.pk)
+
+    print("acabouporra")

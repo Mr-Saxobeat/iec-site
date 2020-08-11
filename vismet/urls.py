@@ -10,4 +10,5 @@ urlpatterns = [
     path('apiprojeta/', views.ApiProjeta, name='apiprojeta'),
     path('download/<str:variable>/<int:station_id>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/', views.Download, name='download'),
     path('heat/', views.HeatPixelDataView, name='heatpixel'),
+    path('pixel/', views.HeatPixelGeoJson.as_view()),
 ]

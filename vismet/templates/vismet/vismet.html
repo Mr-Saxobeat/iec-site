@@ -53,6 +53,8 @@
   <script src="{% static 'vismet/js/my_ajax.js' %}"></script>
   <script src="{% static 'vismet/js/chart.js' %}"></script>
   <script src="{% static 'vismet/js/map.js' %}"></script>
-  <script src="{% static 'vismet/js/heat_pixel.js' %}"></script>
+  <!-- <script src="{% static 'vismet/js/heat_pixel.js' %}"></script> -->
+  <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
+  <script src='{% static 'vismet/js/heat2.js' %}'></script>
 
 {% endblock extra_js %}

@@ -31,17 +31,20 @@ $.ajax({
   url: "heat/",
   dataType: 'json',
   success: function (data) {
-    console.log('ajax');
-    data.forEach(dt => {
-      if(dt.preciptation > 0){
-          heat_pixel_style['fillOpacity'] = 0.5;
-      }
-      heat_pixel_style['fillColor'] = rgbToHex(parseInt(dt.preciptation) * 255, 255, 255);
-      var circle = L.circleMarker(dt.coords, heat_pixel_style);
-      circle.bindPopup("Precipitação: " + dt.preciptation);
-      circle.addTo(map);
-      heat_pixel_style['fillOpacity'] = 0.2;
-    });
+
+    // console.log('ajax');
+    // data.forEach(dt => {
+    //   if(dt.preciptation > 0){
+    //       heat_pixel_style['fillOpacity'] = 0.5;
+    //   }
+    //   heat_pixel_style['fillColor'] = rgbToHex(parseInt(dt.preciptation) * 255, 255, 255);
+    //   var circle = L.circleMarker(dt.coords, heat_pixel_style);
+    //   circle.bindPopup("Precipitação: " + dt.preciptation);
+    //   circle.addTo(map);
+    //   heat_pixel_style['fillOpacity'] = 0.2;
+    //
+    // });
+
 
   },
   error: function (error) {
