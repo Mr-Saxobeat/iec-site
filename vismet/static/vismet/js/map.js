@@ -44,7 +44,7 @@ var xaviewrWeatherStation = L.geoJson([], {
     onEachFeature: onEachFeature,
 });
 
- var XavierStation_url = $("#xavierweathergeojson").val();
+ var XavierStation_url = $("#xavier-station-geojson").val();
 
 $.getJSON(XavierStation_url, function (data) {
   xaviewrWeatherStation.addData(data);
