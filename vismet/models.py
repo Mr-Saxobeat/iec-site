@@ -21,14 +21,14 @@ class XavierWeatherStation(models.Model):
 
     @property
     def popup_content(self):
-        popup = "<span>Código OMM: </span>{}<br>".format(self.omm_code)
-        popup += "<span>Código Inmet: </span>{}<br>".format(self.inmet_code)
+        popup = "<span>Estado: </span>{}<br>".format(self.state)
         popup += "<span>Cidade: </span>{}<br>".format(self.name)
+        popup += "<span>Código OMM: </span>{}<br>".format(self.omm_code)
+        popup += "<span>Código Inmet: </span>{}<br>".format(self.inmet_code)
         popup += "<span>Tipo: </span>{}<br>".format(self.type)
-        popup += "<span>Latitude: </span>{}<br>".format(self.latitude)
-        popup += "<span>Longitude: </span>{}<br>".format(self.longitude)
-        popup += "<span>Altitude: </span>{}<br>".format(self.latitude)
-        popup += "<span>Estado: </span>{}<br>".format(self.state)
+        popup += "<span>Latitude: </span>{:.2f}<br>".format(self.latitude)
+        popup += "<span>Longitude: </span>{:.2f}<br>".format(self.longitude)
+        popup += "<span>Altitude: </span>{:.2f} m<br>".format(self.altitude)
 
         return popup
 
