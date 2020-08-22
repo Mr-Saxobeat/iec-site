@@ -1,4 +1,4 @@
-from .models import HeatPixel, HeatPixelData
+from .models import Pixel, PixelData
 import os
 import csv
 from datetime import datetime
@@ -25,9 +25,9 @@ def load_pixel_timeseries():
                         return print('acabou porra')
 
                 elif date:
-                    pixel = HeatPixelData.objects.get_or_create(
+                    pixel = PixelData.objects.get_or_create(
                         date = date,
-                        pixel = HeatPixel.objects.get(pixel_id=pixel_id[j-1]),
+                        pixel = Pixel.objects.get(pixel_id=pixel_id[j-1]),
                         preciptation = value
                     )
                     print(pixel)
@@ -36,7 +36,7 @@ def load_pixel_timeseries():
         print('ACABOOOOOOOOOOOOOOOOU')
 
 def add_bounding():
-    pixels = HeatPixel.objects.all()
+    pixels = Pixel.objects.all()
     dist = 0.025
 
     for px in pixels:

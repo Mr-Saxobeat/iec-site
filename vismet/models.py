@@ -51,7 +51,7 @@ class XavierStationData(models.Model):
 # Pixels do estado do Espírito Santo.
 # Não são necessariamente pixel de calor (eu sei, nome errado).
 # Cada pixel tem 5Km de lado.
-class HeatPixel(models.Model):
+class Pixel(models.Model):
     pixel_id = models.BigIntegerField()
     latitude = models.FloatField()
     longitude = models.FloatField()
@@ -63,9 +63,9 @@ class HeatPixel(models.Model):
 
 
 # Dados dos pixels do estado do Espírito Santo
-class HeatPixelData(models.Model):
+class PixelData(models.Model):
     date = models.DateField()
-    pixel = models.ForeignKey(HeatPixel, related_name='data', on_delete=models.CASCADE)
+    pixel = models.ForeignKey(Pixel, related_name='data', on_delete=models.CASCADE)
     preciptation = models.FloatField()
 
     def __str__(self):

@@ -9,7 +9,7 @@ urlpatterns = [
     path('cities/', views.CityGeoJson.as_view()),
     path('ajaxrequest/', views.ajaxrequest, name='ajaxrequest'),
     path('api/xavier/<str:variable>/<int:station_id>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/', views.ApiXavier, name='apixavier'),
-    path('api/pixeldata/', views.HeatPixelDataView, name='pixeldata'),
-    path('api/pixeldata/<int:lat>/<int:lng>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/', views.HeatPixelData2View),
-    path('pixel/', views.HeatPixelGeoJson.as_view()),
+    path('api/pixeldata/', views.PixelDataView, name='pixeldata'),
+    path('api/pixeldata/<int:lat>/<int:lng>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/', views.PixelData2View),
+    path('pixel/', views.PixelGeoJson.as_view()),
 ]

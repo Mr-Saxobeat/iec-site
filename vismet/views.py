@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from djgeojson.views import GeoJSONLayerView
-from .models import XavierStation, XavierStationData, HeatPixel, HeatPixelData, City
+from .models import XavierStation, XavierStationData, Pixel, PixelData, City
 from django.http import HttpResponse, JsonResponse
 import json
 import datetime
@@ -71,10 +71,10 @@ def ApiXavier(request, variable, station_id, start_day, start_month, start_year,
     return response
 
 # Esta view retorna os dados dos pixels do mapa.
-def HeatPixelDataView(request):
+def PixelDataView(request):
     startDate = datetime.date(1960, 1, 1)
     finalDate = datetime.date(1960, 12, 31)
-    heat_pixels_data = HeatPixelData.objects.filter(date=startDate)
+    heat_pixels_data = PixelData.objects.filter(date=startDate)
 
     queryset = []
 
@@ -93,11 +93,11 @@ def HeatPixelDataView(request):
 
     return JsonResponse(queryset, safe=False)
 
-def HeatPixelData2View(request, lat, lng, start_day, start_month, start_year, final_day, final_month, final_year):
+def PixelData2View(request, lat, lng, start_day, start_month, start_year, final_day, final_month, final_year):
     sDate = datetime.date(start_year, start_month, start_day)
     eDate = datetime.date(final_year, final_month, final_day)
 
-    pixel = HeatPixel.objects.filter(latitude=lat, longitude=lng)
+    pixel = Pixel.objects.filter(latitude=lat, longitude=lng)
     data = pixel.data.filter(date__lte=sData, date__gte=eDate)
 
     queryset = []
@@ -121,6 +121,6 @@ def HeatPixelData2View(request, lat, lng, start_day, start_month, start_year, fi
 
 # Esta view retorna os pixels do Espírito Santo
 # para serem usados como uma layer no mapa.
-class HeatPixelGeoJson(GeoJSONLayerView):
-    model = HeatPixel
+class PixelGeoJson(GeoJSONLayerView):
+    model = Pixel
     properties = ['boundings']

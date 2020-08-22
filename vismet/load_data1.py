@@ -1,6 +1,6 @@
 import os
 from django.contrib.gis.utils import LayerMapping
-from .models import XavierStation, HeatPixel, City
+from .models import XavierStation, Pixel, City
 
 XavierStation_mapping = {
     'station_id': 'MATLAB ind',
@@ -21,7 +21,7 @@ def run_xavier_weather_stations(verbose=True):
     lm = LayerMapping(XavierStation, shp_xavierWeather, XavierStation_mapping)
     lm.save(strict=True, verbose=True)
 
-heatpixel_mapping = {
+pixel_mapping = {
     'pixel_id': 'PIXEL ID',
     'latitude': 'Latitude',
     'longitude': 'Longitude',
@@ -32,7 +32,7 @@ shp_heat_pixel = os.path.abspath(os.path.join('stations_data', 'eta', 'shapefile
     'Eta 5km HADGEM2-ES Shapefile Espírito Santo', 'ES_Pixel_Eta5km_Shapefile.shp'))
 
 def load_heat_pixel(verbose=True):
-    lm = LayerMapping(HeatPixel, shp_heat_pixel, heatpixel_mapping)
+    lm = LayerMapping(Pixel, shp_heat_pixel, pixel_mapping)
     lm.save(strict=True, verbose=True)
 
 # Auto-generated `LayerMapping` dictionary for City model
