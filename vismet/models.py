@@ -74,6 +74,11 @@ class HeatPixelData(models.Model):
 
 # Este modelo é usado como uma layer no mapa
 # para destacar os municípios do Espírito Santo.
+######################################################################
+# Foram adicionados os atributos blank e null como True, pois estava
+# dando algum erro ao subir os dados do .cvs, Portanto, ainda é
+# necessário verificar se ainda pode ter algum erro nessa questão.
+######################################################################
 class City(models.Model):
     fid = models.BigIntegerField(blank=True,null=True)
     nome = models.CharField(max_length=50,blank=True,null=True)
