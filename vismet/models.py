@@ -70,7 +70,7 @@ class HeatPixelData(models.Model):
 
     def __str__(self):
         return f'{ self.pixel.pixel_id }: { self.date }'
-        
+
 
 # Este modelo é usado como uma layer no mapa
 # para destacar os municípios do Espírito Santo.
@@ -91,3 +91,6 @@ class City(models.Model):
     esc_local = models.CharField(max_length=30,blank=True,null=True)
     lei_criaca = models.CharField(max_length=250,blank=True,null=True)
     geom = models.PolygonField(srid=4326,blank=True,null=True)
+
+    def __str__(self):
+        return nome
