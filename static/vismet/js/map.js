@@ -25,7 +25,7 @@ var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStree
 var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox/light-v9', attribution: mbAttr}),
   streets  = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11',   attribution: mbAttr});
 
-var xavierWeatherStation_style = {
+var XavierStation_style = {
   fillColor: 'blue',
   weight: 1,
   opacity: 1,
@@ -34,7 +34,7 @@ var xavierWeatherStation_style = {
 };
 
 var xaviewrWeatherStation = L.geoJson([], {
-    style: xavierWeatherStation_style,
+    style: XavierStation_style,
     pointToLayer: function(feature, latlng) {
       lat = feature.properties.latitude;
       lng = feature.properties.longitude;
@@ -44,9 +44,9 @@ var xaviewrWeatherStation = L.geoJson([], {
     onEachFeature: onEachFeature,
 });
 
- var xavierWeatherStation_url = $("#xavierweathergeojson").val();
+ var XavierStation_url = $("#xavierweathergeojson").val();
 
-$.getJSON(xavierWeatherStation_url, function (data) {
+$.getJSON(XavierStation_url, function (data) {
   xaviewrWeatherStation.addData(data);
 });
 
