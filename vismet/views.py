@@ -25,19 +25,6 @@ class CityGeoJson(GeoJSONLayerView):
     model = City
     properties = ('nome', 'geom')
 
-# Esta view é um teste para fazer requisições da API
-# do ProjETA.
-def ApiProjeta(request):
-    climate_models = requests.get("https://projeta.cptec.inpe.br/api/v1/public/models").json()
-    intervals = requests.get("https://projeta.cptec.inpe.br/api/v1/public/intervals").json()
-    variables = requests.get("https://projeta.cptec.inpe.br/api/v1/public/variables").json()
-    return render(request, 'vismet/apiprojeta.html',
-                            {
-                                'climate_models': climate_models["data"],
-                                'intervals': intervals["data"],
-                                'variables': variables["data"]
-                            })
-
 # Esta view faz as requisições para o banco de dados
 # das estações meteorológicas Xavier.
 def ajaxrequest(request):
