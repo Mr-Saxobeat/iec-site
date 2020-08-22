@@ -12,7 +12,7 @@ from django.core.serializers import serialize as sr
 # Esta view apenas retorna o template pricipal
 # da plataforma de dados.
 def VisMetView(request):
-    return render(request, 'vismet/vismet.html')
+    return render(request, 'vismet/index.html')
 
 # Esta view retorna as estações meteorógicas Xavier.
 class XavierStationWeatherGeoJson(GeoJSONLayerView):
