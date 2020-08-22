@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from djgeojson.views import GeoJSONLayerView
-from .models import XavierWeatherStation, StationData, HeatPixel, HeatPixelData
+from .models import XavierWeatherStation, StationData, HeatPixel, HeatPixelData, City
 from django.http import HttpResponse, JsonResponse
 import json
 import datetime
@@ -9,13 +9,24 @@ from django.core import serializers
 from rest_framework import serializers as rest_serializers
 from django.core.serializers import serialize as sr
 
+# Esta view apenas retorna o template pricipal
+# da plataforma de dados.
 def VisMetView(request):
     return render(request, 'vismet/vismet.html')
 
+# Esta view retorna as estações meteorógicas Xavier.
 class XavierStationWeatherGeoJson(GeoJSONLayerView):
     model = XavierWeatherStation
     properties = ('popup_content', 'stationId', 'name', 'state', 'omm_code', 'latitude', 'longitude')
 
+# Esta view retorna as cidades do Espírito Santo
+# para serem usadas como uma layer no mapa.
+class CityGeoJson(GeoJSONLayerView):
+    model = City
+    properties = ('nome', 'geom')
+
+# Esta view é um teste para fazer requisições da API
+# do ProjETA.
 def ApiProjeta(request):
     climate_models = requests.get("https://projeta.cptec.inpe.br/api/v1/public/models").json()
     intervals = requests.get("https://projeta.cptec.inpe.br/api/v1/public/intervals").json()
@@ -27,6 +38,8 @@ def ApiProjeta(request):
                                 'variables': variables["data"]
                             })
 
+# Esta view faz as requisições para o banco de dados
+# das estações meteorológicas Xavier.
 def ajaxrequest(request):
     stationId = request.GET.get('stationId')
     startDate = request.GET.get('startDate')
@@ -54,7 +67,9 @@ def ajaxrequest(request):
     return HttpResponse(myData, content_type="application/json")
     # return JsonResponse(myData, safe=False)
 
-def Download(request, variable, station_id, start_day, start_month, start_year, final_day, final_month, final_year):
+# Esta view é um teste para criar uma API mais correta
+# das estações Xavier.
+def ApiXavier(request, variable, station_id, start_day, start_month, start_year, final_day, final_month, final_year):
     sDate = datetime.date(start_year, start_month, start_day)
     eDate = datetime.date(final_year, final_month, final_day)
 
@@ -68,6 +83,7 @@ def Download(request, variable, station_id, start_day, start_month, start_year, 
     # response['Content-Disposition'] = "attachment; filename=%s" %'time_series.json'
     return response
 
+# Esta view retorna os dados dos pixels do mapa.
 def HeatPixelDataView(request):
     startDate = datetime.date(1960, 1, 1)
     finalDate = datetime.date(1960, 12, 31)
@@ -90,6 +106,34 @@ def HeatPixelDataView(request):
 
     return JsonResponse(queryset, safe=False)
 
+def HeatPixelData2View(request, lat, lng, start_day, start_month, start_year, final_day, final_month, final_year):
+    sDate = datetime.date(start_year, start_month, start_day)
+    eDate = datetime.date(final_year, final_month, final_day)
+
+    pixel = HeatPixel.objects.filter(latitude=lat, longitude=lng)
+    data = pixel.data.filter(date__lte=sData, date__gte=eDate)
+
+    queryset = []
+
+    for heat_pixel_data in data:
+        pixel_id = heat_pixel_data.pixel.pixel_id
+        coords = [heat_pixel_data.pixel.longitude, heat_pixel_data.pixel.latitude]
+        preciptation = heat_pixel_data.preciptation
+
+        pixel_data = {
+            'pixel_id': pixel_id,
+            'coords': coords,
+            'preciptation': preciptation
+        }
+
+        queryset.append(pixel_data)
+
+
+    return JsonResponse(queryset, safe=False)
+
+
+# Esta view retorna os pixels do Espírito Santo
+# para serem usados como uma layer no mapa.
 class HeatPixelGeoJson(GeoJSONLayerView):
     model = HeatPixel
     properties = ['boundings']

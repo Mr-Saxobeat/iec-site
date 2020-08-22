@@ -28,7 +28,7 @@ function rgbToHex(r, g, b) {
 }
 
 $.ajax({
-  url: "heat/",
+  url: "api/pixeldata/",
   dataType: 'json',
   success: function (data) {
 
