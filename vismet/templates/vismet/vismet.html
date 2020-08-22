@@ -3,16 +3,13 @@
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'vismet/libs/leaflet/leaflet.css' %}">
-  <link rel="stylesheet" href="{% static 'vismet/css/map.css' %}">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <link rel="stylesheet" href="{% static 'vismet/css/map.css' %}">
   <link rel="stylesheet" href="{% static 'vismet/css/main.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3" id="sidebar">
+      <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
       <form action="" method="get">
         {% csrf_token %}
         <label for="variable">Variável:</label>
@@ -40,9 +37,7 @@
       <div class="row">
         <canvas id="chart" height="65"></canvas>
       </div>
-
     </div>
-
   </div>
 
 <input type="hidden"  id="xavierweathergeojson" value="{% url 'vismet:xavierweathergeojson' %}">
@@ -50,11 +45,10 @@
 
 {% block extra_js %}
   <script src="{% static 'vismet/libs/leaflet/leaflet.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="{% static 'vismet/js/my_ajax.js' %}"></script>
   <script src="{% static 'vismet/js/chart.js' %}"></script>
   <script src="{% static 'vismet/js/map.js' %}"></script>
-  <!-- <script src="{% static 'vismet/js/heat_pixel.js' %}"></script> -->
-  <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
-  <script src='{% static 'vismet/js/heat2.js' %}'></script>
+  <!-- <script src='{% static 'vismet/js/heat-pixel.js' %}'></script> -->
 
 {% endblock extra_js %}

@@ -51,7 +51,7 @@ $.getJSON(xavierWeatherStation_url, function (data) {
 });
 
 var map = L.map('map', {
-  center: [-19.3, -42.7],
+  center: [-19.145, -40.407],
   zoom: 6,
   layers: [streets, xaviewrWeatherStation],
 });
