@@ -1,8 +1,8 @@
 import os
 from django.contrib.gis.utils import LayerMapping
-from .models import XavierWeatherStation, HeatPixel, City
+from .models import XavierStation, HeatPixel, City
 
-xavierweatherstation_mapping = {
+XavierStation_mapping = {
     'station_id': 'MATLAB ind',
     'omm_code': 'Codigo OMM',
     'inmet_code': 'Codigo INM',
@@ -18,7 +18,7 @@ xavierweatherstation_mapping = {
 shp_xavierWeather = os.path.abspath(os.path.join('stations_data', 'data', 'Weather2_XavierDomain_Shapefile.shp'))
 
 def run_xavier_weather_stations(verbose=True):
-    lm = LayerMapping(XavierWeatherStation, shp_xavierWeather, xavierweatherstation_mapping)
+    lm = LayerMapping(XavierStation, shp_xavierWeather, XavierStation_mapping)
     lm.save(strict=True, verbose=True)
 
 heatpixel_mapping = {

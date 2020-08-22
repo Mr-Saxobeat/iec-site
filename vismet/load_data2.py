@@ -1,4 +1,4 @@
-from .models import StationData, XavierWeatherStation
+from .models import StationData, XavierStation
 import datetime
 import os
 import csv
@@ -47,7 +47,7 @@ def load_csv(verbose=True):
 
             created = StationData.objects.get_or_create(
                 date = date,
-                station_id = XavierWeatherStation.objects.get(station_id=row[1]),
+                station_id = XavierStation.objects.get(station_id=row[1]),
                 evapo = float(evapo),
                 relHum = float(relHum),
                 solarRad = float(solarRad),
