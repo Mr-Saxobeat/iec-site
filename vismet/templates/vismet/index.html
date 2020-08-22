@@ -8,17 +8,56 @@
     <meta name="description" content="">
     <title>Instituto de Estudos Climáticos do Espírito Santo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    {% block extra_css %}{% endblock extra_css %}
+    <link rel="stylesheet" href="{% static 'vismet/libs/leaflet/leaflet.css' %}">
+    <link rel="stylesheet" href="{% static 'vismet/css/main.css' %}">
   </head>
   <body>
 
     <div class="container-fluid">
-      {% block content %}{% endblock content %}
+      <div class="row">
+        <div class="col-md-3" id="sidebar">
+          <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
+          <form action="" method="get">
+            {% csrf_token %}
+            <label for="variable">Variável:</label>
+            <select id="variable" name="variable">
+              <option value="evapo">Evapotranspiração</option>
+              <option value="relHum">Umidade Relativa</option>
+              <option value="solarRad">Radiação Solar</option>
+              <option value="maxTemp">Temperatura Máxima</option>
+              <option value="minTemp">Temperatura Mínima</option>
+              <option value="windSpeed">Velocidade do Vento</option>
+            </select>
+            <input type="hidden" name="stationId" value="1" id="input_stationId">
+            <label for="startDate">Data inicial:</label>
+            <input type="text" id="startDate" name="startDate">
+            <label for="finalDate">Data final:</label>
+            <input type="text" id="finalDate" name="finalDate">
+            <button type="button" id="btn_submit" value="vai">Vai</button>
+          </form>
+        </div>
+
+        <div class="col-md-9">
+          <div class="row">
+            <div id="map"></div>
+          </div>
+          <div class="row">
+            <canvas id="chart" height="65"></canvas>
+          </div>
+        </div>
+      </div>
+
+    <input type="hidden"  id="xavierweathergeojson" value="{% url 'vismet:xavierweathergeojson' %}">
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    {% block extra_js %}{% endblock extra_js %}
+    <script src="{% static 'vismet/libs/leaflet/leaflet.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="{% static 'vismet/js/my_ajax.js' %}"></script>
+    <script src="{% static 'vismet/js/chart.js' %}"></script>
+    <script src="{% static 'vismet/js/map.js' %}"></script>
+    <!-- <script src='{% static 'vismet/js/heat-pixel.js' %}'></script> -->
   </body>
 </html>
