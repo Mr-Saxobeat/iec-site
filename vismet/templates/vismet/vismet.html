@@ -12,12 +12,6 @@
 
 {% block content %}
   <div class="row">
-    <div class="col-md-12">
-      <div id="map"></div>
-    </div>
-  </div>
-
-  <div class="row">
     <div class="col-md-3">
       <form action="" method="get">
         {% csrf_token %}
@@ -40,8 +34,15 @@
     </div>
 
     <div class="col-md-9">
-      <canvas id="chart" height="65"></canvas>
+      <div class="row">
+        <div id="map"></div>
+      </div>
+      <div class="row">
+        <canvas id="chart" height="65"></canvas>
+      </div>
+
     </div>
+
   </div>
 
 <input type="hidden"  id="xavierweathergeojson" value="{% url 'vismet:xavierweathergeojson' %}">

@@ -15,16 +15,8 @@
   </head>
   <body>
     <header id="header" class="alt">
-      <div id="weiglas">
-        <h1>IEC-ES</h1>
-
-        <nav id="nav">
-          <ul>
-            <li><a href="{% url 'home:index' %}">Home</a></li>
-            <li><a href="{% url 'vismet:vismet' %}">Plataforma</a></li>
-          </ul>
-        </nav>
-      </div>
+      {% block navbar %}
+      {% endblock navbar %}
     </header>
 
     <div class="container-fluid">
