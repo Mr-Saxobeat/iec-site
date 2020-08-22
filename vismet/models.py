@@ -93,4 +93,4 @@ class City(models.Model):
     geom = models.PolygonField(srid=4326,blank=True,null=True)
 
     def __str__(self):
-        return nome
+        return self.nome
