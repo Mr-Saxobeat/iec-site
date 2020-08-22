@@ -17,7 +17,7 @@ def VisMetView(request):
 # Esta view retorna as estações meteorógicas Xavier.
 class XavierStationWeatherGeoJson(GeoJSONLayerView):
     model = XavierStation
-    properties = ('popup_content', 'stationId', 'name', 'state', 'omm_code', 'latitude', 'longitude')
+    properties = ('popup_content', 'station_id', 'name', 'state', 'omm_code', 'latitude', 'longitude')
 
 # Esta view retorna as cidades do Espírito Santo
 # para serem usadas como uma layer no mapa.

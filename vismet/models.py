@@ -32,11 +32,8 @@ class XavierStation(models.Model):
 
         return popup
 
-    @property
-    def stationId(self):
-        return self.station_id
 
-# Dados das estações meteorológicas de Xavier
+# Dados diários das estações meteorológicas de Xavier
 class XavierStationData(models.Model):
     date = models.DateField()
     station_id = models.ForeignKey(XavierStation, related_name='data', on_delete=models.CASCADE)
@@ -49,6 +46,7 @@ class XavierStationData(models.Model):
 
     def __str__(self):
         return str('nº ' + str(self.station_id.station_id) + '---' + str(self.date))
+
 
 # Pixels do estado do Espírito Santo.
 # Não são necessariamente pixel de calor (eu sei, nome errado).
@@ -63,6 +61,7 @@ class HeatPixel(models.Model):
     def __str__(self):
         return f'{ self.latitude }, { self.longitude }'
 
+
 # Dados dos pixels do estado do Espírito Santo
 class HeatPixelData(models.Model):
     date = models.DateField()
@@ -71,6 +70,7 @@ class HeatPixelData(models.Model):
 
     def __str__(self):
         return f'{ self.pixel.pixel_id }: { self.date }'
+        
 
 # Este modelo é usado como uma layer no mapa
 # para destacar os municípios do Espírito Santo.

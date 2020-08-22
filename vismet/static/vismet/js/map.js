@@ -7,7 +7,7 @@ function onEachFeature(feature, layer) {
   var input_stationId = document.getElementById('input_stationId');
   layer.bindPopup(popupContent);
   layer.on('click', function() {
-    input_stationId.value = feature.properties.stationId;
+    input_stationId.value = feature.properties.station_id;
     station_city = feature.properties.name;
     station_state = feature.properties.state;
     station_omm = feature.properties.omm_code;
