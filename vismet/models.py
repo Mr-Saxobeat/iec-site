@@ -4,7 +4,7 @@ import csv
 
 # Estações meteorológicas que foram usadas
 # nos dados compilados por Xavier.
-class XavierWeatherStation(models.Model):
+class XavierStation(models.Model):
     station_id = models.BigIntegerField()
     omm_code = models.BigIntegerField()
     inmet_code = models.CharField(max_length=254)
@@ -37,9 +37,9 @@ class XavierWeatherStation(models.Model):
         return self.station_id
 
 # Dados das estações meteorológicas de Xavier
-class StationData(models.Model):
+class XavierStationData(models.Model):
     date = models.DateField()
-    station_id = models.ForeignKey(XavierWeatherStation, related_name='data', on_delete=models.CASCADE)
+    station_id = models.ForeignKey(XavierStation, related_name='data', on_delete=models.CASCADE)
     evapo = models.FloatField('evapotranspiration')
     relHum = models.FloatField('relative humidity')
     solarRad = models.FloatField('solar radiation')

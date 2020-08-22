@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from djgeojson.views import GeoJSONLayerView
-from .models import XavierWeatherStation, StationData, HeatPixel, HeatPixelData, City
+from .models import XavierStation, XavierStationData, HeatPixel, HeatPixelData, City
 from django.http import HttpResponse, JsonResponse
 import json
 import datetime
@@ -16,7 +16,7 @@ def VisMetView(request):
 
 # Esta view retorna as estações meteorógicas Xavier.
 class XavierStationWeatherGeoJson(GeoJSONLayerView):
-    model = XavierWeatherStation
+    model = XavierStation
     properties = ('popup_content', 'stationId', 'name', 'state', 'omm_code', 'latitude', 'longitude')
 
 # Esta view retorna as cidades do Espírito Santo
@@ -45,7 +45,7 @@ def ajaxrequest(request):
     eDate = datetime.date(int(finalYear), int(finalMonth), int(finalDay))
 
     # Get the station object
-    station = XavierWeatherStation.objects.get(station_id=stationId)
+    station = XavierStation.objects.get(station_id=stationId)
 
     # Get the the data objects between the specified dates
     station_timestamp = station.data.filter(date__gte=sDate, date__lte=eDate).order_by('date')
@@ -60,7 +60,7 @@ def ApiXavier(request, variable, station_id, start_day, start_month, start_year,
     sDate = datetime.date(start_year, start_month, start_day)
     eDate = datetime.date(final_year, final_month, final_day)
 
-    station = XavierWeatherStation.objects.get(station_id=station_id)
+    station = XavierStation.objects.get(station_id=station_id)
 
     station_timestamp = station.data.filter(date__gte=sDate, date__lte=eDate).order_by('date')
     myData = serializers.serialize('json', station_timestamp)
