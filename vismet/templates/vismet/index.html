@@ -47,7 +47,9 @@
         </div>
       </div>
 
-    <input type="hidden"  id="xavier-station-geojson" value="{% url 'vismet:xavier-station-geojson' %}">
+    <input type="hidden"  id="xavier-station-geojson" value="{% url 'vismet:xavier_stations_layer' %}">
+    <input type="hidden" id="cities-geojson" value="{% url 'vismet:cities_layer' %}">
+    <input type="hidden" id="pixels-geojson" value="{% url 'vismet:pixels_layer' %}">
     </div>
 
     <!-- CDNs das bibliotecas -->
@@ -61,7 +63,9 @@
     <script src="{% static 'vismet/js/my_ajax.js' %}"></script>
     <script src="{% static 'vismet/js/chart.js' %}"></script>
     <script src="{% static 'vismet/js/map.js' %}"></script>
-    <!-- <script src='{% static 'vismet/js/pixel.js' %}'></script> -->
+    <script src="{% static 'vismet/js/xavier-stations.js' %}"></script>
+    <script src="{% static 'vismet/js/cities.js' %}"></script>
+    <script src="{% static 'vismet/js/pixel.js' %}"></script>
 
   </body>
 </html>

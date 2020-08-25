@@ -1,51 +1,44 @@
-$.ajax({
-  url: "pixel/",
-  dataType: 'json',
-  success: function (data) {
-    data.features.forEach(ft => {
-      bounds = JSON.parse(ft.properties.boundings);
-      var rec = L.rectangle(bounds, {color: "#ff7800", weight: 1});
-      rec.bindPopup("Coordenadas: " + ft.geometry.coordinates[0] + ", " + ft.geometry.coordinates[1]);
-      // rec.on("click",
-      //   $.ajax({
-      //       // url: 'api/pixeldata/' + ft.geometry.coordinates[0] + '/' + ft.geometry.coordinates[1] + '1-1-1960/31-12-1960',
-      //       url: "pixel/",
-      //       dataType: 'json',
-      //       success: function (data) {
-      //         console.log(data);
-      //       },
-      //     }),
-      //   ),
-      rec.addTo(map);
-    });
+var boundings = [];
+var points = [];
 
-  },
-  error: function (error) {
-    console.log(error)
-  }
-}
-)
+pixels_layer_style = {
+  color: "green",
+};
 
-$.ajax({
-  url: "cities/",
-  dataType: 'json',
-  success: function (data) {
-    data.features.forEach(ft => {
-      latlngs = []
-      ft.geometry.coordinates[0].forEach(pt => {
-        latlngs.push(pt.reverse());
-      });
+var pixels_layer = L.geoJson([], {
+  style: pixels_layer_style,
+});
 
-      var name = ft.properties.nome;
+var url_pixels = $("#pixels-geojson").val();
 
-      var pl = L.polygon(latlngs, {color:'black'});
-      pl.bindPopup("Nome: " + name);
-      pl.addTo(map);
-    });
+$.getJSON(url_pixels, function(data) {
+  data.features.forEach(ft => {
 
-  },
-  error: function (error) {
-    console.log(error)
-  }
-}
-)
+    boundings = JSON.parse(ft.properties.boundings);
+
+    // Leaflet pede longitude e latitude, por isso
+    // aqui a ordem das coordenadas é invertida.
+    boundings[0] = boundings[0].reverse();
+    boundings[1] = boundings[1].reverse();
+
+    var points = [
+      boundings[0],
+      [ boundings[1][0], boundings[0][1] ],
+      boundings[1],
+      [ boundings[0][0], boundings[1][1] ]
+    ];
+
+    var geoJsonFeature = {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [points],
+      }
+    };
+
+    pixels_layer.addData(geoJsonFeature);
+  });
+})
+
+control.addOverlay(pixels_layer, "Pixels");
