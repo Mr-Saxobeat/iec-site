@@ -11,5 +11,5 @@ urlpatterns = [
     path('ajaxrequest/', views.ajaxrequest, name='ajaxrequest'),
     path('api/xavier/<str:variable>/<int:station_id>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/', views.ApiXavier, name='apixavier'),
     path('api/pixeldata/', views.PixelDataView, name='pixeldata'),
-    path('api/pixeldata/<int:lat>/<int:lng>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/', views.PixelData2View),
+    path('api/pixeldata/<int:pixel_id>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/', views.PixelDataView),
 ]
