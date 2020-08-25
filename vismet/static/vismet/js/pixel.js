@@ -1,3 +1,32 @@
+/* function to save JSON to file from browser
+* adapted from http://bgrins.github.io/devtools-snippets/#console-save
+* @param {Object} data -- json object to save
+* @param {String} file -- file name to save to
+*/
+function saveJSON(data, filename){
+
+    if(!data) {
+        console.error('No data')
+        return;
+    }
+
+    if(!filename) filename = 'console.json'
+
+    if(typeof data === "object"){
+        data = JSON.stringify(data, undefined, 4)
+    }
+
+    var blob = new Blob([data], {type: 'text/json'}),
+        e    = document.createEvent('MouseEvents'),
+        a    = document.createElement('a')
+
+    a.download = filename
+    a.href = window.URL.createObjectURL(blob)
+    a.dataset.downloadurl =  ['text/json', a.download, a.href].join(':')
+    e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+    a.dispatchEvent(e)
+}
+
 var boundings = [];
 var points = [];
 
@@ -5,15 +34,32 @@ pixels_layer_style = {
   color: "green",
 };
 
+function onEachFeature(feature, layer) {
+  // layer.bindPopup(feature.properties.coordinates[0] + feature.properties.coordinates[1]);
+  var pixel_id = feature.properties.id;
+  var popupContent = "Id: " + pixel_id;
+  layer.bindPopup(popupContent);
+  layer.on("click", function() {
+    $.getJSON("http://127.0.0.1:8000/api/pixeldata/" + pixel_id + "/1-1-1960/1-1-1960/",
+              function (data) {
+                saveJSON(data, "timestamp.json");
+              })
+          })
+      }
+
+
 var pixels_layer = L.geoJson([], {
   style: pixels_layer_style,
+
+  onEachFeature: onEachFeature,
 });
 
 var url_pixels = $("#pixels-geojson").val();
 
 $.getJSON(url_pixels, function(data) {
+  var i = 0;
+  console.log(data.features[0]);
   data.features.forEach(ft => {
-
     boundings = JSON.parse(ft.properties.boundings);
 
     // Leaflet pede longitude e latitude, por isso
@@ -30,12 +76,20 @@ $.getJSON(url_pixels, function(data) {
 
     var geoJsonFeature = {
       "type": "Feature",
-      "properties": {},
+      "properties": {
+        "id": ft.id,
+        "coordinates": ft.geometry.coordinates,
+      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [points],
       }
     };
+
+    if(i == 0){
+      console.log(geoJsonFeature);
+      i = 1;
+    }
 
     pixels_layer.addData(geoJsonFeature);
   });
