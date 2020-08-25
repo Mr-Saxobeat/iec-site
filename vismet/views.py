@@ -71,21 +71,27 @@ def ApiXavier(request, variable, station_id, start_day, start_month, start_year,
     return response
 
 # Esta view retorna os dados dos pixels do mapa.
-def PixelDataView(request):
-    startDate = datetime.date(1960, 1, 1)
-    finalDate = datetime.date(1960, 12, 31)
-    heat_pixels_data = PixelData.objects.filter(date=startDate)
+def PixelDataView(request, pixel_id, start_day, start_month, start_year, final_day, final_month, final_year):
+    pixel = Pixel.objects.get(pk=pixel_id)
+
+    startDate = datetime.date(start_year, start_month, start_day)
+    finalDate = datetime.date(final_year, final_month, final_day)
+
+    # timestamp = pixel.data.filter(date__gte=startDate, date__lte=finalDate)
+    timestamp = pixel.data.all()
 
     queryset = []
 
-    for heat_pixel_data in heat_pixels_data:
-        pixel_id = heat_pixel_data.pixel.pixel_id
-        coords = [heat_pixel_data.pixel.longitude, heat_pixel_data.pixel.latitude]
-        preciptation = heat_pixel_data.preciptation
+    for day in timestamp:
+        pixel_id = day.pixel.pixel_id
+        coords = [day.pixel.longitude, day.pixel.latitude]
+        date = day.date
+        preciptation = day.preciptation
 
         pixel_data = {
             'pixel_id': pixel_id,
             'coords': coords,
+            'date': date,
             'preciptation': preciptation
         }
 
