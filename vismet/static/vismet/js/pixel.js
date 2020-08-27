@@ -58,7 +58,6 @@ var url_pixels = $("#pixels-geojson").val();
 
 $.getJSON(url_pixels, function(data) {
   var i = 0;
-  console.log(data.features[0]);
   data.features.forEach(ft => {
     boundings = JSON.parse(ft.properties.boundings);
 
@@ -85,11 +84,6 @@ $.getJSON(url_pixels, function(data) {
         "coordinates": [points],
       }
     };
-
-    if(i == 0){
-      console.log(geoJsonFeature);
-      i = 1;
-    }
 
     pixels_layer.addData(geoJsonFeature);
   });
