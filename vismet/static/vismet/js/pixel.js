@@ -35,9 +35,8 @@ pixels_layer_style = {
 };
 
 function onEachFeature(feature, layer) {
-  // layer.bindPopup(feature.properties.coordinates[0] + feature.properties.coordinates[1]);
   var pixel_id = feature.properties.id;
-  var popupContent = "Id: " + pixel_id;
+  var popupContent = "Id: " + pixel_id + "<br>Coord: " + feature.properties.coordinates;
   layer.bindPopup(popupContent);
   layer.on("click", function() {
     $.getJSON("http://127.0.0.1:8000/api/pixeldata/" + pixel_id + "/1-1-1960/1-1-1960/",
