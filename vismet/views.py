@@ -68,65 +68,38 @@ def ajaxrequest(request):
     return HttpResponse(myData, content_type="application/json")
     # return JsonResponse(myData, safe=False)
 
+# Esta view retorna os pixels do Espírito Santo
+# para serem usados como uma layer no mapa.
+class Api_Pixel(GeoJSONLayerView):
+    model = Pixel
+    properties = ['boundings']
 
 
-# Esta view retorna os dados dos pixels do mapa.
-def PixelDataView(request, pixel_id, start_day, start_month, start_year, final_day, final_month, final_year):
-    pixel = Pixel.objects.get(pk=pixel_id)
-
+def Api_Pixel_Data(request, pk, start_day, start_month, start_year, final_day, final_month, final_year):
     startDate = datetime.date(start_year, start_month, start_day)
     finalDate = datetime.date(final_year, final_month, final_day)
 
-    # timestamp = pixel.data.filter(date__gte=startDate, date__lte=finalDate)
-    timestamp = pixel.data.all()
+    pixel = Pixel.objects.get(pk=pk)
+    data = pixel.data.filter(date__gte=startDate, date__lte=finalDate)
 
     queryset = []
 
-    for day in timestamp:
-        pixel_id = day.pixel.pixel_id
-        coords = [day.pixel.longitude, day.pixel.latitude]
-        date = day.date
-        preciptation = day.preciptation
+    for data in data:
+        pixel_id = data.pixel.pk
+        date  = data.date.strftime("%Y-%m-%d")
+        coords = {
+                    'latitude': data.pixel.latitude,
+                    'longitude': data.pixel.longitude
+                 }
+        preciptation = data.preciptation
 
-        pixel_data = {
+        pixel_data_timestamp = {
             'pixel_id': pixel_id,
-            'coords': coords,
             'date': date,
-            'preciptation': preciptation
-        }
-
-        queryset.append(pixel_data)
-
-    return JsonResponse(queryset, safe=False)
-
-def PixelData2View(request, lat, lng, start_day, start_month, start_year, final_day, final_month, final_year):
-    sDate = datetime.date(start_year, start_month, start_day)
-    eDate = datetime.date(final_year, final_month, final_day)
-
-    pixel = Pixel.objects.filter(latitude=lat, longitude=lng)
-    data = pixel.data.filter(date__lte=sData, date__gte=eDate)
-
-    queryset = []
-
-    for heat_pixel_data in data:
-        pixel_id = heat_pixel_data.pixel.pixel_id
-        coords = [heat_pixel_data.pixel.longitude, heat_pixel_data.pixel.latitude]
-        preciptation = heat_pixel_data.preciptation
-
-        pixel_data = {
-            'pixel_id': pixel_id,
             'coords': coords,
             'preciptation': preciptation
         }
 
-        queryset.append(pixel_data)
-
+        queryset.append(pixel_data_timestamp)
 
     return JsonResponse(queryset, safe=False)
-
-
-# Esta view retorna os pixels do Espírito Santo
-# para serem usados como uma layer no mapa.
-class PixelGeoJson(GeoJSONLayerView):
-    model = Pixel
-    properties = ['boundings']
