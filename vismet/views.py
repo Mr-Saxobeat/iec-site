@@ -15,9 +15,23 @@ def VisMetView(request):
     return render(request, 'vismet/index.html')
 
 # Esta view retorna as estações meteorógicas Xavier.
-class XavierStationWeatherGeoJson(GeoJSONLayerView):
+class Api_XavierStations(GeoJSONLayerView):
     model = XavierStation
     properties = ('popup_content', 'station_id', 'name', 'state', 'omm_code', 'latitude', 'longitude')
+
+# Esta retorna em os dados das estações Xavier,
+# dado o omm_code e o intervalo.
+def Api_XavierStations_TimeStamp(request, omm_code, start_day, start_month, start_year, final_day, final_month, final_year):
+    startDate = datetime.date(start_year, start_month, start_day)
+    finalDate = datetime.date(final_year, final_month, final_day)
+
+    station = XavierStation.objects.get(omm_code=omm_code)
+
+    station_timestamp = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+    myData = serializers.serialize('json', station_timestamp)
+
+    response = HttpResponse(myData, content_type="applications/json")
+    return response
 
 # Esta view retorna as cidades do Espírito Santo
 # para serem usadas como uma layer no mapa.
@@ -54,21 +68,7 @@ def ajaxrequest(request):
     return HttpResponse(myData, content_type="application/json")
     # return JsonResponse(myData, safe=False)
 
-# Esta view é um teste para criar uma API mais correta
-# das estações Xavier.
-def ApiXavier(request, variable, station_id, start_day, start_month, start_year, final_day, final_month, final_year):
-    sDate = datetime.date(start_year, start_month, start_day)
-    eDate = datetime.date(final_year, final_month, final_day)
 
-    station = XavierStation.objects.get(station_id=station_id)
-
-    station_timestamp = station.data.filter(date__gte=sDate, date__lte=eDate).order_by('date')
-    myData = serializers.serialize('json', station_timestamp)
-
-    response = HttpResponse(myData, content_type="applications/json")
-    # response = JsonResponse(myData, safe=False)
-    # response['Content-Disposition'] = "attachment; filename=%s" %'time_series.json'
-    return response
 
 # Esta view retorna os dados dos pixels do mapa.
 def PixelDataView(request, pixel_id, start_day, start_month, start_year, final_day, final_month, final_year):
