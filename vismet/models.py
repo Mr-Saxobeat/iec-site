@@ -49,13 +49,17 @@ class XavierStationData(models.Model):
 
 
 # Pixels do estado do Espírito Santo.
-# Não são necessariamente pixel de calor (eu sei, nome errado).
-# Cada pixel tem 5Km de lado.
+# Cada pixel tem 5Km de lado. (verificar isso)
 class Pixel(models.Model):
     pixel_id = models.BigIntegerField()
     latitude = models.FloatField()
     longitude = models.FloatField()
     geom = models.PointField(srid=4326)
+
+    # Lista com as coordenadas da vértice superior esquerda
+    # e da inferior direita, formando um quadrado de lado
+    # 5Km. (sim eu ainda tenho que verificar se são 5Km msm,
+    # a função que gerou esses pontos está em scripts/load_data3.py
     boundings = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
