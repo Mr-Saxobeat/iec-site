@@ -4,10 +4,10 @@ var station_omm;
 
 function onEachFeature(feature, layer) {
   var popupContent = feature.properties.popup_content;
-  var input_stationId = document.getElementById('input_stationId');
+  var input_ommcode = document.getElementById('input_ommcode');
   layer.bindPopup(popupContent);
   layer.on('click', function() {
-    input_stationId.value = feature.properties.station_id;
+    input_ommcode.value = feature.properties.omm_code;
     station_city = feature.properties.name;
     station_state = feature.properties.state;
     station_omm = feature.properties.omm_code;
