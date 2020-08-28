@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from djgeojson.views import GeoJSONLayerView
-from .models import XavierStation, XavierStationData, Pixel, PixelData, City
+from .models import XavierStation, XavierStationData, Pixel, PixelData, City, CityData
 from django.http import HttpResponse, JsonResponse
 import json
 import datetime
@@ -21,52 +21,19 @@ class Api_XavierStations(GeoJSONLayerView):
 
 # Esta retorna em os dados das estações Xavier,
 # dado o omm_code e o intervalo.
-def Api_XavierStations_TimeStamp(request, omm_code, start_day, start_month, start_year, final_day, final_month, final_year):
+def Api_XavierStations_Data(request, omm_code, start_day, start_month, start_year, final_day, final_month, final_year):
     startDate = datetime.date(start_year, start_month, start_day)
     finalDate = datetime.date(final_year, final_month, final_day)
 
     station = XavierStation.objects.get(omm_code=omm_code)
 
-    station_timestamp = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
-    myData = serializers.serialize('json', station_timestamp)
+    station_data = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+    data_serialized = serializers.serialize('json', station_data)
 
-    response = HttpResponse(myData, content_type="applications/json")
+    response = HttpResponse(data_serialized, content_type="applications/json")
+
     return response
 
-# Esta view retorna as cidades do Espírito Santo
-# para serem usadas como uma layer no mapa.
-class CityGeoJson(GeoJSONLayerView):
-    model = City
-    properties = ('nome', 'geom')
-
-# Esta view faz as requisições para o banco de dados
-# das estações meteorológicas Xavier.
-def ajaxrequest(request):
-    stationId = request.GET.get('stationId')
-    startDate = request.GET.get('startDate')
-    finalDate = request.GET.get('finalDate')
-
-    # Create the correct start date object to execute the filter
-    startDay = startDate[:2]
-    startMonth = startDate[3:5]
-    startYear = startDate[6:10]
-    sDate = datetime.date(int(startYear), int(startMonth), int(startDay))
-
-    # Create the correct end date object to execute the filter
-    finalDay = finalDate[:2]
-    finalMonth = finalDate[3:5]
-    finalYear = finalDate[6:10]
-    eDate = datetime.date(int(finalYear), int(finalMonth), int(finalDay))
-
-    # Get the station object
-    station = XavierStation.objects.get(station_id=stationId)
-
-    # Get the the data objects between the specified dates
-    station_timestamp = station.data.filter(date__gte=sDate, date__lte=eDate).order_by('date')
-    myData = serializers.serialize('json', station_timestamp)
-
-    return HttpResponse(myData, content_type="application/json")
-    # return JsonResponse(myData, safe=False)
 
 # Esta view retorna os pixels do Espírito Santo
 # para serem usados como uma layer no mapa.
@@ -103,3 +70,50 @@ def Api_Pixel_Data(request, pk, start_day, start_month, start_year, final_day, f
         queryset.append(pixel_data_timestamp)
 
     return JsonResponse(queryset, safe=False)
+
+# Esta view retorna as cidades do Espírito Santo
+# para serem usadas como uma layer no mapa.
+class Api_Cities(GeoJSONLayerView):
+    model = City
+    properties = ('nome', 'geom')
+
+def Api_Cities_Data(request, name, start_day, start_month, start_year, final_day, final_month, final_year):
+    startDate = datetime.date(start_year, start_month, start_day)
+    finalDate = datetime.date(final_year, final_month, final_day)
+
+    city = City.objects.get(nome=name)
+    data = City.city_data.filter(date__gte=startDate, date__lte=finalDate)
+
+    response = data
+
+    return JsonResponse(response)
+
+
+# Esta view faz as requisições para o banco de dados
+# das estações meteorológicas Xavier.
+def ajaxrequest(request):
+    omm_code = request.GET.get('omm_code')
+    startDate = request.GET.get('startDate')
+    finalDate = request.GET.get('finalDate')
+
+    # Create the correct start date object to execute the filter
+    startDay = startDate[:2]
+    startMonth = startDate[3:5]
+    startYear = startDate[6:10]
+    sDate = datetime.date(int(startYear), int(startMonth), int(startDay))
+
+    # Create the correct end date object to execute the filter
+    finalDay = finalDate[:2]
+    finalMonth = finalDate[3:5]
+    finalYear = finalDate[6:10]
+    eDate = datetime.date(int(finalYear), int(finalMonth), int(finalDay))
+
+    # Get the station object
+    station = XavierStation.objects.get(omm_code=omm_code)
+
+    # Get the the data objects between the specified dates
+    station_timestamp = station.data.filter(date__gte=sDate, date__lte=eDate).order_by('date')
+    myData = serializers.serialize('json', station_timestamp)
+
+    return HttpResponse(myData, content_type="application/json")
+    # return JsonResponse(myData, safe=False)
