@@ -103,3 +103,12 @@ class City(models.Model):
 
     def __str__(self):
         return self.nome
+
+
+class CityData(models.Model):
+    date = models.DateField()
+    city = models.ForeignKey(City, related_name='city_data', on_delete=models.CASCADE)
+    preciptation = models.FloatField()
+
+    def __str__(self):
+        return self.city.nome + " " + self.date
