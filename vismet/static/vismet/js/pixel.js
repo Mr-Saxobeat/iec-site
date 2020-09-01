@@ -39,7 +39,7 @@ function onEachFeature(feature, layer) {
   var popupContent = "Id: " + pixel_id + "<br>Coord: " + feature.properties.coordinates;
   layer.bindPopup(popupContent);
   layer.on("click", function() {
-    $.getJSON("http://127.0.0.1:8000/api/pixeldata/" + pixel_id + "/1-1-1960/1-1-1960/",
+    $.getJSON("http://127.0.0.1:8000/api/pixels/" + pixel_id + "/1-1-1960/1-12-1960/",
               function (data) {
                 saveJSON(data, "timestamp.json");
               })
