@@ -1,5 +1,19 @@
-.container-fluid{
-  width: 100%;
-  padding: 0;
-  margin: 0;
+#map {
+    padding: 0;
+    width: 100%;
+    height: 450px;
+    border: 1px solid #cfcfcf;
+}
+
+#sidebar{
+  margin-top: 10px;
+}
+
+#sidebar h1{
+  font-size: 40px;
+  text-align: center;
+}
+
+#sidebar a{
+  text-decoration: none;
 }
