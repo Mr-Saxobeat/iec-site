@@ -4,7 +4,6 @@ from .models import XavierStation, XavierStationData, Pixel, PixelData, City, Ci
 from django.http import HttpResponse, JsonResponse
 import json
 import datetime
-import requests
 from django.core import serializers
 from rest_framework import serializers as rest_serializers
 from django.core.serializers import serialize as sr
