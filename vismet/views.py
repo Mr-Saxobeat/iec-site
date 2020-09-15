@@ -4,9 +4,11 @@ from .models import XavierStation, XavierStationData, Pixel, PixelData, City, Ci
 from django.http import HttpResponse, JsonResponse
 import json
 import datetime
+import requests
 from django.core import serializers
 from rest_framework import serializers as rest_serializers
 from django.core.serializers import serialize as sr
+from djqscsv import render_to_csv_response
 
 # Esta view apenas retorna o template pricipal
 # da plataforma de dados.
@@ -20,18 +22,24 @@ class Api_XavierStations(GeoJSONLayerView):
 
 # Esta retorna em os dados das estações Xavier,
 # dado o omm_code e o intervalo.
-def Api_XavierStations_Data(request, omm_code, start_day, start_month, start_year, final_day, final_month, final_year):
+def Api_XavierStations_Data(request, format, omm_code, start_day, start_month, start_year, final_day, final_month, final_year):
     startDate = datetime.date(start_year, start_month, start_day)
     finalDate = datetime.date(final_year, final_month, final_day)
 
     station = XavierStation.objects.get(omm_code=omm_code)
 
     station_data = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
-    data_serialized = serializers.serialize('json', station_data)
 
-    response = HttpResponse(data_serialized, content_type="applications/json")
+    if(format == "json"):
+        data_serialized = serializers.serialize('json', station_data)
+        response = HttpResponse(data_serialized, content_type="applications/json")
+        return response
 
-    return response
+    elif format == "csv":
+        qs_csv = station_data.values('date', 'station_id', 'evapo', 'relHum', 'solarRad', 'maxTemp', 'minTemp', 'windSpeed')
+        return render_to_csv_response(qs_csv)
+
+
 
 
 # Esta view retorna os pixels do Espírito Santo
@@ -50,14 +58,14 @@ def Api_Pixel_Data(request, pk, start_day, start_month, start_year, final_day, f
 
     queryset = []
 
-    for data in data:
-        pixel_id = data.pixel.pk
-        date  = data.date.strftime("%Y-%m-%d")
+    for dt in data:
+        pixel_id = dt.pixel.pk
+        date  = dt.date.strftime("%Y-%m-%d")
         coords = {
-                    'latitude': data.pixel.latitude,
-                    'longitude': data.pixel.longitude
+                    'latitude': dt.pixel.latitude,
+                    'longitude': dt.pixel.longitude
                  }
-        preciptation = data.preciptation
+        preciptation = dt.preciptation
 
         pixel_data_timestamp = {
             'pixel_id': pixel_id,
@@ -81,38 +89,31 @@ def Api_Cities_Data(request, name, start_day, start_month, start_year, final_day
     finalDate = datetime.date(final_year, final_month, final_day)
 
     city = City.objects.get(nome=name)
-    data = City.city_data.filter(date__gte=startDate, date__lte=finalDate)
+    data = city.city_data.filter(date__gte=startDate, date__lte=finalDate)
 
-    response = data
+    queryset = []
 
-    return JsonResponse(response)
+    for dt in data:
+        city = dt.city.nome
+        date  = dt.date.strftime("%Y-%m-%d")
+        preciptation = dt.preciptation
+        medTemp = dt.medTemp
 
+        city_timestamp = {
+            'city': city,
+            'date': date,
+            'preciptation': preciptation,
+            'medTemp': medTemp
+        }
 
-# Esta view faz as requisições para o banco de dados
-# das estações meteorológicas Xavier.
-def ajaxrequest(request):
-    omm_code = request.GET.get('omm_code')
-    startDate = request.GET.get('startDate')
-    finalDate = request.GET.get('finalDate')
+        queryset.append(city_timestamp)
 
-    # Create the correct start date object to execute the filter
-    startDay = startDate[:2]
-    startMonth = startDate[3:5]
-    startYear = startDate[6:10]
-    sDate = datetime.date(int(startYear), int(startMonth), int(startDay))
+    response = queryset
 
-    # Create the correct end date object to execute the filter
-    finalDay = finalDate[:2]
-    finalMonth = finalDate[3:5]
-    finalYear = finalDate[6:10]
-    eDate = datetime.date(int(finalYear), int(finalMonth), int(finalDay))
+    return JsonResponse(response, safe=False)
 
-    # Get the station object
-    station = XavierStation.objects.get(omm_code=omm_code)
+def pega_capitais(request):
+    return render(request, 'vismet/api_inmet.html')
 
-    # Get the the data objects between the specified dates
-    station_timestamp = station.data.filter(date__gte=sDate, date__lte=eDate).order_by('date')
-    myData = serializers.serialize('json', station_timestamp)
-
-    return HttpResponse(myData, content_type="application/json")
-    # return JsonResponse(myData, safe=False)
+def Api_Inmet_Capitais(request, date):
+    url = "https://apitempo.inmet.gov.br/condicao/capitais/"
