@@ -7,7 +7,7 @@ urlpatterns = [
     path('', views.VisMetView, name='vismet'),
 
     path('api/xavierstations/', views.Api_XavierStations.as_view(), name='xavier_stations'),
-    path('api/xavierstations/<int:omm_code>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
+    path('api/xavierstations/<str:format>/<int:omm_code>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
          views.Api_XavierStations_Data,
          name='xavier_stations_timestamp'),
 
@@ -21,6 +21,6 @@ urlpatterns = [
          views.Api_Cities_Data,
          name='cities_data'),
 
-
-    path('ajaxrequest/', views.ajaxrequest, name='ajaxrequest'),
+    path('inmet/', views.pega_capitais),
+    path('api/inmet/<int:day>-<int:month>-<int:year>', views.Api_Inmet_Capitais, name='inmet_capitais'),
 ]
