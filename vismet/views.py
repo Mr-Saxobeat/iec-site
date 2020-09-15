@@ -111,9 +111,3 @@ def Api_Cities_Data(request, name, start_day, start_month, start_year, final_day
     response = queryset
 
     return JsonResponse(response, safe=False)
-
-def pega_capitais(request):
-    return render(request, 'vismet/api_inmet.html')
-
-def Api_Inmet_Capitais(request, date):
-    url = "https://apitempo.inmet.gov.br/condicao/capitais/"

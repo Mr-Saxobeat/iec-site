@@ -21,6 +21,4 @@ urlpatterns = [
          views.Api_Cities_Data,
          name='cities_data'),
 
-    path('inmet/', views.pega_capitais),
-    path('api/inmet/<int:day>-<int:month>-<int:year>', views.Api_Inmet_Capitais, name='inmet_capitais'),
 ]
