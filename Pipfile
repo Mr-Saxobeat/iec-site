@@ -13,6 +13,7 @@ psycopg2-binary = "*"
 django-geojson = "*"
 djangorestframework = "*"
 requests = "*"
+django-queryset-csv = "*"
 
 [requires]
 python_version = "3.8"
