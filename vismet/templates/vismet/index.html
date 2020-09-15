@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <title>Instituto de Estudos Climáticos do Espírito Santo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css">
     <link rel="stylesheet" href="{% static 'vismet/libs/leaflet/leaflet.css' %}">
     <link rel="stylesheet" href="{% static 'vismet/css/main.css' %}">
   </head>
@@ -17,6 +18,7 @@
       <div class="row">
         <div class="col-md-3" id="sidebar">
           <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
+          <h3>Por estação:</h3>
           <form action="" method="get">
             {% csrf_token %}
             <label for="variable">Variável:</label>
@@ -33,7 +35,31 @@
             <input type="text" id="startDate" name="startDate">
             <label for="finalDate">Data final:</label>
             <input type="text" id="finalDate" name="finalDate">
-            <button type="button" id="btn_submit" value="vai">Vai</button>
+
+            <button type="button" id="btn_submit" value="vai">OK</button>
+            <button type="button" id="btn_download" name="btn_download">Download</button>
+          </form>
+          <br>
+
+          <h3>Por município:</h3>
+          <form class="" action="" method="get">
+            <input type="hidden" value="0" id="city_name">
+            <label for="city_startDate">Data inicial:</label>
+            <input type="text" id="city_startDate" name="city_startDate">
+            <label for="city_finalDate">Data final:</label>
+            <input type="text" id="city_finalDate" name="city_finalDate">
+            <button type="button" id="btn_city" value="vai">OK</button>
+          </form>
+          <br>
+
+          <h3>Por pixel:</h3>
+          <form class="" action="" method="get">
+            <input type="hidden" value="0" id="pixel_id">
+            <label for="pixel_startDate">Data inicial:</label>
+            <input type="text" id="pixel_startDate" name="pixel_startDate">
+            <label for="pixel_finalDate">Data final:</label>
+            <input type="text" id="pixel_finalDate" name="pixel_finalDate">
+            <button type="button" id="btn_pixel" value="vai">OK</button>
           </form>
         </div>
 
@@ -57,15 +83,60 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
     <script src="{% static 'vismet/libs/leaflet/leaflet.js' %}"></script>
 
     <!-- JS próprios da plataforma  -->
-    <script src="{% static 'vismet/js/my_ajax.js' %}"></script>
     <script src="{% static 'vismet/js/chart.js' %}"></script>
     <script src="{% static 'vismet/js/map.js' %}"></script>
     <script src="{% static 'vismet/js/xavier-stations.js' %}"></script>
     <script src="{% static 'vismet/js/cities.js' %}"></script>
     <script src="{% static 'vismet/js/pixel.js' %}"></script>
+
+    <script type="text/javascript">
+      var url_api_xavierstation = "{% url 'vismet:xavier_stations' %}";
+    </script>
+
+    <script type="text/javascript">
+
+    function pegaData(id) {
+     $("#" + id).datepicker({
+       showOn: 'focus',
+       dateFormat: 'dd/mm/yy',
+       dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+       dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+       dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+       defaultDate: new Date(1980, 0, 1),
+       monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+       monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+       nextText: 'Próximo',
+       prevText: 'Anterior',
+       minDate: new Date(1980, 0, 1),
+       maxDate: new Date(2013, 11, 31),
+       changeYear: true,
+       changeMonth: true,
+     });
+   }
+
+   var startDate = $("#startDate")[0];
+   var finalDate = $("#finalDate")[0];
+   var city_startDate = $("#city_startDate")[0];
+   var city_finalDate = $("#city_finalDate")[0];
+   var pixel_startDate = $("#pixel_startDate")[0];
+   var pixel_finalDate = $("#pixel_finalDate")[0];
+
+   startDate.onfocus = function(){ pegaData(this.id); };
+   finalDate.onfocus = function(){ pegaData(this.id); };
+   city_startDate.onfocus = function(){ pegaData(this.id); };
+   city_finalDate.onfocus = function(){ pegaData(this.id); };
+   pixel_startDate.onfocus = function(){ pegaData(this.id); };
+   pixel_finalDate.onfocus = function(){ pegaData(this.id); };
+
+
+
+    </script>
 
   </body>
 </html>
