@@ -9,18 +9,21 @@ var chart = new Chart('chart', {
       fontSize: 20,
       text: '',
     },
-      scales:{
-          yAxes: [{
-              display: true,
-              labelString: "",
-              fontColor: '#666',
-          }],
-          xAxes: [{
-              display: true,
-              labelString: "Data",
-              fontColor: '#666',
-          }],
-      },
+    scales:{
+        yAxes: [{
+            display: true,
+            labelString: "",
+            fontColor: '#666',
+        }],
+        xAxes: [{
+            display: true,
+            labelString: "Data",
+            fontColor: '#666',
+        }],
+    },
+    legend: {
+      display: false,
+    }
   },
   type: 'line',
   data: {
