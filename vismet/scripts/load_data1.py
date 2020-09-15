@@ -1,6 +1,6 @@
 import os
 from django.contrib.gis.utils import LayerMapping
-from .models import XavierStation, Pixel, City
+from vismet.models import XavierStation, Pixel, City
 
 XavierStation_mapping = {
     'station_id': 'MATLAB ind',
