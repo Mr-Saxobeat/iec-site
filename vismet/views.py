@@ -18,7 +18,7 @@ def VisMetView(request):
 # Esta view retorna as estações meteorógicas Xavier.
 class Api_XavierStations(GeoJSONLayerView):
     model = XavierStation
-    properties = ('popup_content', 'station_id', 'name', 'state', 'omm_code', 'latitude', 'longitude')
+    properties = ('popup_content', 'name', 'state', 'omm_code', 'latitude', 'longitude')
 
 # Esta retorna em os dados das estações Xavier,
 # dado o omm_code e o intervalo.
@@ -36,7 +36,7 @@ def Api_XavierStations_Data(request, format, omm_code, start_day, start_month, s
         return response
 
     elif format == "csv":
-        qs_csv = station_data.values('date', 'station_id', 'evapo', 'relHum', 'solarRad', 'maxTemp', 'minTemp', 'windSpeed')
+        qs_csv = station_data.values('date', 'omm_code', 'evapo', 'relHum', 'solarRad', 'maxTemp', 'minTemp', 'windSpeed')
         return render_to_csv_response(qs_csv)
 
 

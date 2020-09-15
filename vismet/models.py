@@ -5,7 +5,6 @@ import csv
 # Estações meteorológicas que foram usadas
 # nos dados compilados por Xavier.
 class XavierStation(models.Model):
-    station_id = models.BigIntegerField()
     omm_code = models.BigIntegerField()
     inmet_code = models.CharField(max_length=254)
     name = models.CharField(max_length=254)
@@ -36,7 +35,7 @@ class XavierStation(models.Model):
 # Dados diários das estações meteorológicas de Xavier
 class XavierStationData(models.Model):
     date = models.DateField()
-    station_id = models.ForeignKey(XavierStation, related_name='data', on_delete=models.CASCADE)
+    station = models.ForeignKey(XavierStation, related_name='data', on_delete=models.CASCADE)
     evapo = models.FloatField('evapotranspiration')
     relHum = models.FloatField('relative humidity')
     solarRad = models.FloatField('solar radiation')
@@ -45,7 +44,7 @@ class XavierStationData(models.Model):
     windSpeed = models.FloatField('wind speed')
 
     def __str__(self):
-        return str('nº ' + str(self.station_id.station_id) + '---' + str(self.date))
+        return str('nº ' + str(self.station.omm_code) + '---' + str(self.date))
 
 
 # Pixels do estado do Espírito Santo.

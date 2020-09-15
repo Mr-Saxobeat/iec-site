@@ -3,7 +3,6 @@ from django.contrib.gis.utils import LayerMapping
 from vismet.models import XavierStation, Pixel, City
 
 XavierStation_mapping = {
-    'station_id': 'MATLAB ind',
     'omm_code': 'Codigo OMM',
     'inmet_code': 'Codigo INM',
     'name': 'Nome da es',

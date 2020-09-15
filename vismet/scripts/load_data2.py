@@ -3,6 +3,7 @@ import datetime
 import os
 import csv
 
+## ESTE SCRIPT PRECISA SER REESCRITO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def load_csv(verbose=True):
     cont = 1
     csv_path = os.path.join(os.getcwd(), 'data', 'entire-data.csv')
@@ -47,7 +48,7 @@ def load_csv(verbose=True):
 
             created = StationData.objects.get_or_create(
                 date = date,
-                station_id = XavierStation.objects.get(station_id=row[1]),
+                station = XavierStation.objects.get(station=row[1]), ## AQUI TÁ ERRADO NÃO EXITE MAIS O CAMPO STATION_ID
                 evapo = float(evapo),
                 relHum = float(relHum),
                 solarRad = float(solarRad),
