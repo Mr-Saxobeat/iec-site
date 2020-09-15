@@ -3,4 +3,6 @@ db.sqlite3
 __pycache__
 .venv
 .env
-stations_data/
+stations_data/data/
+stations_data/eta/
+stations_data/esmunicipios.zip
