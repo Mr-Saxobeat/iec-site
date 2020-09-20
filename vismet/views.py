@@ -25,10 +25,36 @@ class Api_XavierStations(GeoJSONLayerView):
 def Api_XavierStations_Data(request, format, omm_code, start_day, start_month, start_year, final_day, final_month, final_year):
     startDate = datetime.date(start_year, start_month, start_day)
     finalDate = datetime.date(final_year, final_month, final_day)
+    delta = finalDate - startDate
 
     station = XavierStation.objects.get(omm_code=omm_code)
 
-    station_data = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+    try:
+        station_data = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+    except ErrName:
+        print(ErrName)
+
+    if station_data.count() < delta.days:
+        station_data = requests.get('https://apitempo.inmet.gov.br/estacao/diaria/' +
+                                    startDate.strftime("%Y-%m-%d") + '/' +
+                                    finalDate.strftime("%Y-%m-%d") + '/' +
+                                    station.inmet_code)
+
+        for dt in station_data.json():
+            date = datetime.datetime.strptime(dt["DT_MEDICAO"], "%Y-%m-%d")
+            station = XavierStation.objects.get(inmet_code=dt["CD_ESTACAO"])
+            maxTemp = dt["TEMP_MAX"]
+            minTemp = dt["TEMP_MIN"]
+
+            XavierStationData.objects.get_or_create(
+                date = date,
+                station = station,
+                maxTemp = maxTemp,
+                minTemp = minTemp
+            )
+
+        station_data = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+
 
     if(format == "json"):
         data_serialized = serializers.serialize('json', station_data)
