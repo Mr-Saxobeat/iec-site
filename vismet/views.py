@@ -62,7 +62,7 @@ def Api_XavierStations_Data(request, format, omm_code, start_day, start_month, s
         return response
 
     elif format == "csv":
-        qs_csv = station_data.values('date', 'omm_code', 'evapo', 'relHum', 'solarRad', 'maxTemp', 'minTemp', 'windSpeed')
+        qs_csv = station_data.values('date', 'evapo', 'relHum', 'solarRad', 'maxTemp', 'minTemp', 'windSpeed')
         return render_to_csv_response(qs_csv)
 
 
