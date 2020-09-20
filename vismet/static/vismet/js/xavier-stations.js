@@ -36,7 +36,7 @@ var xaviewrWeatherStation = L.geoJson([], {
     onEachFeature: onEachFeature,
 });
 
- var XavierStation_url = $("#xavier-station-geojson").val();
+var XavierStation_url = $("#xavier-station-geojson").val();
 
 $.getJSON(XavierStation_url, function (data) {
   xaviewrWeatherStation.addData(data);
@@ -98,7 +98,5 @@ btn_download.click(function(){
     startDate = startDate.replace("/", "-");
     finalDate = finalDate.replace("/", "-");
   }
-  
   window.location = url_api_xavierstation + "csv" + "/" + ommCode + "/" + startDate + "/" + finalDate;
-
 })
