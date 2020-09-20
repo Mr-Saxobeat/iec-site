@@ -6,7 +6,7 @@ import csv
 ## ESTE SCRIPT PRECISA SER REESCRITO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def load_csv(verbose=True):
     cont = 1
-    csv_path = os.path.join(os.getcwd(), 'data', 'entire-data.csv')
+    csv_path = '/home/weiglas/Documents/iec/Xavier_TempMax_1980-2017.csv'
     # csv_path = os.path.join(os.getcwd(), 'data', 'estacao-1-1980.csv')
     with open(csv_path, 'r') as file:
         reader = csv.reader(file)
