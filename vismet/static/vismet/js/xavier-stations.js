@@ -1,6 +1,36 @@
 var station_city;
 var station_state;
 var station_omm;
+var station_variable = document.getElementById("station_variable");
+
+// Função para mudar a legenda do gráfico ao
+// selecionar uma variável.
+station_variable.addEventListener("change", function() {
+  var variable_value = station_variable.value;
+  var variable_name;
+  var variable_unit;
+  var legend;
+
+  switch (variable_value) {
+    case "maxTemp":
+      variable_name = "Temperatura máxima";
+      variable_unit = "Cº";
+      break;
+    case "minTemp":
+      variable_name = "Temperatura mínima";
+      variable_unit = "Cº";
+      break;
+    default:
+      variable_name = "none";
+  }
+
+  chart.options.scales.yAxes[0].scaleLabel.display = true;
+  chart.options.scales.yAxes[0].scaleLabel.labelString = variable_unit;
+  chart.data.datasets[0].label = variable_name;
+  chart.options.legend.display = true;
+  chart.update();
+
+});
 
 function onEachFeature(feature, layer) {
   var popupContent = feature.properties.popup_content;
@@ -55,7 +85,6 @@ btn_submit.click(function(){
   var ommCode = $("#input_ommcode").val();
   var startDate = $("#startDate").val();
   var finalDate = $("#finalDate").val();
-  var variable = $("#variable").val();
 
   for(i = 0; i < 3; i++){
     startDate = startDate.replace("/", "-");
@@ -73,7 +102,7 @@ btn_submit.click(function(){
       data_response.forEach((dt, i) => {
         chart.data.labels.push(dt.fields.date);
 
-        value = dt.fields[variable];
+        value = dt.fields[station_variable.value];
 
         if(value == 0 || value == "NaN" || value == "-9999"){
           chart.data.datasets[0].data.push(null);
@@ -92,7 +121,6 @@ btn_download.click(function(){
   var ommCode = $("#input_ommcode").val();
   var startDate = $("#startDate").val();
   var finalDate = $("#finalDate").val();
-  var variable = $("#variable").val();
 
   for(i = 0; i < 3; i++){
     startDate = startDate.replace("/", "-");
