@@ -32,7 +32,7 @@
         font-size: 21px;
         color: #454545;
         display: block;
-        text-align: center; 
+        text-align: center;
       }
 
       .sidenav a:hover {
@@ -55,9 +55,9 @@
   </head>
   <body>
     <div class="sidenav">
-      <a id="estacoesxavier" href="">Estações<br>Históricas<hr></a>
-      <a id="satelitereanalise" href="">Satélite e<br>Reanálise<hr></a>
-      <a id="cenariosfuturos" href="">Cenários<br>Futuros</a>
+      <a id="estacoesxavier" href="#">Estações<br>Históricas<hr></a>
+      <a id="satelitereanalise" href="#">Satélite e<br>Reanálise<hr></a>
+      <a id="cenariosfuturos" href="#">Cenários<br>Futuros</a>
 <!--  <a href="#sobre-bar">Sobre</a> -->
 
 
@@ -68,14 +68,24 @@
       document.getElementById("satelitereanalise").addEventListener("click", displaySatelite);
       document.getElementById("cenariosfuturos").addEventListener("click", displayFuturo);
 
+      var XavierIsOn = false;
+
       function displayXavier() {
+        if(XavierIsOn){
+          map.removeLayer(xaviewrWeatherStation);
+          XavierIsOn = false;
+        }
+        else{
+          map.addLayer(xaviewrWeatherStation);
+          XavierIsOn = true;
+        }
       }
 
       function displayFuturo() {
       }
 
       function displaySatelite() {
-      }            
+      }
     </script>
 
     <div class="main">
