@@ -43,6 +43,7 @@ def Api_XavierStations_Data(request, format, omm_code, start_day, start_month, s
         for dt in station_data.json():
             date = datetime.datetime.strptime(dt["DT_MEDICAO"], "%Y-%m-%d")
             station = XavierStation.objects.get(inmet_code=dt["CD_ESTACAO"])
+            relHum = dt["UMID_MED"]
             maxTemp = dt["TEMP_MAX"]
             minTemp = dt["TEMP_MIN"]
 
@@ -50,7 +51,8 @@ def Api_XavierStations_Data(request, format, omm_code, start_day, start_month, s
                 date = date,
                 station = station,
                 maxTemp = maxTemp,
-                minTemp = minTemp
+                minTemp = minTemp,
+                relHum = relHum,
             )
 
         station_data = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
