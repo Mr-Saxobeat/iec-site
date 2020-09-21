@@ -70,6 +70,7 @@
       document.getElementById("cenariosfuturos").addEventListener("click", displayFuturo);
 
       var XavierIsOn = false;
+      var PixelIsOn = false;
 
       function displayXavier() {
         if(XavierIsOn){
@@ -79,10 +80,24 @@
         else{
           map.addLayer(xaviewrWeatherStation);
           XavierIsOn = true;
+
+          map.removeLayer(pixels_layer);
+          PixelIsOn = false;
         }
       }
 
       function displayFuturo() {
+        if(PixelIsOn){
+          map.removeLayer(pixels_layer);
+          PixelIsOn = false;
+        }
+        else{
+          map.addLayer(pixels_layer);
+          PixelIsOn = true;
+
+          map.removeLayer(xaviewrWeatherStation);
+          XavierIsOn = false;
+        }
       }
 
       function displaySatelite() {
