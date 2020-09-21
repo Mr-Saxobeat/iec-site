@@ -72,7 +72,7 @@ def Api_XavierStations_Data(request, format, omm_code, start_day, start_month, s
 # para serem usados como uma layer no mapa.
 class Api_Pixel(GeoJSONLayerView):
     model = Pixel
-    properties = ['boundings']
+    properties = ['latitude', 'longitude', 'boundings']
 
 
 def Api_Pixel_Data(request, pk, start_day, start_month, start_year, final_day, final_month, final_year):

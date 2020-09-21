@@ -84,8 +84,8 @@ $.getJSON(url_pixels, function(data) {
 
     // Leaflet pede longitude e latitude, por isso
     // aqui a ordem das coordenadas é invertida.
-    boundings[0] = boundings[0].reverse();
-    boundings[1] = boundings[1].reverse();
+    //boundings[0] = boundings[0].reverse();
+    //boundings[1] = boundings[1].reverse();
 
     var points = [
       boundings[0],
@@ -98,7 +98,7 @@ $.getJSON(url_pixels, function(data) {
       "type": "Feature",
       "properties": {
         "id": ft.id,
-        "coordinates": ft.geometry.coordinates,
+        "coordinates": [ft.properties.longitude, ft.properties.latitude],
       },
       "geometry": {
         "type": "Polygon",
