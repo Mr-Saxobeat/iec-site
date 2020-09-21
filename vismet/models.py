@@ -53,7 +53,7 @@ class Pixel(models.Model):
     pixel_id = models.BigIntegerField()
     latitude = models.FloatField()
     longitude = models.FloatField()
-    geom = models.PointField(srid=4326)
+    geom = models.PointField(srid=4326, null=True)
 
     # Lista com as coordenadas da vértice superior esquerda
     # e da inferior direita, formando um quadrado de lado
