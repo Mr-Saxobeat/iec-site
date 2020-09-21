@@ -13,8 +13,8 @@ def run():
             if i == 0:
                 continue
 
-            if i > 100:
-                break
+            # if i > 100:
+                # break
 
             pixel_id = row[0]
             lat = row[1]
