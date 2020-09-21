@@ -34,6 +34,7 @@ def run():
                 pixel_id = pixel_id,
                 latitude = lat,
                 longitude = lng,
+                boundings = boudings
             )
 
     print("ACABOU")
