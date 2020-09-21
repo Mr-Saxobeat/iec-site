@@ -123,23 +123,22 @@
             </select>
             <input type="hidden" name="ommcode" value="0" id="input_ommcode">
             <label for="startDate">Data inicial:</label>
-            <input type="text" id="startDate" name="startDate">
+            <input class="dateinput" type="text" id="startDate" name="startDate">
             <label for="finalDate">Data final:</label>
-            <input type="text" id="finalDate" name="finalDate">
+            <input class="dateinput" type="text" id="finalDate" name="finalDate">
 
             <button type="button" id="btn_submit" value="vai">OK</button>
             <button type="button" id="btn_download" name="btn_download">Download</button>
           </form>
           <br>
 
-
           <h3>Por município:</h3>
           <form class="" action="" method="get">
             <input type="hidden" value="0" id="city_name">
             <label for="city_startDate">Data inicial:</label>
-            <input type="text" id="city_startDate" name="city_startDate">
+            <input class="dateinput" type="text" id="city_startDate" name="city_startDate">
             <label for="city_finalDate">Data final:</label>
-            <input type="text" id="city_finalDate" name="city_finalDate">
+            <input class="dateinput" type="text" id="city_finalDate" name="city_finalDate">
             <button type="button" id="btn_city" value="vai">OK</button>
           </form>
           <br>
@@ -148,9 +147,9 @@
           <form class="" action="" method="get">
             <input type="hidden" value="0" id="pixel_id">
             <label for="pixel_startDate">Data inicial:</label>
-            <input type="text" id="pixel_startDate" name="pixel_startDate">
+            <input class="dateinput" type="text" id="pixel_startDate" name="pixel_startDate">
             <label for="pixel_finalDate">Data final:</label>
-            <input type="text" id="pixel_finalDate" name="pixel_finalDate">
+            <input class="dateinput" type="text" id="pixel_finalDate" name="pixel_finalDate">
             <button type="button" id="btn_pixel" value="vai">OK</button>
           </form>
         </div>
@@ -193,8 +192,8 @@
 
     <script type="text/javascript">
 
-    function pegaData(id) {
-     $("#" + id).datepicker({
+
+     $(".dateinput").datepicker({
        showOn: 'focus',
        dateFormat: 'dd/mm/yy',
        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
@@ -210,24 +209,6 @@
        changeYear: true,
        changeMonth: true,
      });
-   }
-
-   var startDate = $("#startDate")[0];
-   var finalDate = $("#finalDate")[0];
-   var city_startDate = $("#city_startDate")[0];
-   var city_finalDate = $("#city_finalDate")[0];
-   var pixel_startDate = $("#pixel_startDate")[0];
-   var pixel_finalDate = $("#pixel_finalDate")[0];
-
-   startDate.onfocus = function(){ pegaData(this.id); };
-   finalDate.onfocus = function(){ pegaData(this.id); };
-   city_startDate.onfocus = function(){ pegaData(this.id); };
-   city_finalDate.onfocus = function(){ pegaData(this.id); };
-   pixel_startDate.onfocus = function(){ pegaData(this.id); };
-   pixel_finalDate.onfocus = function(){ pegaData(this.id); };
-
-
-
     </script>
   </body>
 </html>
