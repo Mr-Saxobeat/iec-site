@@ -57,7 +57,7 @@
   <body>
     <div class="sidenav">
       <a id="estacoesxavier" href="#">Estações<br>Históricas<hr></a>
-      <a id="satelitereanalise" href="#">Satélite e<br>Reanálise<hr></a>
+      <!-- <a id="satelitereanalise" href="#">Satélite e<br>Reanálise<hr></a> -->
       <a id="cenariosfuturos" href="#">Cenários<br>Futuros</a>
 <!--  <a href="#sobre-bar">Sobre</a> -->
     </div>
@@ -91,7 +91,7 @@
             </form><br>
           </div>
 
-          <div id="porMunicipio">
+          <!-- <div id="porMunicipio">
             <h3>Por município:</h3>
             <form class="" action="" method="get">
               <input type="hidden" value="0" id="city_name">
@@ -101,7 +101,7 @@
               <input class="dateinput" type="text" id="city_finalDate" name="city_finalDate">
               <button type="button" id="btn_city" value="vai">OK</button>
             </form><br>
-          </div>
+          </div> -->
 
           <div id="porPixel">
           <h3>Por pixel:</h3>
@@ -175,11 +175,11 @@
     <script>
       map.addLayer(xaviewrWeatherStation);
       document.getElementById("porEstacao").style.display = "block";
-      document.getElementById("porMunicipio").style.display = "none";
+      // document.getElementById("porMunicipio").style.display = "none";
       document.getElementById("porPixel").style.display = "none";
 
       document.getElementById("estacoesxavier").addEventListener("click", displayXavier);
-      document.getElementById("satelitereanalise").addEventListener("click", displaySatelite);
+      // document.getElementById("satelitereanalise").addEventListener("click", displaySatelite);
       document.getElementById("cenariosfuturos").addEventListener("click", displayFuturo);
 
       var XavierIsOn = true;
@@ -198,7 +198,7 @@
           PixelIsOn = false;
 
           document.getElementById("porEstacao").style.display = "block";
-          document.getElementById("porMunicipio").style.display = "none";
+          // document.getElementById("porMunicipio").style.display = "none";
           document.getElementById("porPixel").style.display = "none";
         }
       }
@@ -216,7 +216,7 @@
           XavierIsOn = false;
 
           document.getElementById("porEstacao").style.display = "none";
-          document.getElementById("porMunicipio").style.display = "block";
+          // document.getElementById("porMunicipio").style.display = "block";
           document.getElementById("porPixel").style.display = "block";
         }
       }
