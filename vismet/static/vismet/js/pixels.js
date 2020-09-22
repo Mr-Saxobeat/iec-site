@@ -32,6 +32,7 @@ var points = [];
 
 pixels_layer_style = {
   color: "green",
+  weight: 0.5,
 };
 
 var pixel_master_id;
