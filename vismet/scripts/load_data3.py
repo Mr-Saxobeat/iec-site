@@ -21,8 +21,8 @@ def run():
 
                 elif i > 0 and j == 0:
                     date = datetime.strptime(value, '%d-%m-%Y')
-                    if date.year > 1960:
-                        return print('acabou')
+                    # if date.year > 1960:
+                    #     return print('acabou')
 
                 elif date:
                     pixel = PixelData.objects.get_or_create(
