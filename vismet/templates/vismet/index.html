@@ -60,8 +60,6 @@
       <a id="satelitereanalise" href="#">Satélite e<br>Reanálise<hr></a>
       <a id="cenariosfuturos" href="#">Cenários<br>Futuros</a>
 <!--  <a href="#sobre-bar">Sobre</a> -->
-
-
     </div>
 
     <script>
@@ -76,6 +74,10 @@
         if(XavierIsOn){
           map.removeLayer(xaviewrWeatherStation);
           XavierIsOn = false;
+          document.getElementById("porEstacao").style.display = "block";
+          document.getElementById("porMunicipio").style.display = "none";
+          document.getElementById("porPixel").style.display = "none";
+
         }
         else{
           map.addLayer(xaviewrWeatherStation);
@@ -90,6 +92,9 @@
         if(PixelIsOn){
           map.removeLayer(pixels_layer);
           PixelIsOn = false;
+          document.getElementById("porEstacao").style.display = "none";
+          document.getElementById("porMunicipio").style.display = "block";
+          document.getElementById("porPixel").style.display = "block";
         }
         else{
           map.addLayer(pixels_layer);
@@ -109,40 +114,43 @@
       <div class="row">
         <div class="col-md-3" id="sidebar">
           <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
-          <h3>Por estação:</h3>
-          <form action="" method="get">
-            {% csrf_token %}
-            <label for="variable">Variável:</label>
-            <select id="variable" name="variable">
-              <option value="evapo">Evapotranspiração</option>
-              <option value="relHum">Umidade Relativa</option>
-              <option value="solarRad">Radiação Solar</option>
-              <option value="maxTemp">Temperatura Máxima</option>
-              <option value="minTemp">Temperatura Mínima</option>
-              <option value="windSpeed">Velocidade do Vento</option>
-            </select>
-            <input type="hidden" name="ommcode" value="0" id="input_ommcode">
-            <label for="startDate">Data inicial:</label>
-            <input class="dateinput" type="text" id="startDate" name="startDate">
-            <label for="finalDate">Data final:</label>
-            <input class="dateinput" type="text" id="finalDate" name="finalDate">
+          <div id="porEstacao">
+            <h3>Por estação:</h3>
+            <form action="" method="get">
+              {% csrf_token %}
+              <label for="variable">Variável:</label>
+              <select id="variable" name="variable">
+                <option value="evapo">Evapotranspiração</option>
+                <option value="relHum">Umidade Relativa</option>
+                <option value="solarRad">Radiação Solar</option>
+                <option value="maxTemp">Temperatura Máxima</option>
+                <option value="minTemp">Temperatura Mínima</option>
+                <option value="windSpeed">Velocidade do Vento</option>
+              </select>
+              <input type="hidden" name="ommcode" value="0" id="input_ommcode">
+              <label for="startDate">Data inicial:</label>
+              <input class="dateinput" type="text" id="startDate" name="startDate">
+              <label for="finalDate">Data final:</label>
+              <input class="dateinput" type="text" id="finalDate" name="finalDate">
 
-            <button type="button" id="btn_submit" value="vai">OK</button>
-            <button type="button" id="btn_download" name="btn_download">Download</button>
-          </form>
-          <br>
+              <button type="button" id="btn_submit" value="vai">OK</button>
+              <button type="button" id="btn_download" name="btn_download">Download</button>
+            </form><br>
+          </div>
 
-          <h3>Por município:</h3>
-          <form class="" action="" method="get">
-            <input type="hidden" value="0" id="city_name">
-            <label for="city_startDate">Data inicial:</label>
-            <input class="dateinput" type="text" id="city_startDate" name="city_startDate">
-            <label for="city_finalDate">Data final:</label>
-            <input class="dateinput" type="text" id="city_finalDate" name="city_finalDate">
-            <button type="button" id="btn_city" value="vai">OK</button>
-          </form>
-          <br>
+          <div id="porMunicipio">
+            <h3>Por município:</h3>
+            <form class="" action="" method="get">
+              <input type="hidden" value="0" id="city_name">
+              <label for="city_startDate">Data inicial:</label>
+              <input class="dateinput" type="text" id="city_startDate" name="city_startDate">
+              <label for="city_finalDate">Data final:</label>
+              <input class="dateinput" type="text" id="city_finalDate" name="city_finalDate">
+              <button type="button" id="btn_city" value="vai">OK</button>
+            </form><br>
+          </div>
 
+          <div id="porPixel">
           <h3>Por pixel:</h3>
           <form class="" action="" method="get">
             <input type="hidden" value="0" id="pixel_id">
@@ -152,6 +160,7 @@
             <input class="dateinput" type="text" id="pixel_finalDate" name="pixel_finalDate">
             <button type="button" id="btn_pixel" value="vai">OK</button>
           </form>
+          </div>
         </div>
 
         <div class="col-md-9">
