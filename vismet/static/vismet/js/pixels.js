@@ -46,20 +46,21 @@ function onEachFeature(feature, layer) {
   });
 }
 
+var url_pixel = $("#url-pixel").val();
+
 var btn_pixel = $("#btn_pixel");
 btn_pixel.click(
   function() {
     var pixel_id = pixel_master_id;
     var pixel_startDate = $("#pixel_startDate").val();
     var pixel_finalDate = $("#pixel_finalDate").val();
-    var url_pixel_data = $("#url-pixel-data").val();
 
     for(i = 0; i < 2; i++){
       pixel_startDate = pixel_startDate.replace("/", "-");
       pixel_finalDate = pixel_finalDate.replace("/", "-");
     }
 
-    window.location = url_pixel_data + "csv" + "/" + pixel_id + "/" + pixel_startDate + "/" + pixel_finalDate;
+    window.location = url_pixel + "csv" + "/" + pixel_id + "/" + pixel_startDate + "/" + pixel_finalDate;
   })
 
 
@@ -69,9 +70,7 @@ var pixels_layer = L.geoJson([], {
   onEachFeature: onEachFeature,
 });
 
-var url_pixels = $("#url-pixel").val();
-
-$.getJSON(url_pixels, function(data) {
+$.getJSON(url_pixel, function(data) {
   var i = 0;
   data.features.forEach(ft => {
     boundings = JSON.parse(ft.properties.boundings);
