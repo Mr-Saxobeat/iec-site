@@ -52,21 +52,14 @@ btn_pixel.click(
     var pixel_id = pixel_master_id;
     var pixel_startDate = $("#pixel_startDate").val();
     var pixel_finalDate = $("#pixel_finalDate").val();
+    var url_pixel_data = $("#url-pixel-data").val();
 
     for(i = 0; i < 2; i++){
       pixel_startDate = pixel_startDate.replace("/", "-");
       pixel_finalDate = pixel_finalDate.replace("/", "-");
     }
 
-    console.log("ID = " + pixel_id);
-    console.log("d1 = " + pixel_startDate);
-    console.log("d2 = " + pixel_finalDate);
-
-    $.getJSON("http://127.0.0.1:8000/api/pixels/csv/" + pixel_id + "/" + pixel_startDate + "/" + pixel_finalDate,
-    function (data) {
-      console.log(data);
-      saveJSON(data, "timestamp.json");
-    })
+    window.location = url_pixel_data + "csv" + "/" + pixel_id + "/" + pixel_startDate + "/" + pixel_finalDate;
   })
 
 
