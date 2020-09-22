@@ -57,28 +57,9 @@ function selectFeature(e) {
   oldLayer = e.target;
 
   var feature = e.target.feature;
-  cityChart(feature);
-}
 
-function cityChart(feature) {
-  city = feature.properties.nome;
-
-  chart.options.title.text = city;
-  $.getJSON("http://127.0.0.1:8000/api/cities/" + city + "/1-1-1960/1-12-1960/",
-            function(data) {
-              dates = [];
-              values = [];
-
-              data.forEach((dt) => {
-                dates.push(dt.date);
-                values.push(dt.medTemp);
-              });
-
-              removeData(chart);
-              addData(chart, dates, values);
-              chart.update();
-
-            })
+  $("#city_name")[0].value = feature.properties.nome;
+  console.log($("#city_name")[0].value);
 }
 
 function onEachFeature(feature, layer) {
@@ -105,3 +86,19 @@ $.getJSON(url_cities, function (data) {
 })
 
 control.addOverlay(cities_layer, "Cidades");
+
+
+var btn_download_city_data = $("#btn_download_city_data");
+btn_download_city_data.click(function(){
+
+  var city_name = $("#city_name")[0].value;
+  var startDate = $("#city_startDate")[0].value;
+  var finalDate = $("#city_finalDate")[0].value;
+
+  for(i = 0; i < 3; i++){
+    startDate = startDate.replace("/", "-");
+    finalDate = finalDate.replace("/", "-");
+  }
+
+  window.location = url_cities + "csv" + "/" + city_name + "/" + startDate + "/" + finalDate;
+})
