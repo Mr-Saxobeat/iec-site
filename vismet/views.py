@@ -46,6 +46,12 @@ def Api_XavierStations_Data(request, format, omm_code, start_day, start_month, s
             maxTemp = dt["TEMP_MAX"]
             minTemp = dt["TEMP_MIN"]
 
+            if maxTemp == "NaN":
+                maxTemp = -9999
+
+            if minTemp == "NaN":
+                minTemp = -9999
+
             XavierStationData.objects.get_or_create(
                 date = date,
                 station = station,
@@ -58,7 +64,7 @@ def Api_XavierStations_Data(request, format, omm_code, start_day, start_month, s
 
     if(format == "json"):
         data_serialized = serializers.serialize('json', station_data)
-        response = HttpResponse(data_serialized, content_type="applications/json")
+        response = HttpResponse(data_serialized, content_type="application/json")
         return response
 
     elif format == "csv":
