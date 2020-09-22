@@ -5,7 +5,7 @@ from datetime import datetime
 import json
 
 def run():
-    csv_path = "/home/weiglas/git/iec-site/vismet/data/PREC ES Eta5km Hist. 1960-2005.csv"
+    csv_path = os.path.join(os.getcwd(), "vismet/data/PREC ES Eta5km Hist. 1960-2005.csv")
 
     with open(csv_path, 'r') as file:
         reader = csv.reader(file)
