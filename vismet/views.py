@@ -123,7 +123,7 @@ class Api_Cities(GeoJSONLayerView):
     model = City
     properties = ('nome', 'geom')
 
-def Api_Cities_Data(request, name, start_day, start_month, start_year, final_day, final_month, final_year):
+def Api_Cities_Data(request, format, name, start_day, start_month, start_year, final_day, final_month, final_year):
     startDate = datetime.date(start_year, start_month, start_day)
     finalDate = datetime.date(final_year, final_month, final_day)
 
@@ -149,4 +149,7 @@ def Api_Cities_Data(request, name, start_day, start_month, start_year, final_day
 
     response = queryset
 
-    return JsonResponse(response, safe=False)
+    if format == "json":
+        return JsonResponse(response, safe=False)
+    elif format == "csv":
+        return render_to_csv_response(data)
