@@ -91,21 +91,28 @@
             </form><br>
           </div>
 
-          <!-- <div id="porMunicipio">
-            <h3>Por município:</h3>
+          <select id="cenarios-futuros-layer">
+            <option value="city">Município</option>
+            <option value="pixel">Pixel</option>
+          </select>
+
+          <div id="porMunicipio">
+            <h3>Município:</h3>
+            <p>Média por município dos dados do Modelo Eta HADGEM2-ES 5km para o estado de Espírito Santo.</p>
             <form class="" action="" method="get">
               <input type="hidden" value="0" id="city_name">
               <label for="city_startDate">Data inicial:</label>
               <input class="dateinput" type="text" id="city_startDate" name="city_startDate">
               <label for="city_finalDate">Data final:</label>
               <input class="dateinput" type="text" id="city_finalDate" name="city_finalDate">
-              <button type="button" id="btn_city" value="vai">OK</button>
+              <!-- <button type="button" id="btn_view_city_data">Visualizar</button> -->
+              <button type="button" id="btn_download_city_data">Baixar</button>
             </form><br>
-          </div> -->
+          </div>
 
           <div id="porPixel">
           <h3>Pixels:</h3>
-          <p>Dados gerados pelo model ETA, regionalizados para o estado do Espírito Santo.</p>
+          <p>Dados do Modelo Eta HADGEM2-ES por pixel de 5km para o estado de Espírito Santo</p>
           <form class="" action="" method="get">
             <input type="hidden" value="0" id="pixel_id">
             <label for="pixel_startDate">Data inicial:</label>
@@ -177,8 +184,9 @@
     <script>
       map.addLayer(xaviewrWeatherStation);
       document.getElementById("porEstacao").style.display = "block";
-      // document.getElementById("porMunicipio").style.display = "none";
+      document.getElementById("porMunicipio").style.display = "none";
       document.getElementById("porPixel").style.display = "none";
+      document.getElementById("cenarios-futuros-layer").style.display = "none";
 
       document.getElementById("estacoesxavier").addEventListener("click", displayXavier);
       // document.getElementById("satelitereanalise").addEventListener("click", displaySatelite);
@@ -197,11 +205,13 @@
           XavierIsOn = true;
 
           map.removeLayer(pixels_layer);
+          map.removeLayer(cities_layer);
           PixelIsOn = false;
 
           document.getElementById("porEstacao").style.display = "block";
-          // document.getElementById("porMunicipio").style.display = "none";
+          document.getElementById("porMunicipio").style.display = "none";
           document.getElementById("porPixel").style.display = "none";
+          document.getElementById("cenarios-futuros-layer").style.display = "none";
         }
       }
 
@@ -221,10 +231,35 @@
           XavierIsOn = false;
 
           document.getElementById("porEstacao").style.display = "none";
-          // document.getElementById("porMunicipio").style.display = "block";
+          document.getElementById("porMunicipio").style.display = "none";
           document.getElementById("porPixel").style.display = "block";
+          document.getElementById("cenarios-futuros-layer").style.display = "block";
+          document.getElementById("cenarios-futuros-layer").value = "pixel";
         }
       }
+
+      document.getElementById("cenarios-futuros-layer").addEventListener("change", function(){
+        var value = this.value;
+
+        if(value == "city"){
+          document.getElementById("porMunicipio").style.display = "block";
+          document.getElementById("porPixel").style.display = "none";
+
+          map.removeLayer(pixels_layer);
+          map.addLayer(cities_layer);
+
+          console.log("muda pra city");
+        }
+        else if(value == "pixel"){
+          document.getElementById("porMunicipio").style.display = "none";
+          document.getElementById("porPixel").style.display = "block";
+
+          map.removeLayer(cities_layer);
+          map.addLayer(pixels_layer);
+
+          console.log("muda pra pixel");
+        }
+      })
 
       function displaySatelite() {
       }
