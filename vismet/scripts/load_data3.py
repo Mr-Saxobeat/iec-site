@@ -1,11 +1,11 @@
-from .models import Pixel, PixelData
+from vismet.models import Pixel, PixelData
 import os
 import csv
 from datetime import datetime
 import json
 
-def load_pixel_timeseries():
-    csv_path = os.path.join(os.getcwd(), 'PREC ES Eta5km Hist. 1960-2005.csv')
+def run():
+    csv_path = "/home/weiglas/git/iec-site/vismet/data/PREC ES Eta5km Hist. 1960-2005.csv"
 
     with open(csv_path, 'r') as file:
         reader = csv.reader(file)
@@ -19,10 +19,10 @@ def load_pixel_timeseries():
                 if i == 0 and j > 0:
                     pixel_id.append(int(value))
 
-                elif i != 0 and j == 0:
+                elif i > 0 and j == 0:
                     date = datetime.strptime(value, '%d-%m-%Y')
                     if date.year > 1960:
-                        return print('acabou porra')
+                        return print('acabou')
 
                 elif date:
                     pixel = PixelData.objects.get_or_create(
