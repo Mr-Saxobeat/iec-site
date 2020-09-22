@@ -75,7 +75,7 @@ class Api_Pixel(GeoJSONLayerView):
     properties = ['latitude', 'longitude', 'boundings']
 
 
-def Api_Pixel_Data(request, pk, start_day, start_month, start_year, final_day, final_month, final_year):
+def Api_Pixel_Data(request, format, pk, start_day, start_month, start_year, final_day, final_month, final_year):
     startDate = datetime.date(start_year, start_month, start_day)
     finalDate = datetime.date(final_year, final_month, final_day)
 
@@ -102,7 +102,14 @@ def Api_Pixel_Data(request, pk, start_day, start_month, start_year, final_day, f
 
         queryset.append(pixel_data_timestamp)
 
-    return JsonResponse(queryset, safe=False)
+    if(format == "json"):
+        return JsonResponse(queryset, safe=False)
+        return response
+
+    elif format == "csv":
+        return render_to_csv_response(data)
+
+
 
 # Esta view retorna as cidades do Espírito Santo
 # para serem usadas como uma layer no mapa.

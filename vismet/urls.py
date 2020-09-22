@@ -12,7 +12,7 @@ urlpatterns = [
          name='xavier_stations_timestamp'),
 
     path('api/pixels/', views.Api_Pixel.as_view(), name='pixels'),
-    path('api/pixels/<int:pk>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
+    path('api/pixels/<str:format>/<int:pk>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
          views.Api_Pixel_Data,
          name='pixel_data'),
 

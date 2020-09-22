@@ -62,7 +62,7 @@ btn_pixel.click(
     console.log("d1 = " + pixel_startDate);
     console.log("d2 = " + pixel_finalDate);
 
-    $.getJSON("http://127.0.0.1:8000/api/pixels/" + pixel_id + "/" + pixel_startDate + "/" + pixel_finalDate,
+    $.getJSON("http://127.0.0.1:8000/api/pixels/csv/" + pixel_id + "/" + pixel_startDate + "/" + pixel_finalDate,
     function (data) {
       console.log(data);
       saveJSON(data, "timestamp.json");
