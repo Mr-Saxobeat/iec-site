@@ -62,53 +62,6 @@
 <!--  <a href="#sobre-bar">Sobre</a> -->
     </div>
 
-    <script>
-      document.getElementById("estacoesxavier").addEventListener("click", displayXavier);
-      document.getElementById("satelitereanalise").addEventListener("click", displaySatelite);
-      document.getElementById("cenariosfuturos").addEventListener("click", displayFuturo);
-
-      var XavierIsOn = false;
-      var PixelIsOn = false;
-
-      function displayXavier() {
-        if(XavierIsOn){
-          map.removeLayer(xaviewrWeatherStation);
-          XavierIsOn = false;
-          document.getElementById("porEstacao").style.display = "block";
-          document.getElementById("porMunicipio").style.display = "none";
-          document.getElementById("porPixel").style.display = "none";
-
-        }
-        else{
-          map.addLayer(xaviewrWeatherStation);
-          XavierIsOn = true;
-
-          map.removeLayer(pixels_layer);
-          PixelIsOn = false;
-        }
-      }
-
-      function displayFuturo() {
-        if(PixelIsOn){
-          map.removeLayer(pixels_layer);
-          PixelIsOn = false;
-          document.getElementById("porEstacao").style.display = "none";
-          document.getElementById("porMunicipio").style.display = "block";
-          document.getElementById("porPixel").style.display = "block";
-        }
-        else{
-          map.addLayer(pixels_layer);
-          PixelIsOn = true;
-
-          map.removeLayer(xaviewrWeatherStation);
-          XavierIsOn = false;
-        }
-      }
-
-      function displaySatelite() {
-      }
-    </script>
-
     <div class="main">
     <div class="container-fluid">
       <div class="row">
@@ -200,8 +153,6 @@
     </script>
 
     <script type="text/javascript">
-
-
      $(".dateinput").datepicker({
        showOn: 'focus',
        dateFormat: 'dd/mm/yy',
@@ -218,6 +169,59 @@
        changeYear: true,
        changeMonth: true,
      });
+    </script>
+
+    <script>
+      map.addLayer(xaviewrWeatherStation);
+      document.getElementById("porEstacao").style.display = "block";
+      document.getElementById("porMunicipio").style.display = "none";
+      document.getElementById("porPixel").style.display = "none";
+
+      document.getElementById("estacoesxavier").addEventListener("click", displayXavier);
+      document.getElementById("satelitereanalise").addEventListener("click", displaySatelite);
+      document.getElementById("cenariosfuturos").addEventListener("click", displayFuturo);
+
+      var XavierIsOn = true;
+      var PixelIsOn = false;
+
+      function displayXavier() {
+        if(XavierIsOn){
+          map.removeLayer(xaviewrWeatherStation);
+          XavierIsOn = false;
+        }
+        else{
+          map.addLayer(xaviewrWeatherStation);
+          XavierIsOn = true;
+
+          map.removeLayer(pixels_layer);
+          PixelIsOn = false;
+
+          document.getElementById("porEstacao").style.display = "block";
+          document.getElementById("porMunicipio").style.display = "none";
+          document.getElementById("porPixel").style.display = "none";
+        }
+      }
+
+      function displayFuturo() {
+        if(PixelIsOn){
+          map.removeLayer(pixels_layer);
+          PixelIsOn = false;
+        }
+        else{
+          map.addLayer(pixels_layer);
+          PixelIsOn = true;
+
+          map.removeLayer(xaviewrWeatherStation);
+          XavierIsOn = false;
+
+          document.getElementById("porEstacao").style.display = "none";
+          document.getElementById("porMunicipio").style.display = "block";
+          document.getElementById("porPixel").style.display = "block";
+        }
+      }
+
+      function displaySatelite() {
+      }
     </script>
   </body>
 </html>
