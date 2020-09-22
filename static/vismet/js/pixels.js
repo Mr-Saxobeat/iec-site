@@ -32,6 +32,7 @@ var points = [];
 
 pixels_layer_style = {
   color: "green",
+  weight: 0.5,
 };
 
 var pixel_master_id;
@@ -61,7 +62,7 @@ btn_pixel.click(
     console.log("d1 = " + pixel_startDate);
     console.log("d2 = " + pixel_finalDate);
 
-    $.getJSON("http://127.0.0.1:8000/api/pixels/" + pixel_id + "/" + pixel_startDate + "/" + pixel_finalDate,
+    $.getJSON("http://127.0.0.1:8000/api/pixels/csv/" + pixel_id + "/" + pixel_startDate + "/" + pixel_finalDate,
     function (data) {
       console.log(data);
       saveJSON(data, "timestamp.json");
@@ -84,8 +85,8 @@ $.getJSON(url_pixels, function(data) {
 
     // Leaflet pede longitude e latitude, por isso
     // aqui a ordem das coordenadas é invertida.
-    boundings[0] = boundings[0].reverse();
-    boundings[1] = boundings[1].reverse();
+    //boundings[0] = boundings[0].reverse();
+    //boundings[1] = boundings[1].reverse();
 
     var points = [
       boundings[0],
@@ -98,7 +99,7 @@ $.getJSON(url_pixels, function(data) {
       "type": "Feature",
       "properties": {
         "id": ft.id,
-        "coordinates": ft.geometry.coordinates,
+        "coordinates": [ft.properties.longitude, ft.properties.latitude],
       },
       "geometry": {
         "type": "Polygon",
