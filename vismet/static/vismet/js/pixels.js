@@ -69,7 +69,7 @@ var pixels_layer = L.geoJson([], {
   onEachFeature: onEachFeature,
 });
 
-var url_pixels = $("#pixels-geojson").val();
+var url_pixels = $("#url-pixel").val();
 
 $.getJSON(url_pixels, function(data) {
   var i = 0;
