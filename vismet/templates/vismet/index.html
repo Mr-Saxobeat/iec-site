@@ -55,7 +55,7 @@
   </head>
   <body>
     <div class="sidenav">
-      <a id="estacoesxavier" href="#">Estações<br>Históricas<hr></a>
+      <a id="estacoesxavier" href="#">Dados<br>Históricos<hr></a>
       <!-- <a id="satelitereanalise" href="#">Satélite e<br>Reanálise<hr></a> -->
       <a id="cenariosfuturos" href="#">Cenários<br>Futuros</a>
 <!--  <a href="#sobre-bar">Sobre</a> -->
@@ -67,7 +67,8 @@
         <div class="col-md-3" id="sidebar">
           <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
           <div id="porEstacao">
-            <h3>Por estação:</h3>
+            <h3>Estações meteorológicas:</h3>
+            <p>Dados históricos coletados pelas estações meteorológicas.</p>
             <form action="" method="get">
               {% csrf_token %}
               <label for="variable">Variável:</label>
@@ -85,8 +86,8 @@
               <label for="finalDate">Data final:</label>
               <input class="dateinput" type="text" id="finalDate" name="finalDate">
 
-              <button type="button" id="btn_submit" value="vai">OK</button>
-              <button type="button" id="btn_download" name="btn_download">Download</button>
+              <button type="button" id="btn_submit">Visualizar</button>
+              <button type="button" id="btn_download" name="btn_download">Baixar</button>
             </form><br>
           </div>
 
@@ -103,14 +104,15 @@
           </div> -->
 
           <div id="porPixel">
-          <h3>Por pixel:</h3>
+          <h3>Pixels:</h3>
+          <p>Dados gerados pelo model ETA, regionalizados para o estado do Espírito Santo.</p>
           <form class="" action="" method="get">
             <input type="hidden" value="0" id="pixel_id">
             <label for="pixel_startDate">Data inicial:</label>
             <input class="dateinput" type="text" id="pixel_startDate" name="pixel_startDate">
             <label for="pixel_finalDate">Data final:</label>
             <input class="dateinput" type="text" id="pixel_finalDate" name="pixel_finalDate">
-            <button type="button" id="btn_pixel" value="vai">OK</button>
+            <button type="button" id="btn_pixel">Baixar</button>
           </form>
           </div>
         </div>
@@ -213,6 +215,9 @@
           PixelIsOn = true;
 
           map.removeLayer(xaviewrWeatherStation);
+          removeData(chart);
+          chart.options.title.text = "";
+          chart.update();
           XavierIsOn = false;
 
           document.getElementById("porEstacao").style.display = "none";
