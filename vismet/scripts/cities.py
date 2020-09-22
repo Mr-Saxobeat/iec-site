@@ -39,8 +39,8 @@ def run():
                     month = int(row[1])
                     date = datetime.date(year, month, 1)
 
-                    if year > 1960:
-                        return print("acabou")
+                    # if year > 1960:
+                    #     return print("acabou")
 
                     j = 2
                     continue
@@ -57,5 +57,5 @@ def run():
                 j = j + 1
 
 
-        file.clos()
+        file.close()
         print("acbouasflaskdjfalskdfj")
