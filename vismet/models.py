@@ -38,7 +38,7 @@ class XavierStationData(models.Model):
     station = models.ForeignKey(XavierStation, related_name='data', on_delete=models.CASCADE)
     evapo = models.FloatField('evapotranspiration', blank=True, null=True)
     relHum = models.FloatField('relative humidity', blank=True, null=True)
-    solarRad = models.FloatField('solar radiation', blank=True, null=True)
+    solarIns = models.FloatField('solar insolation', blank=True, null=True)
     maxTemp = models.FloatField('maximum temperature', blank=True, null=True)
     minTemp = models.FloatField('minimum temperature', blank=True, null=True)
     windSpeed = models.FloatField('wind speed', blank=True, null=True)
