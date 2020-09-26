@@ -6,7 +6,7 @@ import csv
 
 ## Este script lê os arquivos csv de dados coletados por Xavier
 ## e salva nos modelos de estações Xavier.
-def run(path):
+def run(path, months):
 
     nameEt0 = "Xavier_ET0_1980-2017.csv"
     nameRelHum = "Xavier_RelHum_1980-2017.csv"
@@ -17,7 +17,7 @@ def run(path):
 
     # Estas variáveis é apenas para controle de limite de dados
     finish = -999
-    limite_mes = 1 #Quantidade de meses a rodar
+    limite_mes = months #Quantidade de meses a rodar
 
     print("Verifique se se os caminhos dos arquivos e o limite de dados a serem rodados estão corretos antes de continuar.")
     resposta = input("S para continuar\nN para cancelar: ")
@@ -107,9 +107,10 @@ def run(path):
                 # Este pequeno bloco serve única e exclusivamente
                 # para limitar a quantidade de dias que o loop vai iterar.
                 # Dessa forma consegue-se fazer um pequeno teste do programa.
-                if dt.month > limite_mes:
-                    finish = j
-                    break
+                if months > 0: # Apenas se o argumento months for fornecido ao executar 
+                    if dt.month > limite_mes:
+                        finish = j
+                        break
 
             # A partir da segunda linha, começam os dados
             elif i > 0:
