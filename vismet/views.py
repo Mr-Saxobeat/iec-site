@@ -34,32 +34,37 @@ def Api_XavierStations_Data(request, format, omm_code, start_day, start_month, s
     except ErrName:
         print(ErrName)
 
-    if station_data.count() < delta.days:
-        station_data = requests.get('https://apitempo.inmet.gov.br/estacao/diaria/' +
-                                    startDate.strftime("%Y-%m-%d") + '/' +
-                                    finalDate.strftime("%Y-%m-%d") + '/' +
-                                    station.inmet_code)
-
-        for dt in station_data.json():
-            date = datetime.datetime.strptime(dt["DT_MEDICAO"], "%Y-%m-%d")
-            station = XavierStation.objects.get(inmet_code=dt["CD_ESTACAO"])
-            maxTemp = dt["TEMP_MAX"]
-            minTemp = dt["TEMP_MIN"]
-
-            if maxTemp == "NaN":
-                maxTemp = -9999
-
-            if minTemp == "NaN":
-                minTemp = -9999
-
-            XavierStationData.objects.get_or_create(
-                date = date,
-                station = station,
-                maxTemp = maxTemp,
-                minTemp = minTemp
-            )
-
-        station_data = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+    ##########################################################################################################
+    ##########################################################################################################
+    # Isso será passado para o a view do model das estações INMET
+    ##########################################################################################################
+    ##########################################################################################################
+    # if station_data.count() < delta.days:
+    #     station_data = requests.get('https://apitempo.inmet.gov.br/estacao/diaria/' +
+    #                                 startDate.strftime("%Y-%m-%d") + '/' +
+    #                                 finalDate.strftime("%Y-%m-%d") + '/' +
+    #                                 station.inmet_code)
+    #
+    #     for data in station_data.json():
+    #         dt = datetime.datetime.strptime(dt["DT_MEDICAO"], "%Y-%m-%d")
+    #         station_id = XavierStation.objects.get(inmet_code=dt["CD_ESTACAO"])
+    #         valueRelHum = data["UMID_MED"]
+    #         valueMaxTemp = data["TEMP_MAX"]
+    #         valueMinTemp = data["TEMP_MIN"]
+    #
+    #         if maxTemp == "NaN":
+    #             maxTemp = None
+    #         if minTemp == "NaN":
+    #             minTemp = None
+    #
+    #         XavierStationData.objects.get_or_create(
+    #             date = date,
+    #             station = station,
+    #             maxTemp = maxTemp,
+    #             minTemp = minTemp
+    #         )
+    #
+    #     station_data = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
 
 
     if(format == "json"):
@@ -68,7 +73,7 @@ def Api_XavierStations_Data(request, format, omm_code, start_day, start_month, s
         return response
 
     elif format == "csv":
-        qs_csv = station_data.values('date', 'evapo', 'relHum', 'solarRad', 'maxTemp', 'minTemp', 'windSpeed')
+        qs_csv = station_data.values('date', 'evapo', 'relHum', 'solarIns', 'maxTemp', 'minTemp', 'windSpeed')
         return render_to_csv_response(qs_csv)
 
 
