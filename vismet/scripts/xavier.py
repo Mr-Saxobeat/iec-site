@@ -6,7 +6,14 @@ import csv
 
 ## Este script lê os arquivos csv de dados coletados por Xavier
 ## e salva nos modelos de estações Xavier.
-def run():
+def run(path):
+
+    nameEt0 = "Xavier_ET0_1980-2017.csv"
+    nameRelHum = "Xavier_RelHum_1980-2017.csv"
+    nameRs = "Xavier_Rs_1980-2017.csv"
+    nameTempMax = "Xavier_TempMax_1980-2017.csv"
+    nameTempMin = "Xavier_TempMin_1980-2017.csv"
+    nameU2 = "Xavier_u2_1980-2017.csv"
 
     # Estas variáveis é apenas para controle de limite de dados
     finish = -999
@@ -19,15 +26,28 @@ def run():
         return print("Script cancelado.")
 
     # Pasta raíz dos arquivos que serão abertos
-    path = "/home/weiglas/Documents/iec/dados/1. Dados de Estações Historicas/Xavier/Xavier Time Series1980-2017 CSV/"
+    if path == '-': # Se o valor "-" foi dado é pra usar o valor padrão
+        path = "/home/weiglas/Documents/iec/dados/1. Dados de Estações Historicas/Xavier/Xavier Time Series1980-2017 CSV/"
+
+    # Verfica se todos arquivos se encontram no diretório dado
+    list = os.listdir(path)
+    if (not nameEt0 in list or
+        not nameRelHum in list or
+        not nameRs in list or
+        not nameTempMax in list or
+        not nameTempMin in list or
+        not nameU2 in list):
+
+        print("ERRO: Verifique se todos arquivos necessários se encontram no diretório especificado.")
+        return print("Programa cancelado.")
 
     # Nomes dos arquivos que serão abertos
-    fileET0 = open(path + "Xavier_ET0_1980-2017.csv", 'r')
-    fileRelHum = open(path + "Xavier_RelHum_1980-2017.csv", 'r')
-    fileRs = open(path + "Xavier_Rs_1980-2017.csv", 'r')
-    fileTempMax = open(path + "Xavier_TempMax_1980-2017.csv", 'r')
-    fileTempMin = open(path + "Xavier_TempMin_1980-2017.csv", 'r')
-    fileU2 = open(path + "Xavier_u2_1980-2017.csv", 'r')
+    fileET0 = open(path + nameEt0, 'r')
+    fileRelHum = open(path + nameRelHum, 'r')
+    fileRs = open(path + nameRs, 'r')
+    fileTempMax = open(path + nameTempMax, 'r')
+    fileTempMin = open(path + nameTempMin, 'r')
+    fileU2 = open(path + nameU2, 'r')
 
     # Leitor dos arquivos csv
     readerET0 = csv.reader(fileET0)
