@@ -15,6 +15,8 @@ def run(path, months):
     nameTempMin = "Xavier_TempMin_1980-2017.csv"
     nameU2 = "Xavier_u2_1980-2017.csv"
 
+    logFilePath = "log.txt"
+
     # Estas variáveis é apenas para controle de limite de dados
     finish = -999
     limite_mes = months #Quantidade de meses a rodar
@@ -48,6 +50,8 @@ def run(path, months):
     fileTempMax = open(path + nameTempMax, 'r')
     fileTempMin = open(path + nameTempMin, 'r')
     fileU2 = open(path + nameU2, 'r')
+
+    logFile = open(path + logFilePath, 'w')
 
     # Leitor dos arquivos csv
     readerET0 = csv.reader(fileET0)
@@ -107,7 +111,7 @@ def run(path, months):
                 # Este pequeno bloco serve única e exclusivamente
                 # para limitar a quantidade de dias que o loop vai iterar.
                 # Dessa forma consegue-se fazer um pequeno teste do programa.
-                if months > 0: # Apenas se o argumento months for fornecido ao executar 
+                if months > 0: # Apenas se o argumento months for fornecido ao executar
                     if dt.month > limite_mes:
                         finish = j
                         break
@@ -120,27 +124,32 @@ def run(path, months):
 
                 # Se foi pego um inmet_code e já passou da primeira coluna
                 elif inmet_code and j > 0:
-                    obj, created = XavierStationData.objects.get_or_create(
-                        date = dates[j - 1],
-                        station = XavierStation.objects.get(inmet_code=inmet_code),
-                        defaults = {
-                            'evapo': valueET0,
-                            'relHum': valueRelHum,
-                            'solarIns': valueRs,
-                            'maxTemp': valueTempMax,
-                            'minTemp': valueTempMin,
-                            'windSpeed': valueU2,
-                        }
-                    )
+                    try:
+                        obj, created = XavierStationData.objects.get_or_create(
+                            date = dates[j - 1],
+                            station = XavierStation.objects.get(inmet_code=inmet_code),
+                            defaults = {
+                                'evapo': valueET0,
+                                'relHum': valueRelHum,
+                                'solarIns': valueRs,
+                                'maxTemp': valueTempMax,
+                                'minTemp': valueTempMin,
+                                'windSpeed': valueU2,
+                            }
+                        )
 
-                    if not created:
-                        obj.evapo = valueET0
-                        obj.relHum = valueRelHum
-                        obj.solarIns = valueRs
-                        obj.maxTemp = valueTempMax
-                        obj.minTemp = valueTempMin
-                        obj.windSpeed = valueU2
-                        obj.save()
+                        if not created:
+                            obj.evapo = valueET0
+                            obj.relHum = valueRelHum
+                            obj.solarIns = valueRs
+                            obj.maxTemp = valueTempMax
+                            obj.minTemp = valueTempMin
+                            obj.windSpeed = valueU2
+                            obj.save()
+
+                    except XavierStationData.MultipleObjectReturned:
+                        logFile.write(date + ' ' + inmet_code)
+                        continue
 
                     print(obj)
 
