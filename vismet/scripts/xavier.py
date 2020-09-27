@@ -77,7 +77,8 @@ def run(path, months):
         # Este bloco serve para controlar quando o programa vai começas
         # A armazenar os dados. Ou seja, a partir da linha que tem
         # station id 83648
-        if jump == True and rowET0[0] != '83648':
+        if i > 0 and jump == True and rowET0[0] != '83648':
+            print("jump  " + rowET0[0])
             continue
         elif rowET0[0] == '836478':
             jump = False
