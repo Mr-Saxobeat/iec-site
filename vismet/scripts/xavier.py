@@ -80,7 +80,7 @@ def run(path, months):
         if i > 0 and jump == True and rowET0[0] != '83648':
             print("jump  " + rowET0[0])
             continue
-        elif rowET0[0] == '836478':
+        elif rowET0[0] == '83648':
             jump = False
 
 
