@@ -69,7 +69,7 @@ def run(path, months):
     # vazia, ele não salva um model.
     inmet_code = False
 
-    jump = False # Variável auxiliar para bloco de controle
+    jump = True # Variável auxiliar para bloco de controle
 
     # Loop pelas linhas
     for i, rowET0 in enumerate(readerET0):
