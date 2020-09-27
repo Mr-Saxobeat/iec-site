@@ -69,8 +69,20 @@ def run(path, months):
     # vazia, ele não salva um model.
     inmet_code = False
 
+    jump = False # Variável auxiliar para bloco de controle
+
     # Loop pelas linhas
     for i, rowET0 in enumerate(readerET0):
+
+        # Este bloco serve para controlar quando o programa vai começas
+        # A armazenar os dados. Ou seja, a partir da linha que tem
+        # station id 83648
+        if jump == True and rowET0[0] != '83648':
+            continue
+        elif rowET0[0] == '836478':
+            jump = False
+
+
         rowRelHum = next(readerRelHum)
         rowRs = next(readerRs)
         rowTempMax = next(readerTempMax)
@@ -147,7 +159,7 @@ def run(path, months):
                             obj.windSpeed = valueU2
                             obj.save()
 
-                    except XavierStationData.MultipleObjectReturned:
+                    except XavierStationData.MultipleObjectsReturned:
                         logFile.write(date + ' ' + inmet_code)
                         continue
 
