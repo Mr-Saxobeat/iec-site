@@ -55,9 +55,9 @@
   </head>
   <body>
     <div class="sidenav">
-      <a id="estacoesxavier" href="#">Dados<br>Históricos<hr></a>
+      <a id="estacoesxavier" href="#">Dados<br>Observados<hr></a>
       <!-- <a id="satelitereanalise" href="#">Satélite e<br>Reanálise<hr></a> -->
-      <a id="cenariosfuturos" href="#">Cenários<br>Futuros</a>
+      <a id="cenariosfuturos" href="#">Dados<br>Simulados</a>
 <!--  <a href="#sobre-bar">Sobre</a> -->
     </div>
 
@@ -67,8 +67,8 @@
         <div class="col-md-3" id="sidebar">
           <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
           <div id="porEstacao">
-            <h3>Estações meteorológicas:</h3>
-            <p>Dados históricos coletados pelas estações meteorológicas.</p>
+            <h3>Dados Observados</h3>
+            <p>Dados observados pelas estações meteorológicas.</p>
             <form action="" method="get">
               {% csrf_token %}
               <label for="variable">Variável:</label>
