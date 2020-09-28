@@ -20,8 +20,25 @@ station_variable.addEventListener("change", function() {
       variable_name = "Temperatura mínima";
       variable_unit = "Cº";
       break;
+    case "evapo":
+      variable_name = "Evapotranspiração";
+      variable_unit = "mm";
+      break;
+    case "relHum":
+      variable_name = "Umidade Relativa";
+      variable_unit = "%";
+      break;
+    case "solarIns":
+      variable_name = "Irradiação Solar";
+      variable_unit = "MJ/m²";
+      break;
+    case "windSpeed":
+      variable_name = "Velocidade do Vento a 2m de altitude";
+      variable_unit = "m/s";
+      break;
     default:
       variable_name = "none";
+      break;
   }
 
   chart.options.scales.yAxes[0].scaleLabel.display = true;
