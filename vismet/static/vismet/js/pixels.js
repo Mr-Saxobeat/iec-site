@@ -46,7 +46,7 @@ function onEachFeature(feature, layer) {
   });
 }
 
-var url_pixel = $("#url-pixel").val();
+var url_pixel = $("#url-pixels").val();
 
 var btn_pixel = $("#btn_pixel");
 btn_pixel.click(

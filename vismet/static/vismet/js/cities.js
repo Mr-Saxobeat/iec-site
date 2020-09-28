@@ -79,7 +79,7 @@ var cities_layer = L.geoJson([], {
   onEachFeature: onEachFeature,
 })
 
-var url_cities = $("#cities-geojson").val();
+var url_cities = $("#url-cities").val();
 
 $.getJSON(url_cities, function (data) {
   cities_layer.addData(data);

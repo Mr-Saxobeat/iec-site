@@ -83,7 +83,7 @@ var xaviewrWeatherStation = L.geoJson([], {
     onEachFeature: onEachFeature,
 });
 
-var XavierStation_url = $("#xavier-station-geojson").val();
+var XavierStation_url = $("#url-xavier-stations").val();
 
 $.getJSON(XavierStation_url, function (data) {
   xaviewrWeatherStation.addData(data);
@@ -107,6 +107,8 @@ btn_submit.click(function(){
     startDate = startDate.replace("/", "-");
     finalDate = finalDate.replace("/", "-");
   }
+
+  var url_api_xavierstation = $("#url-xavier-stations").val();
 
   $.getJSON(url_api_xavierstation + "json" + "/" + ommCode + "/" + startDate + "/" + finalDate,
     function(data_response){
