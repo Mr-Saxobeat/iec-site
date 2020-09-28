@@ -14,11 +14,11 @@ station_variable.addEventListener("change", function() {
   switch (variable_value) {
     case "maxTemp":
       variable_name = "Temperatura máxima";
-      variable_unit = "Cº";
+      variable_unit = "ºC";
       break;
     case "minTemp":
       variable_name = "Temperatura mínima";
-      variable_unit = "Cº";
+      variable_unit = "ºC";
       break;
     case "evapo":
       variable_name = "Evapotranspiração";
