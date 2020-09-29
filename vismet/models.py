@@ -46,6 +46,16 @@ class XavierStationData(models.Model):
     def __str__(self):
         return str('nº ' + str(self.station.omm_code) + '---' + str(self.date))
 
+class INMETStationData(models.Model):
+    date = models.DateField()
+    station = models.ForeignKey(XavierStation, related_name='inmet_data', on_delete=models.CASCADE)
+    maxTemp = models.FloatField('maximum temperature', blank=True, null=True)
+    minTemp = models.FloatField('minimum temperature', blank=True, null=True)
+    relHum = models.FloatField('relative humidity', blank=True, null=True)
+    precip = models.FloatField('preciptatioin', blank=True, null=True)
+
+    def __str__(self):
+        return str('nº ' + str(self.station.inmet_code) + '---' + str(self.date))
 
 # Pixels do estado do Espírito Santo.
 # Cada pixel tem 5Km de lado. (verificar isso)
