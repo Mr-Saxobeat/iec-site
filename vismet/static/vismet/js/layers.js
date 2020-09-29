@@ -112,7 +112,7 @@ function add_xavier_options(){
 
   var opt_evapo = document.createElement('option');
     opt_evapo.appendChild(document.createTextNode('Evapotranspiração'));
-    opt_evapo.value = "maxTemp";
+    opt_evapo.value = "evapo";
     sel_variavel.appendChild(opt_evapo);
 
   var opt_relHum = document.createElement('option');
