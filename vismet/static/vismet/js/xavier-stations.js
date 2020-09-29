@@ -1,7 +1,8 @@
 var station_city;
 var station_state;
-var station_omm;
+var station_inmet;
 var station_variable = document.getElementById("station_variable");
+var startStation;
 
 // Função para mudar a legenda do gráfico ao
 // selecionar uma variável.
@@ -36,6 +37,10 @@ station_variable.addEventListener("change", function() {
       variable_name = "Velocidade do Vento a 2m de altitude";
       variable_unit = "m/s";
       break;
+    case "precip":
+      variable_name = "Precipitação";
+      variable_unit = "mm";
+      break;
     default:
       variable_name = "none";
       break;
@@ -54,12 +59,12 @@ function onEachFeature(feature, layer) {
   var input_inmet_code = document.getElementById('input_inmet_code');
   layer.bindPopup(popupContent);
   layer.on('click', function() {
-    input_inmet_code.value = feature.properties.omm_code;
+    input_inmet_code.value = feature.properties.inmet_code;
     station_city = feature.properties.name;
     station_state = feature.properties.state;
-    station_omm = feature.properties.omm_code;
+    station_inmet = feature.properties.inmet_code;
 
-    chart.options.title.text = "Estação nº " + station_omm + ", " + station_city + " - " + station_state;
+    chart.options.title.text = "Estação nº " + station_inmet + ", " + station_city + " - " + station_state;
     chart.update();
   })
 }
