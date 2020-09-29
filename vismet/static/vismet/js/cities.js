@@ -59,7 +59,6 @@ function selectFeature(e) {
   var feature = e.target.feature;
 
   $("#city_name")[0].value = feature.properties.nome;
-  console.log($("#city_name")[0].value);
 }
 
 function onEachFeature(feature, layer) {

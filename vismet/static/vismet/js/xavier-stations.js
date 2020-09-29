@@ -120,11 +120,8 @@ btn_submit.click(function(){
     var url_api = document.getElementById("url-inmet-stations").value;
   }
 
-  console.log(url_api);
-
   $.getJSON(url_api + "json" + "/" + inmet_code + "/" + startDate + "/" + finalDate,
     function(data_response){
-      console.log(data_response);
 
       removeData(chart);
 
@@ -155,8 +152,6 @@ btn_download.click(function(){
   }else if(sel_observados_fonte.value == "inmet"){
     var url_api = $("#url-inmet-stations").val();
   }
-
-  console.log(url_api);
 
   var inmet_code = $("#input_inmet_code").val();
   var startDate = $("#startDate").val();
