@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from djgeojson.views import GeoJSONLayerView
-from .models import XavierStation, XavierStationData, Pixel, PixelData, City, CityData
-from django.http import HttpResponse, JsonResponse
+from .models import XavierStation, XavierStationData, INMETStationData, Pixel, PixelData, City, CityData
+from django.http import HttpResponse, JsonResponse, Http404
 import json
 import datetime
 import requests
@@ -22,50 +22,17 @@ class Api_XavierStations(GeoJSONLayerView):
 
 # Esta retorna em os dados das estações Xavier,
 # dado o omm_code e o intervalo.
-def Api_XavierStations_Data(request, format, omm_code, start_day, start_month, start_year, final_day, final_month, final_year):
+def Api_XavierStations_Data(request, format, inmet_code, start_day, start_month, start_year, final_day, final_month, final_year):
     startDate = datetime.date(start_year, start_month, start_day)
     finalDate = datetime.date(final_year, final_month, final_day)
     delta = finalDate - startDate
 
-    station = XavierStation.objects.get(omm_code=omm_code)
+    station = get_object_or_404(XavierStation, inmet_code=inmet_code)
 
     try:
         station_data = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
     except ErrName:
         print(ErrName)
-
-    ##########################################################################################################
-    ##########################################################################################################
-    # Isso será passado para o a view do model das estações INMET
-    ##########################################################################################################
-    ##########################################################################################################
-    # if station_data.count() < delta.days:
-    #     station_data = requests.get('https://apitempo.inmet.gov.br/estacao/diaria/' +
-    #                                 startDate.strftime("%Y-%m-%d") + '/' +
-    #                                 finalDate.strftime("%Y-%m-%d") + '/' +
-    #                                 station.inmet_code)
-    #
-    #     for data in station_data.json():
-    #         dt = datetime.datetime.strptime(dt["DT_MEDICAO"], "%Y-%m-%d")
-    #         station_id = XavierStation.objects.get(inmet_code=dt["CD_ESTACAO"])
-    #         valueRelHum = data["UMID_MED"]
-    #         valueMaxTemp = data["TEMP_MAX"]
-    #         valueMinTemp = data["TEMP_MIN"]
-    #
-    #         if maxTemp == "NaN":
-    #             maxTemp = None
-    #         if minTemp == "NaN":
-    #             minTemp = None
-    #
-    #         XavierStationData.objects.get_or_create(
-    #             date = date,
-    #             station = station,
-    #             maxTemp = maxTemp,
-    #             minTemp = minTemp
-    #         )
-    #
-    #     station_data = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
-
 
     if(format == "json"):
         data_serialized = serializers.serialize('json', station_data)
@@ -76,6 +43,49 @@ def Api_XavierStations_Data(request, format, omm_code, start_day, start_month, s
         qs_csv = station_data.values('date', 'evapo', 'relHum', 'solarIns', 'maxTemp', 'minTemp', 'windSpeed')
         return render_to_csv_response(qs_csv)
 
+def Api_INMET_Data(request, format, inmet_code, start_day, start_month, start_year, final_day, final_month, final_year):
+
+    try:
+        startDate = datetime.date(start_year, start_month, start_day)
+        finalDate = datetime.date(final_year, final_month, final_day)
+    except ValueError as e:
+        print(e)
+        raise Http404("Data inserida errada. Verifique os dias e os meses.")
+
+    deltaDays = finalDate - startDate
+
+    station = get_object_or_404(XavierStation, inmet_code=inmet_code)
+
+    station_data = station.inmet_data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+
+    if station_data.count() < deltaDays.days:
+        station_data = requests.get('https://apitempo.inmet.gov.br/estacao/diaria/' +
+                                    startDate.strftime("%Y-%m-%d") + '/' +
+                                    finalDate.strftime("%Y-%m-%d") + '/' +
+                                    station.inmet_code)
+
+        for aDay in station_data.json():
+            INMETStationData.objects.get_or_create(
+                date = datetime.datetime.strptime(aDay["DT_MEDICAO"], "%Y-%m-%d"),
+                station = XavierStation.objects.get(inmet_code=aDay["CD_ESTACAO"]),
+                defaults = {
+                    'maxTemp': aDay["TEMP_MAX"],
+                    'minTemp': aDay["TEMP_MIN"],
+                    'relHum': aDay["UMID_MED"],
+                    'precip': aDay["CHUVA"],
+                }
+            )
+
+        station_data = station.inmet_data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+
+    if(format == "json"):
+        data_serialized = serializers.serialize('json', station_data)
+        response = HttpResponse(data_serialized, content_type="application/json")
+        return response
+
+    elif format == "csv":
+        qs_csv = station_data.values('date', 'relHum', 'maxTemp', 'minTemp', 'precip')
+        return render_to_csv_response(qs_csv)
 
 
 
