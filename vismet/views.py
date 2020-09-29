@@ -18,7 +18,7 @@ def VisMetView(request):
 # Esta view retorna as estações meteorógicas Xavier.
 class Api_XavierStations(GeoJSONLayerView):
     model = XavierStation
-    properties = ('popup_content', 'name', 'state', 'omm_code', 'latitude', 'longitude')
+    properties = ('popup_content', 'name', 'state', 'inmet_code', 'latitude', 'longitude')
 
 # Esta retorna em os dados das estações Xavier,
 # dado o omm_code e o intervalo.
