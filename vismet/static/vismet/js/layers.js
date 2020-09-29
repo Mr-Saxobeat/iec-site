@@ -82,3 +82,24 @@ selCamadaFuturos.addEventListener("change", function(){
 
 function displaySatelite() {
 }
+
+
+var div_xavier = document.getElementById("form-xavier");
+var div_inmet = document.getElementById("form-inmet");
+
+div_xavier.style.display = "block";
+div_inmet.style.display = "none";
+
+var sel_observados_fonte = document.getElementById("fonte-dados-observados");
+
+sel_observados_fonte.addEventListener("change", function(){
+  var value = this.value;
+
+  if(value == "xavier"){
+    div_xavier.style.display = "block";
+    div_inmet.style.display = "none";
+  } else if(value == "inmet"){
+    div_xavier.style.display = "none";
+    div_inmet.style.display = "block";
+  }
+})
