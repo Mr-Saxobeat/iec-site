@@ -36,16 +36,26 @@ class XavierStation(models.Model):
 class XavierStationData(models.Model):
     date = models.DateField()
     station = models.ForeignKey(XavierStation, related_name='data', on_delete=models.CASCADE)
-    evapo = models.FloatField('evapotranspiration', blank=True, null=True)
-    relHum = models.FloatField('relative humidity', blank=True, null=True)
-    solarIns = models.FloatField('solar insolation', blank=True, null=True)
-    maxTemp = models.FloatField('maximum temperature', blank=True, null=True)
-    minTemp = models.FloatField('minimum temperature', blank=True, null=True)
-    windSpeed = models.FloatField('wind speed', blank=True, null=True)
+    evapo = models.FloatField('Evapotranspiração', blank=True, null=True)
+    relHum = models.FloatField('Umidade Relativa', blank=True, null=True)
+    solarIns = models.FloatField('Radiação Solar', blank=True, null=True)
+    maxTemp = models.FloatField('Temperatura Máxima', blank=True, null=True)
+    minTemp = models.FloatField('Temperatura Mínima', blank=True, null=True)
+    windSpeed = models.FloatField('Velocidade do Vento', blank=True, null=True)
 
     def __str__(self):
         return str('nº ' + str(self.station.omm_code) + '---' + str(self.date))
 
+class INMETStationData(models.Model):
+    date = models.DateField()
+    station = models.ForeignKey(XavierStation, related_name='inmet_data', on_delete=models.CASCADE)
+    maxTemp = models.FloatField('Temperatura Máxima', blank=True, null=True)
+    minTemp = models.FloatField('Temperatura Mínima', blank=True, null=True)
+    relHum = models.FloatField('Umidade Relativa', blank=True, null=True)
+    precip = models.FloatField('Precipitação', blank=True, null=True)
+
+    def __str__(self):
+        return str('nº ' + str(self.station.inmet_code) + '---' + str(self.date))
 
 # Pixels do estado do Espírito Santo.
 # Cada pixel tem 5Km de lado. (verificar isso)

@@ -1,7 +1,8 @@
 var station_city;
 var station_state;
-var station_omm;
+var station_inmet;
 var station_variable = document.getElementById("station_variable");
+var startStation;
 
 // Função para mudar a legenda do gráfico ao
 // selecionar uma variável.
@@ -36,6 +37,10 @@ station_variable.addEventListener("change", function() {
       variable_name = "Velocidade do Vento a 2m de altitude";
       variable_unit = "m/s";
       break;
+    case "precip":
+      variable_name = "Precipitação";
+      variable_unit = "mm";
+      break;
     default:
       variable_name = "none";
       break;
@@ -51,15 +56,15 @@ station_variable.addEventListener("change", function() {
 
 function onEachFeature(feature, layer) {
   var popupContent = feature.properties.popup_content;
-  var input_ommcode = document.getElementById('input_ommcode');
+  var input_inmet_code = document.getElementById('input_inmet_code');
   layer.bindPopup(popupContent);
   layer.on('click', function() {
-    input_ommcode.value = feature.properties.omm_code;
+    input_inmet_code.value = feature.properties.inmet_code;
     station_city = feature.properties.name;
     station_state = feature.properties.state;
-    station_omm = feature.properties.omm_code;
+    station_inmet = feature.properties.inmet_code;
 
-    chart.options.title.text = "Estação nº " + station_omm + ", " + station_city + " - " + station_state;
+    chart.options.title.text = "Estação nº " + station_inmet + ", " + station_city + " - " + station_state;
     chart.update();
   })
 }
@@ -99,7 +104,7 @@ var btn_submit = $("#btn_submit");
 
 btn_submit.click(function(){
 
-  var ommCode = $("#input_ommcode").val();
+  var inmet_code = $("#input_inmet_code").val();
   var startDate = $("#startDate").val();
   var finalDate = $("#finalDate").val();
 
@@ -108,9 +113,16 @@ btn_submit.click(function(){
     finalDate = finalDate.replace("/", "-");
   }
 
-  var url_api_xavierstation = $("#url-xavier-stations").val();
 
-  $.getJSON(url_api_xavierstation + "json" + "/" + ommCode + "/" + startDate + "/" + finalDate,
+  if(sel_observados_fonte.value == "xavier"){
+    var url_api = document.getElementById("url-xavier-stations").value;
+  }else if(sel_observados_fonte.value == "inmet"){
+    var url_api = document.getElementById("url-inmet-stations").value;
+  }
+
+  console.log(url_api);
+
+  $.getJSON(url_api + "json" + "/" + inmet_code + "/" + startDate + "/" + finalDate,
     function(data_response){
       console.log(data_response);
 
@@ -137,7 +149,16 @@ btn_submit.click(function(){
 
 var btn_download = $("#btn_download");
 btn_download.click(function(){
-  var ommCode = $("#input_ommcode").val();
+
+  if(sel_observados_fonte.value == "xavier"){
+    var url_api = $("#url-xavier-stations").val();
+  }else if(sel_observados_fonte.value == "inmet"){
+    var url_api = $("#url-inmet-stations").val();
+  }
+
+  console.log(url_api);
+
+  var inmet_code = $("#input_inmet_code").val();
   var startDate = $("#startDate").val();
   var finalDate = $("#finalDate").val();
 
@@ -145,5 +166,5 @@ btn_download.click(function(){
     startDate = startDate.replace("/", "-");
     finalDate = finalDate.replace("/", "-");
   }
-  window.location = url_api_xavierstation + "csv" + "/" + ommCode + "/" + startDate + "/" + finalDate;
+  window.location = url_api + "csv" + "/" + inmet_code + "/" + startDate + "/" + finalDate;
 })
