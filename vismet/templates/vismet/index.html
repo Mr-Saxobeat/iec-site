@@ -30,28 +30,51 @@
             <div id="dados-observados">
               <h3>Dados Observados:</h3>
               <p>Dados históricos coletados pelas estações meteorológicas.</p>
-              <form action="" method="get">
-                {% csrf_token %}
-                <label for="variable">Variável:</label>
-                <select id="station_variable" name="variable">
-                  <option value="maxTemp">Temperatura Máxima</option>
-                  <option value="minTemp">Temperatura Mínima</option>
-                  <option value="evapo">Evapotranspiração</option>
-                  <option value="relHum">Umidade Relativa</option>
-                  <option value="solarIns">Radiação Solar</option>
-                  <option value="windSpeed">Velocidade do Vento</option>
-                </select>
-                <input type="hidden" name="ommcode" value="0" id="input_ommcode">
 
-                <label for="startDate">Data inicial:</label>
-                <input class="dateinput" type="text" id="startDate" name="startDate">
+              <label for="fonte-dados-observados">Fonte:</label>
+              <select id="fonte-dados-observados" name="fonte-dados-observados">
+                <option value="xavier">Xavier</option>
+                <option value="inmet">INMET</option>
+              </select>
 
-                <label for="finalDate">Data final:</label>
-                <input class="dateinput" type="text" id="finalDate" name="finalDate">
+              <div id="form-xavier">
+                <form action="" method="get">
+                  {% csrf_token %}
+                  <label for="variable">Variável:</label>
+                  <select id="station_variable" name="variable">
+                    <option value="maxTemp">Temperatura Máxima</option>
+                    <option value="minTemp">Temperatura Mínima</option>
+                    <option value="evapo">Evapotranspiração</option>
+                    <option value="relHum">Umidade Relativa</option>
+                    <option value="solarIns">Radiação Solar</option>
+                    <option value="windSpeed">Velocidade do Vento</option>
+                  </select>
+                </form><br>
+              </div>
 
-                <button type="button" id="btn_submit">Visualizar</button>
-                <button type="button" id="btn_download" name="btn_download">Baixar</button>
-              </form><br>
+              <div id="form-inmet">
+                <form action="" method="get">
+                  {% csrf_token %}
+                  <label for="variable">Variável:</label>
+                  <select id="inmet-station_variable" name="inmet-variable">
+                    <option value="maxTemp">Temperatura Máxima</option>
+                    <option value="minTemp">Temperatura Mínima</option>
+                    <option value="precip">Precipitação</option>
+                    <option value="relHum">Umidade Relativa</option>
+                  </select>
+                </form><br>
+              </div>
+
+              <label for="startDate">Data inicial:</label>
+              <input class="dateinput" type="text" id="startDate" name="startDate">
+
+              <label for="finalDate">Data final:</label>
+              <input class="dateinput" type="text" id="finalDate" name="finalDate">
+
+              <button type="button" id="btn_submit">Visualizar</button>
+              <button type="button" id="btn_download" name="btn_download">Baixar</button>
+
+              <input type="hidden" name="inmet_code" value="0" id="input_inmet_code">
             </div>
 
 
@@ -102,7 +125,8 @@
           </div>
         </div>
 
-        <input type="hidden"  id="url-xavier-stations" value="{% url 'vismet:xavier_stations' %}">
+        <input type="hidden" id="url-xavier-stations" value="{% url 'vismet:xavier_stations' %}">
+        <input type="hidden" id="url-inmet-stations" value="{% url 'vismet:inmet_stations' %}">
         <input type="hidden" id="url-cities" value="{% url 'vismet:cities' %}">
         <input type="hidden" id="url-pixels" value="{% url 'vismet:pixel' %}">
       </div>
