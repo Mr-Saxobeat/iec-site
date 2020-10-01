@@ -23,7 +23,7 @@ class XavierStation(models.Model):
         popup = "<span>Estado: </span>{}<br>".format(self.state)
         popup += "<span>Cidade: </span>{}<br>".format(self.name)
         popup += "<span>Código OMM: </span>{}<br>".format(self.omm_code)
-        popup += "<span>Código Inmet: </span>{}<br>".format(self.inmet_code)
+        popup += "<span>Código INMET: </span>{}<br>".format(self.inmet_code)
         popup += "<span>Tipo: </span>{}<br>".format(self.type)
         popup += "<span>Latitude: </span>{:.2f}<br>".format(self.latitude)
         popup += "<span>Longitude: </span>{:.2f}<br>".format(self.longitude)
@@ -45,6 +45,35 @@ class XavierStationData(models.Model):
 
     def __str__(self):
         return str('nº ' + str(self.station.omm_code) + '---' + str(self.date))
+
+class INMETStation(models.Model):
+    inmet_code = models.CharField(max_length=254)
+    state = models.CharField(max_length=254)
+    city = models.CharField(max_length=254)
+    type = models.CharField(max_length=254)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    altitude = models.FloatField()
+    startDate = models.DateField('Data de início de operação', blank=True, null=True)
+    finalDate = models.DateField('Data de   fim de operação', blank=True, null=True)
+    status = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.city
+
+    @property
+    def popup_content(self):
+        popup = "<span>Estado: </span>{}<br>".format(self.state)
+        popup += "<span>Cidade: </span>{}<br>".format(self.city)
+        popup += "<span>Código INMET: </span>{}<br>".format(self.inmet_code)
+        popup += "<span>Tipo: </span>{}<br>".format(self.type)
+        popup += "<span>Latitude: </span>{:.2f}<br>".format(self.latitude)
+        popup += "<span>Longitude: </span>{:.2f}<br>".format(self.longitude)
+        popup += "<span>Altitude: </span>{:.2f} m<br>".format(self.altitude)
+        popup += "<span>Data início de operação: </span>{}<br>".format(self.startDate)
+        popup += "<span>Atividade: </span>{}<br>".format(self.status)
+
+        return popup
 
 class INMETStationData(models.Model):
     date = models.DateField()

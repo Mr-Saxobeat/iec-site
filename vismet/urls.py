@@ -11,7 +11,7 @@ urlpatterns = [
          views.Api_XavierStations_Data,
          name='xavier_stations_timestamp'),
 
-    path('api/inmetstations/', views.Api_XavierStations.as_view(), name='inmet_stations'),
+    path('api/inmetstations/', views.Api_INMETStations, name='inmet_stations'),
     path('api/inmetstations/<str:format>/<int:inmet_code>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
          views.Api_INMET_Data,
          name='inmet_stations_timestamp'),

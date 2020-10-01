@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from djgeojson.views import GeoJSONLayerView
-from .models import XavierStation, XavierStationData, INMETStationData, Pixel, PixelData, City, CityData
+from .models import XavierStation, XavierStationData, INMETStation, INMETStationData, Pixel, PixelData, City, CityData
 from django.http import HttpResponse, JsonResponse, Http404
 import json
 import datetime
@@ -42,6 +42,24 @@ def Api_XavierStations_Data(request, format, inmet_code, start_day, start_month,
     elif format == "csv":
         qs_csv = station_data.values('date', 'evapo', 'relHum', 'solarIns', 'maxTemp', 'minTemp', 'windSpeed')
         return render_to_csv_response(qs_csv)
+
+def Api_INMETStations(request):
+    inmet_stations = INMETStation.objects.all()
+
+    fields = ('city',
+    'state',
+    'inmet_code',
+    'latitude',
+    'longitude',
+    'startDate',
+    'status',
+    'popup_content',
+    )
+    serialized = serializers.serialize('json', inmet_stations, fields=fields)
+
+
+    return HttpResponse(serialized, content_type="application/json")
+
 
 def Api_INMET_Data(request, format, inmet_code, start_day, start_month, start_year, final_day, final_month, final_year):
 

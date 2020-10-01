@@ -94,10 +94,6 @@ $.getJSON(XavierStation_url, function (data) {
   xaviewrWeatherStation.addData(data);
 });
 
-var overlays = {
-  "Estações Xavier": xaviewrWeatherStation,
-};
-
 control.addOverlay(xaviewrWeatherStation, "Estações Xavier");
 
 var btn_submit = $("#btn_submit");
