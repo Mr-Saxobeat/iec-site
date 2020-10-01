@@ -39,7 +39,7 @@ $.getJSON(INMETStation_url, function(data){
       "properties": {
         "inmet_code": station.fields.inmet_code,
         "state": station.fields.state,
-        "city": stations.fields.city,
+        "city": station.fields.city,
         "type": station.fields.type,
         "latitude": station.fields.latitude,
         "longitude": station.fields.longitude,
