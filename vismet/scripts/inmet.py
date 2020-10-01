@@ -13,8 +13,6 @@ def run():
 
     csv_path = os.path.join(os.getcwd(), 'vismet', 'scripts', 'inmet-codes.csv')
 
-    missing_file = open(missing_file_path, 'w')
-
     list_inmet_codes = []
 
     with open(csv_path, 'r') as file:
