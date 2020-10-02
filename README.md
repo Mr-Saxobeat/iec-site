@@ -10,7 +10,7 @@ Você pode acessar a plataforma clicando em [https://iec.ufes.br/](https://iec.u
 
 Esta plataforma está sendo desenvolvida usando **python 3.8**, e usando **pipenv 2018.11.26** para a virtualenv.
 
-#O banco de dados:
+### O banco de dados:
 - Primeiramente vamos instalar o postgresql e sua extensão para GIS:
   - Instale o postgis:
     ```
@@ -37,7 +37,7 @@ Esta plataforma está sendo desenvolvida usando **python 3.8**, e usando **pipen
     ```
   - Até aqui tudo ok, podemos sair do postgres :D
 
-#Django:
+### Django:
 - Agora vamos instalar o django, um framework em python para o backend da plataforma;
 - Você vai precisar gerar uma **SECRET_KEY** através [deste link](https://djecrety.ir/):
   - Crie um arquivo ".env" na pasta raíz e cole a SECRET_KEY da seguinte forma:
