@@ -1,7 +1,7 @@
 import os
 import requests
 import csv
-from vismet.models import INMETStation
+from vismet.models import INMETStation, XavierStation
 import datetime
 
 # Esse script pega as estações xavier da API do INMET
@@ -100,16 +100,22 @@ def run():
 # que não foram encontradas na api inmet.
 def verify():
     file_inmet_codes = open(os.path.join(os.getcwd(), 'vismet', 'scripts', 'inmet-codes.csv'), 'r')
-    file_missing_stations = open(os.path.join(os.getcwd(), 'vismet', 'scripts', 'missing_stations.txt'), 'w')
+    file_missing_stations = open(os.path.join(os.getcwd(), 'vismet', 'scripts', 'missing_stations.csv'), 'w')
 
-    station = None
+    inmet_station = None
+    xavier_station = None
     reader = csv.reader(file_inmet_codes)
+
+    file_missing_stations.write("inmet;omm;cidade;tipo\n")
     for row in reader:
         inmet_code = row[0]
+
+        xavier_station = XavierStation.objects.get(inmet_code=inmet_code)
+
         try:
-            station = INMETStation.objects.get(inmet_code=inmet_code)
+            inmet_station = INMETStation.objects.get(inmet_code=inmet_code)
         except INMETStation.DoesNotExist:
-            file_missing_stations.write(inmet_code + "\n")
+            file_missing_stations.write(str(xavier_station.inmet_code) + ";" + str(xavier_station.omm_code) + ";" + str(xavier_station.name) + ";" + str(xavier_station.type) +"\n")
 
     file_inmet_codes.close()
     file_missing_stations.close()
