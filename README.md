@@ -70,7 +70,7 @@ Esta plataforma está sendo desenvolvida usando **python 3.8**, e usando **pipen
 - Para aplicar as configurações necessárias no banco de dados configurado, rode o seguinte:
   ```
   python manage.py migrate
-    ```
+  ```
 - Rode o servidor django para verificar se está tudo certo:
   ```
   python manage.py runserver
