@@ -77,3 +77,29 @@ Esta plataforma está sendo desenvolvida usando **python 3.8**, e usando **pipen
   ```
 - Enfim, acesse o localhost :D
   - **http://127.0.0.1:8000/**
+
+### Visualização de dados:
+
+- A plataforma possui vários tipos de dados ambientais e para a alocação no banco
+de dados, são utilizados scripts.
+- Primeiro vamos usar um script que usa a API do INMET para mostrar as estações
+meteorológicas no mapa:
+  - No terminal rode o comando para entrar no shell do django:
+    ```
+    python manage.py shell
+    ```
+  - Para importar o script que usaremos use:
+    ```
+    from vismet.scripts.inmet import run
+    ```
+  - Este script se encontra na pasta ***iec-site/vismet/scripts/inmet.py***. Enfim
+  execute-0:
+    ```
+    run()
+    ```
+  - Agora rode o servidor de novo e selecione a camada ***Estações INMET*** no
+  canto superior direito do mapa e você verá as posições das estações.
+  - Agora no menu de seleção de dadoss, selecione a fonte ***INMET***, a variável
+  que você quer visualizar, as datas inicial e final e enfim clique em visualizar.
+  - Esses dados são trazidos diretamente da API do INMET :D
+  - Futuramente apresentaremos os outros scripts com seus respectivos dados.
