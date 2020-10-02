@@ -2,6 +2,40 @@ from django.contrib.gis.db import models
 import os
 import csv
 
+# Estações meteorológicas
+class WeatherStation(models.Model):
+    source = models.CharField(max_length=100)
+    omm_code = models.CharField(max_length=100, blank=True, null=True)
+    inmet_code = models.CharField(max_length=100, blank=True, null=True)
+    state = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    type = models.CharField(max_length=100)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    altitude = models.FloatField()
+    geom = models.PointField(srid=4326, blank=True, null=True)
+    startDate = models.DateField('Data de início de operação', blank=True, null=True)
+    finalDate = models.DateField('Data de fim de operação', blank=True, null=True)
+    status = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.omm_code + " " + self.city
+
+    @property
+    def popup_content(self):
+        popup = "<span>Estado: </span>{}<br>".format(self.state)
+        popup += "<span>Cidade: </span>{}<br>".format(self.name)
+        if self.omm_code != "":
+            popup += "<span>Código OMM: </span>{}<br>".format(self.omm_code)
+        if self.inmet_code != "":
+            popup += "<span>Código INMET: </span>{}<br>".format(self.inmet_code)
+        popup += "<span>Tipo: </span>{}<br>".format(self.type)
+        popup += "<span>Latitude: </span>{:.2f}<br>".format(self.latitude)
+        popup += "<span>Longitude: </span>{:.2f}<br>".format(self.longitude)
+        popup += "<span>Altitude: </span>{:.2f} m<br>".format(self.altitude)
+
+        return popup
+
 # Estações meteorológicas que foram usadas
 # nos dados compilados por Xavier.
 class XavierStation(models.Model):
