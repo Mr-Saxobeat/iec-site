@@ -1931,6 +1931,7 @@ input[type="submit"].btn-block {
 .card-text:last-child {
     margin-bottom: 0;
     text-align: justify;
+    font-size: 15px;
 }
 .card-link:hover {
     text-decoration: none;
