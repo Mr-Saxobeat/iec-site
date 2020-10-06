@@ -1,4 +1,5 @@
 from django.contrib.gis.db import models
+from django.contrib.postgres.fields import ArrayField
 import os
 import csv
 
@@ -11,9 +12,10 @@ class ElementSource(models.Model):
     name = models.CharField(max_length=100)
     category = models.ForeignKey(ElementCategory, related_name='sources', on_delete=models.CASCADE)
     data_model = models.CharField(max_length=200, blank=True, null=True)
-    variables = models.CharField(max_length=500)
-    startDate = models.DateField(blank=True, null=True)
-    finalDate = models.DateField(blank=True, null=True)
+    variables = ArrayField(
+        base_field=models.CharField(max_length=20),
+        size=20,
+    )
 
 # Modelo que representa uma única estação meteorológica
 class WeatherStation(models.Model):
@@ -25,7 +27,7 @@ class WeatherStation(models.Model):
     type = models.CharField(max_length=100)
     latitude = models.FloatField()
     longitude = models.FloatField()
-    altitude = models.FloatField()
+    altitude = models.FloatField(blank=True, null=True)
     startDate = models.DateField('Data de início de operação', blank=True, null=True)
     finalDate = models.DateField('Data de fim de operação', blank=True, null=True)
     status = models.CharField(max_length=100, blank=True, null=True)
