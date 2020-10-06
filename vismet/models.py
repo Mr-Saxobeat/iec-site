@@ -2,9 +2,22 @@ from django.contrib.gis.db import models
 import os
 import csv
 
-# Estações meteorológicas
+# Categoria de dados, (dados observados, reanálise ou simulados)
+class ElementCategory(models.Model):
+    name = models.CharField(max_length=100)
+
+# Modelo que representa a fonte de uma estação, pixel... (INMET, ANA, CEMADEN...)
+class ElementSource(models.Model):
+    name = models.CharField(max_length=100)
+    category = models.ForeignKey(ElementCategory, related_name='sources', on_delete=models.CASCADE)
+    data_model = models.CharField(max_length=200, blank=True, null=True)
+    variables = models.CharField(max_length=500)
+    startDate = models.DateField(blank=True, null=True)
+    finalDate = models.DateField(blank=True, null=True)
+
+# Modelo que representa uma única estação meteorológica
 class WeatherStation(models.Model):
-    source = models.CharField(max_length=100)
+    source = models.ForeignKey(ElementSource, related_name='stations', on_delete=models.CASCADE)
     omm_code = models.CharField(max_length=100, blank=True, null=True)
     inmet_code = models.CharField(max_length=100, blank=True, null=True)
     state = models.CharField(max_length=100)
@@ -13,13 +26,17 @@ class WeatherStation(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     altitude = models.FloatField()
-    geom = models.PointField(srid=4326, blank=True, null=True)
     startDate = models.DateField('Data de início de operação', blank=True, null=True)
     finalDate = models.DateField('Data de fim de operação', blank=True, null=True)
     status = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
-        return self.omm_code + " " + self.city
+        if self.omm_code != None:
+            return self.omm_code + " " + self.city
+        elif self.inmet_code != None:
+            return self.inmet_code + " " + self.city
+        else:
+            return self.city
 
     @property
     def popup_content(self):
