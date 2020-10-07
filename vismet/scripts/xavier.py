@@ -1,12 +1,57 @@
 from vismet.models import XavierStation, XavierStationData
+from vismet.models import ElementCategory, ElementSource, WeatherStation
 from datetime import datetime
 import os
 import csv
 
+def load_stations(csv_path):
+
+    source, created = ElementSource.objects.get_or_create(
+                        name = 'xavier',
+                        category = ElementCategory.objects.get(name='observados'),
+                        variables = ['evapotranspiração',
+                        'umidade relativa',
+                        'radiação solar',
+                        'temperatura máxima',
+                        'temperatura mínima',
+                        'velocidade do vento'],
+                        )
+
+    with open(csv_path, 'r') as file:
+        reader = csv.reader(file)
+
+        for i, row in enumerate(reader):
+            if i == 0:
+                continue
+
+            omm_code = row[1] if row[1] != '' else None
+            inmet_code = row[2] if row[2] != '' else None
+            state = row[8]
+            city = row[3]
+            type = row[4]
+            latitude = row[5]
+            longitude = row[6]
+            altitude = row[7]
+
+            WeatherStation.objects.create(
+                source = source,
+                omm_code = omm_code,
+                inmet_code = inmet_code,
+                state = state,
+                city = city,
+                type = type,
+                latitude = latitude,
+                longitude = longitude,
+                altitude = altitude,
+            )
+
+    file.close()
+
+
 
 ## Este script lê os arquivos csv de dados coletados por Xavier
 ## e salva nos modelos de estações Xavier.
-def run(path, months):
+def load_data(path, months):
 
     nameEt0 = "Xavier_ET0_1980-2017.csv"
     nameRelHum = "Xavier_RelHum_1980-2017.csv"

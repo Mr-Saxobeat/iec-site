@@ -24,8 +24,6 @@ def run():
             if i == 0:
                 continue
 
-
-
             omm_code = row[0] if row[0] != '' else None
             city = row[6] if row[6] != '' else None
             latitude = row[9] if row[9] != '' else None
@@ -33,8 +31,6 @@ def run():
             altitude = row[11] if row[11] != '' else None
             startDate = datetime.date(int(row[12]), 1, 1)
             finalDate = datetime.date(int(row[13]), 12, 31)
-
-
 
             newObj = WeatherStation.objects.create(
                 source = source,
