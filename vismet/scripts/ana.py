@@ -1,26 +1,28 @@
 import os
 import csv
 import datetime
-from django.contrib.gis.utils import LayerMapping
 from vismet.models import ElementCategory, ElementSource, WeatherStation
 
-def run():
-    csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/ana/ANA_Precip_Estações_Metadata.csv')
+# Este script carrega as estações ANA a partir do arquivo csv especificado
+# na variável csv_path
+def LoadANAStations(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/ana/ANA_Precip_Estações_Metadata.csv')):
 
-    obj, created = ElementSource.objects.get_or_create(
-        name = 'ana',
-        category = ElementCategory.objects.get(name='observados'),
-        variables = ['precipitação', 'vazão']
-    )
+    # Pega o objeto "Fonte da estação"
+    source, created = ElementSource.objects.get_or_create(
+                        name = 'ana',
+                        category = ElementCategory.objects.get(name='observados'),
+                        variables = [
+                            'precipitação',
+                            'vazão'
+                            ]
+                        )
 
-    source = obj
     state = 'ES'
 
     with open(csv_path, 'r') as csv_file:
         reader = csv.reader(csv_file)
 
         for i, row in enumerate(reader):
-
             if i == 0:
                 continue
 
@@ -32,7 +34,7 @@ def run():
             startDate = datetime.date(int(row[12]), 1, 1)
             finalDate = datetime.date(int(row[13]), 12, 31)
 
-            newObj = WeatherStation.objects.create(
+            newObj, created = WeatherStation.objects.get_or_create(
                 source = source,
                 omm_code = omm_code,
                 state = state,
@@ -48,4 +50,4 @@ def run():
             print(newObj)
 
     csv_file.close()
-    print('acabou')
+    print('Estações ANA foram carregadas.')

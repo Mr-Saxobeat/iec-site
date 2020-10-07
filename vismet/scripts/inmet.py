@@ -1,22 +1,24 @@
 import os
-import requests
 import csv
 import datetime
 from vismet.models import ElementCategory, ElementSource, WeatherStation
+import requests
 
 # Esse script pega as estações xavier da API do INMET
 # e salva no banco de dados.
-def loadstations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data', 'inmet', 'inmet-codes.csv')):
+def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data', 'inmet', 'inmet-codes.csv')):
 
     # Pega o objeto "Fonte da estação"
     source, created = ElementSource.objects.get_or_create(
                         name = 'inmet',
                         category = ElementCategory.objects.get(name='observados'),
-                        variables = ['temperatura máxima',
-                                     'temperatura mínima',
-                                     'umidade relativa',
-                                     'precipitação'],
-                                     )
+                        variables = [
+                            'temperatura máxima',
+                            'temperatura mínima',
+                            'umidade relativa',
+                            'precipitação'
+                            ]
+                            )
 
     # Links da API do INMET para recuperar os dados das estações respectivamente
     # automáticas e manuais.
@@ -55,7 +57,7 @@ def loadstations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data',
                 finalDate = None
 
             if station["CD_ESTACAO"] in list_inmet_codes:
-                created_station = WeatherStation.objects.get_or_create(
+                newObj, created = WeatherStation.objects.get_or_create(
                     source = source,
                     inmet_code = station["CD_ESTACAO"],
                     state = station["SG_ESTADO"],
@@ -68,7 +70,8 @@ def loadstations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data',
                     finalDate = finalDate,
                     status = station["CD_SITUACAO"],
                 )
-            print(created_station)
+
+            print(newObj)
 
     # Cria models das estações convecionais
     for station in manual_stations_response:
@@ -87,7 +90,7 @@ def loadstations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data',
             finalDate = None
 
         if station["CD_ESTACAO"] in list_inmet_codes:
-            created_station = WeatherStation.objects.get_or_create(
+            newObj, created = WeatherStation.objects.get_or_create(
                 source = source,
                 inmet_code = station["CD_ESTACAO"],
                 state = station["SG_ESTADO"],
@@ -100,9 +103,10 @@ def loadstations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data',
                 finalDate = finalDate,
                 status = station["CD_SITUACAO"],
             )
-        print(created_station)
 
-    return print("acabou")
+        print(newObj)
+
+    return print("Estações INMET foram carregadas.")
 
 # Esse script compara os códigos inmet usados pelo xavier
 # e as estações que foram salvas através da api do inmet

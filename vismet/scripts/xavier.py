@@ -4,18 +4,23 @@ from datetime import datetime
 import os
 import csv
 
-def loadstations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data', 'xavier', 'INMET_Info_Sobre_Estações.csv')):
+# Este script carrega as estações Xavier a partir do arquivo csv especificado
+# na variável csv_path
+def LoadXavierStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data', 'xavier', 'INMET_Info_Sobre_Estações.csv')):
 
+    # Pega o objeto "Fonte da estação"
     source, created = ElementSource.objects.get_or_create(
                         name = 'xavier',
                         category = ElementCategory.objects.get(name='observados'),
-                        variables = ['evapotranspiração',
-                        'umidade relativa',
-                        'radiação solar',
-                        'temperatura máxima',
-                        'temperatura mínima',
-                        'velocidade do vento'],
-                        )
+                        variables = [
+                            'evapotranspiração',
+                            'umidade relativa',
+                            'radiação solar',
+                            'temperatura máxima',
+                            'temperatura mínima',
+                            'velocidade do vento'
+                            ]
+                            )
 
     with open(csv_path, 'r') as file:
         reader = csv.reader(file)
@@ -33,7 +38,7 @@ def loadstations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data',
             longitude = row[6]
             altitude = row[7]
 
-            WeatherStation.objects.create(
+            newObj, created = WeatherStation.objects.get_or_create(
                 source = source,
                 omm_code = omm_code,
                 inmet_code = inmet_code,
@@ -45,13 +50,16 @@ def loadstations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data',
                 altitude = altitude,
             )
 
+            print(newObj)
+
     file.close()
+    print('Estações Xavier foram carregadas.')
 
 
 
 ## Este script lê os arquivos csv de dados coletados por Xavier
 ## e salva nos modelos de estações Xavier.
-def load_data(path, months):
+def LoadXavierData(path, months):
 
     nameEt0 = "Xavier_ET0_1980-2017.csv"
     nameRelHum = "Xavier_RelHum_1980-2017.csv"
