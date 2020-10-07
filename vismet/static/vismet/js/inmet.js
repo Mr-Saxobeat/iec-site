@@ -1,7 +1,4 @@
-
-var INMETStation_url = document.getElementById("url-inmet-stations").value;
-
-var INMETStation_style = {
+var INMETStations_Style = {
   fillColor: 'red',
   weight: 1,
   opacity: 1,
@@ -9,7 +6,7 @@ var INMETStation_style = {
   fillOpacity: 1,
 };
 
-function onEachFeature_INMET(feature, layer) {
+function INMETStations_Layer_onEachFeature(feature, layer) {
   var popupContent = feature.properties.popup_content;
   var input_inmet_code = document.getElementById('input_inmet_code');
   layer.bindPopup(popupContent);
@@ -24,15 +21,15 @@ function onEachFeature_INMET(feature, layer) {
   })
 }
 
-var INMETStation_layer = L.geoJson([], {
-    style: INMETStation_style,
-    pointToLayer: function(feature, latlng) {
-      return new L.CircleMarker(latlng, {radius: 5});
-    },
-    onEachFeature: onEachFeature_INMET,
+var INMETStations_Layer = L.geoJson([], {
+  style: INMETStations_Style,
+  pointToLayer: function(feature, latlng) {
+    return new L.CircleMarker(latlng, {radius: 5});
+  },
+  onEachFeature: INMETStations_Layer_onEachFeature,
 });
 
-$.getJSON(INMETStation_url, function(data){
+$.getJSON(url_stations + "json/inmet/", function(data){
   data.forEach(station => {
     station_geojson = {
       "type": "Feature",
@@ -54,8 +51,8 @@ $.getJSON(INMETStation_url, function(data){
       }
     }
 
-    INMETStation_layer.addData(station_geojson);
+    INMETStations_Layer.addData(station_geojson);
   });
 })
 
-control.addOverlay(INMETStation_layer, "Estações INMET");
+control.addOverlay(INMETStations_Layer, "Estações INMET");
