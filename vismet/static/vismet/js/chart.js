@@ -6,7 +6,7 @@ var chart = new Chart('chart', {
   options: {
     title: {
       display: true,
-      fontSize: 20,
+      fontSize: 0,
       text: '',
     },
     scales:{
@@ -26,14 +26,6 @@ var chart = new Chart('chart', {
     }
   },
   type: 'line',
-  data: {
-    labels: [],
-    datasets: [
-      {
-        data: [],
-      }
-    ]
-  }
 });
 
 function removeData(chart) {
