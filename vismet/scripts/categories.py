@@ -1,6 +1,6 @@
 from vismet.models import ElementCategory
 
-def run():
+def LoadCategories():
     ElementCategory.objects.get_or_create(
         name = 'observados',
     )
