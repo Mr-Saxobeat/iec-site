@@ -1,3 +1,51 @@
+var XavierStations_Style = {
+  fillColor: 'blue',
+  weight: 1,
+  opacity: 1,
+  color: 'black',
+  fillOpacity: 1,
+};
+
+function XavierStations_Layer_onEachFeature(feature, layer) {
+  var popupContent = feature.properties.popup_content;
+  var input_inmet_code = document.getElementById('input_inmet_code');
+  layer.bindPopup(popupContent);
+  layer.on('click', function() {
+    input_inmet_code.value = feature.properties.inmet_code;
+    station_city = feature.properties.name;
+    station_state = feature.properties.state;
+    station_inmet = feature.properties.inmet_code;
+
+    chart.options.title.text = "Estação nº " + station_inmet + ", " + station_city + " - " + station_state;
+    chart.update();
+  })
+}
+
+var XavierStations_Layer = L.geoJson([], {
+    style: XavierStations_Style,
+    pointToLayer: function(feature, latlng) {
+      return new L.CircleMarker(latlng, {radius: 5});
+    },
+    onEachFeature: XavierStations_Layer_onEachFeature,
+});
+
+$.getJSON(url_stations + "json/xavier", function (data) {
+  data.forEach(station => {
+    station_geojson = {
+      "type": "Feature",
+      "properties": station.fields,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [station.fields.longitude, station.fields.latitude],
+      }
+    }
+
+    XavierStations_Layer.addData(station_geojson);
+  });
+});
+
+control.addOverlay(XavierStations_Layer, "Estações Xavier");
+
 var station_city;
 var station_state;
 var station_inmet;
@@ -54,47 +102,12 @@ station_variable.addEventListener("change", function() {
 
 });
 
-function onEachFeature(feature, layer) {
-  var popupContent = feature.properties.popup_content;
-  var input_inmet_code = document.getElementById('input_inmet_code');
-  layer.bindPopup(popupContent);
-  layer.on('click', function() {
-    input_inmet_code.value = feature.properties.inmet_code;
-    station_city = feature.properties.name;
-    station_state = feature.properties.state;
-    station_inmet = feature.properties.inmet_code;
 
-    chart.options.title.text = "Estação nº " + station_inmet + ", " + station_city + " - " + station_state;
-    chart.update();
-  })
-}
 
-var XavierStation_style = {
-  fillColor: 'blue',
-  weight: 1,
-  opacity: 1,
-  color: 'black',
-  fillOpacity: 1,
-};
 
-var xaviewrWeatherStation = L.geoJson([], {
-    style: XavierStation_style,
-    pointToLayer: function(feature, latlng) {
-      lat = feature.properties.latitude;
-      lng = feature.properties.longitude;
-      latlng = L.latLng(lat, lng);
-      return new L.CircleMarker(latlng, {radius: 5});
-    },
-    onEachFeature: onEachFeature,
-});
 
-var XavierStation_url = $("#url-xavier-stations").val();
 
-$.getJSON(XavierStation_url, function (data) {
-  xaviewrWeatherStation.addData(data);
-});
 
-control.addOverlay(xaviewrWeatherStation, "Estações Xavier");
 
 var btn_submit = $("#btn_submit");
 

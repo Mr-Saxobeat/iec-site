@@ -3,3 +3,5 @@ chart.options.scales.yAxes[0].scaleLabel.labelString = "Cº";
 chart.data.datasets[0].label = "Temperatura máxima";
 chart.options.legend.display = true;
 chart.update();
+
+var url_stations = document.getElementById("url-stations").value;

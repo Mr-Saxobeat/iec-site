@@ -1,4 +1,4 @@
-map.addLayer(xaviewrWeatherStation);
+map.addLayer(XavierStations_Layer);
 
 var divObservedData = document.getElementById("dados-observados");
 var divSimulatedData = document.getElementById("dados-simulados");
@@ -19,11 +19,11 @@ var PixelIsOn = false;
 
 function displayXavier() {
   if(XavierIsOn){
-    map.removeLayer(xaviewrWeatherStation);
+    map.removeLayer(XavierStations_Layer);
     XavierIsOn = false;
   }
   else{
-    map.addLayer(xaviewrWeatherStation);
+    map.addLayer(XavierStations_Layer);
     XavierIsOn = true;
 
     map.removeLayer(pixels_layer);
@@ -44,7 +44,7 @@ function displayFuturo() {
     map.addLayer(pixels_layer);
     PixelIsOn = true;
 
-    map.removeLayer(xaviewrWeatherStation);
+    map.removeLayer(XavierStations_Layer);
     removeData(chart);
     chart.options.title.text = "";
     chart.update();

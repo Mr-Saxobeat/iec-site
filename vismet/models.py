@@ -1,6 +1,59 @@
 from django.contrib.gis.db import models
+from django.contrib.postgres.fields import ArrayField
 import os
 import csv
+
+# Categoria de dados, (dados observados, reanálise ou simulados)
+class ElementCategory(models.Model):
+    name = models.CharField(max_length=100)
+
+# Modelo que representa a fonte de uma estação, pixel... (INMET, ANA, CEMADEN...)
+class ElementSource(models.Model):
+    name = models.CharField(max_length=100)
+    category = models.ForeignKey(ElementCategory, related_name='sources', on_delete=models.CASCADE)
+    data_model = models.CharField(max_length=200, blank=True, null=True)
+    variables = ArrayField(
+        base_field=models.CharField(max_length=20),
+        size=20,
+    )
+
+# Modelo que representa uma única estação meteorológica
+class WeatherStation(models.Model):
+    source = models.ForeignKey(ElementSource, related_name='stations', on_delete=models.CASCADE)
+    omm_code = models.CharField(max_length=100, blank=True, null=True)
+    inmet_code = models.CharField(max_length=100, blank=True, null=True)
+    state = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    type = models.CharField(max_length=100)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    altitude = models.FloatField(blank=True, null=True)
+    startDate = models.DateField('Data de início de operação', blank=True, null=True)
+    finalDate = models.DateField('Data de fim de operação', blank=True, null=True)
+    status = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        if self.omm_code != None:
+            return self.omm_code + " " + self.city
+        elif self.inmet_code != None:
+            return self.inmet_code + " " + self.city
+        else:
+            return self.city
+
+    @property
+    def popup_content(self):
+        popup = "<span>Estado: </span>{}<br>".format(self.state)
+        popup += "<span>Cidade: </span>{}<br>".format(self.name)
+        if self.omm_code != "":
+            popup += "<span>Código OMM: </span>{}<br>".format(self.omm_code)
+        if self.inmet_code != "":
+            popup += "<span>Código INMET: </span>{}<br>".format(self.inmet_code)
+        popup += "<span>Tipo: </span>{}<br>".format(self.type)
+        popup += "<span>Latitude: </span>{:.2f}<br>".format(self.latitude)
+        popup += "<span>Longitude: </span>{:.2f}<br>".format(self.longitude)
+        popup += "<span>Altitude: </span>{:.2f} m<br>".format(self.altitude)
+
+        return popup
 
 # Estações meteorológicas que foram usadas
 # nos dados compilados por Xavier.
@@ -46,38 +99,9 @@ class XavierStationData(models.Model):
     def __str__(self):
         return str('nº ' + str(self.station.omm_code) + '---' + str(self.date))
 
-class INMETStation(models.Model):
-    inmet_code = models.CharField(max_length=254)
-    state = models.CharField(max_length=254)
-    city = models.CharField(max_length=254)
-    type = models.CharField(max_length=254)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
-    altitude = models.FloatField()
-    startDate = models.DateField('Data de início de operação', blank=True, null=True)
-    finalDate = models.DateField('Data de   fim de operação', blank=True, null=True)
-    status = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.city
-
-    @property
-    def popup_content(self):
-        popup = "<span>Estado: </span>{}<br>".format(self.state)
-        popup += "<span>Cidade: </span>{}<br>".format(self.city)
-        popup += "<span>Código INMET: </span>{}<br>".format(self.inmet_code)
-        popup += "<span>Tipo: </span>{}<br>".format(self.type)
-        popup += "<span>Latitude: </span>{:.2f}<br>".format(self.latitude)
-        popup += "<span>Longitude: </span>{:.2f}<br>".format(self.longitude)
-        popup += "<span>Altitude: </span>{:.2f} m<br>".format(self.altitude)
-        popup += "<span>Data início de operação: </span>{}<br>".format(self.startDate)
-        popup += "<span>Atividade: </span>{}<br>".format(self.status)
-
-        return popup
-
 class INMETStationData(models.Model):
     date = models.DateField()
-    station = models.ForeignKey(XavierStation, related_name='inmet_data', on_delete=models.CASCADE)
+    station = models.ForeignKey(WeatherStation, related_name='data', on_delete=models.CASCADE)
     maxTemp = models.FloatField('Temperatura Máxima', blank=True, null=True)
     minTemp = models.FloatField('Temperatura Mínima', blank=True, null=True)
     relHum = models.FloatField('Umidade Relativa', blank=True, null=True)

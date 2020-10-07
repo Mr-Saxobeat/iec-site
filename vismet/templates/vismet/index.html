@@ -104,10 +104,9 @@
           </div>
         </div>
 
-        <input type="hidden" id="url-xavier-stations" value="{% url 'vismet:xavier_stations' %}">
-        <input type="hidden" id="url-inmet-stations" value="{% url 'vismet:inmet_stations' %}">
         <input type="hidden" id="url-cities" value="{% url 'vismet:cities' %}">
         <input type="hidden" id="url-pixels" value="{% url 'vismet:pixel' %}">
+        <input type="hidden" id="url-stations" value="{% url 'vismet:api_stations' %}">
       </div>
     </div>
 
@@ -146,12 +145,14 @@
     <!-- JS próprios da plataforma  -->
     <script type="text/javascript" src="{% static 'vismet/js/chart.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/map.js' %}"></script>
-    <script type="text/javascript" src="{% static 'vismet/js/xavier-stations.js' %}"></script>
-    <script type="text/javascript" src="{% static 'vismet/js/inmet-layer.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vismet/js/init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vismet/js/xavier.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vismet/js/inmet.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/cities.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/pixels.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/datepicker.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/layers.js' %}"></script>
-    <script type="text/javascript" src="{% static 'vismet/js/init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vismet/js/ana.js' %}"></script>
+
   </body>
 </html>
