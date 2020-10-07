@@ -4,7 +4,7 @@ from datetime import datetime
 import os
 import csv
 
-def load_stations(csv_path):
+def loadstations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data', 'xavier', 'INMET_Info_Sobre_Estações.csv')):
 
     source, created = ElementSource.objects.get_or_create(
                         name = 'xavier',
