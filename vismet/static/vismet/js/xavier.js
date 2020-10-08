@@ -29,22 +29,24 @@ var XavierStations_Layer = L.geoJson([], {
     onEachFeature: XavierStations_Layer_onEachFeature,
 });
 
-$.getJSON(url_stations + "json/xavier", function (data) {
-  data.forEach(station => {
-    station_geojson = {
-      "type": "Feature",
-      "properties": station.fields,
-      "geometry": {
-        "type": "Point",
-        "coordinates": [station.fields.longitude, station.fields.latitude],
+function loadXavierLayer(){
+  $.getJSON(url_stations + "json/xavier", function (data) {
+    data.forEach(station => {
+      station_geojson = {
+        "type": "Feature",
+        "properties": station.fields,
+        "geometry": {
+          "type": "Point",
+          "coordinates": [station.fields.longitude, station.fields.latitude],
+        }
       }
-    }
 
-    XavierStations_Layer.addData(station_geojson);
+      XavierStations_Layer.addData(station_geojson);
+    });
   });
-});
+  control.addOverlay(XavierStations_Layer, "Estações Xavier");
+}
 
-control.addOverlay(XavierStations_Layer, "Estações Xavier");
 
 var station_city;
 var station_state;
