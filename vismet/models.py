@@ -43,7 +43,7 @@ class WeatherStation(models.Model):
     @property
     def popup_content(self):
         popup = "<span>Estado: </span>{}<br>".format(self.state)
-        popup += "<span>Cidade: </span>{}<br>".format(self.name)
+        popup += "<span>Cidade: </span>{}<br>".format(self.city)
         if self.omm_code != "":
             popup += "<span>Código OMM: </span>{}<br>".format(self.omm_code)
         if self.inmet_code != "":

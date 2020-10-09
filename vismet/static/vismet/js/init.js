@@ -11,3 +11,14 @@ chart.options.legend.display = true;
 chart.update();
 
 var url_stations = document.getElementById("url-stations").value;
+var url_data_options = document.getElementById("url-data-options").value;
+var layers_dic = {};
+
+// Essa variável armazena as opções que poderão ser selecionadas
+// de acordo com a categoria, fonte, modelo.
+$.getJSON(url_data_options, function (data) {
+  json_data_options = JSON.parse(JSON.stringify(data));
+  showCategoryData("observados");
+  loadXavierLayer();
+  map.addLayer(layers_dic["xavier"]);
+});

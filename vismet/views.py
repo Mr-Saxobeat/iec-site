@@ -62,6 +62,33 @@ def Api_WeatherStations_Data(request, format, source, code, start_day, start_mon
         qs_csv = queryset.values()
         return render_to_csv_response(qs_csv)
 
+# Esta view retorna um json com as opções de categorias, fontes e variáveis
+# para ser usado na construção dos menus de seleção da plataforma.
+def Api_Data_Options(request):
+    categories_list = []
+
+    categories = ElementCategory.objects.all()
+
+    for aCategory in categories:
+        category_sources = ElementSource.objects.filter(category=aCategory)
+
+        category_dict = {
+            "category": aCategory.name,
+            "sources": []
+        }
+
+        for aSource in category_sources:
+            source_dict = {
+                "name": aSource.name,
+                "variables": aSource.variables,
+            }
+
+            category_dict["sources"].append(source_dict)
+
+        categories_list.append(category_dict)
+
+    return JsonResponse(categories_list, safe=False)
+
 
 # Esta view retorna as estações meteorógicas Xavier.
 class Api_XavierStations(GeoJSONLayerView):

@@ -23,13 +23,13 @@
       <div class="w3-dropdown-hover">
         <button class="w3-button">Dados<i class="fa fa-caret-down"></i></button>
         <div class="w3-dropdown-content w3-bar-block">
-          <a onclick="w3_close()" id="estacoesxavier" href="#" class="w3-bar-item w3-button">Observados</a>
-          <a onclick="w3_close()" id="satelitereanalise" href="#" class="w3-bar-item w3-button">de Reanálise</a>
-          <a onclick="w3_close()" id="cenariosfuturos" href="#" class="w3-bar-item w3-button">Simulados</a>
+          <button onclick="w3_close()" id="btn-observados" value="observados" class="w3-bar-item w3-button">Observados</a>
+          <button onclick="w3_close()" id="btn-reanálise" value="reanálise" class="w3-bar-item w3-button">Reanálise</a>
+          <button onclick="w3_close()" id="btn-simulados" value="simulados" class="w3-bar-item w3-button">Simulados</a>
         </div>
       </div>
     <!--<a href="#" class="w3-bar-item w3-button">Sobre</a>-->
-    </div> 
+    </div>
 
     <div class="main">
       <div class="container-fluid">
@@ -37,55 +37,53 @@
           <div class="col-md-3" id="sidebar">
             <button class="w3-button w3-white w3-xlarge" onclick="w3_open()">☰</button>
             <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
-            <div id="dados-observados">
+
+            <div id="div-observados">
               <h3>Dados Observados:</h3>
               <p>Dados históricos coletados pelas estações meteorológicas.</p>
 
               <label for="fonte-dados-observados">Fonte:</label>
-              <select id="fonte-dados-observados" name="fonte-dados-observados">
-                <option value="xavier">Xavier</option>
-                <option value="inmet">INMET</option>
+              <select class="sel-data-source" name="fonte-dados-observados">
               </select>
 
               <form action="" method="get">
                 {% csrf_token %}
                 <label for="variable">Variável:</label>
-                <select id="station_variable" name="variable">
+                <select class="sel-data-variable" name="variable">
                 </select>
               </form><br>
-
-              <label for="startDate">Data inicial:</label>
-              <input class="dateinput" type="text" id="startDate" name="startDate">
-
-              <label for="finalDate">Data final:</label>
-              <input class="dateinput" type="text" id="finalDate" name="finalDate">
-
-              <button type="button" id="btn_submit">Visualizar</button>
-              <button type="button" id="btn_download" name="btn_download">Baixar</button>
 
               <input type="hidden" name="inmet_code" value="0" id="input_inmet_code">
             </div>
 
+            <div id="div-reanálise">
+              <h3>Dados de Reanálise:</h3>
+              <p>Dados de reanálise bla bla bla bla bla bla bla bla bla bla bla bla.</p>
 
-            <div id="dados-simulados">
+              <label for="fonte-dados-observados">Fonte:</label>
+              <select class="sel-data-source" name="fonte-dados-observados">
+              </select>
+
+              <form action="" method="get">
+                {% csrf_token %}
+                <label for="variable">Variável:</label>
+                <select class="sel-data-variable" name="variable">
+                </select>
+              </form><br>
+            </div>
+
+
+            <div id="div-simulados">
               <h3>Dados Simulados:</h3>
 
               <label for="cenarios-futuros-layer">Camada por:</label>
               <select id="sel-camada-dados-futuros" name="cenarios-futuros-layer">
-                <option value="city">Município</option>
-                <option value="pixel">Pixel</option>
               </select>
 
               <div id="porMunicipio">
                 <p>Média por município dos dados do Modelo Eta HADGEM2-ES 5km para o estado de Espírito Santo.</p>
                 <form class="" action="" method="get">
                   <input type="hidden" value="0" id="city_name">
-                  <label for="city_startDate">Data inicial:</label>
-                  <input class="dateinput" type="text" id="city_startDate" name="city_startDate">
-                  <label for="city_finalDate">Data final:</label>
-                  <input class="dateinput" type="text" id="city_finalDate" name="city_finalDate">
-                  <!-- <button type="button" id="btn_view_city_data">Visualizar</button> -->
-                  <button type="button" id="btn_download_city_data">Baixar</button>
                 </form><br>
               </div>
 
@@ -93,14 +91,18 @@
                 <p>Dados do Modelo Eta HADGEM2-ES por pixel de 5km para o estado de Espírito Santo</p>
                 <form class="" action="" method="get">
                   <input type="hidden" value="0" id="pixel_id">
-                  <label for="pixel_startDate">Data inicial:</label>
-                  <input class="dateinput" type="text" id="pixel_startDate" name="pixel_startDate">
-                  <label for="pixel_finalDate">Data final:</label>
-                  <input class="dateinput" type="text" id="pixel_finalDate" name="pixel_finalDate">
-                  <button type="button" id="btn_pixel">Baixar</button>
                 </form>
               </div>
             </div>
+
+            <label for="startDate">Data inicial:</label>
+            <input class="dateinput" type="text" id="startDate" name="startDate">
+
+            <label for="finalDate">Data final:</label>
+            <input class="dateinput" type="text" id="finalDate" name="finalDate">
+
+            <button type="button" id="btn_submit">Visualizar</button>
+            <button type="button" id="btn_download" name="btn_download">Baixar</button>
 
           </div>
 
@@ -117,6 +119,7 @@
         <input type="hidden" id="url-cities" value="{% url 'vismet:cities' %}">
         <input type="hidden" id="url-pixels" value="{% url 'vismet:pixel' %}">
         <input type="hidden" id="url-stations" value="{% url 'vismet:api_stations' %}">
+        <input type="hidden" id="url-data-options" value="{% url 'vismet:data_options' %}">
       </div>
     </div>
 
@@ -165,7 +168,6 @@
     <!-- JS próprios da plataforma  -->
     <script type="text/javascript" src="{% static 'vismet/js/chart.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/map.js' %}"></script>
-    <script type="text/javascript" src="{% static 'vismet/js/init.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/xavier.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/inmet.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/cities.js' %}"></script>
@@ -173,6 +175,7 @@
     <script type="text/javascript" src="{% static 'vismet/js/datepicker.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/layers.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/ana.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vismet/js/init.js' %}"></script>
 
   </body>
 </html>
