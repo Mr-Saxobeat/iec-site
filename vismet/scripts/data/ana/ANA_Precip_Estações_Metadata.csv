@@ -1,171 +1,171 @@
 ANA Código da Estação,Bacia Codigo,Bacia Nome,Sub-Bacia Codigo,Sub-Bacia Nome,Municipio Codigo,Nome do Municipio,Nome da Estação,Tipo Estacao,Latitude,Longitude,Altitude,Primeiro Ano com Dados,Ultimo Ano com Dados,Porcentagem de Dados  Ausentes
-1839000,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18016000,Conceição Da Barra,Morro D'Anta (Pedro Canário),Pluviomêtrica,-18.2994,-39.9586,66,1951,2019,7
-1839001,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18016000,Conceição Da Barra,Conceição Da Barra,Pluviomêtrica,-18.5622,-39.7472,3,1930,2019,0
-1839002,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18016000,Conceição Da Barra,Fazenda Viração,Pluviomêtrica,-18.4167,-39.7167,10,1958,1982,1
-1839004,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18040400,Pedro Canário,Fazenda Klabin,Pluviomêtrica,-18.2333,-39.9,40,1960,1983,0
-1839006,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,Barra Nova,Pluviomêtrica,-18.9503,-39.7644,6,1971,2019,1
-1839007,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18016000,Conceição Da Barra,Fazenda Cia Paulista (Dnos),Pluviomêtrica,-18.2,-39.9167,20,1959,1968,3
-1839008,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,São Mateus,Pluviomêtrica,-18.7167,-39.8667,30,1947,1967,3
-1839013,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18016000,Conceição Da Barra,Conceição Da Barra,Pluviomêtrica,-18.5833,-39.7333,6,1930,1968,0
-1839015,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,São Mateus,Pluviomêtrica,-18.1167,-39.85,25,1970,2000,15
-1839020,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18016000,Conceição Da Barra,Conceição Da Barra,Pluviomêtrica,-18.5667,-39.7333,,1999,2000,41
-1840000,5,"Atlântico,Trecho Leste",56,Rio Doce,18001400,Águia Branca,Águia Branca,Pluviomêtrica,-18.9856,-40.7461,180,1969,2019,0
-1840001,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,Barra Seca,Pluviomêtrica,-18.9833,-40.1333,70,1947,1977,3
-1840002,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18010000,Boa Esperança,Fazenda Alegria,Pluviomêtrica,-18.5167,-40.3167,180,1947,1990,0
-1840003,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,Itauninhas,Pluviomêtrica,-18.4894,-40.0906,90,1947,2019,5
-1840004,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18009000,Barra De São Francisco,Barra De São Francisco,Pluviomêtrica,-18.7619,-40.89,192,1947,2019,0
-1840005,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18039000,Nova Venécia,Nova Venécia,Pluviomêtrica,-18.7167,-40.4167,80,1947,1976,2
-1840006,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18036000,Mucurici,Mucurici,Pluviomêtrica,-18.0833,-40.5833,290,1969,1994,1
-1840007,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18001200,Alegre,Água Doce,Pluviomêtrica,-18.5481,-40.9764,280,1959,2019,0
-1840008,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18032000,Mantenópolis,Ponte Nova (Br-101),Pluviomêtrica,-18.9817,-39.9933,60,1972,2018,4
-1840009,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18021000,Ecoporanga,Fazenda São Mateus,Pluviomêtrica,-18.1222,-40.8858,190,1966,2019,13
-1840010,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18039000,Nova Venécia,Cedrolândia,Pluviomêtrica,-18.8097,-40.6906,300,1970,2019,0
-1840011,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18021000,Ecoporanga,Cotaxe,Pluviomêtrica,-18.18638889,-40.71833333,200,1970,2010,0
-1840012,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18035000,Montanha,Fazenda Limoeiro,Pluviomêtrica,-18.1456,-40.1439,96,1970,2019,1
-1840013,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18021000,Ecoporanga,Ecoporanga,Pluviomêtrica,-18.3658,-40.8406,300,1970,2019,0
-1840014,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18021000,Ecoporanga,Joaçuba,Pluviomêtrica,-18.4042,-40.6867,260,1970,1999,0
-1840015,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18021000,Ecoporanga,Patrimônio Santa Luzia Do Norte,Pluviomêtrica,-18.2056,-40.6033,400,1970,2019,0
-1840016,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18039000,Nova Venécia,Patrimônio Xv,Pluviomêtrica,-18.4942,-40.4642,96,1970,2019,3
-1840017,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18041000,Pinheiros,São João Do Sobrado,Pluviomêtrica,-18.3186,-40.4067,100,1970,2019,3
-1840019,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18039000,Nova Venécia,Córrego Da Boa Esperança,Pluviomêtrica,-18.7006,-40.4419,80,1976,2019,0
-1840020,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,São João Da Cachoeira Grande,Pluviomêtrica,-18.5647,-40.3367,100,1981,2019,1
-1840021,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18009000,Barra De São Francisco,Barra Do Rio Preto,Pluviomêtrica,-18.6936,-40.8828,192,1981,1999,5
-1840023,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18021000,Ecoporanga,Ecoporanga,Pluviomêtrica,-18.3667,-40.8667,300,1979,1998,5
-1840026,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,Boca Da Vala,Pluviomêtrica,-18.6586,-40.0911,,1992,2019,2
-1840027,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18041000,Pinheiros,Pinheiros,Pluviomêtrica,-18.4167,-40.2167,5,1999,2000,0
-1840029,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18042500,Ponto Belo,Ponto Belo,Pluviomêtrica,-18.1167,-40.5333,,1999,1999,0
-1840030,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18001200,Alegre,Água Doce Do Norte,Pluviomêtrica,-18.5333,-40.9667,,1999,2000,0
-1840031,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18051500,Vila Pavão,Vila Pavão,Pluviomêtrica,-18.6167,-40.6,,1999,2000,0
-1840032,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18030400,Jaguaré,Jaguaré,Pluviomêtrica,-18.9,-40.0667,,1999,2000,0
-1840033,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18051600,Vila Valério,Vila Valério,Pluviomêtrica,-18.9833,-40.3833,,1999,2000,0
-1841009,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18033000,Mantenópolis,Mantenópolis,Pluviomêtrica,-18.8389,-41.1103,900,1970,2019,1
-1841010,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18009000,Barra De São Francisco,Santo Agostinho,Pluviomêtrica,-18.4061,-41.04,500,1970,2019,0
-1939000,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Regência,Pluviomêtrica,-19.6167,-39.8333,3,1967,1974,5
-1939001,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Fazenda Caporanga,Pluviomêtrica,-19.5167,-39.8667,4,1969,1972,12
-1939002,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Povoação,Pluviomêtrica,-19.5775,-39.7944,3,1974,2019,0
-1940000,5,"Atlântico,Trecho Leste",56,Rio Doce,18029000,Itarana,Itarana,Pluviomêtrica,-19.8744,-40.8744,165,1947,2019,2
-1940001,5,"Atlântico,Trecho Leste",56,Rio Doce,18046000,Santa Teresa,São João De Petrópolis,Pluviomêtrica,-19.8053,-40.6789,149,1947,2019,1
-1940002,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18006000,Aracruz,Santa Cruz - Litoral,Pluviomêtrica,-19.9578,-40.1544,5,1947,2019,1
-1940003,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18006000,Aracruz,Riacho,Pluviomêtrica,-19.7497,-40.0431,5,1947,2019,1
-1940004,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Linhares Cais Do Porto,Pluviomêtrica,-19.4153,-40.0756,30,1947,1978,0
-1940005,5,"Atlântico,Trecho Leste",56,Rio Doce,18025000,Ibiraçu,Cavalinho,Pluviomêtrica,-19.6922,-40.3981,50,1948,2019,1
-1940006,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Colatina - Corpo De Bombeiros,Pluviomêtrica,-19.5308,-40.6231,40,1967,2019,0
-1940007,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18022000,Fundão,Fundão,Pluviomêtrica,-19.9369,-40.4014,50,1948,2019,1
-1940008,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Santa Maria,Pluviomêtrica,-19.6,-40.6167,,1948,1967,7
-1940009,5,"Atlântico,Trecho Leste",56,Rio Doce,18040000,Pancas,Pancas,Pluviomêtrica,-19.2203,-40.8533,135,1957,2019,0
-1940010,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18046000,Santa Teresa,Valsugana Velha - Montante,Pluviomêtrica,-19.9533,-40.5525,180,1956,2019,0
-1940011,5,"Atlântico,Trecho Leste",56,Rio Doce,18047000,São Gabriel Da Palha,São Gabriel Da Palha,Pluviomêtrica,-19.0167,-40.5667,120,1971,1983,0
-1940012,5,"Atlântico,Trecho Leste",56,Rio Doce,18027000,Itaguaçu,Itaimbé,Pluviomêtrica,-19.6636,-40.8353,70,1957,2019,0
-1940013,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Novo Brasil,Pluviomêtrica,-19.2375,-40.5914,170,1969,2019,0
-1940014,5,"Atlântico,Trecho Leste",56,Rio Doce,18029000,Itarana,Pedra Alegre,Pluviomêtrica,-19.8667,-40.75,300,1966,1983,8
-1940016,5,"Atlântico,Trecho Leste",56,Rio Doce,18047000,São Gabriel Da Palha,Barra De São Gabriel,Pluviomêtrica,-19.0578,-40.5164,70,1968,2019,2
-1940017,5,"Atlântico,Trecho Leste",56,Rio Doce,18027000,Itaguaçu,Itaguaçu,Pluviomêtrica,-19.8,-40.85,200,1967,1979,67
-1940018,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18046000,Santa Teresa,Santa Tereza - Museu De Biologia,Pluviomêtrica,-19.9333,-40.6,550,1947,1977,0
-1940019,5,"Atlântico,Trecho Leste",56,Rio Doce,18008000,Baixo Guandú,Mascarenhas,Pluviomêtrica,-19.5,-40.9,60,1970,1983,1
-1940020,5,"Atlântico,Trecho Leste",56,Rio Doce,18046000,Santa Teresa,Caldeirão,Pluviomêtrica,-19.955,-40.7417,750,1970,2019,1
-1940021,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18006000,Aracruz,Aracruz,Pluviomêtrica,-19.83,-40.2722,58,1970,2019,2
-1940022,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18006000,Aracruz,Jacupemba,Pluviomêtrica,-19.5886,-40.1981,50,1970,2019,0
-1940023,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Rio Bananal,Pluviomêtrica,-19.2742,-40.3208,95,1970,2019,0
-1940024,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,São Sebastião Da Terra Alta,Pluviomêtrica,-19.4333,-40.4,50,1970,1983,0
-1940025,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Serraria (Alto Do Moacir),Pluviomêtrica,-19.2953,-40.5175,250,1970,2010,0
-1940026,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Cachoeira Do Oito,Pluviomêtrica,-19.4667,-40.6333,,1964,1965,4
-1940030,5,"Atlântico,Trecho Leste",56,Rio Doce,18027000,Itaguaçu,Serra Do Limoeiro,Pluviomêtrica,-19.8,-40.8333,,1952,1954,43
-1940031,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Fazenda Contendas,Pluviomêtrica,-19.45,-40.2,,1970,1978,1
-1940033,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Fazenda Boa Esperança,Pluviomêtrica,-19.3,-40.6667,,1973,1980,6
-1940034,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Esfip,Pluviomêtrica,-19.4,-40.0667,28,1967,1980,3
-1940035,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Fazenda California (Pma),Pluviomêtrica,-19.4,-40.0667,,1971,1977,0
-1940036,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Linhares (Estação Experimental),Pluviomêtrica,-19.4,-40.0667,40,1970,1998,16
-1940039,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18046000,Santa Teresa,Santa Teresa,Pluviomêtrica,-19.85,-40.6,675,1976,1998,16
-1940040,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Fazenda Tira Teima (Cepec),Pluviomêtrica,-19.3333,-40.1,,1974,1978,0
-1940042,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18006000,Aracruz,Aracruz,Pluviomêtrica,-19.8167,-40.25,65,1976,1997,14
-1940043,5,"Atlântico,Trecho Leste",56,Rio Doce,18029000,Itarana,Itarana,Pluviomêtrica,-19.8667,-40.8833,165,1979,1998,2
-1940044,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Marilândia (Colatina),Pluviomêtrica,-19.5467,-40.5203,85,1976,2000,26
-1940045,5,"Atlântico,Trecho Leste",56,Rio Doce,18047000,São Gabriel Da Palha,São Gabriel Da Palha,Pluviomêtrica,-19.0167,-40.5667,120,1976,1995,53
-1940046,5,"Atlântico,Trecho Leste",56,Rio Doce,18046000,Santa Teresa,São João De Petrópolis,Pluviomêtrica,-19.8833,-40.6833,174,1988,1998,17
-1940047,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Uhe Mascarenhas Jusante,Pluviomêtrica,-19.5081,-40.8639,71,2002,2013,0
-1940048,5,"Atlântico,Trecho Leste",56,Rio Doce,18046500,São Domingos Do Norte,São Domingos Do Norte,Pluviomêtrica,-19.1333,-40.6167,,1999,2000,0
-1940049,5,"Atlântico,Trecho Leste",56,Rio Doce,18050100,Sooretama,Sooretama,Pluviomêtrica,-19.1833,-40.0833,,1999,2000,0
-1940050,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Colatina,Pluviomêtrica,-19.5333,-40.6333,,1999,1999,0
-1941003,5,"Atlântico,Trecho Leste",56,Rio Doce,18008000,Baixo Guandú,Baixo Guandu,Pluviomêtrica,-19.5253,-41.0153,70,1941,2019,2
-1941008,5,"Atlântico,Trecho Leste",56,Rio Doce,18001000,Afonso Cláudio,Laranja Da Terra,Pluviomêtrica,-19.9011,-41.0581,250,1947,2019,0
-1941009,5,"Atlântico,Trecho Leste",56,Rio Doce,18008000,Baixo Guandú,Ibituba,Pluviomêtrica,-19.6911,-41.02,160,1967,2019,0
-1941012,5,"Atlântico,Trecho Leste",56,Rio Doce,18040000,Pancas,Alto Rio Novo,Pluviomêtrica,-19.0592,-41.0275,500,1970,2019,0
-1941023,5,"Atlântico,Trecho Leste",56,Rio Doce,18008000,Baixo Guandú,Uhe Mascarenhas Montante 1,Pluviomêtrica,-19.5331,-41.0094,74,2002,2013,1
-2040000,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Domingos Martins (Dnos),Pluviomêtrica,-20.3639,-40.6617,452,1947,1999,1
-2040001,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18051000,Viana,Fazenda Jucuruaba,Pluviomêtrica,-20.415,-40.4853,80,1951,2019,1
-2040002,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18003000,Alfredo Chaves,Alfredo Chaves (Dnos),Pluviomêtrica,-20.6333,-40.75,100,1947,1980,0
-2040003,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18050000,Serra,Fazenda Fonte Limpa (Dnos),Pluviomêtrica,-20.1903,-40.3189,70,1947,2019,2
-2040004,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18024000,Guarapari,Guarapari (Dnos),Pluviomêtrica,-20.6522,-40.5086,6,1947,2019,3
-2040005,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18026000,Iconha,Iconha - Montante,Pluviomêtrica,-20.7836,-40.8258,25,1947,2019,1
-2040006,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18028000,Itapemirim,Usina Paineiras,Pluviomêtrica,-20.9528,-40.9533,40,1947,2019,0
-2040007,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045400,Santa Maria De Jetibá,Santa Maria Do Jetibá,Pluviomêtrica,-20.0281,-40.7442,710,1947,2019,1
-2040008,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045000,Santa Leopoldina,Garrafão (Dnos),Pluviomêtrica,-20.1433,-40.9753,940,1947,2019,1
-2040009,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18004000,Anchieta,Anchieta (Dnos),Pluviomêtrica,-20.8036,-40.6556,6,1948,2019,0
-2040010,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045000,Santa Leopoldina,Santa Leopoldina,Pluviomêtrica,-20.1003,-40.5278,160,1949,2019,1
-2040011,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18003000,Alfredo Chaves,Matilde (Dnos),Pluviomêtrica,-20.5567,-40.8114,515,1949,2019,1
-2040012,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Marechal Floriano (Dnos),Pluviomêtrica,-20.4119,-40.6822,544,1949,2019,0
-2040013,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18044000,Rio Novo Do Sul,Rio Novo Do Sul,Pluviomêtrica,-20.88111111,-40.94333333,80,1969,2010,1
-2040014,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18013000,Cariacica,Duas Bocas (Dnos),Pluviomêtrica,-20.2614,-40.4792,200,1952,2019,10
-2040015,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Perobinha (Dnos),Pluviomêtrica,-20.2836,-40.7831,640,1971,2017,0
-2040016,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18052000,Vila Velha,São Torquato (Dnos),Pluviomêtrica,-20.3333,-40.2833,3,1971,1977,0
-2040017,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18026000,Iconha,Duas Barras (Dnos),Pluviomêtrica,-20.7281,-40.8825,,1957,2019,0
-2040018,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045000,Santa Leopoldina,Cachoeira Suiça (Dnos),Pluviomêtrica,-20.0794,-40.6067,,1959,2019,0
-2040019,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Granja São Jerônimo (Dnos),Pluviomêtrica,-20.3833,-40.7167,540,1962,1983,3
-2040020,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18003000,Alfredo Chaves,Vila Nova Maravilha,Pluviomêtrica,-20.5875,-40.9492,980,1964,2019,1
-2040021,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18053000,Vitória,Vitória - Bento Ferreira,Pluviomêtrica,-20.3,-40.3333,30,1969,1977,1
-2040022,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18052000,Vila Velha,Ponta Da Fruta,Pluviomêtrica,-20.5156,-40.3636,3,1970,2019,1
-2040023,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,São Rafael,Pluviomêtrica,-20.2964,-40.9339,818,1970,2019,0
-2040024,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18053000,Vitória,Porto Do Tubarão,Pluviomêtrica,-20.2833,-40.2333,4,1970,1980,0
-2040026,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18053000,Vitória,Vitória (Escola De Engenharia),Pluviomêtrica,-20.2833,-40.3,8,1955,1968,8
-2040030,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18053000,Vitória,Vitória (Maruipe),Pluviomêtrica,-20.3,-40.3,3,1952,1965,0
-2040031,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Soido,Pluviomêtrica,-20.3333,-40.7167,,1963,1968,0
-2040035,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18053000,Vitória,Vitória,Pluviomêtrica,-20.5167,-40.5167,36.2,1925,2019,3
-2040038,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Córrego Do Galo (Dnos),Pluviomêtrica,-20.3,-40.6667,,1955,1968,1
-2040039,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18051000,Viana,Canaã,Pluviomêtrica,-20.3764,-40.4461,,1977,1999,0
-2040040,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Domingos Martins (Dnos),Pluviomêtrica,-20,-40,,1954,1964,63
-2040042,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18003000,Alfredo Chaves,Alfredo Chaves,Pluviomêtrica,-20.6333,-40.75,35,1979,1998,1
-2040045,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Córrego Do Galo,Pluviomêtrica,-20.3175,-40.6528,,1999,2019,0
-2040046,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Pch Jucu Jusante,Pluviomêtrica,-20.3939,-40.5569,51,2002,2013,0
-2040047,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045400,Santa Maria De Jetibá,Pch Rio Bonito Montante 1,Pluviomêtrica,-20.0489,-40.7478,643,2003,2018,5
-2040048,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045400,Santa Maria De Jetibá,Pch Rio Bonito Barramento,Pluviomêtrica,-20.0606,-40.6433,661.5,2015,2018,13
-2040049,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045000,Santa Leopoldina,Uhe Suíça Jusante,Pluviomêtrica,-20.1019,-40.5153,18,2002,2018,7
-2040055,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045400,Santa Maria De Jetibá,Pch Rio Bonito Jusante,Pluviomêtrica,-20.0572,-40.6175,432,2010,2018,6
-2041000,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18007000,Atílio Vivacqua,Atílio Vivacqua,Pluviomêtrica,-20.9128,-41.195,76,1944,2019,2
-2041001,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18023000,Guaçuí,Guaçuí,Pluviomêtrica,-20.7736,-41.6817,576,1939,2019,1
-2041002,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18014000,Castelo,Castelo,Pluviomêtrica,-20.6056,-41.1997,107,1939,2019,0
-2041003,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18002000,Alegre,Rive,Pluviomêtrica,-20.7469,-41.4661,127,1939,2018,1
-2041004,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18012000,Cachoeiro Do  Itapemirim,Cachoeiro Do Itapemirim (Dnos),Pluviomêtrica,-20.85,-41.1,29,1939,1972,0
-2041010,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18050200,Vargem Alta,Jacigua (Dnos),Pluviomêtrica,-20.7019,-41.0164,580,1947,2019,1
-2041011,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18017000,Conceição Do Castelo,Conceição Do Castelo (Dnos),Pluviomêtrica,-20.3522,-41.2394,600,1948,2019,1
-2041012,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18037000,Muniz Freire,Muniz Freire (Dnos),Pluviomêtrica,-20.45,-41.4,,1948,1994,3
-2041013,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18030000,Iúna,Iúna,Pluviomêtrica,-20.3458,-41.5375,615,1954,2019,0
-2041014,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18020000,Dores Do Rio Preto,Dores Do Rio Preto,Pluviomêtrica,-20.6858,-41.8461,772,1948,2019,1
-2041015,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18038000,Muqui,Fazenda Monte Alegre,Pluviomêtrica,-20.9447,-41.4008,450,1952,2019,2
-2041016,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18002000,Alegre,Ibitirama,Pluviomêtrica,-20.5406,-41.6656,794,1954,2019,2
-2041017,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18030000,Iúna,Santa Cruz - Caparaó,Pluviomêtrica,-20.3228,-41.7042,920,1956,2019,0
-2041018,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18037000,Muniz Freire,Usina Fortaleza,Pluviomêtrica,-20.3714,-41.4089,580,1956,2019,1
-2041019,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18037000,Muniz Freire,Itaici,Pluviomêtrica,-20.5283,-41.5114,380,1961,2019,0
-2041020,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Arace (Fazenda Modelo),Pluviomêtrica,-20.3667,-41.0611,1075,1963,2019,0
-2041021,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18012000,Cachoeiro Do  Itapemirim,Burarama,Pluviomêtrica,-20.6806,-41.3483,180,1964,2019,0
-2041022,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18050400,Venda Nova ,Usina São Miguel,Pluviomêtrica,-20.3333,-41.1167,,1941,1965,2
-2041023,5,"Atlântico,Trecho Leste",56,Rio Doce,18001000,Afonso Cláudio,Afonso Claúdio - Montante,Pluviomêtrica,-20.0786,-41.1214,300,1967,2019,2
-2041024,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18037000,Muniz Freire,Terra Corrida (Dnos),Pluviomêtrica,-20.4333,-41.4833,578,1957,1968,1
-2041030,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18030000,Iúna,Iúna,Pluviomêtrica,-20.3667,-41.5333,662,1948,1965,3
-2041031,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18038000,Muqui,Muqui,Pluviomêtrica,-20.9667,-41.35,240,1951,1968,0
-2041032,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18012000,Cachoeiro Do  Itapemirim,Pacotuba,Pluviomêtrica,-20.7833,-41.25,,1964,1968,0
-2041036,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Alto Jucu,Pluviomêtrica,-20.3,-41.1,,1952,1968,0
-2041045,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18012000,Cachoeiro Do  Itapemirim,Cachoeiro Do Itapemirim,Pluviomêtrica,-20.85,-41.1,78,1928,1992,10
-2041047,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18012000,Cachoeiro Do  Itapemirim,Cachoeiro Do Itapemirim,Pluviomêtrica,-20.85,-41.1167,21,1928,1968,2
-2041049,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18002000,Alegre,Alegre,Pluviomêtrica,-20.7667,-41.4667,138,1975,1997,33
-2041050,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18037000,Muniz Freire,Muniz Freire,Pluviomêtrica,-20.4667,-41.4,530,1979,1998,0
-2041051,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18050400,Venda Nova ,Venda Nova,Pluviomêtrica,-20.3167,-41.1667,750,1976,1998,15
-2041055,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18014000,Castelo,Pch São João Jusante,Pluviomêtrica,-20.5728,-41.2356,100,2002,2018,2
-2041056,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18017000,Conceição Do Castelo,Pch Viçosa Jusante,Pluviomêtrica,-20.4083,-41.2689,426,2002,2013,1
-2041057,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18002000,Alegre,Pch Alegre Jusante,Pluviomêtrica,-20.7647,-41.5233,190,2002,2013,0
-2041058,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18012000,Cachoeiro Do  Itapemirim,Pch Fruteiras Jusante,Pluviomêtrica,-20.7017,-41.0894,100,2003,2013,0
-2140000,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18028000,Itapemirim,Barra Do Itapemirim (Dnos),Pluviomêtrica,-21.0075,-40.8353,4,1947,2019,1
-2141014,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18034000,Mimoso Do Sul,Ponte Do Itabapoana,Pluviomêtrica,-21.2061,-41.4628,59,1937,2019,0
-2141015,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18034000,Mimoso Do Sul,Mimoso Do Sul,Pluviomêtrica,-21.0647,-41.3625,67,1964,2019,0
-2141016,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18048000,São José Do Calçado,São José Do Calçado,Pluviomêtrica,-21.0169,-41.6628,150,1952,2019,1
-2141017,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18034000,Mimoso Do Sul,São José Das Torres,Pluviomêtrica,-21.0731,-41.2383,120,1969,2019,2
-2141098,5,"Atlântico,Trecho Leste",58,RIO PARAÍBA DO SUL,18011000,Bom Jesus Do Norte,Cesan,Pluviomêtrica,-21.1222,-41.6736,,2016,2018,16
+1839000,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18016000,Conceição Da Barra,Morro D'Anta (Pedro Canário),Pluviométrica,-18.2994,-39.9586,66,1951,2019,7
+1839001,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18016000,Conceição Da Barra,Conceição Da Barra,Pluviométrica,-18.5622,-39.7472,3,1930,2019,0
+1839002,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18016000,Conceição Da Barra,Fazenda Viração,Pluviométrica,-18.4167,-39.7167,10,1958,1982,1
+1839004,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18040400,Pedro Canário,Fazenda Klabin,Pluviométrica,-18.2333,-39.9,40,1960,1983,0
+1839006,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,Barra Nova,Pluviométrica,-18.9503,-39.7644,6,1971,2019,1
+1839007,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18016000,Conceição Da Barra,Fazenda Cia Paulista (Dnos),Pluviométrica,-18.2,-39.9167,20,1959,1968,3
+1839008,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,São Mateus,Pluviométrica,-18.7167,-39.8667,30,1947,1967,3
+1839013,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18016000,Conceição Da Barra,Conceição Da Barra,Pluviométrica,-18.5833,-39.7333,6,1930,1968,0
+1839015,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,São Mateus,Pluviométrica,-18.1167,-39.85,25,1970,2000,15
+1839020,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18016000,Conceição Da Barra,Conceição Da Barra,Pluviométrica,-18.5667,-39.7333,,1999,2000,41
+1840000,5,"Atlântico,Trecho Leste",56,Rio Doce,18001400,Águia Branca,Águia Branca,Pluviométrica,-18.9856,-40.7461,180,1969,2019,0
+1840001,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,Barra Seca,Pluviométrica,-18.9833,-40.1333,70,1947,1977,3
+1840002,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18010000,Boa Esperança,Fazenda Alegria,Pluviométrica,-18.5167,-40.3167,180,1947,1990,0
+1840003,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,Itauninhas,Pluviométrica,-18.4894,-40.0906,90,1947,2019,5
+1840004,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18009000,Barra De São Francisco,Barra De São Francisco,Pluviométrica,-18.7619,-40.89,192,1947,2019,0
+1840005,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18039000,Nova Venécia,Nova Venécia,Pluviométrica,-18.7167,-40.4167,80,1947,1976,2
+1840006,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18036000,Mucurici,Mucurici,Pluviométrica,-18.0833,-40.5833,290,1969,1994,1
+1840007,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18001200,Alegre,Água Doce,Pluviométrica,-18.5481,-40.9764,280,1959,2019,0
+1840008,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18032000,Mantenópolis,Ponte Nova (Br-101),Pluviométrica,-18.9817,-39.9933,60,1972,2018,4
+1840009,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18021000,Ecoporanga,Fazenda São Mateus,Pluviométrica,-18.1222,-40.8858,190,1966,2019,13
+1840010,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18039000,Nova Venécia,Cedrolândia,Pluviométrica,-18.8097,-40.6906,300,1970,2019,0
+1840011,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18021000,Ecoporanga,Cotaxe,Pluviométrica,-18.18638889,-40.71833333,200,1970,2010,0
+1840012,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18035000,Montanha,Fazenda Limoeiro,Pluviométrica,-18.1456,-40.1439,96,1970,2019,1
+1840013,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18021000,Ecoporanga,Ecoporanga,Pluviométrica,-18.3658,-40.8406,300,1970,2019,0
+1840014,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18021000,Ecoporanga,Joaçuba,Pluviométrica,-18.4042,-40.6867,260,1970,1999,0
+1840015,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18021000,Ecoporanga,Patrimônio Santa Luzia Do Norte,Pluviométrica,-18.2056,-40.6033,400,1970,2019,0
+1840016,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18039000,Nova Venécia,Patrimônio Xv,Pluviométrica,-18.4942,-40.4642,96,1970,2019,3
+1840017,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18041000,Pinheiros,São João Do Sobrado,Pluviométrica,-18.3186,-40.4067,100,1970,2019,3
+1840019,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18039000,Nova Venécia,Córrego Da Boa Esperança,Pluviométrica,-18.7006,-40.4419,80,1976,2019,0
+1840020,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,São João Da Cachoeira Grande,Pluviométrica,-18.5647,-40.3367,100,1981,2019,1
+1840021,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18009000,Barra De São Francisco,Barra Do Rio Preto,Pluviométrica,-18.6936,-40.8828,192,1981,1999,5
+1840023,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18021000,Ecoporanga,Ecoporanga,Pluviométrica,-18.3667,-40.8667,300,1979,1998,5
+1840026,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18049000,São Mateus,Boca Da Vala,Pluviométrica,-18.6586,-40.0911,,1992,2019,2
+1840027,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18041000,Pinheiros,Pinheiros,Pluviométrica,-18.4167,-40.2167,5,1999,2000,0
+1840029,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18042500,Ponto Belo,Ponto Belo,Pluviométrica,-18.1167,-40.5333,,1999,1999,0
+1840030,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18001200,Alegre,Água Doce Do Norte,Pluviométrica,-18.5333,-40.9667,,1999,2000,0
+1840031,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18051500,Vila Pavão,Vila Pavão,Pluviométrica,-18.6167,-40.6,,1999,2000,0
+1840032,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18030400,Jaguaré,Jaguaré,Pluviométrica,-18.9,-40.0667,,1999,2000,0
+1840033,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18051600,Vila Valério,Vila Valério,Pluviométrica,-18.9833,-40.3833,,1999,2000,0
+1841009,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18033000,Mantenópolis,Mantenópolis,Pluviométrica,-18.8389,-41.1103,900,1970,2019,1
+1841010,5,"Atlântico,Trecho Leste",55,"Rios Mucuri,São Mateus E",18009000,Barra De São Francisco,Santo Agostinho,Pluviométrica,-18.4061,-41.04,500,1970,2019,0
+1939000,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Regência,Pluviométrica,-19.6167,-39.8333,3,1967,1974,5
+1939001,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Fazenda Caporanga,Pluviométrica,-19.5167,-39.8667,4,1969,1972,12
+1939002,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Povoação,Pluviométrica,-19.5775,-39.7944,3,1974,2019,0
+1940000,5,"Atlântico,Trecho Leste",56,Rio Doce,18029000,Itarana,Itarana,Pluviométrica,-19.8744,-40.8744,165,1947,2019,2
+1940001,5,"Atlântico,Trecho Leste",56,Rio Doce,18046000,Santa Teresa,São João De Petrópolis,Pluviométrica,-19.8053,-40.6789,149,1947,2019,1
+1940002,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18006000,Aracruz,Santa Cruz - Litoral,Pluviométrica,-19.9578,-40.1544,5,1947,2019,1
+1940003,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18006000,Aracruz,Riacho,Pluviométrica,-19.7497,-40.0431,5,1947,2019,1
+1940004,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Linhares Cais Do Porto,Pluviométrica,-19.4153,-40.0756,30,1947,1978,0
+1940005,5,"Atlântico,Trecho Leste",56,Rio Doce,18025000,Ibiraçu,Cavalinho,Pluviométrica,-19.6922,-40.3981,50,1948,2019,1
+1940006,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Colatina - Corpo De Bombeiros,Pluviométrica,-19.5308,-40.6231,40,1967,2019,0
+1940007,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18022000,Fundão,Fundão,Pluviométrica,-19.9369,-40.4014,50,1948,2019,1
+1940008,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Santa Maria,Pluviométrica,-19.6,-40.6167,,1948,1967,7
+1940009,5,"Atlântico,Trecho Leste",56,Rio Doce,18040000,Pancas,Pancas,Pluviométrica,-19.2203,-40.8533,135,1957,2019,0
+1940010,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18046000,Santa Teresa,Valsugana Velha - Montante,Pluviométrica,-19.9533,-40.5525,180,1956,2019,0
+1940011,5,"Atlântico,Trecho Leste",56,Rio Doce,18047000,São Gabriel Da Palha,São Gabriel Da Palha,Pluviométrica,-19.0167,-40.5667,120,1971,1983,0
+1940012,5,"Atlântico,Trecho Leste",56,Rio Doce,18027000,Itaguaçu,Itaimbé,Pluviométrica,-19.6636,-40.8353,70,1957,2019,0
+1940013,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Novo Brasil,Pluviométrica,-19.2375,-40.5914,170,1969,2019,0
+1940014,5,"Atlântico,Trecho Leste",56,Rio Doce,18029000,Itarana,Pedra Alegre,Pluviométrica,-19.8667,-40.75,300,1966,1983,8
+1940016,5,"Atlântico,Trecho Leste",56,Rio Doce,18047000,São Gabriel Da Palha,Barra De São Gabriel,Pluviométrica,-19.0578,-40.5164,70,1968,2019,2
+1940017,5,"Atlântico,Trecho Leste",56,Rio Doce,18027000,Itaguaçu,Itaguaçu,Pluviométrica,-19.8,-40.85,200,1967,1979,67
+1940018,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18046000,Santa Teresa,Santa Tereza - Museu De Biologia,Pluviométrica,-19.9333,-40.6,550,1947,1977,0
+1940019,5,"Atlântico,Trecho Leste",56,Rio Doce,18008000,Baixo Guandú,Mascarenhas,Pluviométrica,-19.5,-40.9,60,1970,1983,1
+1940020,5,"Atlântico,Trecho Leste",56,Rio Doce,18046000,Santa Teresa,Caldeirão,Pluviométrica,-19.955,-40.7417,750,1970,2019,1
+1940021,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18006000,Aracruz,Aracruz,Pluviométrica,-19.83,-40.2722,58,1970,2019,2
+1940022,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18006000,Aracruz,Jacupemba,Pluviométrica,-19.5886,-40.1981,50,1970,2019,0
+1940023,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Rio Bananal,Pluviométrica,-19.2742,-40.3208,95,1970,2019,0
+1940024,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,São Sebastião Da Terra Alta,Pluviométrica,-19.4333,-40.4,50,1970,1983,0
+1940025,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Serraria (Alto Do Moacir),Pluviométrica,-19.2953,-40.5175,250,1970,2010,0
+1940026,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Cachoeira Do Oito,Pluviométrica,-19.4667,-40.6333,,1964,1965,4
+1940030,5,"Atlântico,Trecho Leste",56,Rio Doce,18027000,Itaguaçu,Serra Do Limoeiro,Pluviométrica,-19.8,-40.8333,,1952,1954,43
+1940031,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Fazenda Contendas,Pluviométrica,-19.45,-40.2,,1970,1978,1
+1940033,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Fazenda Boa Esperança,Pluviométrica,-19.3,-40.6667,,1973,1980,6
+1940034,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Esfip,Pluviométrica,-19.4,-40.0667,28,1967,1980,3
+1940035,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Fazenda California (Pma),Pluviométrica,-19.4,-40.0667,,1971,1977,0
+1940036,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Linhares (Estação Experimental),Pluviométrica,-19.4,-40.0667,40,1970,1998,16
+1940039,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18046000,Santa Teresa,Santa Teresa,Pluviométrica,-19.85,-40.6,675,1976,1998,16
+1940040,5,"Atlântico,Trecho Leste",56,Rio Doce,18032000,Linhares,Fazenda Tira Teima (Cepec),Pluviométrica,-19.3333,-40.1,,1974,1978,0
+1940042,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18006000,Aracruz,Aracruz,Pluviométrica,-19.8167,-40.25,65,1976,1997,14
+1940043,5,"Atlântico,Trecho Leste",56,Rio Doce,18029000,Itarana,Itarana,Pluviométrica,-19.8667,-40.8833,165,1979,1998,2
+1940044,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Marilândia (Colatina),Pluviométrica,-19.5467,-40.5203,85,1976,2000,26
+1940045,5,"Atlântico,Trecho Leste",56,Rio Doce,18047000,São Gabriel Da Palha,São Gabriel Da Palha,Pluviométrica,-19.0167,-40.5667,120,1976,1995,53
+1940046,5,"Atlântico,Trecho Leste",56,Rio Doce,18046000,Santa Teresa,São João De Petrópolis,Pluviométrica,-19.8833,-40.6833,174,1988,1998,17
+1940047,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Uhe Mascarenhas Jusante,Pluviométrica,-19.5081,-40.8639,71,2002,2013,0
+1940048,5,"Atlântico,Trecho Leste",56,Rio Doce,18046500,São Domingos Do Norte,São Domingos Do Norte,Pluviométrica,-19.1333,-40.6167,,1999,2000,0
+1940049,5,"Atlântico,Trecho Leste",56,Rio Doce,18050100,Sooretama,Sooretama,Pluviométrica,-19.1833,-40.0833,,1999,2000,0
+1940050,5,"Atlântico,Trecho Leste",56,Rio Doce,18015000,Colatina,Colatina,Pluviométrica,-19.5333,-40.6333,,1999,1999,0
+1941003,5,"Atlântico,Trecho Leste",56,Rio Doce,18008000,Baixo Guandú,Baixo Guandu,Pluviométrica,-19.5253,-41.0153,70,1941,2019,2
+1941008,5,"Atlântico,Trecho Leste",56,Rio Doce,18001000,Afonso Cláudio,Laranja Da Terra,Pluviométrica,-19.9011,-41.0581,250,1947,2019,0
+1941009,5,"Atlântico,Trecho Leste",56,Rio Doce,18008000,Baixo Guandú,Ibituba,Pluviométrica,-19.6911,-41.02,160,1967,2019,0
+1941012,5,"Atlântico,Trecho Leste",56,Rio Doce,18040000,Pancas,Alto Rio Novo,Pluviométrica,-19.0592,-41.0275,500,1970,2019,0
+1941023,5,"Atlântico,Trecho Leste",56,Rio Doce,18008000,Baixo Guandú,Uhe Mascarenhas Montante 1,Pluviométrica,-19.5331,-41.0094,74,2002,2013,1
+2040000,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Domingos Martins (Dnos),Pluviométrica,-20.3639,-40.6617,452,1947,1999,1
+2040001,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18051000,Viana,Fazenda Jucuruaba,Pluviométrica,-20.415,-40.4853,80,1951,2019,1
+2040002,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18003000,Alfredo Chaves,Alfredo Chaves (Dnos),Pluviométrica,-20.6333,-40.75,100,1947,1980,0
+2040003,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18050000,Serra,Fazenda Fonte Limpa (Dnos),Pluviométrica,-20.1903,-40.3189,70,1947,2019,2
+2040004,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18024000,Guarapari,Guarapari (Dnos),Pluviométrica,-20.6522,-40.5086,6,1947,2019,3
+2040005,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18026000,Iconha,Iconha - Montante,Pluviométrica,-20.7836,-40.8258,25,1947,2019,1
+2040006,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18028000,Itapemirim,Usina Paineiras,Pluviométrica,-20.9528,-40.9533,40,1947,2019,0
+2040007,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045400,Santa Maria De Jetibá,Santa Maria Do Jetibá,Pluviométrica,-20.0281,-40.7442,710,1947,2019,1
+2040008,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045000,Santa Leopoldina,Garrafão (Dnos),Pluviométrica,-20.1433,-40.9753,940,1947,2019,1
+2040009,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18004000,Anchieta,Anchieta (Dnos),Pluviométrica,-20.8036,-40.6556,6,1948,2019,0
+2040010,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045000,Santa Leopoldina,Santa Leopoldina,Pluviométrica,-20.1003,-40.5278,160,1949,2019,1
+2040011,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18003000,Alfredo Chaves,Matilde (Dnos),Pluviométrica,-20.5567,-40.8114,515,1949,2019,1
+2040012,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Marechal Floriano (Dnos),Pluviométrica,-20.4119,-40.6822,544,1949,2019,0
+2040013,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18044000,Rio Novo Do Sul,Rio Novo Do Sul,Pluviométrica,-20.88111111,-40.94333333,80,1969,2010,1
+2040014,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18013000,Cariacica,Duas Bocas (Dnos),Pluviométrica,-20.2614,-40.4792,200,1952,2019,10
+2040015,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Perobinha (Dnos),Pluviométrica,-20.2836,-40.7831,640,1971,2017,0
+2040016,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18052000,Vila Velha,São Torquato (Dnos),Pluviométrica,-20.3333,-40.2833,3,1971,1977,0
+2040017,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18026000,Iconha,Duas Barras (Dnos),Pluviométrica,-20.7281,-40.8825,,1957,2019,0
+2040018,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045000,Santa Leopoldina,Cachoeira Suiça (Dnos),Pluviométrica,-20.0794,-40.6067,,1959,2019,0
+2040019,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Granja São Jerônimo (Dnos),Pluviométrica,-20.3833,-40.7167,540,1962,1983,3
+2040020,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18003000,Alfredo Chaves,Vila Nova Maravilha,Pluviométrica,-20.5875,-40.9492,980,1964,2019,1
+2040021,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18053000,Vitória,Vitória - Bento Ferreira,Pluviométrica,-20.3,-40.3333,30,1969,1977,1
+2040022,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18052000,Vila Velha,Ponta Da Fruta,Pluviométrica,-20.5156,-40.3636,3,1970,2019,1
+2040023,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,São Rafael,Pluviométrica,-20.2964,-40.9339,818,1970,2019,0
+2040024,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18053000,Vitória,Porto Do Tubarão,Pluviométrica,-20.2833,-40.2333,4,1970,1980,0
+2040026,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18053000,Vitória,Vitória (Escola De Engenharia),Pluviométrica,-20.2833,-40.3,8,1955,1968,8
+2040030,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18053000,Vitória,Vitória (Maruipe),Pluviométrica,-20.3,-40.3,3,1952,1965,0
+2040031,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Soido,Pluviométrica,-20.3333,-40.7167,,1963,1968,0
+2040035,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18053000,Vitória,Vitória,Pluviométrica,-20.5167,-40.5167,36.2,1925,2019,3
+2040038,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Córrego Do Galo (Dnos),Pluviométrica,-20.3,-40.6667,,1955,1968,1
+2040039,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18051000,Viana,Canaã,Pluviométrica,-20.3764,-40.4461,,1977,1999,0
+2040040,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Domingos Martins (Dnos),Pluviométrica,-20,-40,,1954,1964,63
+2040042,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18003000,Alfredo Chaves,Alfredo Chaves,Pluviométrica,-20.6333,-40.75,35,1979,1998,1
+2040045,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Córrego Do Galo,Pluviométrica,-20.3175,-40.6528,,1999,2019,0
+2040046,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Pch Jucu Jusante,Pluviométrica,-20.3939,-40.5569,51,2002,2013,0
+2040047,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045400,Santa Maria De Jetibá,Pch Rio Bonito Montante 1,Pluviométrica,-20.0489,-40.7478,643,2003,2018,5
+2040048,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045400,Santa Maria De Jetibá,Pch Rio Bonito Barramento,Pluviométrica,-20.0606,-40.6433,661.5,2015,2018,13
+2040049,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045000,Santa Leopoldina,Uhe Suíça Jusante,Pluviométrica,-20.1019,-40.5153,18,2002,2018,7
+2040055,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18045400,Santa Maria De Jetibá,Pch Rio Bonito Jusante,Pluviométrica,-20.0572,-40.6175,432,2010,2018,6
+2041000,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18007000,Atílio Vivacqua,Atílio Vivacqua,Pluviométrica,-20.9128,-41.195,76,1944,2019,2
+2041001,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18023000,Guaçuí,Guaçuí,Pluviométrica,-20.7736,-41.6817,576,1939,2019,1
+2041002,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18014000,Castelo,Castelo,Pluviométrica,-20.6056,-41.1997,107,1939,2019,0
+2041003,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18002000,Alegre,Rive,Pluviométrica,-20.7469,-41.4661,127,1939,2018,1
+2041004,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18012000,Cachoeiro Do  Itapemirim,Cachoeiro Do Itapemirim (Dnos),Pluviométrica,-20.85,-41.1,29,1939,1972,0
+2041010,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18050200,Vargem Alta,Jacigua (Dnos),Pluviométrica,-20.7019,-41.0164,580,1947,2019,1
+2041011,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18017000,Conceição Do Castelo,Conceição Do Castelo (Dnos),Pluviométrica,-20.3522,-41.2394,600,1948,2019,1
+2041012,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18037000,Muniz Freire,Muniz Freire (Dnos),Pluviométrica,-20.45,-41.4,,1948,1994,3
+2041013,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18030000,Iúna,Iúna,Pluviométrica,-20.3458,-41.5375,615,1954,2019,0
+2041014,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18020000,Dores Do Rio Preto,Dores Do Rio Preto,Pluviométrica,-20.6858,-41.8461,772,1948,2019,1
+2041015,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18038000,Muqui,Fazenda Monte Alegre,Pluviométrica,-20.9447,-41.4008,450,1952,2019,2
+2041016,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18002000,Alegre,Ibitirama,Pluviométrica,-20.5406,-41.6656,794,1954,2019,2
+2041017,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18030000,Iúna,Santa Cruz - Caparaó,Pluviométrica,-20.3228,-41.7042,920,1956,2019,0
+2041018,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18037000,Muniz Freire,Usina Fortaleza,Pluviométrica,-20.3714,-41.4089,580,1956,2019,1
+2041019,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18037000,Muniz Freire,Itaici,Pluviométrica,-20.5283,-41.5114,380,1961,2019,0
+2041020,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Arace (Fazenda Modelo),Pluviométrica,-20.3667,-41.0611,1075,1963,2019,0
+2041021,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18012000,Cachoeiro Do  Itapemirim,Burarama,Pluviométrica,-20.6806,-41.3483,180,1964,2019,0
+2041022,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18050400,Venda Nova ,Usina São Miguel,Pluviométrica,-20.3333,-41.1167,,1941,1965,2
+2041023,5,"Atlântico,Trecho Leste",56,Rio Doce,18001000,Afonso Cláudio,Afonso Claúdio - Montante,Pluviométrica,-20.0786,-41.1214,300,1967,2019,2
+2041024,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18037000,Muniz Freire,Terra Corrida (Dnos),Pluviométrica,-20.4333,-41.4833,578,1957,1968,1
+2041030,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18030000,Iúna,Iúna,Pluviométrica,-20.3667,-41.5333,662,1948,1965,3
+2041031,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18038000,Muqui,Muqui,Pluviométrica,-20.9667,-41.35,240,1951,1968,0
+2041032,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18012000,Cachoeiro Do  Itapemirim,Pacotuba,Pluviométrica,-20.7833,-41.25,,1964,1968,0
+2041036,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18019000,Domingos Martins,Alto Jucu,Pluviométrica,-20.3,-41.1,,1952,1968,0
+2041045,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18012000,Cachoeiro Do  Itapemirim,Cachoeiro Do Itapemirim,Pluviométrica,-20.85,-41.1,78,1928,1992,10
+2041047,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18012000,Cachoeiro Do  Itapemirim,Cachoeiro Do Itapemirim,Pluviométrica,-20.85,-41.1167,21,1928,1968,2
+2041049,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18002000,Alegre,Alegre,Pluviométrica,-20.7667,-41.4667,138,1975,1997,33
+2041050,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18037000,Muniz Freire,Muniz Freire,Pluviométrica,-20.4667,-41.4,530,1979,1998,0
+2041051,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18050400,Venda Nova ,Venda Nova,Pluviométrica,-20.3167,-41.1667,750,1976,1998,15
+2041055,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18014000,Castelo,Pch São João Jusante,Pluviométrica,-20.5728,-41.2356,100,2002,2018,2
+2041056,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18017000,Conceição Do Castelo,Pch Viçosa Jusante,Pluviométrica,-20.4083,-41.2689,426,2002,2013,1
+2041057,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18002000,Alegre,Pch Alegre Jusante,Pluviométrica,-20.7647,-41.5233,190,2002,2013,0
+2041058,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18012000,Cachoeiro Do  Itapemirim,Pch Fruteiras Jusante,Pluviométrica,-20.7017,-41.0894,100,2003,2013,0
+2140000,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18028000,Itapemirim,Barra Do Itapemirim (Dnos),Pluviométrica,-21.0075,-40.8353,4,1947,2019,1
+2141014,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18034000,Mimoso Do Sul,Ponte Do Itabapoana,Pluviométrica,-21.2061,-41.4628,59,1937,2019,0
+2141015,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18034000,Mimoso Do Sul,Mimoso Do Sul,Pluviométrica,-21.0647,-41.3625,67,1964,2019,0
+2141016,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18048000,São José Do Calçado,São José Do Calçado,Pluviométrica,-21.0169,-41.6628,150,1952,2019,1
+2141017,5,"Atlântico,Trecho Leste",57,"Rios Itapemirim,Itabapoana E ",18034000,Mimoso Do Sul,São José Das Torres,Pluviométrica,-21.0731,-41.2383,120,1969,2019,2
+2141098,5,"Atlântico,Trecho Leste",58,RIO PARAÍBA DO SUL,18011000,Bom Jesus Do Norte,Cesan,Pluviométrica,-21.1222,-41.6736,,2016,2018,16
