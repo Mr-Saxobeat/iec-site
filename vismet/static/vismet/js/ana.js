@@ -1,5 +1,13 @@
-var ANAStations_Style = {
+var ANA_Precip_Style = {
   fillColor: 'green',
+  weight: 1,
+  opacity: 1,
+  color: 'black',
+  fillOpacity: 1,
+};
+
+var ANA_Flow_Style = {
+  fillColor: 'purple',
   weight: 1,
   opacity: 1,
   color: 'black',
@@ -10,8 +18,16 @@ function ANAStations_Layer_onEachFeature(feature, layer){
 
 }
 
-var ANAStations_Layer = L.geoJson([], {
-    style: ANAStations_Style,
+var ANA_Precip_Layer = L.geoJson([], {
+    style: ANA_Precip_Style,
+    pointToLayer: function(feature, latlng) {
+      return new L.CircleMarker(latlng, {radius: 5});
+    },
+    onEachFeature: ANAStations_Layer_onEachFeature,
+});
+
+var ANA_Flow_Layer = L.geoJson([], {
+    style: ANA_Flow_Style,
     pointToLayer: function(feature, latlng) {
       return new L.CircleMarker(latlng, {radius: 5});
     },
@@ -38,8 +54,13 @@ function loadANALayer(){
         }
       }
 
-      ANAStations_Layer.addData(station_geojson);
+      if(station.fields.type == "Fluviométrica"){
+        ANA_Precip_Layer.addData(station_geojson);
+      }else if(station.fields.type == "Pluviométrica"){
+        ANA_Flow_Layer.addData(station_geojson);
+      }
     });
   });
-  control.addOverlay(ANAStations_Layer, "Estações ANA");
+  control.addOverlay(ANA_Precip_Layer, "ANA Pluviométrica");
+  control.addOverlay(ANA_Flow_Layer, "ANA Fluviométrica");
 }
