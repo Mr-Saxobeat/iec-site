@@ -20,5 +20,6 @@ $.getJSON(url_data_options, function (data) {
   json_data_options = JSON.parse(JSON.stringify(data));
   showCategoryData("observados");
   loadXavierLayer();
+  loadANALayer();
   map.addLayer(layers_dic["xavier"]);
 });
