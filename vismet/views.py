@@ -89,12 +89,6 @@ def Api_Data_Options(request):
 
     return JsonResponse(categories_list, safe=False)
 
-
-# Esta view retorna as estações meteorógicas Xavier.
-class Api_XavierStations(GeoJSONLayerView):
-    model = XavierStation
-    properties = ('popup_content', 'name', 'state', 'inmet_code', 'latitude', 'longitude')
-
 # Esta retorna em os dados das estações Xavier,
 # dado o omm_code e o intervalo.
 def Api_XavierStations_Data(request, format, inmet_code, start_day, start_month, start_year, final_day, final_month, final_year):
