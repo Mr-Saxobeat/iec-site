@@ -1,173 +1,74 @@
-map.addLayer(xaviewrWeatherStation);
+var json_data_options = [];
+var json_current_category = [];
 
-var divObservedData = document.getElementById("dados-observados");
-var divSimulatedData = document.getElementById("dados-simulados");
-var divByCity = document.getElementById("porMunicipio");
-var divByPixel = document.getElementById("porPixel");
-var selCamadaFuturos = document.getElementById("sel-camada-dados-futuros");
+var divObservedData = document.getElementById("div-observados");
+var divReanaliseData = document.getElementById("div-reanálise");
+var divSimulatedData = document.getElementById("div-simulados");
 
-divObservedData.style.display = "block";
-divSimulatedData.style.display = "none";
-
-
-document.getElementById("estacoesxavier").addEventListener("click", displayXavier);
-// document.getElementById("satelitereanalise").addEventListener("click", displaySatelite);
-document.getElementById("cenariosfuturos").addEventListener("click", displayFuturo);
-
-var XavierIsOn = true;
-var PixelIsOn = false;
-
-function displayXavier() {
-  if(XavierIsOn){
-    map.removeLayer(xaviewrWeatherStation);
-    XavierIsOn = false;
-  }
-  else{
-    map.addLayer(xaviewrWeatherStation);
-    XavierIsOn = true;
-
-    map.removeLayer(pixels_layer);
-    map.removeLayer(cities_layer);
-    PixelIsOn = false;
-
-    divObservedData.style.display = "block";
-    divSimulatedData.style.display = "none";
+// selectBox: DOM select object
+function removeAllOptions(selectBox){
+  while(selectBox.options.length > 0){
+    selectBox.remove(0);
   }
 }
 
-function displayFuturo() {
-  if(PixelIsOn){
-    map.removeLayer(pixels_layer);
-    PixelIsOn = false;
-  }
-  else{
-    map.addLayer(pixels_layer);
-    PixelIsOn = true;
-
-    map.removeLayer(xaviewrWeatherStation);
-    removeData(chart);
-    chart.options.title.text = "";
-    chart.update();
-    XavierIsOn = false;
-
-    divObservedData.style.display = "none";
-    divSimulatedData.style.display = "block";
-    // document.getElementById("porMunicipio").style.display = "none";
-    // document.getElementById("porPixel").style.display = "block";
-    // document.getElementById("cenarios-futuros-layer").style.display = "block";
-    selCamadaFuturos.value = "pixel";
-    divByPixel.style.display = "block";
-    divByCity.style.display = "none";
-  }
+// selectBox: DOM select object;
+// source: json of the selected data source,
+// it's a child of json_current_category object.
+function setVariableSelection(selectBox, source){
+  removeAllOptions(selectBox);
 }
 
-selCamadaFuturos.addEventListener("change", function(){
-  var value = this.value;
-
-  if(value == "city"){
-    divByCity.style.display = "block";
-    divByPixel.style.display = "none";
-
-    map.removeLayer(pixels_layer);
-    map.addLayer(cities_layer);
-  }
-  else if(value == "pixel"){
-    divByCity.style.display = "none";
-    divByPixel.style.display = "block";
-
-    map.removeLayer(cities_layer);
-    map.addLayer(pixels_layer);
-  }
-})
-
-function displaySatelite() {
+// Essa função adiciona as opções no menu de seleção
+// de fontes de dados disponíveis para a categoria escolhida.
+// selectBox: DOM select object
+function setSourceDataSelection(selectBox){
+  removeAllOptions(selectBox);
+  var newOpt;
+  json_current_category.sources.forEach(source => {
+    newOpt = new Option(source.name, source.name);
+    selectBox.add(newOpt, undefined);
+  });
 }
 
+// Esta função irá mostrar o menu e as layers referentes à categoria de dados
+// a partir do botão clicado "observardos", "reanálise" ou "simulados".
+// div_last_name: string with the last name of id's div
+function showCategoryData(div_last_name){
+  // Esconde todas divs
+  divObservedData.style.display = "none";
+  divReanaliseData.style.display = "none";
+  divSimulatedData.style.display = "none";
 
+  // Pega a div selecionada a partir do valor passado pelo parâmetro
+  // e então exibe somente ela.
+  var selectedDiv = document.getElementById("div-" + div_last_name);
+  selectedDiv.style.display = "block";
 
-var event_change = new Event('change');
-var sel_observados_fonte = document.getElementById("fonte-dados-observados");
-var sel_variavel = document.getElementById("station_variable");
-add_xavier_options();
-
-
-
-function clear_sel(){
-  var length = sel_variavel.options.length;
-  for (i = length-1; i >= 0; i--) {
-    sel_variavel.remove(i);
+  for(i = 0; i <= 10; i++){ // O valor de i <= foi arbitrário!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    if(json_data_options[i].category == div_last_name){
+      // Esta variável carrega o json com a categoria atual e suas fontes
+      // e variáveis de cada fonte. Ela é usada nas outras funções.
+      json_current_category = json_data_options[i];
+      break;
+    }
   }
+
+  var selectBox = selectedDiv.getElementsByClassName("sel-data-source")[0];
+  setSourceDataSelection(selectBox, div_last_name);
 }
 
-function add_xavier_options(){
-  var opt_maxTemp = document.createElement('option');
-    opt_maxTemp.appendChild(document.createTextNode('Temperatura Máxima'));
-    opt_maxTemp.value = "maxTemp";
-    sel_variavel.appendChild(opt_maxTemp);
-
-  var opt_minTemp = document.createElement('option');
-    opt_minTemp.appendChild(document.createTextNode('Temperatura Mínima'));
-    opt_minTemp.value = "minTemp";
-    sel_variavel.appendChild(opt_minTemp);
-
-  var opt_evapo = document.createElement('option');
-    opt_evapo.appendChild(document.createTextNode('Evapotranspiração'));
-    opt_evapo.value = "evapo";
-    sel_variavel.appendChild(opt_evapo);
-
-  var opt_relHum = document.createElement('option');
-    opt_relHum.appendChild(document.createTextNode('Umidade Relativa'));
-    opt_relHum.value = "relHum";
-    sel_variavel.appendChild(opt_relHum);
-
-  var opt_solarIns = document.createElement('option');
-    opt_solarIns.appendChild(document.createTextNode('Radiação Solar'));
-    opt_solarIns.value = "solarIns";
-    sel_variavel.appendChild(opt_solarIns);
-
-  var opt_windSpeed = document.createElement('option');
-    opt_windSpeed.appendChild(document.createTextNode('Velocidade do Vento'));
-    opt_windSpeed.value = "windSpeed";
-    sel_variavel.appendChild(opt_windSpeed);
-
-  sel_variavel.value = "maxTemp";
-  sel_variavel.dispatchEvent(event_change);
-}
-
-function add_inmet_options(){
-  var opt_maxTemp = document.createElement('option');
-    opt_maxTemp.appendChild(document.createTextNode('Temperatura Máxima'));
-    opt_maxTemp.value = "maxTemp";
-    sel_variavel.appendChild(opt_maxTemp);
-
-  var opt_minTemp = document.createElement('option');
-    opt_minTemp.appendChild(document.createTextNode('Temperatura Mínima'));
-    opt_minTemp.value = "minTemp";
-    sel_variavel.appendChild(opt_minTemp);
-
-  var opt_precip = document.createElement('option');
-    opt_precip.appendChild(document.createTextNode('Precipitação'));
-    opt_precip.value = "precip";
-    sel_variavel.appendChild(opt_precip);
-
-  var opt_relHum = document.createElement('option');
-    opt_relHum.appendChild(document.createTextNode('Umidade Relativa'));
-    opt_relHum.value = "relHum";
-    sel_variavel.appendChild(opt_relHum);
-
-  sel_variavel.value = "maxTemp";
-  sel_variavel.dispatchEvent(event_change);
-}
-
-
-sel_observados_fonte.addEventListener("change", function(){
-  var value = this.value;
-
-  if(value == "xavier"){
-    clear_sel();
-    add_xavier_options();
-  } else if(value == "inmet"){
-    clear_sel();
-    add_inmet_options();
-  }
-})
+// Armazena os botões de categorias em variáveis e adiciona um listener
+// para click em cada um deles.
+var btnObservedData = document.getElementById("btn-observados");
+var btnReanaliseData = document.getElementById("btn-reanálise");
+var btnSimulatedData = document.getElementById("btn-simulados");
+btnObservedData.addEventListener("click", function() {
+  showCategoryData(btnObservedData.value);
+});
+btnReanaliseData.addEventListener("click", function() {
+  showCategoryData(btnReanaliseData.value);
+});
+btnSimulatedData.addEventListener("click", function() {
+  showCategoryData(btnSimulatedData.value);
+});

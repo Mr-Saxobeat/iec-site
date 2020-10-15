@@ -1,31 +1,45 @@
 import os
-import requests
 import csv
-from vismet.models import INMETStation, XavierStation
 import datetime
+from vismet.models import ElementCategory, ElementSource, WeatherStation
+import requests
 
 # Esse script pega as estações xavier da API do INMET
 # e salva no banco de dados.
-def run():
+def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data', 'inmet', 'inmet-codes.csv')):
 
+    # Pega o objeto "Fonte da estação"
+    source, created = ElementSource.objects.get_or_create(
+                        name = 'inmet',
+                        category = ElementCategory.objects.get(name='observados'),
+                        variables = [
+                            'temperatura máxima',
+                            'temperatura mínima',
+                            'umidade relativa',
+                            'precipitação'
+                            ]
+                            )
+
+    # Links da API do INMET para recuperar os dados das estações respectivamente
+    # automáticas e manuais.
     automatic_stations_response = requests.get("https://apitempo.inmet.gov.br/estacoes/T").json()
     manual_stations_response = requests.get("https://apitempo.inmet.gov.br/estacoes/M").json()
 
-    csv_path = os.path.join(os.getcwd(), 'vismet', 'scripts', 'inmet-codes.csv')
-
     list_inmet_codes = []
 
+    # Lê os códigos INMET das estações necessárias.
     with open(csv_path, 'r') as file:
         reader = csv.reader(file)
 
         for row in reader:
             list_inmet_codes.append(row[0])
-
+    file.close()
 
     startDate = None
     finalDate = None
-    st = None
+    created_station = None
 
+    # Cria models das estações automáticas
     for station in automatic_stations_response:
         if station["CD_ESTACAO"] in list_inmet_codes:
 
@@ -35,17 +49,16 @@ def run():
             if startDate:
                 startDate = datetime.datetime.strptime(startDate[:10], "%Y-%m-%d")
             else:
-                # startDate = datetime.timedelta(0)
                 startDate = None
 
             if finalDate:
                 finalDate = datetime.datetime.strptime(finalDate[:10], "%Y-%m-%d")
             else:
-                # finalDate = datetime.timedelta(0)
                 finalDate = None
 
             if station["CD_ESTACAO"] in list_inmet_codes:
-                st = INMETStation.objects.get_or_create(
+                newObj, created = WeatherStation.objects.get_or_create(
+                    source = source,
                     inmet_code = station["CD_ESTACAO"],
                     state = station["SG_ESTADO"],
                     city = station["DC_NOME"],
@@ -57,8 +70,10 @@ def run():
                     finalDate = finalDate,
                     status = station["CD_SITUACAO"],
                 )
-            print(st)
 
+            print(newObj)
+
+    # Cria models das estações convecionais
     for station in manual_stations_response:
 
         startDate = station["DT_INICIO_OPERACAO"]
@@ -67,17 +82,16 @@ def run():
         if startDate:
             startDate = datetime.datetime.strptime(startDate[:10], "%Y-%m-%d")
         else:
-            # startDate = datetime.timedelta(0)
             startDate = None
 
         if finalDate:
             finalDate = datetime.datetime.strptime(finalDate[:10], "%Y-%m-%d")
         else:
-            # finalDate = datetime.timedelta(0)
             finalDate = None
 
         if station["CD_ESTACAO"] in list_inmet_codes:
-            INMETStation.objects.get_or_create(
+            newObj, created = WeatherStation.objects.get_or_create(
+                source = source,
                 inmet_code = station["CD_ESTACAO"],
                 state = station["SG_ESTADO"],
                 city = station["DC_NOME"],
@@ -89,18 +103,23 @@ def run():
                 finalDate = finalDate,
                 status = station["CD_SITUACAO"],
             )
-        print(st)
 
-    file.close()
-    return print("acabou")
+        print(newObj)
+
+    return print("Estações INMET foram carregadas.")
 
 # Esse script compara os códigos inmet usados pelo xavier
 # e as estações que foram salvas através da api do inmet
 # e escreve no arquivo "missing_stations.txt" as estações
 # que não foram encontradas na api inmet.
-def verify():
-    file_inmet_codes = open(os.path.join(os.getcwd(), 'vismet', 'scripts', 'inmet-codes.csv'), 'r')
-    file_missing_stations = open(os.path.join(os.getcwd(), 'vismet', 'scripts', 'missing_stations.csv'), 'w')
+def verify(csv_inmet_codes=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data', 'inmet','inmet-codes.csv'),
+           csv_missing_stations=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data', 'inmet','missing_stations.csv')):
+
+    file_inmet_codes = open(csv_inmet_codes, 'r')
+    file_missing_stations = open(csv_missing_stations, 'w')
+
+    inmet_source = ElementSource.objects.get(name='inmet')
+    xavier_source = ElementSource.objects.get(name='xavier')
 
     inmet_station = None
     xavier_station = None
@@ -110,12 +129,12 @@ def verify():
     for row in reader:
         inmet_code = row[0]
 
-        xavier_station = XavierStation.objects.get(inmet_code=inmet_code)
+        xavier_station = WeatherStation.objects.get(source=xavier_source, inmet_code=inmet_code)
 
         try:
-            inmet_station = INMETStation.objects.get(inmet_code=inmet_code)
-        except INMETStation.DoesNotExist:
-            file_missing_stations.write(str(xavier_station.inmet_code) + ";" + str(xavier_station.omm_code) + ";" + str(xavier_station.name) + ";" + str(xavier_station.type) +"\n")
+            inmet_station = WeatherStation.objects.get(source=inmet_source, inmet_code=inmet_code)
+        except WeatherStation.DoesNotExist:
+            file_missing_stations.write(str(xavier_station.inmet_code) + ";" + str(xavier_station.omm_code) + ";" + str(xavier_station.city) + ";" + str(xavier_station.type) +"\n")
 
     file_inmet_codes.close()
     file_missing_stations.close()

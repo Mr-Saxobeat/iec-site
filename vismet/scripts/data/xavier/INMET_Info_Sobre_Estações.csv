@@ -1,0 +1,60 @@
+MATLAB index,Codigo OMM,Codigo INMET,Nome da estação,Typo de estação,Latitude,Longitude,Altitude,Estado
+1,83037,83037,Coronel Pacheco,Convencional,-21.55,-43.26,435,MG
+2,83437,83437,Montes Claros,Convencional,-16.68,-43.84,652,MG
+3,83441,83441,Salinas,Convencional,-16.15,-42.28,471.32,MG
+4,83442,83442,Aracuai,Convencional,-16.83,-42.05,289,MG
+5,83446,83446,Guaratinga,Convencional,-16.73,-39.54,194.67,BA
+6,83452,83452,Juramento,Convencional,-16.77,-43.66,648,MG
+7,83485,83485,Carbonita,Convencional,-17.53,-43,736.38,MG
+8,83488,83488,Itamarandiba,Convencional,-17.85,-42.85,914,MG
+9,83498,83498,Caravelas,Convencional,-17.73,-39.25,2.88,BA
+10,83538,83538,Diamantina,Convencional,-18.23,-43.64,1296.12,MG
+11,83550,83550,Sao Mateus,Convencional,-18.7,-39.85,25.04,ES
+12,83587,83587,Belo Horizonte,Convencional,-19.93,-43.93,915,MG
+13,83589,83589,C. Do Mato Dentro,Convencional,-19.02,-43.43,652,MG
+14,83592,83592,Caratinga,Convencional,-19.73,-42.13,609.65,MG
+15,83595,83595,Aimores,Convencional,-19.49,-41.07,82.74,MG
+16,83639,83639,Caparao,Convencional,-20.51,-41.9,843.18,MG
+17,83642,83642,Vicosa,Convencional,-20.76,-42.86,712.2,MG
+18,83648,83648,Vitoria,Convencional,-20.31,-40.31,36.2,ES
+19,83689,83689,Barbacena,Convencional,-21.25,-43.76,1126,MG
+20,83692,83692,Juiz De Fora,Convencional,-21.76,-43.36,939.96,MG
+21,83695,83695,Itaperuna,Convencional,-21.2,-41.9,123.59,RJ
+22,83698,83698,Campos,Convencional,-21.74,-41.33,11.2,RJ
+23,86764,A405,Caravelas,Automatica,-17.73333333,-39.26666667,2.88,BA
+24,86765,A422,Abrolhos,Automatica,-17.95,-38.68333333,25,BA
+25,86745,A427,Porto Seguro,Automatica,-16.38333333,-39.16666667,85,BA
+26,86744,A447,Belmonte,Automatica,-16.08333333,-39.2,88,BA
+27,86804,A613,Santa Teresa,Automatica,-19.98333333,-40.56666667,988,ES
+28,86805,A614,Linhares,Automatica,-19.35,-40.06666667,40,ES
+29,86829,A615,Alfredo Chaves,Automatica,-20.63333333,-40.73333333,35,ES
+30,86786,A616,Sao Mateus,Automatica,-18.7,-39.83333333,39,ES
+31,86828,A617,Alegre,Automatica,-20.75,-41.48333333,138,ES
+32,86853,A622,Pres. Kennedy,Automatica,-21.1,-41.03333333,80,ES
+33,86785,A623,Nova Venecia,Automatica,-18.68333333,-40.38333333,154,ES
+34,86827,A657,Afonso Claudio,Automatica,-20.1,-41.1,520,ES
+35,86850,A502,Barbacena,Automatica,-21.21666667,-43.76666667,1155,MG
+36,,A503,Carangola,Automatica,-20.71666667,-42,399,MG
+37,86740,A506,Montes Claros,Automatica,-16.71666667,-43.86666667,646.29,MG
+38,86743,A508,Almenara,Automatica,-16.26666667,-40.66666667,208,MG
+39,86824,A510,Vicosa,Automatica,-20.76666667,-42.86666667,712.2,MG
+40,86801,A511,Timoteo,Automatica,-19.56666667,-42.63333333,333,MG
+41,86823,A513,Ouro Branco,Automatica,-20.51666667,-43.68333333,1061,MG
+42,86852,A517,Muriae,Automatica,-21.1,-42.38333333,297,MG
+43,86851,A518,Juiz De Fora,Automatica,-21.76666667,-43.35,950,MG
+44,86800,A521,Pampulha,Automatica,-19.88333333,-43.96666667,869,MG
+45,86763,A522,Serra Dos Aimores,Automatica,-17.8,-40.25,208,MG
+46,86762,A527,Teofilo Otoni,Automatica,-17.9,-41.51666667,475,MG
+47,86783,A532,Governador Valadares,Automatica,-18.78333333,-41.98333333,263,MG
+48,86782,A533,Guanhaes,Automatica,-18.78333333,-42.93333333,860,MG
+49,86803,A534,Aimores,Automatica,-19.46666667,-41.05,83.74,MG
+50,86781,A537,Diamantina,Automatica,-18.21666667,-43.63333333,1356,MG
+51,86784,A540,Mantena,Automatica,-18.8,-40.93333333,213.5,MG
+52,86761,A541,Capelinha,Automatica,-17.7,-42.38333333,932,MG
+53,86742,A550,Itaobim,Automatica,-16.55,-41.5,266,MG
+54,86741,A552,Salinas,Automatica,-16.16666667,-42.28333333,495,MG
+55,86802,A554,Caratinga,Automatica,-19.73333333,-42.13333333,615,MG
+56,86825,A556,Manhuacu,Automatica,-20.25,-40.16666667,836,MG
+57,86822,A557,Coronel Pacheco,Automatica,-21.9,-43.43333333,431,MG
+58,86854,A604,Cambuci,Automatica,-21.56666667,-41.95,35,RJ
+59,86855,A607,Campos Dos Goytacazes,Automatica,-21.7,-41.35,25,RJ
