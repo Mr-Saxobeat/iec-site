@@ -1,7 +1,7 @@
 import os
 import csv
 import datetime
-from vismet.models import ElementCategory, ElementSource, WeatherStation
+from vismet.models import ElementCategory, ElementSource, Station
 
 # Este script carrega as estações PLUVIOMÉTRICAS ANA a partir do arquivo csv especificado
 # na variável csv_path
@@ -37,7 +37,7 @@ def LoadANAStations(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/an
             startDate = datetime.date(int(row[12]), 1, 1)
             finalDate = datetime.date(int(row[13]), 12, 31)
 
-            newObj, created = WeatherStation.objects.get_or_create(
+            newObj, created = Station.objects.get_or_create(
                 source = source,
                 omm_code = omm_code,
                 state = state,
@@ -90,7 +90,7 @@ def LoadANAStations2(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/a
             startDate = datetime.date(int(row[15]), 1, 1)
             finalDate = datetime.date(int(row[16]), 12, 31)
 
-            newObj, created = WeatherStation.objects.get_or_create(
+            newObj, created = Station.objects.get_or_create(
                 source = source,
                 omm_code = omm_code,
                 state = state,

@@ -1,5 +1,5 @@
 from vismet.models import XavierStation, XavierStationData
-from vismet.models import ElementCategory, ElementSource, WeatherStation
+from vismet.models import ElementCategory, ElementSource, Station
 from datetime import datetime
 import os
 import csv
@@ -38,7 +38,7 @@ def LoadXavierStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', '
             longitude = row[6]
             altitude = row[7]
 
-            newObj, created = WeatherStation.objects.get_or_create(
+            newObj, created = Station.objects.get_or_create(
                 source = source,
                 omm_code = omm_code,
                 inmet_code = inmet_code,
@@ -124,6 +124,9 @@ def LoadXavierData(path, months):
 
     jump = True # Variável auxiliar para bloco de controle
 
+    category = ElementCategory.objects.get_or_create(name='observados')
+    source = ElementSource.objects.get_or_create(name='xavier', category=category)
+
     # Loop pelas linhas
     for i, rowET0 in enumerate(readerET0):
 
@@ -193,7 +196,7 @@ def LoadXavierData(path, months):
                     try:
                         obj, created = XavierStationData.objects.get_or_create(
                             date = dates[j - 1],
-                            station = XavierStation.objects.get(inmet_code=inmet_code),
+                            station = Station.objects.get(inmet_code=inmet_code, source=source),
                             defaults = {
                                 'evapo': valueET0,
                                 'relHum': valueRelHum,

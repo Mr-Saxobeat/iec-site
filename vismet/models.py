@@ -18,7 +18,7 @@ class ElementSource(models.Model):
     )
 
 # Modelo que representa uma única estação meteorológica
-class WeatherStation(models.Model):
+class Station(models.Model):
     source = models.ForeignKey(ElementSource, related_name='stations', on_delete=models.CASCADE)
     omm_code = models.CharField(max_length=100, blank=True, null=True)
     inmet_code = models.CharField(max_length=100, blank=True, null=True)
@@ -55,40 +55,10 @@ class WeatherStation(models.Model):
 
         return popup
 
-# Estações meteorológicas que foram usadas
-# nos dados compilados por Xavier.
-class XavierStation(models.Model):
-    omm_code = models.BigIntegerField()
-    inmet_code = models.CharField(max_length=254)
-    name = models.CharField(max_length=254)
-    type = models.CharField(max_length=254)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
-    altitude = models.FloatField()
-    state = models.CharField(max_length=254)
-    geom = models.PointField(srid=4326)
-
-    def __str__(self):
-        return self.name
-
-    @property
-    def popup_content(self):
-        popup = "<span>Estado: </span>{}<br>".format(self.state)
-        popup += "<span>Cidade: </span>{}<br>".format(self.name)
-        popup += "<span>Código OMM: </span>{}<br>".format(self.omm_code)
-        popup += "<span>Código INMET: </span>{}<br>".format(self.inmet_code)
-        popup += "<span>Tipo: </span>{}<br>".format(self.type)
-        popup += "<span>Latitude: </span>{:.2f}<br>".format(self.latitude)
-        popup += "<span>Longitude: </span>{:.2f}<br>".format(self.longitude)
-        popup += "<span>Altitude: </span>{:.2f} m<br>".format(self.altitude)
-
-        return popup
-
-
 # Dados diários das estações meteorológicas de Xavier
 class XavierStationData(models.Model):
     date = models.DateField()
-    station = models.ForeignKey(XavierStation, related_name='data', on_delete=models.CASCADE)
+    station = models.ForeignKey(Station, related_name='xavier_data', on_delete=models.CASCADE)
     evapo = models.FloatField('Evapotranspiração', blank=True, null=True)
     relHum = models.FloatField('Umidade Relativa', blank=True, null=True)
     solarIns = models.FloatField('Radiação Solar', blank=True, null=True)
@@ -101,7 +71,7 @@ class XavierStationData(models.Model):
 
 class INMETStationData(models.Model):
     date = models.DateField()
-    station = models.ForeignKey(WeatherStation, related_name='data', on_delete=models.CASCADE)
+    station = models.ForeignKey(Station, related_name='inmet_data', on_delete=models.CASCADE)
     maxTemp = models.FloatField('Temperatura Máxima', blank=True, null=True)
     minTemp = models.FloatField('Temperatura Mínima', blank=True, null=True)
     relHum = models.FloatField('Umidade Relativa', blank=True, null=True)
