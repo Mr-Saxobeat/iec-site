@@ -7,10 +7,10 @@ urlpatterns = [
     path('', views.VisMetView, name='vismet'),
 
     path('api/opcoes/', views.Api_Data_Options, name='data_options'),
-    path('api/estacoes/', views.Api_WeatherStations, name='api_stations'),
-    path('api/estacoes/<str:format>/<str:source>/', views.Api_WeatherStations_Source, name='api_stations_source'),
-    path('api/estacoes/<str:format>/<str:source>/<int:code>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
-         views.Api_WeatherStations_Data,
+    path('api/estacoes/', views.Api_Stations, name='api_stations'),
+    path('api/estacoes/<str:format>/<str:source>/', views.Api_Stations_Source, name='api_stations_source'),
+    path('api/estacoes/<str:format>/<str:source>/<str:code>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
+         views.Api_Stations_Data,
          name='weather_station_data'),
 
     path('api/pixels/', views.Api_Pixel.as_view(), name='pixel'),
