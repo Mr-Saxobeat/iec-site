@@ -1,7 +1,7 @@
 import os
 import csv
 import datetime
-from vismet.models import ElementCategory, ElementSource, WeatherStation
+from vismet.models import ElementCategory, ElementSource, Station
 import requests
 
 # Esse script pega as estações xavier da API do INMET
@@ -57,7 +57,7 @@ def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'd
                 finalDate = None
 
             if station["CD_ESTACAO"] in list_inmet_codes:
-                newObj, created = WeatherStation.objects.get_or_create(
+                newObj, created = Station.objects.get_or_create(
                     source = source,
                     inmet_code = station["CD_ESTACAO"],
                     state = station["SG_ESTADO"],
@@ -90,7 +90,7 @@ def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'd
             finalDate = None
 
         if station["CD_ESTACAO"] in list_inmet_codes:
-            newObj, created = WeatherStation.objects.get_or_create(
+            newObj, created = Station.objects.get_or_create(
                 source = source,
                 inmet_code = station["CD_ESTACAO"],
                 state = station["SG_ESTADO"],
@@ -129,11 +129,11 @@ def verify(csv_inmet_codes=os.path.join(os.getcwd(), 'vismet', 'scripts', 'data'
     for row in reader:
         inmet_code = row[0]
 
-        xavier_station = WeatherStation.objects.get(source=xavier_source, inmet_code=inmet_code)
+        xavier_station = Station.objects.get(source=xavier_source, inmet_code=inmet_code)
 
         try:
-            inmet_station = WeatherStation.objects.get(source=inmet_source, inmet_code=inmet_code)
-        except WeatherStation.DoesNotExist:
+            inmet_station = Station.objects.get(source=inmet_source, inmet_code=inmet_code)
+        except Station.DoesNotExist:
             file_missing_stations.write(str(xavier_station.inmet_code) + ";" + str(xavier_station.omm_code) + ";" + str(xavier_station.city) + ";" + str(xavier_station.type) +"\n")
 
     file_inmet_codes.close()
