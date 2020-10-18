@@ -22,3 +22,15 @@ toValidate.change(function () {
         jQuery("#btn_submit, #btn_download").prop('disabled', true);
     }
 });
+
+$("#startDate, #finalDate").datepicker();
+
+$("#EfinalDate").change(function () {
+    var startDate = document.getElementById("startDate").value;
+    var endDate = document.getElementById("finalDate").value;
+ 
+    if ((Date.parse(endDate) <= Date.parse(startDate))) {
+        alert("A data final deve ser maior do que a inicial");
+        document.getElementById("finalDate").value = "";
+    }
+});
