@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="{% static 'home/css/typography.css' %}">
   <link href="{% static 'home/css/bootstrap.css' %}" rel="stylesheet">
   <link href="css/small-business.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'home/css/landingpage.css' %}">
+ 
 </head>
 
 	<body class="landing">
@@ -54,9 +56,17 @@
 		</section><br><br>
 
 
-    <div class="card text-white bg-secondary my-5 py-4 text-center">
+    <div class="card text-white bg-secondary my-5 py-4 text-justify">
       <div class="card-body">
-        <p class="text-white m-0">Tipos de dados disponíveis na Plataforma</p>
+        <p class="text-white m-0"><b>Caro (a) usuário (a), seja bem-vindo (a) ao Banco de dados Ambientais do Instituto de Estudos Climáticos (IEC).</b><br><br>O IEC, foi criado a partir de uma parceria entre o setor privado (VALE), a UFES e a FAPES com o objetivo de estimular a formação e qualificação de pesquisadores nas temáticas de mudanças climáticas e de integrar competências entre academia e setor produtivo. Entre as várias ações do instituto, uma delas é, contribuir com pesquisas e informações, que envolvam o tempo e o clima em suas temáticas, para as mais diversas áreas como: Ciências Atmosféricas, Geografia, Engenharias, Biologia, Geologia, Saúde, Gestão Pública, Energia, Transportes, entre outras. 
+
+        Uma das formas almejadas pelo IEC, para contribuir com as pesquisas e as informações necessárias para interesse específico, foi disponibilizar a Plataforma de dados Ambientais (PDA), de alta qualidade, para a população Capixaba e para todo o país e até mesmo no exterior. Nela os pesquisadores e a sociedade civil poderão encontrar, gratuitamente, vários dados.
+
+        O conjunto de dados disponibilizados na PDA/IEC é uma compilação das informações de diversas outras plataformas do Brasil e no Mundo e estão disponibilizadas da seguinte forma: Dados Observacionais, Dados de Reanálise, Dados Simulados, Dados de Satélite, Dados de uso e cobertura da terra entre outros, em várias escalas temporais.
+
+        Na PDA/IEC, o usuário poderá acessar as informações e realizar suas consultas por meio do <a id="Portal" href="../">Portal do Mapa</a> interativo, utilizando o navegador que melhor lhe convir. O usuário, também, poderá interagir de forma lúdica e simples com a interface gráfica, onde no menu, será possível verificar todas as funcionalidades do sistema, não necessitando de nenhum conhecimento apurado para realizar a consulta desejada.
+
+        A PDA/IEC entra em operação no dia 30/10/2020 e estará e constante atualização dos dados para melhor atender o usuário.</p>
       </div>
     </div>
 
@@ -66,11 +76,68 @@
         <div class="card h-100">
           <div class="card-body">
             <h2 class="card-title">Observacionais</h2>
-            <p class="card-text">Os dados observacionais são as condições atmosféricas verificadas no espaço e no tempo, por meio de estações meteorológicas, balões meteorológicos, imagem de satélites<span id="dots">...</span><span id="more"> e cartas sinóticas. Eles podem ser de superfície e de altitude, com o objetivo de realizar observações meteorológicas, confeccionar informes meteorológicos, avisos para fins climatológicos e para previsão do tempo, subsidiando as informações necessárias para os centros de pesquisas do tempo e do clima, bem como, para toda população.</span></p>
+            <p class="card-text text-justify">Os dados observacionais são as condições atmosféricas verificadas no espaço e no tempo, por meio de estações meteorológicas, balões meteorológicos, imagem de satélites<span id="dots">...</span><span id="more"> e cartas sinóticas. Eles podem ser de superfície e de altitude, com o objetivo de realizar observações meteorológicas, confeccionar informes meteorológicos, avisos para fins climatológicos e para previsão do tempo, subsidiando as informações necessárias para os centros de pesquisas do tempo e do clima, bem como, para toda população.</span></p>
+              <ul>
+                <li><b>INMET</b>
+                  <ul>
+                    <li><a href="https://portal.inmet.gov.br/dadoshistoricos">Estações Automáticas</a></li>
+                    <ul>
+                      <li>2000 até a presente data</li>
+                    </ul>
+                  </ul>
+                  <ul>
+                    <li><a href="https://portal.inmet.gov.br/servicos/bdmep-dados-hist%C3%B3ricos">Convencional</a></li>
+                    <ul>
+                      <li>A partir de 1924</li>
+                    </ul>
+                  </ul>
+                </li>
+              </ul>
+
+              <ul>
+                <li><b>CEMADEM</b>
+                  <ul>
+                    <li><a href="http://www.cemaden.gov.br/mapainterativo/#">Pluviômetros</a></li>
+                    <ul>
+                      <li>2010 até a presente data</li>
+                    </ul>
+                  </ul>
+                </li>
+              </ul>
+
+              <ul>
+                <li><b>ANA</b>
+                  <ul>
+                    <li><a href="https://drive.google.com/drive/folders/1Tb-ycVVUPutlQ0pjwJpbiMeTIS3cvzyY?usp=sharing">Pluviômetros</a></li>
+                    <ul>
+                      <li>1925-2019</li>
+                    </ul>
+                  </ul>
+                  <ul>
+                    <li><a href="https://drive.google.com/drive/folders/1Tb-ycVVUPutlQ0pjwJpbiMeTIS3cvzyY?usp=sharing">Fluviométricos</a></li>
+                    <ul>
+                      <li>1925-2019</li>
+                    </ul>
+                  </ul>
+                </li>
+              </ul>
+
+              <ul>
+                <li><b>Xavier</b>
+                  <ul>
+                    <li><a href="">Estações do INMET e ANA</a></li>
+                    <ul>
+                      <li>1980-2017</li>
+                      <li>Xavier et al. 2016</li>                      
+                    </ul>
+                  </ul>
+                </li>
+              </ul>
+
           </div>
           <div class="card-footer">
             <a href="../" class="btn btn-primary btn-sm">Plataforma</a>
-            <button class="bt btn-primary btn-sm"  onclick="lerMais()" id="myBtn">Ler Mais</button>
+            <button class="btn btn-primary btn-sm"  onclick="lerMais()" id="myBtn">Ler Mais</button>
           </div>
         </div>
       </div>
@@ -79,11 +146,69 @@
         <div class="card h-100">
           <div class="card-body">
             <h2 class="card-title">Reanálise</h2>
-            <p class="card-text">A inconsistência dos dados das estações meteorológicas geram séries históricas com falhas e variáveis inconsistentes. Em virtude dessas situações, diversos centros de previsão do<span id="dots2">...</span><span id="more2"> tempo e do clima vêm oferecendo produtos de <b>reanálise</b>, que é um método científico para desenvolver um registro abrangente do tempo e o clima. Nele, ocorrem a combinação de dados de satélites, modelos do tempo e do clima e de estações ondem serão simulados um ou mais aspectos do sistema tempo/clima. Uma reanálise normalmente se estende por vários anos, e cobre todo o globo, desde a superfície da Terra até bem acima da estratosfera. Os produtos de reanálise são amplamente utilizados em pesquisas e serviços climáticos, incluindo para monitorar e comparar as condições climáticas atuais com as do passado. As informações derivadas de reanálises também estão sendo usadas em aplicações comerciais e de negócios em setores como energia e agricultura.</span></p>
+            <p class="card-text text-justify" >A inconsistência dos dados das estações meteorológicas geram séries históricas com falhas e variáveis inconsistentes. Em virtude dessas situações, diversos centros de previsão do<span id="dots2">...</span><span id="more2"> tempo e do clima vêm oferecendo produtos de <b>reanálise</b>, que é um método científico para desenvolver um registro abrangente do tempo e o clima. Nele, ocorrem a combinação de dados de satélites, modelos do tempo e do clima e de estações ondem serão simulados um ou mais aspectos do sistema tempo/clima. Uma reanálise normalmente se estende por vários anos, e cobre todo o globo, desde a superfície da Terra até bem acima da estratosfera. Os produtos de reanálise são amplamente utilizados em pesquisas e serviços climáticos, incluindo para monitorar e comparar as condições climáticas atuais com as do passado. As informações derivadas de reanálises também estão sendo usadas em aplicações comerciais e de negócios em setores como energia e agricultura.</span></p>
+              <ul>
+                <li><b>MERGE-CPTEC</b>
+                  <ul>
+                    <li><a href="http://ftp.cptec.inpe.br/modelos/tempo/MERGE/">Rozante   et   al.
+(2010)</a></li>
+                    <ul>
+                      <li>2014 até a presente data</li>
+                      <li>Resolução Espacial: 0.1°</li>
+                    </ul>
+                  </ul>
+              </ul>
+
+                  <ul><li><b>GPCP</b>
+                  <ul>
+                    <li><a href="https://drive.google.com/drive/folders/1Tb-ycVVUPutlQ0pjwJpbiMeTIS3cvzyY?usp=sharing">Huffmann  et  al.
+(2001)</a></li>
+                    <ul>
+                      <li>1979 até a presente data</li>
+                      <li>Resolução Espacial: 2.5°</li>
+
+                    </ul>
+                  </ul>
+                  </li></ul>
+
+                <ul><li><b>CHIRPS</b>
+                  <ul>
+                    <li><a href="https://data.chc.ucsb.edu/products/CHIRPS-2.0/">Fuck et al.(2015)</a></li>
+                    <ul>
+                      <li>1981 até a presente data</li>
+                      <li>Resolução Espacial: 0.05°</li>                      
+                    </ul>
+                  </ul>
+                </li></ul>
+
+              <ul>
+                <li><b>DELAWARE</b>
+                  <ul>
+                    <li><a href="https://psl.noaa.gov/data/">Willmott  and Matsuura (2001)</a></li>
+                    <ul>
+                      <li>1900 a 2017</li>
+                      <li>Resolução Espacial: 0.25°</li>                      
+                    </ul>
+                  </ul>
+                </li>
+              </ul>              
+
+              <ul>
+                <li><b>GFS</b>
+                  <ul>
+                    <li><a href="https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs">NCEP- NOAA</a></li>
+                    <ul>
+                      <li>2003 até a presente data</li>
+                      <li>Resolução Espacial: 0.5°</li>                      
+                    </ul>
+                  </ul>
+                </li>
+              </ul>  
+
           </div>
           <div class="card-footer">
             <a href="../" class="btn btn-primary btn-sm">Plataforma</a>
-            <button class="bt btn-primary btn-sm"  onclick="lerMais2()" id="myBtn2">Ler Mais</button>            
+            <button class="btn btn-primary btn-sm"  onclick="lerMais2()" id="myBtn2">Ler Mais</button>            
           </div>
         </div>
       </div>
@@ -92,11 +217,36 @@
         <div class="card h-100">
           <div class="card-body">
             <h2 class="card-title">Simulados</h2>
-            <p class="card-text">A habilidade de prever o tempo e o clima aumentou muito nas últimas décadas em função do avanço no entendimento dos processos que controlam a evolução do estado da atmosfera<span id="dots3">...</span><span id="more3"> e dos componentes do sistema climático, dos métodos de solução numérica das equações que representam cada parte do sistema climático e da notável evolução da capacidade de processamento dos computadores. Os modelos de circulação geral da atmosfera (MCGAs) também possibilitam prever as condições do tempo para vários dias, dependendo da região e do estado da atmosfera, com alto grau de confiança até 7 a 12 dias. Além disso, tais modelos também podem ser utilizados para prever o clima da próxima estação ou para simular características mais gerais do clima futuro, na escala de décadas ou séculos, considerando as modificações antropogênicas, como o aumento dos gases de efeito estufa, aerossóis e as mudanças no uso da terra.</span></p>
+            <p class="card-text text-justify">A habilidade de prever o tempo e o clima aumentou muito nas últimas décadas em função do avanço no entendimento dos processos que controlam a evolução do estado da atmosfera<span id="dots3">...</span><span id="more3"> e dos componentes do sistema climático, dos métodos de solução numérica das equações que representam cada parte do sistema climático e da notável evolução da capacidade de processamento dos computadores. Os modelos de circulação geral da atmosfera (MCGAs) também possibilitam prever as condições do tempo para vários dias, dependendo da região e do estado da atmosfera, com alto grau de confiança até 7 a 12 dias. Além disso, tais modelos também podem ser utilizados para prever o clima da próxima estação ou para simular características mais gerais do clima futuro, na escala de décadas ou séculos, considerando as modificações antropogênicas, como o aumento dos gases de efeito estufa, aerossóis e as mudanças no uso da terra.</span></p>
+              <ul>
+                <li><b>Eta HADGEM2-ES RCP 4.5, RCP 8.5</b>
+                  <ul>
+                    <li>Lyra et al. (2017)</li>
+                    <ul>
+                      <li>1960-2005<br>2006-2099</li>
+                      <li>Resolução Espacial: 5 km</li>                      
+                    </ul>
+                  </ul>
+                </li>
+              </ul>   
+
+              <ul>
+                <li><b>Eta BESM, CANES, MIROC5, HADGEM RCP 4.5, RCP 8.5</b>
+                  <ul>
+                    <!--<li></li>-->
+                    <ul>
+                      <li>1960-2005<br>2006-2099</li>
+                      <li>Resolução Espacial: 20 km</li>                      
+                    </ul>
+                  </ul>
+                </li>
+              </ul> 
+
           </div>
+
           <div class="card-footer">
             <a href="../" class="btn btn-primary btn-sm">Plataforma</a>
-            <button class="bt btn-primary btn-sm"  onclick="lerMais3()" id="myBtn3">Ler Mais</button>            
+            <button class="btn btn-primary btn-sm"  onclick="lerMais3()" id="myBtn3">Ler Mais</button>            
           </div>
         </div>
       </div></div>
