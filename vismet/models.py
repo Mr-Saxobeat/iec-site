@@ -80,6 +80,11 @@ class INMETStationData(models.Model):
     def __str__(self):
         return str('nº ' + str(self.station.inmet_code) + '---' + str(self.date))
 
+class ANAStationData(models.Model):
+    date = models.DateField()
+    station = models.ForeignKey(Station, related_name='ana_data', on_delete=models.CASCADE)
+    value = models.FloatField('Valor', blank=True, null=True)
+
 # Pixels do estado do Espírito Santo.
 # Cada pixel tem 5Km de lado. (verificar isso)
 class Pixel(models.Model):

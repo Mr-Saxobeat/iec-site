@@ -46,7 +46,9 @@ def Api_Stations_Data(request, format, source, code, start_day, start_month, sta
     if source == 'xavier':
         queryset = GetXavierStationData(source, code, startDate, finalDate)
     elif source == 'inmet':
-        queryset = GetInmetStations(source, code, startDate, finalDate)
+        queryset = GetInmetStationData(source, code, startDate, finalDate)
+    elif source == 'ana':
+        queryset = GetANAStationData(source, code, startDate, finalDate)
 
     if(format == 'json'):
         queryset_serialized = serializers.serialize('json', queryset)
