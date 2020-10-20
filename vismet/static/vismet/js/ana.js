@@ -63,4 +63,7 @@ function loadANALayer(){
   });
   control.addOverlay(ANA_Precip_Layer, "ANA Pluviométrica");
   control.addOverlay(ANA_Flow_Layer, "ANA Fluviométrica");
+
+  layers_dic["ana-precip"] = ANA_Precip_Layer;
+  layers_dic["ana-flow"] = ANA_Flow_Layer;
 }

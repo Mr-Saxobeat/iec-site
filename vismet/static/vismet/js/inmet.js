@@ -56,4 +56,6 @@ function loadINMETLayer(){
     });
   })
   control.addOverlay(INMETStations_Layer, "Estações INMET");
+
+  layers_dic["inmet"] = INMETStations_Layer;
 }
