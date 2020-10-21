@@ -14,7 +14,7 @@ def GetXavierStationData(source, inmet_code, startDate, finalDate):
     station = Station.objects.get(source=source, inmet_code=inmet_code)
 
     try:
-        station_data = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+        station_data = station.xavier_data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
     except ErrName:
         print(ErrName)
 
@@ -27,7 +27,7 @@ def GetInmetStationData(source, code, startDate, finalDate):
     source = ElementSource.objects.get(name=source)
     station = Station.objects.get(source=source, inmet_code=code)
 
-    station_data = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+    station_data = station.inmet_data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
 
     if station_data.count() < delta.days:
         station_data = requests.get('https://apitempo.inmet.gov.br/estacao/diaria/' +
@@ -47,8 +47,8 @@ def GetInmetStationData(source, code, startDate, finalDate):
                 }
             )
 
-        station_data = station.data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
-        return station_data
+        station_data = station.inmet_data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+    return station_data
 
 def GetANAStationData(source, code, startDate, finalDate):
     delta = finalDate - startDate
