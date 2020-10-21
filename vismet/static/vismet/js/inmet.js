@@ -84,6 +84,6 @@ function Show_INMET_Data(code, startDate, finalDate){
         variable = 'maxTemp';
         break;
     }
-    updateChart2(chart, data, variable);
+    chart_update(chart, data, variable);
   })
 }

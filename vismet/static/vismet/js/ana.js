@@ -18,7 +18,6 @@ function ANAStations_Layer_onEachFeature(feature, layer){
   var popupContent = feature.properties.popup_content;
   layer.bindPopup(popupContent);
   layer.on('click', function() {
-    console.log(feature.properties.omm_code);
     input_station_code.value = feature.properties.omm_code;
     station_city = feature.properties.city;
     station_state = feature.properties.state;
@@ -87,6 +86,6 @@ function Show_ANA_Data(code, startDate, finalDate){
   }
 
   $.getJSON(url_stations + "json/ana/" + code + "/" + startDate + "/" + finalDate, function(data) {
-    updateChart2(chart, data, "value");
+    chart_update(chart, data, "value");
   })
 }
