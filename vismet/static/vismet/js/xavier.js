@@ -8,10 +8,9 @@ var XavierStations_Style = {
 
 function XavierStations_Layer_onEachFeature(feature, layer) {
   var popupContent = feature.properties.popup_content;
-  var input_inmet_code = document.getElementById('input_inmet_code');
   layer.bindPopup(popupContent);
   layer.on('click', function() {
-    input_inmet_code.value = feature.properties.inmet_code;
+    input_station_code.value = feature.properties.inmet_code;
     station_city = feature.properties.name;
     station_state = feature.properties.state;
     station_inmet = feature.properties.inmet_code;
@@ -44,7 +43,7 @@ function loadXavierLayer(){
       XavierStations_Layer.addData(station_geojson);
     });
   });
-  control.addOverlay(XavierStations_Layer, "Estações Xavier");
+  control.addOverlay(XavierStations_Layer, "xavier");
 
   layers_dic["xavier"] = XavierStations_Layer;
 }
