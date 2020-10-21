@@ -1,4 +1,4 @@
-from vismet.models import ElementCategory, ElementSource, Station
+from vismet.models import ElementCategory, ElementSource, Station, XavierStationData
 from datetime import datetime
 import os
 import csv
@@ -58,7 +58,7 @@ def LoadXavierStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', '
 
 ## Este script lê os arquivos csv de dados coletados por Xavier
 ## e salva nos modelos de estações Xavier.
-def LoadXavierData(path, months=0):
+def LoadXavierData(path="/home/weiglas/Documents/iec/dados/1. Dados de Estações Historicas/Xavier/Xavier Time Series1980-2017 CSV/", months=0):
 
     nameEt0 = "Xavier_ET0_1980-2017.csv"
     nameRelHum = "Xavier_RelHum_1980-2017.csv"
@@ -78,10 +78,6 @@ def LoadXavierData(path, months=0):
 
     if resposta.upper() == 'N':
         return print("Script cancelado.")
-
-    # Pasta raíz dos arquivos que serão abertos
-    if path == '-': # Se o valor "-" foi dado é pra usar o valor padrão
-        path = "/home/weiglas/Documents/iec/dados/1. Dados de Estações Historicas/Xavier/Xavier Time Series1980-2017 CSV/"
 
     # Verfica se todos arquivos se encontram no diretório dado
     list = os.listdir(path)
@@ -121,23 +117,11 @@ def LoadXavierData(path, months=0):
     # vazia, ele não salva um model.
     inmet_code = False
 
-    jump = True # Variável auxiliar para bloco de controle
-
-    category = ElementCategory.objects.get_or_create(name='observados')
-    source = ElementSource.objects.get_or_create(name='xavier', category=category)
+    category, created = ElementCategory.objects.get_or_create(name='observados')
+    source, created = ElementSource.objects.get_or_create(name='xavier', category=category)
 
     # Loop pelas linhas
     for i, rowET0 in enumerate(readerET0):
-
-        # Este bloco serve para controlar quando o programa vai começas
-        # A armazenar os dados. Ou seja, a partir da linha que tem
-        # station id 83648
-        if i > 0 and jump == True and rowET0[0] != '83648':
-            print("jump  " + rowET0[0])
-            continue
-        elif rowET0[0] == '83648':
-            jump = False
-
 
         rowRelHum = next(readerRelHum)
         rowRs = next(readerRs)
