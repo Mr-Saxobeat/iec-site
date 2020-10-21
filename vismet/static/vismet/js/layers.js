@@ -8,11 +8,35 @@ var divObservedData = document.getElementById("div-observados");
 var divReanaliseData = document.getElementById("div-reanálise");
 var divSimulatedData = document.getElementById("div-simulados");
 
+function variable_display_change(selBox_source, selBox_variable){
+  if(selBox_source.value == 'ana'){
+    var selected_variable = selBox_variable.value.toUpperCase();
+    if(selected_variable == 'PRECIPITAÇÃO'){
+      showLayer('ana-precip');
+    }else if(selected_variable == 'VAZÃO'){
+      showLayer('ana-flow');
+    }
+  }
+}
+
 // selectBox: DOM select object
 function removeAllOptions(selectBox){
   while(selectBox.options.length > 0){
     selectBox.remove(0);
   }
+}
+
+function showLayer(layer_name){
+
+  for (var layer in layers_dic) {
+    map.removeLayer(layers_dic[layer]);
+  }
+
+  if(layer_name == "ana"){
+    layer_name = "ana-precip";
+  }
+
+  map.addLayer(layers_dic[layer_name]);
 }
 
 // selectBox: DOM select object;
@@ -73,9 +97,18 @@ function showCategoryData(div_last_name){
   selBox_source_display = selectedDiv.getElementsByClassName("sel-data-source")[0];
   selBox_variable_display = selectedDiv.getElementsByClassName("sel-data-variable")[0];
   setSourceDataSelection(selBox_source_display, div_last_name);
+
   selBox_source_display.addEventListener("change", function() {
-    setVariableSelection(selBox_variable_display, this.value);
-  });
+    setVariableSelection(selBox_variable_display, selBox_source_display.value);
+    showLayer(selBox_source_display.value);
+    });
+  var evt = document.createEvent("HTMLEvents");
+  evt.initEvent("change", false, true);
+  selBox_source_display.dispatchEvent(evt);
+
+  selBox_variable_display.addEventListener("change", function() {
+    variable_display_change(selBox_source_display, selBox_variable_display);
+  })
 
 }
 
