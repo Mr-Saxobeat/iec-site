@@ -92,16 +92,11 @@ class ANAStationData(models.Model):
 # Pixels do estado do Espírito Santo.
 # Cada pixel tem 5Km de lado. (verificar isso)
 class Pixel(models.Model):
-    pixel_id = models.BigIntegerField()
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
     latitude = models.FloatField()
     longitude = models.FloatField()
-    geom = models.PointField(srid=4326, null=True)
-
-    # Lista com as coordenadas da vértice superior esquerda
-    # e da inferior direita, formando um quadrado de lado
-    # 5Km. (sim eu ainda tenho que verificar se são 5Km msm,
-    # a função que gerou esses pontos está em scripts/load_data3.py
-    boundings = models.CharField(max_length=200, blank=True)
+    geom = models.PolygonField(null=True)
 
     def __str__(self):
         return f'{ self.latitude }, { self.longitude }'
@@ -109,8 +104,8 @@ class Pixel(models.Model):
 
 # Dados dos pixels do estado do Espírito Santo
 class PixelData(models.Model):
+    pixel = models.ForeignKey(Pixel, related_name='pixel_data', on_delete=models.CASCADE)
     date = models.DateField()
-    pixel = models.ForeignKey(Pixel, related_name='data', on_delete=models.CASCADE)
     preciptation = models.FloatField()
 
     def __str__(self):
