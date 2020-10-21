@@ -21,5 +21,20 @@ $.getJSON(url_data_options, function (data) {
   showCategoryData("observados");
   loadXavierLayer();
   loadANALayer();
-  map.addLayer(layers_dic["xavier"]);
+  loadINMETLayer();
+  map.addLayer(layers_dic["ana"]);
 });
+
+var btn_submit = document.getElementById("btn_submit");
+var btn_download = document.getElementById("btn_download");
+var input_station_code = document.getElementById("input_station_code");
+var input_startDate = document.getElementById("startDate");
+var input_finalDate = document.getElementById("finalDate");
+
+btn_submit.addEventListener("click", function() {
+  if (selBox_source_display.value.toUpperCase() == "ANA"){
+    Show_ANA_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
+  } else if (selBox_source_display.value.toUpperCase() == "INMET"){
+      Show_INMET_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
+    }
+})

@@ -1,6 +1,6 @@
 var selectedOption = $("#variable");
 
-selectedOption.change(function () { updateChart(chart, selectedOption.val()); });
+// selectedOption.change(function () { updateChart(chart, selectedOption.val()); });
 
 var chart = new Chart('chart', {
   options: {
@@ -28,7 +28,7 @@ var chart = new Chart('chart', {
   type: 'line',
 });
 
-function removeData(chart) {
+function chart_removeData(chart) {
   dtSet0 = chart.data.datasets[0];
   while(dtSet0.data.length > 0){
     dtSet0.data.pop();
@@ -36,33 +36,22 @@ function removeData(chart) {
   }
 }
 
-function addData(chart, labels, data) {
-  labels.forEach((lb) => {
-    date = lb.substring(8,10) + '/' + lb.substring(5,7) + '/' + lb.substring(0,4);
+function chart_addData(json_data, variable){
+  json_data.forEach(data => {
+    date = data.fields.date;
+    date = date.substring(8,10) + '/' + date.substring(5,7) + '/' + date.substring(0,4);
     chart.data.labels.push(date);
-    });
 
-    var dtSet = chart.data.datasets;
+    value = data.fields[variable];
 
     chart.data.datasets.forEach((dataset) => {
-      data.forEach((dt) => {
-        if(dt == 0 || dt == "NaN" || dt == "-9999"){
-          dataset.data.push(null);
-        }
-        else{
-          dataset.data.push(dt);
-        }
-      });
+      dataset.data.push(value);
     });
+  });
 }
 
-function updateChart(chart, variable){
-        removeData(chart);
-        chart_data.forEach((obj) => {
-          array_date = [String(obj.fields.date)];
-          array_data = [obj.fields[variable]];
-
-          addData(chart, array_date, array_data);
-          chart.update();
-        });
+function chart_update(chart, json_data, variable){
+  chart_removeData(chart);
+  chart_addData(json_data, variable);
+  chart.update();
 }

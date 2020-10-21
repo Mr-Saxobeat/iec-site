@@ -15,7 +15,17 @@ var ANA_Flow_Style = {
 };
 
 function ANAStations_Layer_onEachFeature(feature, layer){
+  var popupContent = feature.properties.popup_content;
+  layer.bindPopup(popupContent);
+  layer.on('click', function() {
+    input_station_code.value = feature.properties.omm_code;
+    station_city = feature.properties.city;
+    station_state = feature.properties.state;
+    station_inmet = feature.properties.omm_code;
 
+    chart.options.title.text = "Estação nº " + station_inmet + ", " + station_city + " - " + station_state;
+    chart.update();
+  })
 }
 
 var ANA_Precip_Layer = L.geoJson([], {
@@ -61,6 +71,21 @@ function loadANALayer(){
       }
     });
   });
-  control.addOverlay(ANA_Precip_Layer, "ANA Pluviométrica");
-  control.addOverlay(ANA_Flow_Layer, "ANA Fluviométrica");
+  control.addOverlay(ANA_Precip_Layer, "ana-precip");
+  control.addOverlay(ANA_Flow_Layer, "ana-flow");
+
+  layers_dic["ana-precip"] = ANA_Precip_Layer;
+  layers_dic["ana-flow"] = ANA_Flow_Layer;
+}
+
+
+function Show_ANA_Data(code, startDate, finalDate){
+  for(var i = 0; i <= 2; i++){
+    startDate = startDate.replace("/", "-");
+    finalDate = finalDate.replace("/", "-");
+  }
+
+  $.getJSON(url_stations + "json/ana/" + code + "/" + startDate + "/" + finalDate, function(data) {
+    chart_update(chart, data, "value");
+  })
 }
