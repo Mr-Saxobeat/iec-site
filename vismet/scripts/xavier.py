@@ -1,4 +1,3 @@
-from vismet.models import XavierStation, XavierStationData
 from vismet.models import ElementCategory, ElementSource, Station
 from datetime import datetime
 import os
