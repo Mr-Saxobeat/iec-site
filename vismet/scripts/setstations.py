@@ -8,5 +8,6 @@ def run():
     xavier.LoadXavierStations()
     inmet.LoadINMETStations()
     ana.LoadANAStations()
+    ana.LoadANAStations2()
 
     print("\n\nTodas as estações foram carregadas.")
