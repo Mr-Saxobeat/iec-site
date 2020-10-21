@@ -58,7 +58,7 @@ def LoadXavierStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', '
 
 ## Este script lê os arquivos csv de dados coletados por Xavier
 ## e salva nos modelos de estações Xavier.
-def LoadXavierData(path, months):
+def LoadXavierData(path, months=0):
 
     nameEt0 = "Xavier_ET0_1980-2017.csv"
     nameRelHum = "Xavier_RelHum_1980-2017.csv"
