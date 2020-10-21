@@ -1,7 +1,5 @@
 from django.shortcuts import render, get_object_or_404
 from djgeojson.views import GeoJSONLayerView
-from .models import XavierStationData
-from .models import INMETStationData
 from .models import Pixel, PixelData
 from .models import City, CityData
 from .models import ElementCategory, ElementSource, Station
@@ -13,7 +11,7 @@ from django.core import serializers
 from rest_framework import serializers as rest_serializers
 from django.core.serializers import serialize as sr
 from djqscsv import render_to_csv_response
-from vismet.retrieve_functions import GetXavierStationData, GetInmetStationData
+from vismet.retrieve_functions import GetXavierStationData, GetInmetStationData, GetANAStationData
 
 # Esta view apenas retorna o template pricipal
 # da plataforma de dados.

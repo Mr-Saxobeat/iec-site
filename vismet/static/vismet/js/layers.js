@@ -1,9 +1,23 @@
 var json_data_options = [];
 var json_current_category = [];
 
+var selBox_source_display = null;
+var selBox_variable_display = null;
+
 var divObservedData = document.getElementById("div-observados");
 var divReanaliseData = document.getElementById("div-reanálise");
 var divSimulatedData = document.getElementById("div-simulados");
+
+function variable_display_change(selBox_source, selBox_variable){
+  if(selBox_source.value == 'ana'){
+    var selected_variable = selBox_variable.value.toUpperCase();
+    if(selected_variable == 'PRECIPITAÇÃO'){
+      showLayer('ana-precip');
+    }else if(selected_variable == 'VAZÃO'){
+      showLayer('ana-flow');
+    }
+  }
+}
 
 // selectBox: DOM select object
 function removeAllOptions(selectBox){
@@ -12,11 +26,37 @@ function removeAllOptions(selectBox){
   }
 }
 
+function showLayer(layer_name){
+
+  for (var layer in layers_dic) {
+    map.removeLayer(layers_dic[layer]);
+  }
+
+  if(layer_name == "ana"){
+    layer_name = "ana-precip";
+  }
+
+  map.addLayer(layers_dic[layer_name]);
+}
+
 // selectBox: DOM select object;
 // source: json of the selected data source,
 // it's a child of json_current_category object.
-function setVariableSelection(selectBox, source){
+function setVariableSelection(selectBox, selected_source){
   removeAllOptions(selectBox);
+  var available_variables = null;
+
+  json_current_category.sources.forEach(source => {
+    if(source.name == selected_source){
+      available_variables = source.variables;
+    }
+  });
+
+  var newOpt;
+  available_variables.forEach(variable => {
+    newOpt = new Option(variable, variable);
+    selectBox.add(newOpt, undefined);
+  });
 }
 
 // Essa função adiciona as opções no menu de seleção
@@ -54,8 +94,22 @@ function showCategoryData(div_last_name){
     }
   }
 
-  var selectBox = selectedDiv.getElementsByClassName("sel-data-source")[0];
-  setSourceDataSelection(selectBox, div_last_name);
+  selBox_source_display = selectedDiv.getElementsByClassName("sel-data-source")[0];
+  selBox_variable_display = selectedDiv.getElementsByClassName("sel-data-variable")[0];
+  setSourceDataSelection(selBox_source_display, div_last_name);
+
+  selBox_source_display.addEventListener("change", function() {
+    setVariableSelection(selBox_variable_display, selBox_source_display.value);
+    showLayer(selBox_source_display.value);
+    });
+  var evt = document.createEvent("HTMLEvents");
+  evt.initEvent("change", false, true);
+  selBox_source_display.dispatchEvent(evt);
+
+  selBox_variable_display.addEventListener("change", function() {
+    variable_display_change(selBox_source_display, selBox_variable_display);
+  })
+
 }
 
 // Armazena os botões de categorias em variáveis e adiciona um listener
