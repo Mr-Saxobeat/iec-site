@@ -8,10 +8,9 @@ var INMETStations_Style = {
 
 function INMETStations_Layer_onEachFeature(feature, layer) {
   var popupContent = feature.properties.popup_content;
-  var input_inmet_code = document.getElementById('input_inmet_code');
   layer.bindPopup(popupContent);
   layer.on('click', function() {
-    input_inmet_code.value = feature.properties.inmet_code;
+    input_station_code.value = feature.properties.inmet_code;
     station_city = feature.properties.city;
     station_state = feature.properties.state;
     station_inmet = feature.properties.inmet_code;
@@ -55,7 +54,36 @@ function loadINMETLayer(){
       INMETStations_Layer.addData(station_geojson);
     });
   })
-  control.addOverlay(INMETStations_Layer, "Estações INMET");
+  control.addOverlay(INMETStations_Layer, "inmet");
 
   layers_dic["inmet"] = INMETStations_Layer;
+}
+
+function Show_INMET_Data(code, startDate, finalDate){
+  for(var i = 0; i <= 2; i++){
+    startDate = startDate.replace("/", "-");
+    finalDate = finalDate.replace("/", "-");
+  }
+
+  $.getJSON(url_stations + "json/inmet/" + code + "/" + startDate + "/" + finalDate, function(data) {
+    var variable = 'maxTemp';
+    switch (selBox_variable_display.value) {
+      case 'temperatura máxima':
+        variable = "maxTemp";
+        break;
+      case 'temperatura mínima':
+        variable = "minTemp";
+        break;
+      case 'umidade relativa':
+        variable = 'relHum';
+        break;
+      case 'precipitação':
+        variable = 'precip';
+        break;
+      default:
+        variable = 'maxTemp';
+        break;
+    }
+    updateChart2(chart, data, variable);
+  })
 }
