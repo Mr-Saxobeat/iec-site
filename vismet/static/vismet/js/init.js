@@ -36,5 +36,7 @@ btn_submit.addEventListener("click", function() {
     Show_ANA_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
   } else if (selBox_source_display.value.toUpperCase() == "INMET"){
       Show_INMET_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
-    }
+  } else if (selBox_source_display.value.toUpperCase() == "XAVIER"){
+    Show_Xavier_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
+  }
 })
