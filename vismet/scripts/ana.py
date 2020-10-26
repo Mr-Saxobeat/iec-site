@@ -14,8 +14,8 @@ def LoadANAStations(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/an
                         name = 'ana',
                         category = ElementCategory.objects.get(name='observados'),
                         variables = [
-                            'precipitação',
-                            'vazão'
+                            ['precipitação', 'mm³'],
+                            ['vazão', 'm³/s'],
                             ]
                         )
 

@@ -1,5 +1,5 @@
 from django.contrib.gis.db import models
-from django.contrib.postgres.fields import ArrayField
+import django.contrib.postgres.fields as pgField
 import os
 import csv
 
@@ -12,10 +12,15 @@ class ElementSource(models.Model):
     name = models.CharField(max_length=100)
     category = models.ForeignKey(ElementCategory, related_name='sources', on_delete=models.CASCADE)
     data_model = models.CharField(max_length=200, blank=True, null=True)
-    variables = ArrayField(
-        base_field=models.CharField(max_length=20),
+    variables = pgField.ArrayField(
+        base_field = pgField.ArrayField(
+            base_field = models.CharField(max_length=100),
+            size=2,
+        ),
         size=20,
     )
+
+
 
 # Modelo que representa uma única estação meteorológica
 class Station(models.Model):
