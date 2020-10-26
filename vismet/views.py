@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from djgeojson.views import GeoJSONLayerView
+from .models import XavierStationData
+from .models import INMETStationData
 from .models import Pixel, PixelData
 from .models import City, CityData
 from .models import ElementCategory, ElementSource, Station
@@ -11,7 +13,7 @@ from django.core import serializers
 from rest_framework import serializers as rest_serializers
 from django.core.serializers import serialize as sr
 from djqscsv import render_to_csv_response
-from vismet.retrieve_functions import GetXavierStationData, GetInmetStationData, GetANAStationData
+from vismet.retrieve_functions import GetXavierStationData, GetInmetStationData
 
 # Esta view apenas retorna o template pricipal
 # da plataforma de dados.
@@ -44,9 +46,7 @@ def Api_Stations_Data(request, format, source, code, start_day, start_month, sta
     if source == 'xavier':
         queryset = GetXavierStationData(source, code, startDate, finalDate)
     elif source == 'inmet':
-        queryset = GetInmetStationData(source, code, startDate, finalDate)
-    elif source == 'ana':
-        queryset = GetANAStationData(source, code, startDate, finalDate)
+        queryset = GetInmetStations(source, code, startDate, finalDate)
 
     if(format == 'json'):
         queryset_serialized = serializers.serialize('json', queryset)
@@ -59,26 +59,38 @@ def Api_Stations_Data(request, format, source, code, start_day, start_month, sta
 # Esta view retorna um json com as opções de categorias, fontes e variáveis
 # para ser usado na construção dos menus de seleção da plataforma.
 def Api_Data_Options(request):
+    # Esta é a lista final que será retornada como um Json
     categories_list = []
 
-    categories = ElementCategory.objects.all()
+    categories_queryset = ElementCategory.objects.all()
 
-    for aCategory in categories:
-        category_sources = ElementSource.objects.filter(category=aCategory)
-
+    for cat in categories_queryset:
         category_dict = {
-            "category": aCategory.name,
-            "sources": []
+            "category": cat.name,
+            "sources": {}
         }
 
-        for aSource in category_sources:
-            source_dict = {
-                "name": aSource.name,
-                "variables": aSource.variables,
-            }
+        sources = ElementSource.objects.filter(category=cat)
+        for src in sources:
 
-            category_dict["sources"].append(source_dict)
+            # Este dictionary armazena as variáveis que cada
+            # fonte de dados disponibiliza.
+            src_dict = {}
 
+            variables = src.variables
+            if variables is not None:
+                for var in src.variables:
+                    # Adiciona uma key ao "src_dict" que é o nome
+                    # da variável e relaciona com a unidade de medida.
+                    src_dict[var[0]] = var[1]
+
+            # Por fim adiciona o dict com as relações
+            # variável - unidade de medida ao "category_dict"
+            # relacionando a fonte de dados com as suas variáveis.
+            category_dict["sources"][src.name] = src_dict
+
+        # Por fim adiciona o dict da categoria totalmente construída
+        # à lista de categorias de dados.
         categories_list.append(category_dict)
 
     return JsonResponse(categories_list, safe=False)
