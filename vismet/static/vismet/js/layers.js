@@ -9,14 +9,20 @@ var divReanaliseData = document.getElementById("div-reanálise");
 var divSimulatedData = document.getElementById("div-simulados");
 
 function variable_display_change(selBox_source, selBox_variable){
-  if(selBox_source.value == 'ana'){
-    var selected_variable = selBox_variable.value.toUpperCase();
-    if(selected_variable == 'PRECIPITAÇÃO'){
+  var selected_source = selBox_source.value;
+  var selected_variable = selBox_variable.value;
+
+  if(selected_source.toLowerCase() == 'ana'){
+    if(selected_variable.toLowerCase() == 'precipitação'){
       showLayer('ana-precip');
-    }else if(selected_variable == 'VAZÃO'){
+    }else if(selected_variable.toLowerCase() == 'vazão'){
       showLayer('ana-flow');
     }
   }
+
+  chart.options.scales.yAxes[0].scaleLabel.labelString = json_current_category["sources"][selected_source][selected_variable];
+  chart.data.datasets[0].label = selected_variable;
+  chart.update();
 }
 
 // selectBox: DOM select object
@@ -52,7 +58,7 @@ function setVariableSelection(selectBox, selected_source){
   }
 }
 
-// Essa função adiciona as opções no menu de seleção 
+// Essa função adiciona as opções no menu de seleção
 // de fontes de dados disponíveis para a categoria escolhida.
 // selectBox: DOM select object
 function setSourceDataSelection(selectBox){
@@ -88,14 +94,14 @@ function showCategoryData(div_last_name){
     setVariableSelection(selBox_variable_display, selBox_source_display.value);
     showLayer(selBox_source_display.value);
     });
-  var evt = document.createEvent("HTMLEvents");
-  evt.initEvent("change", false, true);
-  selBox_source_display.dispatchEvent(evt);
 
   selBox_variable_display.addEventListener("change", function() {
     variable_display_change(selBox_source_display, selBox_variable_display);
   })
-
+  var evt = document.createEvent("HTMLEvents");
+  evt.initEvent("change", false, true);
+  selBox_source_display.dispatchEvent(evt);
+  selBox_variable_display.dispatchEvent(evt);
 }
 
 // Armazena os botões de categorias em variáveis e adiciona um listener
