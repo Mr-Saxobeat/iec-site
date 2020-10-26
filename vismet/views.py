@@ -60,13 +60,13 @@ def Api_Stations_Data(request, format, source, code, start_day, start_month, sta
 # para ser usado na construção dos menus de seleção da plataforma.
 def Api_Data_Options(request):
     # Esta é a lista final que será retornada como um Json
-    categories_list = []
+    categories_list = {}
 
     categories_queryset = ElementCategory.objects.all()
 
     for cat in categories_queryset:
         category_dict = {
-            "category": cat.name,
+            "name": cat.name,
             "sources": {}
         }
 
@@ -91,7 +91,7 @@ def Api_Data_Options(request):
 
         # Por fim adiciona o dict da categoria totalmente construída
         # à lista de categorias de dados.
-        categories_list.append(category_dict)
+        categories_list[cat.name] = category_dict
 
     return JsonResponse(categories_list, safe=False)
 
