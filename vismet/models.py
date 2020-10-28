@@ -104,7 +104,7 @@ class Pixel(models.Model):
     @property
     def popup_content(self):
         popup = "<span>ID: </span>{}<br>".format(self.id)
-        popup += "<span>Cidade: </span>{}<br>".format(self.city)
+        # popup += "<span>Cidade: </span>{}<br>".format(self.city)
         # popup += "<span>Estado: </span>{}<br>".format(self.state)
         popup += "<span>Latitude: </span>{}<br>".format(self.latitude)
         popup += "<span>Longitude: </span>{}<br>".format(self.longitude)
