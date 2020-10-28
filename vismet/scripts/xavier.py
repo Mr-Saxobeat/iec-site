@@ -11,15 +11,7 @@ def LoadXavierStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', '
     source, created = ElementSource.objects.get_or_create(
                         name = 'xavier',
                         category = ElementCategory.objects.get(name='observados'),
-                        variables = [
-                            ['temperatura máxima', 'ºC'],
-                            ['temperatura mínima', 'ºC'],
-                            ['radiação solar', 'MJ/m²'],
-                            ['umidade relativa', '%'],
-                            ['velocidade do vento', 'm/s'],
-                            ['evapotranspiração', 'mm'],
-                            ]
-                            )
+                        )
 
     with open(csv_path, 'r') as file:
         reader = csv.reader(file)
