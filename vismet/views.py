@@ -1,10 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from djgeojson.views import GeoJSONLayerView
-from .models import XavierStationData
-from .models import INMETStationData
-from .models import Pixel, PixelData
-from .models import City, CityData
-from .models import ElementCategory, ElementSource, Station
+from .models import ElementCategory, ElementSource, Station, Pixel
 from django.http import HttpResponse, JsonResponse, Http404
 import json
 import datetime
