@@ -75,24 +75,18 @@
 
             <div id="div-simulados">
               <h3>Dados Simulados:</h3>
+              <!-- <p>Média por município dos dados do Modelo Eta HADGEM2-ES 5km para o estado de Espírito Santo.</p> -->
 
-              <label for="cenarios-futuros-layer">Camada por:</label>
-              <select id="sel-camada-dados-futuros" name="cenarios-futuros-layer">
+              <label for="fonte-dados-simulados">Fonte:</label>
+              <select class="sel-data-source" name="fonte-dados-simulados">
               </select>
 
-              <div id="porMunicipio">
-                <p>Média por município dos dados do Modelo Eta HADGEM2-ES 5km para o estado de Espírito Santo.</p>
-                <form class="" action="" method="get">
-                  <input type="hidden" value="0" id="city_name">
-                </form><br>
-              </div>
-
-              <div id="porPixel">
-                <p>Dados do Modelo Eta HADGEM2-ES por pixel de 5km para o estado de Espírito Santo</p>
-                <form class="" action="" method="get">
-                  <input type="hidden" value="0" id="pixel_id">
-                </form>
-              </div>
+              <form action="" method="get">
+                {% csrf_token %}
+                <label for="variable">Variável:</label>
+                <select class="sel-data-variable" name="variable">
+                </select>
+              </form><br>
             </div>
 
             <label for="startDate">Data inicial:</label>
@@ -166,6 +160,7 @@
       crossorigin=""></script>
 
     <!-- JS próprios da plataforma  -->
+    <script type="text/javascript" src="{% static 'vismet/js/init-vars.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/chart.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/map.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/xavier.js' %}"></script>
