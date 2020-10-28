@@ -22,7 +22,7 @@ def GetXavierStationData(source, inmet_code, startDate, finalDate):
 
 # Esta retorna em os dados das estações INMET,
 # dado o inmet_code e o intervalo de data.
-def GetInmetStationData(source, code, startDate, finalDate):
+def GetINMETStationData(source, code, startDate, finalDate):
     delta = finalDate - startDate
     source = ElementSource.objects.get(name=source)
     station = Station.objects.get(source=source, inmet_code=code)
