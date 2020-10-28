@@ -13,7 +13,7 @@ from django.core import serializers
 from rest_framework import serializers as rest_serializers
 from django.core.serializers import serialize as sr
 from djqscsv import render_to_csv_response
-from vismet.retrieve_functions import GetXavierStationData, GetInmetStationData
+from vismet.retrieve_functions import GetXavierStationData, GetINMETStationData, GetANAStationData
 
 # Esta view apenas retorna o template pricipal
 # da plataforma de dados.
@@ -46,7 +46,9 @@ def Api_Stations_Data(request, format, source, code, start_day, start_month, sta
     if source == 'xavier':
         queryset = GetXavierStationData(source, code, startDate, finalDate)
     elif source == 'inmet':
-        queryset = GetInmetStations(source, code, startDate, finalDate)
+        queryset = GetINMETStationData(source, code, startDate, finalDate)
+    elif source == 'ana':
+        queryset = GetANAStationData(source, code, startDate, finalDate)
 
     if(format == 'json'):
         queryset_serialized = serializers.serialize('json', queryset)
