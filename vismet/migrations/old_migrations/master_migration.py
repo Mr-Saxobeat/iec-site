@@ -1,11 +1,7 @@
-import django.contrib.gis.db.models.fields
 from django.db import migrations, models
-import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
-    initial = True
 
     dependencies = [
     ]
@@ -23,7 +19,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
-                ('init', models.CharField(max_length=10)),
+                ('sigla', models.CharField(max_length=10)),
                 ('unit', models.CharField(max_length=10)),
                 ('chartType', models.CharField(max_length=10)),
                 ('chartColor', models.CharField(max_length=15)),
@@ -36,6 +32,8 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=100)),
                 ('data_model', models.CharField(blank=True, max_length=200, null=True)),
                 ('variables', models.ManyToManyField(to='vismet.ElementVariable')),
+                ('startDate', models.DateField(blank=True, null=True)),
+                ('finalDate', models.DateField(blank=True, null=True)),
                 ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sources', to='vismet.elementcategory')),
             ],
         ),
@@ -100,7 +98,7 @@ class Migration(migrations.Migration):
                 ('state', models.CharField(max_length=100, null=True, blank=True)),
                 ('latitude', models.FloatField()),
                 ('longitude', models.FloatField()),
-                ('geom', django.contrib.gis.db.models.fields.PolygonField(null=True, srid=4326)),
+                ('geom', models.PolygonField(null=True)),
             ],
         ),
     ]
