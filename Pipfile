@@ -14,6 +14,7 @@ django-geojson = "*"
 djangorestframework = "*"
 requests = "*"
 django-queryset-csv = "*"
+geopandas = "*"
 
 [requires]
 python_version = "3.8"
