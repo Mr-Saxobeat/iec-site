@@ -64,9 +64,9 @@ function loadANALayer(){
         }
       }
 
-      if(station.fields.type == "Fluviométrica"){
+      if(station.fields.type == "Pluviométrica"){
         ANA_Precip_Layer.addData(station_geojson);
-      }else if(station.fields.type == "Pluviométrica"){
+      }else if(station.fields.type == "Fluviométrica"){
         ANA_Flow_Layer.addData(station_geojson);
       }
     });
