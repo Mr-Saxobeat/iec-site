@@ -20,7 +20,7 @@ function variable_display_change(selBox_source, selBox_variable){
     }
   }
 
-  chart.options.scales.yAxes[0].scaleLabel.labelString = json_current_category["sources"][selected_source][selected_variable];
+  chart.options.scales.yAxes[0].scaleLabel.labelString = json_current_category["sources"][selected_source][selected_variable]['unit'];
   chart.data.datasets[0].label = selected_variable;
   chart.update();
 }
