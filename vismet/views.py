@@ -106,7 +106,7 @@ def Api_Data_Options(request):
 # para serem usados como uma layer no mapa.
 class Api_Pixel(GeoJSONLayerView):
     model = Pixel
-    properties = ['latitude', 'longitude', 'boundings']
+    properties = ['id', 'city', 'state', 'latitude', 'longitude', 'popup_content']
 
 
 def Api_Pixel_Data(request, format, pk, start_day, start_month, start_year, final_day, final_month, final_year):
