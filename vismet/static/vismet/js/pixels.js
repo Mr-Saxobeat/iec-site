@@ -39,8 +39,7 @@ var pixel_master_id;
 
 function onEachFeature(feature, layer) {
   var pixel_id = feature.properties.id;
-  var popupContent = "Id: " + pixel_id + "<br>Coord: " + feature.properties.coordinates;
-  layer.bindPopup(popupContent);
+  layer.bindPopup(feature.properties.popup_content);
   layer.on("click", function() {
     pixel_master_id = pixel_id;
   });
@@ -72,35 +71,7 @@ var pixels_layer = L.geoJson([], {
 
 $.getJSON(url_pixel, function(data) {
   var i = 0;
-  data.features.forEach(ft => {
-    boundings = JSON.parse(ft.properties.boundings);
-
-    // Leaflet pede longitude e latitude, por isso
-    // aqui a ordem das coordenadas é invertida.
-    //boundings[0] = boundings[0].reverse();
-    //boundings[1] = boundings[1].reverse();
-
-    var points = [
-      boundings[0],
-      [ boundings[1][0], boundings[0][1] ],
-      boundings[1],
-      [ boundings[0][0], boundings[1][1] ]
-    ];
-
-    var geoJsonFeature = {
-      "type": "Feature",
-      "properties": {
-        "id": ft.id,
-        "coordinates": [ft.properties.longitude, ft.properties.latitude],
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [points],
-      }
-    };
-
-    pixels_layer.addData(geoJsonFeature);
-  });
+  pixels_layer.addData(data);
 })
 
 control.addOverlay(pixels_layer, "Pixels");
