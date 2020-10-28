@@ -92,8 +92,8 @@ class ANAStationData(models.Model):
 # Pixels do estado do Espírito Santo.
 # Cada pixel tem 5Km de lado. (verificar isso)
 class Pixel(models.Model):
-    city = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
+    city = models.CharField(max_length=100, null=True, blank=True)
+    state = models.CharField(max_length=100, null=True, blank=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
     geom = models.PolygonField(null=True)
