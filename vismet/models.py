@@ -113,13 +113,13 @@ class Pixel(models.Model):
 
 
 # Dados dos pixels do estado do Espírito Santo
-class PixelData(models.Model):
-    pixel = models.ForeignKey(Pixel, related_name='pixel_data', on_delete=models.CASCADE)
-    date = models.DateField()
-    preciptation = models.FloatField()
-
-    def __str__(self):
-        return f'{ self.pixel.pixel_id }: { self.date }'
+# class PixelData(models.Model):
+#     pixel = models.ForeignKey(Pixel, related_name='pixel_data', on_delete=models.CASCADE)
+#     date = models.DateField()
+#     preciptation = models.FloatField()
+#
+#     def __str__(self):
+#         return f'{ self.pixel.pixel_id }: { self.date }'
 
 
 # Este modelo é usado como uma layer no mapa
@@ -129,33 +129,33 @@ class PixelData(models.Model):
 # dando algum erro ao subir os dados do .cvs, Portanto, ainda é
 # necessário verificar se ainda pode ter algum erro nessa questão.
 ######################################################################
-class City(models.Model):
-    fid = models.BigIntegerField(blank=True,null=True)
-    nome = models.CharField(max_length=50,blank=True,null=True)
-    cod_ibge = models.FloatField(blank=True,null=True)
-    microestad = models.CharField(max_length=50,blank=True,null=True)
-    macroestad = models.CharField(max_length=50,blank=True,null=True)
-    fonte = models.CharField(max_length=30,blank=True,null=True)
-    data = models.CharField(max_length=50,blank=True,null=True)
-    area_km2 = models.FloatField(blank=True,null=True)
-    perim_m = models.FloatField(blank=True,null=True)
-    percen_are = models.FloatField(blank=True,null=True)
-    origem = models.CharField(max_length=100,blank=True,null=True)
-    regional = models.CharField(max_length=20,blank=True,null=True)
-    estrutura = models.CharField(max_length=30,blank=True,null=True)
-    esc_local = models.CharField(max_length=30,blank=True,null=True)
-    lei_criaca = models.CharField(max_length=250,blank=True,null=True)
-    geom = models.PolygonField(srid=4326,blank=True,null=True)
-
-    def __str__(self):
-        return self.nome
-
-
-class CityData(models.Model):
-    date = models.DateField()
-    city = models.ForeignKey(City, related_name='city_data', on_delete=models.CASCADE)
-    preciptation = models.FloatField(null=True)
-    medTemp = models.FloatField(null=True)
-
-    def __str__(self):
-        return f'{ self.city.nome }: { self.date }'
+# class City(models.Model):
+#     fid = models.BigIntegerField(blank=True,null=True)
+#     nome = models.CharField(max_length=50,blank=True,null=True)
+#     cod_ibge = models.FloatField(blank=True,null=True)
+#     microestad = models.CharField(max_length=50,blank=True,null=True)
+#     macroestad = models.CharField(max_length=50,blank=True,null=True)
+#     fonte = models.CharField(max_length=30,blank=True,null=True)
+#     data = models.CharField(max_length=50,blank=True,null=True)
+#     area_km2 = models.FloatField(blank=True,null=True)
+#     perim_m = models.FloatField(blank=True,null=True)
+#     percen_are = models.FloatField(blank=True,null=True)
+#     origem = models.CharField(max_length=100,blank=True,null=True)
+#     regional = models.CharField(max_length=20,blank=True,null=True)
+#     estrutura = models.CharField(max_length=30,blank=True,null=True)
+#     esc_local = models.CharField(max_length=30,blank=True,null=True)
+#     lei_criaca = models.CharField(max_length=250,blank=True,null=True)
+#     geom = models.PolygonField(srid=4326,blank=True,null=True)
+#
+#     def __str__(self):
+#         return self.nome
+#
+#
+# class CityData(models.Model):
+#     date = models.DateField()
+#     city = models.ForeignKey(City, related_name='city_data', on_delete=models.CASCADE)
+#     preciptation = models.FloatField(null=True)
+#     medTemp = models.FloatField(null=True)
+#
+#     def __str__(self):
+#         return f'{ self.city.nome }: { self.date }'
