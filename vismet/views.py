@@ -77,12 +77,17 @@ def Api_Data_Options(request):
             # fonte de dados disponibiliza.
             src_dict = {}
 
-            variables = src.variables
+            variables = src.variables.all()
             if variables is not None:
-                for var in src.variables:
+                for var in variables:
                     # Adiciona uma key ao "src_dict" que é o nome
                     # da variável e relaciona com a unidade de medida.
-                    src_dict[var[0]] = var[1]
+                    src_dict[var.name] = {
+                        'init': var.init,
+                        'unit': var.unit,
+                        'chartType': var.chartType,
+                        'chartColor': var.chartColor
+                    }
 
             # Por fim adiciona o dict com as relações
             # variável - unidade de medida ao "category_dict"
