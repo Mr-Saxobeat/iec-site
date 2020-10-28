@@ -44,10 +44,10 @@ def LoadPixels(shp_path = os.path.join(os.getcwd(), 'vismet/scripts/data/pixel/E
             latitude = lat,
             longitude = lon,
         )
-
-        if created:
-            geom = polygon_geom
-            pixel.save()
+    
+        pixel.geom = polygon_geom
+        pixel.save()
+        print(pixel)
 
     print("\n\n")
     print("Os pixels foram carregados.")
