@@ -9,14 +9,20 @@ var divReanaliseData = document.getElementById("div-reanálise");
 var divSimulatedData = document.getElementById("div-simulados");
 
 function variable_display_change(selBox_source, selBox_variable){
-  if(selBox_source.value == 'ana'){
-    var selected_variable = selBox_variable.value.toUpperCase();
-    if(selected_variable == 'PRECIPITAÇÃO'){
+  var selected_source = selBox_source.value;
+  var selected_variable = selBox_variable.value;
+
+  if(selected_source.toLowerCase() == 'ana'){
+    if(selected_variable.toLowerCase() == 'precipitação'){
       showLayer('ana-precip');
-    }else if(selected_variable == 'VAZÃO'){
+    }else if(selected_variable.toLowerCase() == 'vazão'){
       showLayer('ana-flow');
     }
   }
+
+  chart.options.scales.yAxes[0].scaleLabel.labelString = json_current_category["sources"][selected_source][selected_variable]['unit'];
+  chart.data.datasets[0].label = selected_variable;
+  chart.update();
 }
 
 // selectBox: DOM select object
@@ -44,19 +50,12 @@ function showLayer(layer_name){
 // it's a child of json_current_category object.
 function setVariableSelection(selectBox, selected_source){
   removeAllOptions(selectBox);
-  var available_variables = null;
+  var available_variables = json_current_category['sources'][selected_source];
 
-  json_current_category.sources.forEach(source => {
-    if(source.name == selected_source){
-      available_variables = source.variables;
-    }
-  });
-
-  var newOpt;
-  available_variables.forEach(variable => {
-    newOpt = new Option(variable, variable);
+  for (var key in available_variables){
+    newOpt = new Option(key, key);
     selectBox.add(newOpt, undefined);
-  });
+  }
 }
 
 // Essa função adiciona as opções no menu de seleção
@@ -65,8 +64,8 @@ function setVariableSelection(selectBox, selected_source){
 function setSourceDataSelection(selectBox){
   removeAllOptions(selectBox);
   var newOpt;
-  json_current_category.sources.forEach(source => {
-    newOpt = new Option(source.name, source.name);
+  Object.keys(json_current_category['sources']).forEach(source => {
+    newOpt = new Option(source, source);
     selectBox.add(newOpt, undefined);
   });
 }
@@ -85,31 +84,24 @@ function showCategoryData(div_last_name){
   var selectedDiv = document.getElementById("div-" + div_last_name);
   selectedDiv.style.display = "block";
 
-  for(i = 0; i <= 10; i++){ // O valor de i <= foi arbitrário!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    if(json_data_options[i].category == div_last_name){
-      // Esta variável carrega o json com a categoria atual e suas fontes
-      // e variáveis de cada fonte. Ela é usada nas outras funções.
-      json_current_category = json_data_options[i];
-      break;
-    }
-  }
+  json_current_category = json_data_options[div_last_name]
 
   selBox_source_display = selectedDiv.getElementsByClassName("sel-data-source")[0];
   selBox_variable_display = selectedDiv.getElementsByClassName("sel-data-variable")[0];
-  setSourceDataSelection(selBox_source_display, div_last_name);
+  setSourceDataSelection(selBox_source_display, json_current_category);
 
   selBox_source_display.addEventListener("change", function() {
     setVariableSelection(selBox_variable_display, selBox_source_display.value);
     showLayer(selBox_source_display.value);
     });
-  var evt = document.createEvent("HTMLEvents");
-  evt.initEvent("change", false, true);
-  selBox_source_display.dispatchEvent(evt);
 
   selBox_variable_display.addEventListener("change", function() {
     variable_display_change(selBox_source_display, selBox_variable_display);
   })
-
+  var evt = document.createEvent("HTMLEvents");
+  evt.initEvent("change", false, true);
+  selBox_source_display.dispatchEvent(evt);
+  selBox_variable_display.dispatchEvent(evt);
 }
 
 // Armazena os botões de categorias em variáveis e adiciona um listener

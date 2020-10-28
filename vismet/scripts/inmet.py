@@ -13,10 +13,10 @@ def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'd
                         name = 'inmet',
                         category = ElementCategory.objects.get(name='observados'),
                         variables = [
-                            'temperatura máxima',
-                            'temperatura mínima',
-                            'umidade relativa',
-                            'precipitação'
+                            ['temperatura máxima', 'ºC'],
+                            ['temperatura mínima', 'ºC'],
+                            ['umidade relativa', '%'],
+                            ['precipitação', 'mm³']
                             ]
                             )
 

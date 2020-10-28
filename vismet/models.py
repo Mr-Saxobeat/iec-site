@@ -1,5 +1,5 @@
 from django.contrib.gis.db import models
-from django.contrib.postgres.fields import ArrayField
+import django.contrib.postgres.fields as pgField
 import os
 import csv
 
@@ -7,15 +7,19 @@ import csv
 class ElementCategory(models.Model):
     name = models.CharField(max_length=100)
 
+class ElementVariable(models.Model):
+    name = models.CharField(max_length=200)
+    init = models.CharField(max_length=10)
+    unit = models.CharField(max_length=10)
+    chartType = models.CharField(max_length=10)
+    chartColor = models.CharField(max_length=15)
+
 # Modelo que representa a fonte de uma estação, pixel... (INMET, ANA, CEMADEN...)
 class ElementSource(models.Model):
     name = models.CharField(max_length=100)
     category = models.ForeignKey(ElementCategory, related_name='sources', on_delete=models.CASCADE)
     data_model = models.CharField(max_length=200, blank=True, null=True)
-    variables = ArrayField(
-        base_field=models.CharField(max_length=20),
-        size=20,
-    )
+    variables = models.ManyToManyField(ElementVariable)
 
 # Modelo que representa uma única estação meteorológica
 class Station(models.Model):
