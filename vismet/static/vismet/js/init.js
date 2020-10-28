@@ -22,6 +22,7 @@ $.getJSON(url_data_options, function (data) {
   loadXavierLayer();
   loadANALayer();
   loadINMETLayer();
+  loadETALayer();
   map.addLayer(layers_dic["ana"]);
 });
 
