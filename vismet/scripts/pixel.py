@@ -3,8 +3,9 @@ import csv
 import json
 from vismet.models import Pixel, ElementSource, ElementCategory
 from django.contrib.gis.geos import LinearRing, Polygon
+import geopandas as gpd
 
-def LoadPixels(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/pixel/pixel_cities.csv')):
+def LoadPixels(shp_path = os.path.join(os.getcwd(), 'vismet/scripts/data/pixel/ES_Pixel_Eta5km_Shapefile.shp')):
 
     # Pega o elemento "Categoria"
     category, created = ElementCategory.objects.get_or_create(
@@ -19,37 +20,34 @@ def LoadPixels(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/pixel/p
 
     state = 'ES'
 
-    with open(csv_path, 'r') as file:
-        reader = csv.reader(file)
+    shp_df = gpd.read_file(shp_path)
+    dist = 0.025
+    for index, row in shp_df.iterrows():
+        lat = row["Latitude"]
+        lon = row["Longitude"]
 
-        for i, row in enumerate(reader):
-            if i == 0:
-                continue
+        centroid = row["geometry"]
+        x1 = float(centroid.x) - dist
+        y1 = float(centroid.y) + dist
+        x2 = float(centroid.x) + dist
+        y2 = float(centroid.y) - dist
 
-            city = row[1]
-            lat = row[3]
-            lng = row[4]
+        pt1 = (x1, y1)
+        pt2 = (x2, y1)
+        pt3 = (x2, y2)
+        pt4 = (x1, y2)
 
-            dist = 0.025
-            x1 = float(lat) - dist
-            y1 = float(lng) + dist
-            x2 = float(lat) + dist
-            y2 = float(lng) - dist
+        coords = LinearRing(pt1, pt2, pt3, pt4, pt1)
+        polygon_geom = Polygon(coords)
 
-            pt1 = (x1, y1)
-            pt2 = (x2, y1)
-            pt3 = (x2, y2)
-            pt4 = (x1, y2)
+        pixel, created = Pixel.objects.get_or_create(
+            latitude = lat,
+            longitude = lon,
+        )
 
-            coords = LinearRing(pt1, pt2, pt3, pt4, pt1)
-            polygon_geom = Polygon(coords)
-
-            Pixel.objects.get_or_create(
-                city = city,
-                latitude = lat,
-                longitude = lng,
-                geom = polygon_geom,
-            )
+        if created:
+            geom = polygon_geom
+            pixel.save()
 
     print("\n\n")
     print("Os pixels foram carregados.")
