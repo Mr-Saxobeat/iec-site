@@ -1,5 +1,5 @@
 from vismet.models import ElementCategory, ElementSource, ElementVariable, DataModel
-from vismet.models import City
+from vismet.models import City, CityData
 from django.contrib.gis.utils import LayerMapping
 import os
 import csv
@@ -57,11 +57,7 @@ def LoadCities(shp_path = os.path.join(os.getcwd(), 'vismet/scripts/data/city/es
     lm = LayerMapping(City, shp_path, city_mapping)
     lm.save(strict=True, verbose=True)
 
-def LoadCityData():
-    csv_path = os.path.join(os.getcwd(),
-                            'stations_data',
-                            'esmunicipios',
-                            'Etakm_HADGEM2-ES_Historico_Temp_Mensal_Media.csv')
+def LoadCityData(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/city/esmunicpios/PREC ES Eta5km Hist. Mun 1960-2005.csv'), months=0):
 
     with open(csv_path, 'r') as file:
         reader = csv.reader(file)
@@ -83,28 +79,34 @@ def LoadCityData():
                 # são adicionados à lista.
                 if i == 0:
                     if j == 0:
-                        j = 2
+                        j = 1
                         value = row[j]
 
                     city_id.append(value)
 
                 elif i > 0 and j == 0:
-                    year = int(value)
-                    month = int(row[1])
-                    date = datetime.date(year, month, 1)
+                    date_string = value
+                    date = datetime.datetime.strptime(date_string, "%m/%d/%y")
+                    date = datetime.datetime(date.year - 100, date.month, date.day)
 
-                    # if year > 1960:
-                    #     return print("acabou")
+                    # Este pequeno bloco serve única e exclusivamente
+                    # para limitar a quantidade de dias que o loop vai iterar.
+                    # Dessa forma consegue-se fazer um pequeno teste do programa.
+                    if months > 0: # Apenas se o argumento months for fornecido ao executar
+                        if date.month > months:
+                            return print("ACABOU")
 
-                    j = 2
+                    j = 1
                     continue
 
                 elif date:
+                    print(city_id[j-1])
                     city_data = CityData.objects.get_or_create(
                         date = date,
-                        city = City.objects.get(fid=city_id[j-2]),
-                        preciptation = None,
-                        medTemp = value
+                        city = City.objects.get(fid=city_id[j-1]),
+                        defaults = {
+                            'preciptation': value,
+                        }
                     )
                     print(city_data)
 
