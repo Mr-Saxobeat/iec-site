@@ -26,6 +26,7 @@ $.getJSON(url_data_options, function (data) {
 var btn_submit = document.getElementById("btn_submit");
 var btn_download = document.getElementById("btn_download");
 var input_station_code = document.getElementById("input_station_code");
+var input_city_name = document.getElementById("input_city_name");
 var input_startDate = document.getElementById("startDate");
 var input_finalDate = document.getElementById("finalDate");
 
@@ -36,5 +37,7 @@ btn_submit.addEventListener("click", function() {
       Show_INMET_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
   } else if (selBox_source_display.value.toUpperCase() == "XAVIER"){
     Show_Xavier_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
+  }else if (selBox_source_display.value.toUpperCase() == "ETA POR CIDADE"){
+    showCityData(input_city_name.value, input_startDate.value, input_finalDate.value);
   }
 })
