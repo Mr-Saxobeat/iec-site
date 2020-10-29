@@ -20,6 +20,9 @@ function variable_display_change(selBox_source, selBox_variable){
     }
   }
 
+  var chartType = json_current_category["sources"][selected_source][selected_variable]["chartType"];
+  var chartColor = json_current_category["sources"][selected_source][selected_variable]["chartColor"];
+  createNewChart(chartType, chartColor);
   chart.options.scales.yAxes[0].scaleLabel.labelString = json_current_category["sources"][selected_source][selected_variable]['unit'];
   chart.data.datasets[0].label = selected_variable;
   chart.update();
@@ -113,11 +116,14 @@ function showCategoryData(div_last_name){
     }
     setVariableSelection(selBox_variable_display, selBox_source_display.value);
     showLayer(selBox_source_display.value);
+
+    variable_display_change(selBox_source_display, selBox_variable_display);
     });
 
   selBox_variable_display.addEventListener("change", function() {
     variable_display_change(selBox_source_display, selBox_variable_display);
   })
+
   var evt = document.createEvent("HTMLEvents");
   evt.initEvent("change", false, true);
   selBox_source_display.dispatchEvent(evt);
