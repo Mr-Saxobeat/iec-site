@@ -5,7 +5,50 @@ from vismet.models import Pixel, ElementSource, ElementCategory, ElementVariable
 from django.contrib.gis.geos import LinearRing, Polygon
 import geopandas as gpd
 
+def setPixelVariables():
+    # Pega o elemento "Categoria"
+    category, created = ElementCategory.objects.get_or_create(
+                    name='simulados'
+                    )
+
+    # Pega o objeto "Fonte da estação"
+    eta, created = ElementSource.objects.get_or_create(
+                        name = 'eta por pixel',
+                        category = category
+                        )
+
+    # Cria as variáveis dos pixels
+    maxTemp, created = ElementVariable.objects.get_or_create(
+        name = 'temperatura máxima',
+        init = 'maxTemp',
+        unit = 'ºC',
+        chartType = 'line',
+        chartColor = 'red',
+    )
+
+    minTemp, created = ElementVariable.objects.get_or_create(
+        name = 'temperatura mínima',
+        init = 'minTemp',
+        unit = 'ºC',
+        chartType = 'line',
+        chartColor = 'blue',
+    )
+
+    evapo, created = ElementVariable.objects.get_or_create(
+        name = 'evapotranspiração',
+        init = 'evapo',
+        unit = 'mm³',
+        chartType = 'line',
+        chartColor = 'red',
+    )
+
+    eta.variables.add(maxTemp, minTemp, evapo)
+    eta.save()
+
+
 def LoadPixels(shp_path = os.path.join(os.getcwd(), 'vismet/scripts/data/pixel/ES_Pixel_Eta5km_Shapefile.shp')):
+
+    setPixelVariables()
 
     # Pega o elemento "Categoria"
     category, created = ElementCategory.objects.get_or_create(
@@ -14,7 +57,7 @@ def LoadPixels(shp_path = os.path.join(os.getcwd(), 'vismet/scripts/data/pixel/E
 
     # Pega o objeto "Fonte da estação"
     source, created = ElementSource.objects.get_or_create(
-                        name = 'eta',
+                        name = 'eta por pixel',
                         category = category
                         )
 
@@ -52,44 +95,3 @@ def LoadPixels(shp_path = os.path.join(os.getcwd(), 'vismet/scripts/data/pixel/E
     print("\n\n")
     print("Os pixels foram carregados.")
     print("\n\n")
-
-
-def setPixelVariables():
-    # Pega o elemento "Categoria"
-    category, created = ElementCategory.objects.get_or_create(
-                    name='simulados'
-                    )
-
-    # Pega o objeto "Fonte da estação"
-    eta, created = ElementSource.objects.get_or_create(
-                        name = 'eta',
-                        category = category
-                        )
-
-    # Cria as variáveis dos pixels
-    maxTemp, created = ElementVariable.objects.get_or_create(
-        name = 'temperatura máxima',
-        init = 'maxTemp',
-        unit = 'ºC',
-        chartType = 'line',
-        chartColor = 'red',
-    )
-
-    minTemp, created = ElementVariable.objects.get_or_create(
-        name = 'temperatura mínima',
-        init = 'minTemp',
-        unit = 'ºC',
-        chartType = 'line',
-        chartColor = 'blue',
-    )
-
-    evapo, created = ElementVariable.objects.get_or_create(
-        name = 'evapotranspiração',
-        init = 'evapo',
-        unit = 'mm³',
-        chartType = 'line',
-        chartColor = 'red',
-    )
-
-    eta.variables.add(maxTemp, minTemp, evapo)
-    eta.save()
