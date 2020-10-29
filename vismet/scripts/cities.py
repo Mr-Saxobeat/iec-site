@@ -37,7 +37,7 @@ def setCityVariables():
                         )
 
     datamodel_eta5km_45, created = DataModel.objects.get_or_create(
-                            name = 'RCP 4.5, 5Km'
+                            name = 'Histórico, 5Km'
                             )
 
     precip, created = ElementVariable.objects.get_or_create(
@@ -58,7 +58,7 @@ def LoadCities(shp_path = os.path.join(os.getcwd(), 'vismet/scripts/data/city/es
     lm.save(strict=True, verbose=True)
 
 def LoadCityData(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/city/esmunicpios/PREC ES Eta5km Hist. Mun 1960-2005.csv'), months=0):
-
+    setCityVariables()
     with open(csv_path, 'r') as file:
         reader = csv.reader(file)
 
