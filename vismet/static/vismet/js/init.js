@@ -18,11 +18,12 @@ var url_data_options = document.getElementById("url-data-options").value;
 // de acordo com a categoria, fonte, modelo.
 $.getJSON(url_data_options, function (data) {
   json_data_options = JSON.parse(JSON.stringify(data));
-  showCategoryData("observados");
   loadXavierLayer();
   loadANALayer();
   loadINMETLayer();
   loadETALayer();
+  LoadETACity();
+  showCategoryData("observados");
   map.addLayer(layers_dic["ana"]);
 });
 
