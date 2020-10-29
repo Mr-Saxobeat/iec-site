@@ -1,27 +1,3 @@
-style = {
-  color: 'red',
-};
-
-var i = 0;
-
-function refreshChart(city_id){
-  $.getJSON("http://127.0.0.1:8000/api/pixeldata/" + city_id + "/1-1-1960/1-1-1960/",
-            function (data) {
-              dates = []
-              prec = []
-
-              data.forEach(dt => {
-                dates.push(dt.date);
-                prec.push(dt.preciptation);
-              });
-
-              removeData(chart);
-              addData(chart, dates, prec);
-              chart.update();
-            });
-
-}
-
 function highlightFeature(e) {
   var layer = e.target;
 
@@ -36,7 +12,7 @@ function highlightFeature(e) {
 
 function resetHighlight(e) {
   if(e.target != oldLayer){
-    cities_layer.resetStyle(e.target);
+    ETA_City_Layer.resetStyle(e.target);
   }
 }
 
@@ -45,7 +21,7 @@ var oldLayer = null;
 function selectFeature(e) {
 
   if(oldLayer){
-    cities_layer.resetStyle(oldLayer);
+    ETA_City_Layer.resetStyle(oldLayer);
   }
 
   var layer = e.target;
@@ -61,9 +37,9 @@ function selectFeature(e) {
   $("#city_name")[0].value = feature.properties.nome;
 }
 
-function onEachFeature(feature, layer) {
-  var popupContent = "Nome:" + feature.properties.nome;
-  // layer.bindPopup(popupContent);
+function ETA_City_Layer_onEachFeature(feature, layer) {
+  var popupContent = "Nome:" + feature.properties.name;
+  layer.bindPopup(popupContent);
   layer.on({
     click: selectFeature,
     mouseout: resetHighlight,
@@ -71,33 +47,21 @@ function onEachFeature(feature, layer) {
   })
 }
 
+var ETA_City_Style = {
+  color: 'red',
+};
 
-var cities_layer = L.geoJson([], {
-  style: style,
+var ETA_City_Layer = L.geoJson([], {
+  style: ETA_City_Style,
 
-  onEachFeature: onEachFeature,
+  onEachFeature: ETA_City_Layer_onEachFeature,
 })
 
 var url_cities = $("#url-cities").val();
-
-$.getJSON(url_cities, function (data) {
-  cities_layer.addData(data);
-})
-
-control.addOverlay(cities_layer, "Cidades");
-
-
-var btn_download_city_data = $("#btn_download_city_data");
-btn_download_city_data.click(function(){
-
-  var city_name = $("#city_name")[0].value;
-  var startDate = $("#city_startDate")[0].value;
-  var finalDate = $("#city_finalDate")[0].value;
-
-  for(i = 0; i < 3; i++){
-    startDate = startDate.replace("/", "-");
-    finalDate = finalDate.replace("/", "-");
-  }
-
-  window.location = url_cities + "csv" + "/" + city_name + "/" + startDate + "/" + finalDate;
-})
+function LoadETACity(){
+  $.getJSON(url_cities, function (data) {
+    ETA_City_Layer.addData(data);
+  })
+  control.addOverlay(ETA_City_Layer, "eta-city");
+  layers_dic["eta por cidade"] = ETA_City_Layer;
+}
