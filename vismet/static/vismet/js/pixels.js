@@ -21,5 +21,5 @@ function loadETALayer(){
     ETA_Pixel_Layer.addData(data);
   })
   control.addOverlay(ETA_Pixel_Layer, "pixels");
-  layers_dic["eta-pixel"] = ETA_Pixel_Layer;
+  layers_dic["eta por pixel"] = ETA_Pixel_Layer;
 }
