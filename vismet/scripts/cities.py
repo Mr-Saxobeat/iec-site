@@ -87,7 +87,8 @@ def LoadCityData(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/city/
                 elif i > 0 and j == 0:
                     date_string = value
                     date = datetime.datetime.strptime(date_string, "%m/%d/%y")
-                    date = datetime.datetime(date.year - 100, date.month, date.day)
+                    if date.year > 2005:
+                        date = datetime.datetime(date.year - 100, date.month, date.day)
 
                     # Este pequeno bloco serve única e exclusivamente
                     # para limitar a quantidade de dias que o loop vai iterar.
@@ -108,7 +109,7 @@ def LoadCityData(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/city/
                             'precip': value,
                         }
                     )
-                    print(city_data)
+                    print(city_data.date.strftime("%d/%m/%Y"), "  ", city_data.city.name)
 
                 j = j + 1
 
