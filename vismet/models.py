@@ -92,65 +92,65 @@ class ANAStationData(models.Model):
 # Pixels do estado do Espírito Santo.
 # Cada pixel tem 5Km de lado. (verificar isso)
 class Pixel(models.Model):
-    pixel_id = models.BigIntegerField()
+    city = models.CharField(max_length=100, null=True, blank=True)
+    state = models.CharField(max_length=100, null=True, blank=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
-    geom = models.PointField(srid=4326, null=True)
-
-    # Lista com as coordenadas da vértice superior esquerda
-    # e da inferior direita, formando um quadrado de lado
-    # 5Km. (sim eu ainda tenho que verificar se são 5Km msm,
-    # a função que gerou esses pontos está em scripts/load_data3.py
-    boundings = models.CharField(max_length=200, blank=True)
+    geom = models.PolygonField(null=True)
 
     def __str__(self):
         return f'{ self.latitude }, { self.longitude }'
 
+    @property
+    def popup_content(self):
+        popup = "<span>ID: </span>{}<br>".format(self.id)
+        # popup += "<span>Cidade: </span>{}<br>".format(self.city)
+        # popup += "<span>Estado: </span>{}<br>".format(self.state)
+        popup += "<span>Latitude: </span>{}<br>".format(self.latitude)
+        popup += "<span>Longitude: </span>{}<br>".format(self.longitude)
+
+        return popup
+
 
 # Dados dos pixels do estado do Espírito Santo
-class PixelData(models.Model):
-    date = models.DateField()
-    pixel = models.ForeignKey(Pixel, related_name='data', on_delete=models.CASCADE)
-    preciptation = models.FloatField()
-
-    def __str__(self):
-        return f'{ self.pixel.pixel_id }: { self.date }'
+# class PixelData(models.Model):
+#     pixel = models.ForeignKey(Pixel, related_name='pixel_data', on_delete=models.CASCADE)
+#     date = models.DateField()
+#     preciptation = models.FloatField()
+#
+#     def __str__(self):
+#         return f'{ self.pixel.pixel_id }: { self.date }'
 
 
 # Este modelo é usado como uma layer no mapa
 # para destacar os municípios do Espírito Santo.
-######################################################################
-# Foram adicionados os atributos blank e null como True, pois estava
-# dando algum erro ao subir os dados do .cvs, Portanto, ainda é
-# necessário verificar se ainda pode ter algum erro nessa questão.
-######################################################################
 class City(models.Model):
     fid = models.BigIntegerField(blank=True,null=True)
-    nome = models.CharField(max_length=50,blank=True,null=True)
-    cod_ibge = models.FloatField(blank=True,null=True)
-    microestad = models.CharField(max_length=50,blank=True,null=True)
-    macroestad = models.CharField(max_length=50,blank=True,null=True)
+    name = models.CharField(max_length=50,blank=True,null=True)
+    ibge_code = models.FloatField(blank=True,null=True)
+    microestado = models.CharField(max_length=50,blank=True,null=True)
+    macroestado = models.CharField(max_length=50,blank=True,null=True)
     fonte = models.CharField(max_length=30,blank=True,null=True)
     data = models.CharField(max_length=50,blank=True,null=True)
     area_km2 = models.FloatField(blank=True,null=True)
     perim_m = models.FloatField(blank=True,null=True)
-    percen_are = models.FloatField(blank=True,null=True)
+    percen_area = models.FloatField(blank=True,null=True)
     origem = models.CharField(max_length=100,blank=True,null=True)
     regional = models.CharField(max_length=20,blank=True,null=True)
     estrutura = models.CharField(max_length=30,blank=True,null=True)
     esc_local = models.CharField(max_length=30,blank=True,null=True)
-    lei_criaca = models.CharField(max_length=250,blank=True,null=True)
+    lei_criacao = models.CharField(max_length=250,blank=True,null=True)
     geom = models.PolygonField(srid=4326,blank=True,null=True)
 
     def __str__(self):
         return self.nome
 
 
-class CityData(models.Model):
-    date = models.DateField()
-    city = models.ForeignKey(City, related_name='city_data', on_delete=models.CASCADE)
-    preciptation = models.FloatField(null=True)
-    medTemp = models.FloatField(null=True)
-
-    def __str__(self):
-        return f'{ self.city.nome }: { self.date }'
+# class CityData(models.Model):
+#     date = models.DateField()
+#     city = models.ForeignKey(City, related_name='city_data', on_delete=models.CASCADE)
+#     preciptation = models.FloatField(null=True)
+#     medTemp = models.FloatField(null=True)
+#
+#     def __str__(self):
+#         return f'{ self.city.nome }: { self.date }'

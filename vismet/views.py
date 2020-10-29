@@ -1,10 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from djgeojson.views import GeoJSONLayerView
-from .models import XavierStationData
-from .models import INMETStationData
-from .models import Pixel, PixelData
-from .models import City, CityData
-from .models import ElementCategory, ElementSource, Station
+from .models import ElementCategory, ElementSource, Station, Pixel, City
 from django.http import HttpResponse, JsonResponse, Http404
 import json
 import datetime
@@ -106,42 +102,42 @@ def Api_Data_Options(request):
 # para serem usados como uma layer no mapa.
 class Api_Pixel(GeoJSONLayerView):
     model = Pixel
-    properties = ['latitude', 'longitude', 'boundings']
+    properties = ['id', 'city', 'state', 'latitude', 'longitude', 'popup_content']
 
 
-def Api_Pixel_Data(request, format, pk, start_day, start_month, start_year, final_day, final_month, final_year):
-    startDate = datetime.date(start_year, start_month, start_day)
-    finalDate = datetime.date(final_year, final_month, final_day)
-
-    pixel = Pixel.objects.get(pk=pk)
-    data = pixel.data.filter(date__gte=startDate, date__lte=finalDate)
-
-    queryset = []
-
-    for dt in data:
-        pixel_id = dt.pixel.pk
-        date  = dt.date.strftime("%Y-%m-%d")
-        coords = {
-                    'latitude': dt.pixel.latitude,
-                    'longitude': dt.pixel.longitude
-                 }
-        preciptation = dt.preciptation
-
-        pixel_data_timestamp = {
-            'pixel_id': pixel_id,
-            'date': date,
-            'coords': coords,
-            'preciptation': preciptation
-        }
-
-        queryset.append(pixel_data_timestamp)
-
-    if(format == "json"):
-        return JsonResponse(queryset, safe=False)
-        return response
-
-    elif format == "csv":
-        return render_to_csv_response(data)
+# def Api_Pixel_Data(request, format, pk, start_day, start_month, start_year, final_day, final_month, final_year):
+#     startDate = datetime.date(start_year, start_month, start_day)
+#     finalDate = datetime.date(final_year, final_month, final_day)
+#
+#     pixel = Pixel.objects.get(pk=pk)
+#     data = pixel.data.filter(date__gte=startDate, date__lte=finalDate)
+#
+#     queryset = []
+#
+#     for dt in data:
+#         pixel_id = dt.pixel.pk
+#         date  = dt.date.strftime("%Y-%m-%d")
+#         coords = {
+#                     'latitude': dt.pixel.latitude,
+#                     'longitude': dt.pixel.longitude
+#                  }
+#         preciptation = dt.preciptation
+#
+#         pixel_data_timestamp = {
+#             'pixel_id': pixel_id,
+#             'date': date,
+#             'coords': coords,
+#             'preciptation': preciptation
+#         }
+#
+#         queryset.append(pixel_data_timestamp)
+#
+#     if(format == "json"):
+#         return JsonResponse(queryset, safe=False)
+#         return response
+#
+#     elif format == "csv":
+#         return render_to_csv_response(data)
 
 
 
@@ -149,35 +145,35 @@ def Api_Pixel_Data(request, format, pk, start_day, start_month, start_year, fina
 # para serem usadas como uma layer no mapa.
 class Api_Cities(GeoJSONLayerView):
     model = City
-    properties = ('nome', 'geom')
-
-def Api_Cities_Data(request, format, name, start_day, start_month, start_year, final_day, final_month, final_year):
-    startDate = datetime.date(start_year, start_month, start_day)
-    finalDate = datetime.date(final_year, final_month, final_day)
-
-    city = City.objects.get(nome=name)
-    data = city.city_data.filter(date__gte=startDate, date__lte=finalDate)
-
-    queryset = []
-
-    for dt in data:
-        city = dt.city.nome
-        date  = dt.date.strftime("%Y-%m-%d")
-        preciptation = dt.preciptation
-        medTemp = dt.medTemp
-
-        city_timestamp = {
-            'city': city,
-            'date': date,
-            'preciptation': preciptation,
-            'medTemp': medTemp
-        }
-
-        queryset.append(city_timestamp)
-
-    response = queryset
-
-    if format == "json":
-        return JsonResponse(response, safe=False)
-    elif format == "csv":
-        return render_to_csv_response(data)
+    properties = ('id', 'name')
+#
+# def Api_Cities_Data(request, format, name, start_day, start_month, start_year, final_day, final_month, final_year):
+#     startDate = datetime.date(start_year, start_month, start_day)
+#     finalDate = datetime.date(final_year, final_month, final_day)
+#
+#     city = City.objects.get(nome=name)
+#     data = city.city_data.filter(date__gte=startDate, date__lte=finalDate)
+#
+#     queryset = []
+#
+#     for dt in data:
+#         city = dt.city.nome
+#         date  = dt.date.strftime("%Y-%m-%d")
+#         preciptation = dt.preciptation
+#         medTemp = dt.medTemp
+#
+#         city_timestamp = {
+#             'city': city,
+#             'date': date,
+#             'preciptation': preciptation,
+#             'medTemp': medTemp
+#         }
+#
+#         queryset.append(city_timestamp)
+#
+#     response = queryset
+#
+#     if format == "json":
+#         return JsonResponse(response, safe=False)
+#     elif format == "csv":
+#         return render_to_csv_response(data)
