@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from djgeojson.views import GeoJSONLayerView
-from .models import ElementCategory, ElementSource, Station, Pixel
+from .models import ElementCategory, ElementSource, Station, Pixel, City
 from django.http import HttpResponse, JsonResponse, Http404
 import json
 import datetime
@@ -143,9 +143,9 @@ class Api_Pixel(GeoJSONLayerView):
 
 # Esta view retorna as cidades do Espírito Santo
 # para serem usadas como uma layer no mapa.
-# class Api_Cities(GeoJSONLayerView):
-#     model = City
-#     properties = ('nome', 'geom')
+class Api_Cities(GeoJSONLayerView):
+    model = City
+    properties = ('id', 'name')
 #
 # def Api_Cities_Data(request, format, name, start_day, start_month, start_year, final_day, final_month, final_year):
 #     startDate = datetime.date(start_year, start_month, start_day)
