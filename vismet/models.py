@@ -14,11 +14,14 @@ class ElementVariable(models.Model):
     chartType = models.CharField(max_length=10)
     chartColor = models.CharField(max_length=15)
 
+class DataModel(models.Model):
+    name = models.CharField(max_length=200)
+
 # Modelo que representa a fonte de uma estação, pixel... (INMET, ANA, CEMADEN...)
 class ElementSource(models.Model):
     name = models.CharField(max_length=100)
     category = models.ForeignKey(ElementCategory, related_name='sources', on_delete=models.CASCADE)
-    data_model = models.CharField(max_length=200, blank=True, null=True)
+    data_model = models.ManyToManyField(DataModel)
     variables = models.ManyToManyField(ElementVariable)
 
 # Modelo que representa uma única estação meteorológica
