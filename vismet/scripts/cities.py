@@ -105,7 +105,7 @@ def LoadCityData(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/city/
                         date = date,
                         city = City.objects.get(fid=city_id[j-1]),
                         defaults = {
-                            'preciptation': value,
+                            'precip': value,
                         }
                     )
                     print(city_data)
