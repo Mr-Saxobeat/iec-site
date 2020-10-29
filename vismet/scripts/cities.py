@@ -1,5 +1,5 @@
 from vismet.models import ElementCategory, ElementSource, ElementVariable
-from vismet.models import City, CityData
+from vismet.models import City
 from django.contrib.gis.utils import LayerMapping
 import os
 import csv
@@ -24,13 +24,6 @@ city_mapping = {
     'geom': 'POLYGON',
 }
 
-shp_city = os.path.abspath(os.path.join('stations_data', 'esmunicipios', 'ES_Municipios.shp'))
-
-def LoadCities(verbose=True):
-    lm = LayerMapping(City, shp_city, city_mapping)
-    lm.save(strict=True, verbose=True)
-
-
 def setCityVariables():
     # Pega o elemento "Categoria"
     category, created = ElementCategory.objects.get_or_create(
@@ -40,36 +33,25 @@ def setCityVariables():
     # Pega o objeto "Fonte da estação"
     eta, created = ElementSource.objects.get_or_create(
                         name = 'eta por cidade',
-                        category = category
+                        category = category,
+                        data_model = '5Km, ETA 4.5'
                         )
 
-    # Cria as variáveis dos pixels
-    maxTemp, created = ElementVariable.objects.get_or_create(
-        name = 'temperatura máxima',
-        init = 'maxTemp',
-        unit = 'ºC',
-        chartType = 'line',
-        chartColor = 'red',
-    )
-
-    minTemp, created = ElementVariable.objects.get_or_create(
-        name = 'temperatura mínima',
-        init = 'minTemp',
-        unit = 'ºC',
-        chartType = 'line',
+    precip, created = ElementVariable.objects.get_or_create(
+        name = 'precipitação',
+        init = 'precip',
+        unit = 'mm³',
+        chartType = 'bar',
         chartColor = 'blue',
     )
 
-    evapo, created = ElementVariable.objects.get_or_create(
-        name = 'evapotranspiração',
-        init = 'evapo',
-        unit = 'mm³',
-        chartType = 'line',
-        chartColor = 'red',
-    )
-
-    eta.variables.add(maxTemp, minTemp, evapo)
+    eta.variables.add(precip)
     eta.save()
+
+def LoadCities(shp_path = os.path.join(os.getcwd(), 'vismet/scripts/data/city/esmunicpios/ES_Municipios.shp'), verbose=True):
+    setCityVariables()
+    lm = LayerMapping(City, shp_path, city_mapping)
+    lm.save(strict=True, verbose=True)
 
 def LoadCityData():
     csv_path = os.path.join(os.getcwd(),
