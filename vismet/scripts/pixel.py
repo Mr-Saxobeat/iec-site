@@ -1,7 +1,7 @@
 import os
 import csv
 import json
-from vismet.models import Pixel, ElementSource, ElementCategory, ElementVariable
+from vismet.models import Pixel, ElementSource, ElementCategory, ElementVariable, DataModel
 from django.contrib.gis.geos import LinearRing, Polygon
 import geopandas as gpd
 
@@ -16,6 +16,10 @@ def setPixelVariables():
                         name = 'eta por pixel',
                         category = category
                         )
+
+    datamodel_eta5km_45, created = DataModel.objects.get_or_create(
+                            name = 'RCP 4.5, 5Km'
+                            )
 
     # Cria as variáveis dos pixels
     maxTemp, created = ElementVariable.objects.get_or_create(
@@ -43,6 +47,7 @@ def setPixelVariables():
     )
 
     eta.variables.add(maxTemp, minTemp, evapo)
+    eta.data_model.add(datamodel_eta5km_45)
     eta.save()
 
 

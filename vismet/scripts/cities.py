@@ -1,4 +1,4 @@
-from vismet.models import ElementCategory, ElementSource, ElementVariable
+from vismet.models import ElementCategory, ElementSource, ElementVariable, DataModel
 from vismet.models import City
 from django.contrib.gis.utils import LayerMapping
 import os
@@ -34,8 +34,11 @@ def setCityVariables():
     eta, created = ElementSource.objects.get_or_create(
                         name = 'eta por cidade',
                         category = category,
-                        data_model = '5Km, ETA 4.5'
                         )
+
+    datamodel_eta5km_45, created = DataModel.objects.get_or_create(
+                            name = 'RCP 4.5, 5Km'
+                            )
 
     precip, created = ElementVariable.objects.get_or_create(
         name = 'precipitação',
@@ -46,6 +49,7 @@ def setCityVariables():
     )
 
     eta.variables.add(precip)
+    eta.data_model.add(datamodel_eta5km_45)
     eta.save()
 
 def LoadCities(shp_path = os.path.join(os.getcwd(), 'vismet/scripts/data/city/esmunicpios/ES_Municipios.shp'), verbose=True):
