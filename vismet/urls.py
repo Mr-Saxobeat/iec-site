@@ -18,7 +18,7 @@ urlpatterns = [
     #      views.Api_Pixel_Data),
     #
     path('api/cities/', views.Api_Cities.as_view(), name='cities'),
-    # path('api/cities/<str:format>/<str:name>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
-    #      views.Api_Cities_Data),
+    path('api/cities/<str:format>/<str:name>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
+         views.Api_Cities_Data),
 
 ]

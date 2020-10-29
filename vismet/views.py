@@ -153,34 +153,17 @@ class Api_Pixel(GeoJSONLayerView):
 class Api_Cities(GeoJSONLayerView):
     model = City
     properties = ('id', 'name')
-#
-# def Api_Cities_Data(request, format, name, start_day, start_month, start_year, final_day, final_month, final_year):
-#     startDate = datetime.date(start_year, start_month, start_day)
-#     finalDate = datetime.date(final_year, final_month, final_day)
-#
-#     city = City.objects.get(nome=name)
-#     data = city.city_data.filter(date__gte=startDate, date__lte=finalDate)
-#
-#     queryset = []
-#
-#     for dt in data:
-#         city = dt.city.nome
-#         date  = dt.date.strftime("%Y-%m-%d")
-#         preciptation = dt.preciptation
-#         medTemp = dt.medTemp
-#
-#         city_timestamp = {
-#             'city': city,
-#             'date': date,
-#             'preciptation': preciptation,
-#             'medTemp': medTemp
-#         }
-#
-#         queryset.append(city_timestamp)
-#
-#     response = queryset
-#
-#     if format == "json":
-#         return JsonResponse(response, safe=False)
-#     elif format == "csv":
-#         return render_to_csv_response(data)
+
+def Api_Cities_Data(request, format, name, start_day, start_month, start_year, final_day, final_month, final_year):
+    startDate = datetime.date(start_year, start_month, start_day)
+    finalDate = datetime.date(final_year, final_month, final_day)
+
+    city = City.objects.get(name=name)
+    queryset = city.city_data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+
+    if format == "json":
+        queryset_serialized = serializers.serialize('json', queryset)
+        response = HttpResponse(queryset_serialized, content_type="application/json")
+        return response
+    elif format == "csv":
+        return render_to_csv_response(queryset)
