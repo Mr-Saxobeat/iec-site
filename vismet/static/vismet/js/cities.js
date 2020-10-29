@@ -33,8 +33,7 @@ function selectFeature(e) {
   oldLayer = e.target;
 
   var feature = e.target.feature;
-
-  $("#city_name")[0].value = feature.properties.nome;
+  input_city_name.value = feature.properties.name;
 }
 
 function ETA_City_Layer_onEachFeature(feature, layer) {
@@ -64,4 +63,22 @@ function LoadETACity(){
   })
   control.addOverlay(ETA_City_Layer, "eta-city");
   layers_dic["eta por cidade"] = ETA_City_Layer;
+}
+
+
+function showCityData(cityName, startDate, finalDate){
+  for(var i = 0; i <= 2; i++){
+    startDate = startDate.replace("/", "-");
+    finalDate = finalDate.replace("/", "-");
+  }
+
+  $.getJSON(url_cities + "json/" + cityName + "/" + startDate + "/" + finalDate, function(data) {
+    var variable = 'precip';
+    switch (selBox_variable_display.value.toLowerCase()) {
+      case 'preciptação':
+        variable = 'precip';
+        break;
+    }
+    chart_update(chart, data, variable);
+  })
 }
