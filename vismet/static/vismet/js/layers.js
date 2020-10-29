@@ -40,8 +40,6 @@ function showLayer(layer_name){
 
   if(layer_name == "ana"){
     layer_name = "ana-precip";
-  }else if(layer_name == "eta"){
-    layer_name = "eta-pixel";
   }
 
   map.addLayer(layers_dic[layer_name]);
