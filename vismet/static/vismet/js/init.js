@@ -6,10 +6,6 @@ var url_data_options = document.getElementById("url-data-options").value;
 // de acordo com a categoria, fonte, modelo.
 $.getJSON(url_data_options, function (data) {
   createNewChart('line');
-  chart.options.scales.yAxes[0].scaleLabel.display = true;
-  chart.options.scales.yAxes[0].scaleLabel.labelString = "ºC";
-  chart.options.legend.display = true;
-  chart.update();
 
   json_data_options = JSON.parse(JSON.stringify(data));
   loadXavierLayer();
