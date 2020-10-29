@@ -2,7 +2,7 @@ var selectedOption = $("#variable");
 
 // selectedOption.change(function () { updateChart(chart, selectedOption.val()); });
 var chart;
-function createNewChart(type, color){
+function createNewChart(type, color, unit, legend){
   if(chart){
     chart.destroy();
   }
@@ -10,15 +10,17 @@ function createNewChart(type, color){
   var config = {
     options: {
       title: {
-        display: true,
-        fontSize: 0,
-        text: '',
+        display: false,
+        fontSize: 10,
+        text: legend,
       },
       scales:{
         yAxes: [{
-          display: true,
-          labelString: "",
           fontColor: '#666',
+          scaleLabel: {
+            labelString: unit,
+            display: true,
+          }
         }],
         xAxes: [{
           display: true,
@@ -27,7 +29,8 @@ function createNewChart(type, color){
         }],
       },
       legend: {
-        display: false,
+        display: true,
+        labels: ["teste"]
       }
     },
     type: type,
@@ -47,6 +50,8 @@ function createNewChart(type, color){
     chart.data.datasets[0].backgroundColor = color;
     chart.update();
   }
+
+  chart.update();
 }
 
 function chart_removeData(chart) {

@@ -22,9 +22,8 @@ function variable_display_change(selBox_source, selBox_variable){
 
   var chartType = json_current_category["sources"][selected_source][selected_variable]["chartType"];
   var chartColor = json_current_category["sources"][selected_source][selected_variable]["chartColor"];
-  createNewChart(chartType, chartColor);
-  chart.options.scales.yAxes[0].scaleLabel.labelString = json_current_category["sources"][selected_source][selected_variable]['unit'];
-  chart.data.datasets[0].label = selected_variable;
+  var chartUnit = json_current_category["sources"][selected_source][selected_variable]["unit"];
+  createNewChart(chartType, chartColor, chartUnit, selected_variable);
   chart.update();
 }
 
