@@ -12,13 +12,7 @@ def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'd
     source, created = ElementSource.objects.get_or_create(
                         name = 'inmet',
                         category = ElementCategory.objects.get(name='observados'),
-                        variables = [
-                            ['temperatura máxima', 'ºC'],
-                            ['temperatura mínima', 'ºC'],
-                            ['umidade relativa', '%'],
-                            ['precipitação', 'mm³']
-                            ]
-                            )
+                        )
 
     # Links da API do INMET para recuperar os dados das estações respectivamente
     # automáticas e manuais.

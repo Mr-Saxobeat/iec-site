@@ -13,10 +13,6 @@ def LoadANAStations(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/an
     source, created = ElementSource.objects.get_or_create(
                         name = 'ana',
                         category = ElementCategory.objects.get(name='observados'),
-                        variables = [
-                            ['precipitação', 'mm³'],
-                            ['vazão', 'm³/s'],
-                            ]
                         )
 
     state = 'ES'
