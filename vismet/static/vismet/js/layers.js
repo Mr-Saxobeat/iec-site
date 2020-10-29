@@ -48,11 +48,27 @@ function showLayer(layer_name){
 // selectBox: DOM select object;
 // source: json of the selected data source,
 // it's a child of json_current_category object.
+function setModelSelection(selectBox, selected_source){
+  removeAllOptions(selectBox);
+  var available_models = json_current_category['sources'][selected_source]['models'];
+
+  available_models.forEach(model => {
+    newOpt = new Option(model, model);
+    selectBox.add(newOpt, undefined);
+  });
+}
+
+// selectBox: DOM select object;
+// source: json of the selected data source,
+// it's a child of json_current_category object.
 function setVariableSelection(selectBox, selected_source){
   removeAllOptions(selectBox);
   var available_variables = json_current_category['sources'][selected_source];
 
   for (var key in available_variables){
+    if(key == 'models'){
+      continue;
+    }
     newOpt = new Option(key, key);
     selectBox.add(newOpt, undefined);
   }
@@ -88,10 +104,12 @@ function showCategoryData(div_last_name){
 
   selBox_source_display = selectedDiv.getElementsByClassName("sel-data-source")[0];
   selBox_variable_display = selectedDiv.getElementsByClassName("sel-data-variable")[0];
+  selBox_model_display = selectedDiv.getElementsByClassName("sel-data-model")[0];
   setSourceDataSelection(selBox_source_display, json_current_category);
 
   selBox_source_display.addEventListener("change", function() {
     setVariableSelection(selBox_variable_display, selBox_source_display.value);
+    setModelSelection(selBox_model_display, selBox_source_display.value);
     showLayer(selBox_source_display.value);
     });
 
