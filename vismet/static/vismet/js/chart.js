@@ -1,32 +1,53 @@
 var selectedOption = $("#variable");
 
 // selectedOption.change(function () { updateChart(chart, selectedOption.val()); });
+var chart;
+function createNewChart(type, color){
+  if(chart){
+    chart.destroy();
+  }
 
-var chart = new Chart('chart', {
-  options: {
-    title: {
-      display: true,
-      fontSize: 0,
-      text: '',
-    },
-    scales:{
+  var config = {
+    options: {
+      title: {
+        display: true,
+        fontSize: 0,
+        text: '',
+      },
+      scales:{
         yAxes: [{
-            display: true,
-            labelString: "",
-            fontColor: '#666',
+          display: true,
+          labelString: "",
+          fontColor: '#666',
         }],
         xAxes: [{
-            display: true,
-            labelString: "Data",
-            fontColor: '#666',
+          display: true,
+          labelString: "Data",
+          fontColor: '#666',
         }],
+      },
+      legend: {
+        display: false,
+      }
     },
-    legend: {
-      display: false,
+    type: type,
+    data: {
+      datasets: [{
+        data: [],
+        borderColor: color,
+      }]
     }
-  },
-  type: 'line',
-});
+  }
+
+
+  // var temp = jQuery.extend(true, {}, config);
+  chart = new Chart('chart', config);
+
+  if(type == 'bar'){
+    chart.data.datasets[0].backgroundColor = color;
+    chart.update();
+  }
+}
 
 function chart_removeData(chart) {
   dtSet0 = chart.data.datasets[0];
