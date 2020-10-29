@@ -7,11 +7,23 @@ var XavierStations_Style = {
 };
 
 function XavierStations_Layer_onEachFeature(feature, layer) {
-  var popupContent = feature.properties.popup_content;
-  layer.bindPopup(popupContent);
-  layer.on('click', function() {
+    var popup_content;
+    popup_content = "<span>Estado: " + feature.properties.state + "</span><br>";
+    popup_content += "<span>Cidade: " + feature.properties.city + "</span><br>";
+    if(feature.properties.omm_code != ""){
+      popup_content += "<span>Código OMM: " + feature.properties.omm_code + "</span><br>";
+    }
+    if(feature.properties.inmet_code != ""){
+      popup_content += "<span>Código INMET: " + feature.properties.inmet_code + "</span><br>";
+    }
+    popup_content += "<span>Tipo: " + feature.properties.type + "</span><br>";
+    popup_content += "<span>Latitude: " + feature.properties.latitude + "</span><br>";
+    popup_content += "<span>Longitude: " + feature.properties.longitude + "</span><br>";
+    popup_content += "<span>Altitude: " + feature.properties.altitude + "</span><br>";
+
+    layer.bindPopup(popup_content);
+    layer.on('click', function() {
     input_station_code.value = feature.properties.inmet_code;
-    console.log(feature.properties.inmet_code);
     station_city = feature.properties.name;
     station_state = feature.properties.state;
     station_inmet = feature.properties.inmet_code;
