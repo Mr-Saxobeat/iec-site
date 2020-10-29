@@ -152,7 +152,7 @@ class City(models.Model):
 class CityData(models.Model):
     date = models.DateField()
     city = models.ForeignKey(City, related_name='city_data', on_delete=models.CASCADE)
-    preciptation = models.FloatField(null=True)
+    precip = models.FloatField(null=True)
     medTemp = models.FloatField(null=True)
 
     def __str__(self):
