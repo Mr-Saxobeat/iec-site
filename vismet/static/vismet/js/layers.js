@@ -108,8 +108,10 @@ function showCategoryData(div_last_name){
   setSourceDataSelection(selBox_source_display, json_current_category);
 
   selBox_source_display.addEventListener("change", function() {
+    if(selBox_model_display != undefined){
+      setModelSelection(selBox_model_display, selBox_source_display.value);
+    }
     setVariableSelection(selBox_variable_display, selBox_source_display.value);
-    setModelSelection(selBox_model_display, selBox_source_display.value);
     showLayer(selBox_source_display.value);
     });
 
