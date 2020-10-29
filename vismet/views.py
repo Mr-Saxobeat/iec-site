@@ -87,10 +87,17 @@ def Api_Data_Options(request):
                         'chartColor': var.chartColor
                     }
 
+            dt_model_list = []
+            data_models = src.data_model.all()
+            if data_models is not None:
+                for model in data_models:
+                    dt_model_list.append(model.name)
+
+            category_dict["sources"][src.name]= src_dict
+            category_dict["sources"][src.name]["models"] = dt_model_list
             # Por fim adiciona o dict com as relações
             # variável - unidade de medida ao "category_dict"
             # relacionando a fonte de dados com as suas variáveis.
-            category_dict["sources"][src.name] = src_dict
 
         # Por fim adiciona o dict da categoria totalmente construída
         # à lista de categorias de dados.
