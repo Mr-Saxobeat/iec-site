@@ -6,6 +6,10 @@ import csv
 # Categoria de dados, (dados observados, reanálise ou simulados)
 class ElementCategory(models.Model):
     name = models.CharField(max_length=100)
+    desc = models.TextField(verbose_name="Descrição da categoria", blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
 class ElementVariable(models.Model):
     name = models.CharField(max_length=200)
@@ -14,8 +18,14 @@ class ElementVariable(models.Model):
     chartType = models.CharField(max_length=10)
     chartColor = models.CharField(max_length=15)
 
+    def __str__(self):
+        return self.init
+
 class DataModel(models.Model):
     name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
 
 # Modelo que representa a fonte de uma estação, pixel... (INMET, ANA, CEMADEN...)
 class ElementSource(models.Model):
@@ -23,6 +33,9 @@ class ElementSource(models.Model):
     category = models.ForeignKey(ElementCategory, related_name='sources', on_delete=models.CASCADE)
     data_model = models.ManyToManyField(DataModel)
     variables = models.ManyToManyField(ElementVariable)
+
+    def __str__(self):
+        return self.name
 
 # Modelo que representa uma única estação meteorológica
 class Station(models.Model):
