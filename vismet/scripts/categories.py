@@ -15,73 +15,124 @@ def LoadCategories():
 
     maxTemp, created = ElementVariable.objects.get_or_create(
         name = 'temperatura máxima',
-        init = 'maxTemp',
-        unit = 'ºC',
-        chartType = 'line',
-        chartColor = 'red',
+        defaults= {
+            'init': 'maxTemp',
+            'unit': 'ºC',
+            'chartType': 'line',
+            'chartColor': 'red',
+        }
     )
 
     minTemp, created = ElementVariable.objects.get_or_create(
         name = 'temperatura mínima',
-        init = 'minTemp',
-        unit = 'ºC',
-        chartType = 'line',
-        chartColor = 'blue',
+        defaults= {
+            'init': 'minTemp',
+            'unit': 'ºC',
+            'chartType': 'line',
+            'chartColor': 'blue',
+        }
     )
 
     solarIns, created = ElementVariable.objects.get_or_create(
         name = 'radiação solar',
-        init = 'solarIns',
-        unit = 'MJ/m²',
-        chartType = 'line',
-        chartColor = 'red',
+        defaults = {
+            'init': 'solarIns',
+            'unit': 'MJ/m²',
+            'chartType': 'line',
+            'chartColor': 'red',
+        }
     )
 
     relHum, created = ElementVariable.objects.get_or_create(
         name = 'umidade relativa',
-        init = 'relHum',
-        unit = '%',
-        chartType = 'line',
-        chartColor = 'red',
+        defaults = {
+            'init': 'relHum',
+            'unit': '%',
+            'chartType': 'bar',
+            'chartColor': 'blue',
+        }
     )
+    relHum.chartType = 'bar'
+    relHum.chartColor = 'blue'
+    relHum.save()
 
     windSpeed, created = ElementVariable.objects.get_or_create(
         name = 'velocidade do vento',
-        init = 'windSpeed',
-        unit = 'm/s',
-        chartType = 'line',
-        chartColor = 'red',
+        defaults = {
+            'init': 'windSpeed',
+            'unit': 'm/s',
+            'chartType': 'line',
+            'chartColor': 'black',
+        }
     )
+    windSpeed.chartType = 'line'
+    windSpeed.chartColor = 'black'
+    windSpeed.save()
 
-    evapo, created = ElementVariable.objects.get_or_create(
+    evapo_mm, created = ElementVariable.objects.get_or_create(
         name = 'evapotranspiração',
-        init = 'evapo',
-        unit = 'mm³',
-        chartType = 'line',
-        chartColor = 'red',
+        init = 'evapo_mm',
+        defaults = {
+            'init': 'evapo_mm',
+            'unit': 'mm',
+            'chartType': 'bar',
+            'chartColor': 'blue',
+        }
     )
+    evapo_mm.unit = 'mm'
+    evapo_mm.chartType = 'bar'
+    evapo_mm.chartColor = 'blue'
+    evapo_mm.save()
+
+    evapo_m, created = ElementVariable.objects.get_or_create(
+        name = 'evapotranspiração_m',
+        init = 'evapo_m',
+        defaults = {
+            'init': 'evapo_m',
+            'unit': 'm',
+            'chartType': 'bar',
+            'chartColor': 'blue',
+        }
+    )
+    evapo_m.unit = 'm'
+    evapo_m.chartType = 'bar'
+    evapo_m.chartColor = 'blue'
+    evapo_m.save()
 
     precip, created = ElementVariable.objects.get_or_create(
         name = 'precipitação',
-        init = 'precip',
-        unit = 'mm³',
-        chartType = 'bar',
-        chartColor = 'blue',
+        defaults = {
+            'init': 'precip',
+            'unit': 'mm',
+            'chartType': 'bar',
+            'chartColor': 'blue',
+        }
     )
+    precip.unit = 'mm'
+    precip.chartType = 'bar'
+    precip.chartColor = 'blue'
+    precip.save()
 
     flow, created = ElementVariable.objects.get_or_create(
         name = 'vazão',
-        init = 'flow',
-        unit = 'mm³/s',
-        chartType = 'bar',
-        chartColor = 'blue',
+        defaults = {
+            'init': 'flow',
+            'unit': 'm³/s',
+            'chartType': 'line',
+            'chartColor': 'blue',
+        }
     )
+    flow.unit = 'm³/s'
+    flow.chartType = 'line'
+    flow.chartColor = 'blue'
+    flow.save()
 
     xavier, created = ElementSource.objects.get_or_create(
         name = 'xavier',
         category = ElementCategory.objects.get(name='observados'),
     )
-    xavier.variables.add(maxTemp, minTemp, solarIns, relHum, windSpeed, evapo)
+    xavier.variables.add(maxTemp, minTemp, solarIns, relHum, windSpeed, evapo_mm)
+    xavier.name = "Xavier Et al"
     xavier.save()
 
     inmet, created = ElementSource.objects.get_or_create(
@@ -89,6 +140,7 @@ def LoadCategories():
         category = ElementCategory.objects.get(name='observados'),
     )
     inmet.variables.add(maxTemp, minTemp, relHum, precip)
+    inmet.name = "INMET"
     inmet.save()
 
     ana, created = ElementSource.objects.get_or_create(
@@ -96,4 +148,5 @@ def LoadCategories():
         category = ElementCategory.objects.get(name='observados'),
     )
     ana.variables.add(precip, flow)
+    ana.name = "ANA"
     ana.save()
