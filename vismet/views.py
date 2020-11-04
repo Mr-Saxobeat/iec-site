@@ -93,8 +93,9 @@ def Api_Data_Options(request):
                 for model in data_models:
                     dt_model_list.append(model.name)
 
-            category_dict["sources"][src.name]= src_dict
+            category_dict["sources"][src.name] = src_dict
             category_dict["sources"][src.name]["models"] = dt_model_list
+            category_dict["sources"][src.name]["display_name"] = src.display_name
             # Por fim adiciona o dict com as relações
             # variável - unidade de medida ao "category_dict"
             # relacionando a fonte de dados com as suas variáveis.
