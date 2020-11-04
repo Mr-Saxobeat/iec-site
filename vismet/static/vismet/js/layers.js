@@ -47,6 +47,16 @@ function showLayer(layer_name){
   map.addLayer(layers_dic[layer_name]);
 }
 
+function capitalize(word){
+  capitalized = "";
+  words = word.split(" ");
+  words.forEach(wrd => {
+    capitalized += wrd[0].toUpperCase() + wrd.slice(1).toLowerCase() + " ";
+  });
+
+  return capitalized;
+}
+
 // selectBox: DOM select object;
 // source: json of the selected data source,
 // it's a child of json_current_category object.
@@ -68,10 +78,10 @@ function setVariableSelection(selectBox, selected_source){
   var available_variables = json_current_category['sources'][selected_source];
 
   for (var key in available_variables){
-    if(key == 'models'){
+    if(key == 'models' || key == 'display_name'){
       continue;
     }
-    newOpt = new Option(key, key);
+    newOpt = new Option(capitalize(key), key);
     selectBox.add(newOpt, undefined);
   }
 }
@@ -83,7 +93,7 @@ function setSourceDataSelection(selectBox){
   removeAllOptions(selectBox);
   var newOpt;
   Object.keys(json_current_category['sources']).forEach(source => {
-    newOpt = new Option(source, source);
+    newOpt = new Option(json_current_category['sources'][source]["display_name"], source);
     selectBox.add(newOpt, undefined);
   });
 }
