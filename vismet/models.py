@@ -29,6 +29,7 @@ class DataModel(models.Model):
 
 # Modelo que representa a fonte de uma estação, pixel... (INMET, ANA, CEMADEN...)
 class ElementSource(models.Model):
+    display_name = models.CharField(max_length=100, verbose_name="Nome de visualização", default="null")
     name = models.CharField(max_length=100)
     category = models.ForeignKey(ElementCategory, related_name='sources', on_delete=models.CASCADE)
     data_model = models.ManyToManyField(DataModel)
