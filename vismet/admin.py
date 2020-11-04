@@ -1,3 +1,7 @@
 from django.contrib import admin
+from vismet.models import ElementCategory, ElementVariable, DataModel, ElementSource, Station
 
-# Register your models here.
+admin.site.register(ElementCategory)
+admin.site.register(ElementVariable)
+admin.site.register(ElementSource)
+admin.site.register(Station)
