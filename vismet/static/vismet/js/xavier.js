@@ -7,22 +7,8 @@ var XavierStations_Style = {
 };
 
 function XavierStations_Layer_onEachFeature(feature, layer) {
-    var popup_content;
-    popup_content = "<span>Estado: " + feature.properties.state + "</span><br>";
-    popup_content += "<span>Cidade: " + feature.properties.city + "</span><br>";
-    if(feature.properties.omm_code != ""){
-      popup_content += "<span>Código OMM: " + feature.properties.omm_code + "</span><br>";
-    }
-    if(feature.properties.inmet_code != ""){
-      popup_content += "<span>Código INMET: " + feature.properties.inmet_code + "</span><br>";
-    }
-    popup_content += "<span>Tipo: " + feature.properties.type + "</span><br>";
-    popup_content += "<span>Latitude: " + feature.properties.latitude + "</span><br>";
-    popup_content += "<span>Longitude: " + feature.properties.longitude + "</span><br>";
-    popup_content += "<span>Altitude: " + feature.properties.altitude + "</span><br>";
-
-    layer.bindPopup(popup_content);
-    layer.on('click', function() {
+  layer.bindPopup(feature.properties.popup_content);
+  layer.on('click', function() {
     input_station_code.value = feature.properties.inmet_code;
     station_city = feature.properties.name;
     station_state = feature.properties.state;
@@ -42,19 +28,8 @@ var XavierStations_Layer = L.geoJson([], {
 });
 
 function loadXavierLayer(){
-  $.getJSON(url_stations + "json/xavier", function (data) {
-    data.forEach(station => {
-      station_geojson = {
-        "type": "Feature",
-        "properties": station.fields,
-        "geometry": {
-          "type": "Point",
-          "coordinates": [station.fields.longitude, station.fields.latitude],
-        }
-      }
-
-      XavierStations_Layer.addData(station_geojson);
-    });
+  $.getJSON(url_stations + "json/xavier/0/", function (data) {
+    XavierStations_Layer.addData(data);
   });
   control.addOverlay(XavierStations_Layer, "xavier");
 

@@ -52,6 +52,47 @@ class Station(models.Model):
     startDate = models.DateField('Data de início de operação', blank=True, null=True)
     finalDate = models.DateField('Data de fim de operação', blank=True, null=True)
     status = models.CharField(max_length=100, blank=True, null=True)
+    geom = models.PointField(null=True)
+
+    def get_station_codes(self):
+        popup_codes_content = ""
+
+        if self.source.name == 'ana':
+            popup_codes_content += "<span>Código ANA: </span>{}<br>".format(self.omm_code)
+        else:
+            if self.omm_code != None:
+                popup_codes_content += "<span>Código OMM: </span>{}<br>".format(self.omm_code)
+            if self.inmet_code != None:
+                popup_codes_content += "<span>Código INMET: </span>{}<br>".format(self.inmet_code)
+
+        return popup_codes_content
+
+    def get_interval_date(self):
+        popup_date_content = ""
+
+        if self.startDate is not None:
+            popup_date_content += "<span>Data Inicial: </span>{}<br>".format(self.startDate.strftime("%d/%m/%Y"))
+
+            if self.finalDate is not None:
+                popup_date_content += "<span>Data Final: </span>{}<br>".format(self.finalDate.strftime("%d/%m/%Y"))
+            else:
+                popup_date_content += "<span>Data Final: até o presente</span><br>"
+
+        return popup_date_content
+
+    @property
+    def popup_content(self):
+        popup = "<span>Estado: </span>{}<br>".format(self.state)
+        popup += "<span>Cidade: </span>{}<br>".format(self.city)
+        popup += self.get_station_codes()
+        popup += "<span>Tipo: </span>{}<br>".format(self.type)
+        popup += "<span>Latitude: </span>{:.2f}<br>".format(self.latitude)
+        popup += "<span>Longitude: </span>{:.2f}<br>".format(self.longitude)
+        if self.altitude != None:
+            popup += "<span>Altitude: </span>{:.2f} m<br>".format(self.altitude)
+        popup += self.get_interval_date()
+
+        return popup
 
     def __str__(self):
         if self.omm_code != None:
@@ -60,21 +101,6 @@ class Station(models.Model):
             return self.inmet_code + " " + self.city
         else:
             return self.city
-
-    @property
-    def popup_content(self):
-        popup = "<span>Estado: </span>{}<br>".format(self.state)
-        popup += "<span>Cidade: </span>{}<br>".format(self.city)
-        if self.omm_code != "":
-            popup += "<span>Código OMM: </span>{}<br>".format(self.omm_code)
-        if self.inmet_code != "":
-            popup += "<span>Código INMET: </span>{}<br>".format(self.inmet_code)
-        popup += "<span>Tipo: </span>{}<br>".format(self.type)
-        popup += "<span>Latitude: </span>{:.2f}<br>".format(self.latitude)
-        popup += "<span>Longitude: </span>{:.2f}<br>".format(self.longitude)
-        popup += "<span>Altitude: </span>{:.2f} m<br>".format(self.altitude)
-
-        return popup
 
 # Dados diários das estações meteorológicas de Xavier
 class XavierStationData(models.Model):
