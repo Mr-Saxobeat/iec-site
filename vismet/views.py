@@ -14,7 +14,8 @@ from vismet.retrieve_functions import GetXavierStationData, GetINMETStationData,
 # Esta view apenas retorna o template pricipal
 # da plataforma de dados.
 def VisMetView(request):
-    return render(request, 'vismet/index.html')
+    value = request.POST.get('selected_source')
+    return render(request, 'vismet/index.html', {'selected_source': value})
 
 def Api_Stations(request):
     response = Station.objects.all()
