@@ -62,10 +62,10 @@ def GetANAStationData(source, code, startDate, finalDate):
         tipoDados = 2
         if station.type.upper() == 'PLUVIOMÉTRICA':
             tipoDados = 2
-            regex = re.compile("Chuva..$")
+            regex_value = re.compile("Chuva..$")
         elif station.type.upper() == 'FLUVIOMÉTRICA':
             tipoDados = 3
-            regex = re.compile("Vazao..$")
+            regex_value = re.compile("Vazao..$")
 
         url = 'http://telemetriaws1.ana.gov.br/ServiceANA.asmx/HidroSerieHistorica'
         nivelConsistencia = 2
@@ -81,23 +81,31 @@ def GetANAStationData(source, code, startDate, finalDate):
         response = requests.get(url, params=params)
         xml = ET.fromstring(response.text)
         data = xml[1][0][0]
+        regex_date = re.compile("DataHora")
 
-        values = []
-        response_startDate = startDate
-        for child in data:
-            if re.match(regex, child.tag):
-                day = child.tag[5:]
-                date = datetime.date(response_startDate.year, response_startDate.month, int(day))
+        for month in xml[1][0]:
+            date = None
+            for child in month:
+                if re.match(regex_date, child.tag):
+                    date = datetime.datetime.strptime(child.text[:10], "%Y-%m-%d")
 
-                ANAStationData.objects.get_or_create(
+                if re.match(regex_value, child.tag) and date:
+                    day = child.tag[5:]
+                    try:
+                        date = datetime.date(date.year, date.month, int(day))
+                    except ValueError:
+                        continue
+
+                    ANAStationData.objects.get_or_create(
                     date = date,
                     station = station,
                     defaults = {
-                        'value': float(child.text)
+                    'value': float(child.text)
                     }
-                )
-            elif child.tag == "DataHora":
-                response_startDate = datetime.datetime.strptime(child.text[:10], "%Y-%m-%d")
+                    )
+                elif child.tag == "DataHora":
+                    response_startDate = datetime.datetime.strptime(child.text[:10], "%Y-%m-%d")
+
 
         station_data = station.ana_data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
 
