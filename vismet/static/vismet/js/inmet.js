@@ -7,8 +7,7 @@ var INMETStations_Style = {
 };
 
 function INMETStations_Layer_onEachFeature(feature, layer) {
-  var popupContent = feature.properties.popup_content;
-  layer.bindPopup(popupContent);
+  layer.bindPopup(feature.properties.popup_content);
   layer.on('click', function() {
     input_station_code.value = feature.properties.inmet_code;
     station_city = feature.properties.city;
@@ -29,30 +28,8 @@ var INMETStations_Layer = L.geoJson([], {
 });
 
 function loadINMETLayer(){
-  $.getJSON(url_stations + "json/inmet/", function(data){
-    data.forEach(station => {
-      station_geojson = {
-        "type": "Feature",
-        "properties": {
-          "inmet_code": station.fields.inmet_code,
-          "state": station.fields.state,
-          "city": station.fields.city,
-          "type": station.fields.type,
-          "latitude": station.fields.latitude,
-          "longitude": station.fields.longitude,
-          "altitude": station.fields.altitude,
-          "startDate": station.fields.startDate,
-          "finalDate": station.fields.finalDate,
-          "status": station.fields.status,
-        },
-        "geometry": {
-          "type": "Point",
-          "coordinates": [station.fields.longitude, station.fields.latitude],
-        }
-      }
-
-      INMETStations_Layer.addData(station_geojson);
-    });
+  $.getJSON(url_stations + "json/inmet/0/", function(data){
+    INMETStations_Layer.addData(data);
   })
   control.addOverlay(INMETStations_Layer, "inmet");
 

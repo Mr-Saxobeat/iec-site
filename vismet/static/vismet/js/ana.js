@@ -15,8 +15,7 @@ var ANA_Flow_Style = {
 };
 
 function ANAStations_Layer_onEachFeature(feature, layer){
-  var popupContent = feature.properties.popup_content;
-  layer.bindPopup(popupContent);
+  layer.bindPopup(feature.properties.popup_content);
   layer.on('click', function() {
     input_station_code.value = feature.properties.omm_code;
     station_city = feature.properties.city;
@@ -45,32 +44,39 @@ var ANA_Flow_Layer = L.geoJson([], {
 });
 
 function loadANALayer(){
-  $.getJSON(url_stations + 'json/ana/' , function (data) {
-    data.forEach(station => {
-      station_geojson = {
-        "type": "Feature",
-        "properties": {
-          "omm_code": station.fields.omm_code,
-          "inmet_code": station.fields.inmet_code,
-          "state": station.fields.state,
-          "city": station.fields.city,
-          "type": station.fields.type,
-          "startDate": station.fields.startDate,
-          "finalDate": station.fields.finalDate,
-        },
-        "geometry": {
-          "type": "Point",
-          "coordinates": [station.fields.longitude, station.fields.latitude],
-        }
-      }
+  $.getJSON(url_stations + 'json/ana/Pluviométrica/', function (data){
+    ANA_Precip_Layer.addData(data);
+  })
 
-      if(station.fields.type == "Pluviométrica"){
-        ANA_Precip_Layer.addData(station_geojson);
-      }else if(station.fields.type == "Fluviométrica"){
-        ANA_Flow_Layer.addData(station_geojson);
-      }
-    });
-  });
+  $.getJSON(url_stations + 'json/ana/Fluviométrica/', function (data){
+    ANA_Flow_Layer.addData(data);
+  })
+  // $.getJSON(url_stations + 'json/ana/' , function (data) {
+  //   data.forEach(station => {
+  //     station_geojson = {
+  //       "type": "Feature",
+  //       "properties": {
+  //         "omm_code": station.fields.omm_code,
+  //         "inmet_code": station.fields.inmet_code,
+  //         "state": station.fields.state,
+  //         "city": station.fields.city,
+  //         "type": station.fields.type,
+  //         "startDate": station.fields.startDate,
+  //         "finalDate": station.fields.finalDate,
+  //       },
+  //       "geometry": {
+  //         "type": "Point",
+  //         "coordinates": [station.fields.longitude, station.fields.latitude],
+  //       }
+  //     }
+  //
+  //     if(station.fields.type == "Pluviométrica"){
+  //       ANA_Precip_Layer.addData(station_geojson);
+  //     }else if(station.fields.type == "Fluviométrica"){
+  //       ANA_Flow_Layer.addData(station_geojson);
+  //     }
+  //   });
+  // });
   control.addOverlay(ANA_Precip_Layer, "ana-precip");
   control.addOverlay(ANA_Flow_Layer, "ana-flow");
 
