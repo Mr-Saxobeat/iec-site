@@ -93,16 +93,26 @@ def GetANAStationData(source, code, startDate, finalDate):
                     day = child.tag[5:]
                     try:
                         date = datetime.date(date.year, date.month, int(day))
+
                     except ValueError:
                         continue
 
-                    ANAStationData.objects.get_or_create(
-                    date = date,
-                    station = station,
-                    defaults = {
-                    'value': float(child.text)
-                    }
-                    )
+                    try:
+                        station_data = ANAStationData.objects.get(date=date, station=station)
+                        continue
+                    except ANAStationData.DoesNotExist:
+                        if child.text:
+                            try:
+                                ANAStationData.objects.get_or_create(
+                                    date = date,
+                                    station = station,
+                                    defaults = {
+                                    'value': float(child.text)
+                                    }
+                                )
+                            except TypeError:
+                                continue
+
                 elif child.tag == "DataHora":
                     response_startDate = datetime.datetime.strptime(child.text[:10], "%Y-%m-%d")
 
