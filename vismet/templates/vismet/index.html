@@ -37,7 +37,6 @@
           <div class="col-md-3" id="sidebar">
             <button class="w3-button w3-white w3-xlarge" onclick="w3_open()">☰</button>
             <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
-
             <div id="div-observados">
               <h3>Dados Observados:</h3>
               <p>Dados históricos coletados pelas estações meteorológicas.</p>
@@ -102,6 +101,7 @@
             <button type="button" id="btn_submit">Visualizar</button>
             <button type="button" id="btn_download" name="btn_download">Baixar</button>
 
+            <input type="hidden" id="selected_source" value="{{ selected_source }}">
           </div>
 
           <div class="col-md-9">

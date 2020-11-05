@@ -1,4 +1,5 @@
 
+var selected_source = document.getElementById("selected_source").value;
 var url_stations = document.getElementById("url-stations").value;
 var url_data_options = document.getElementById("url-data-options").value;
 
@@ -13,10 +14,29 @@ $.getJSON(url_data_options, function (data) {
   loadINMETLayer();
   loadETALayer();
   LoadETACity();
-  showCategoryData("observados");
-  map.addLayer(layers_dic["ana"]);
-});
 
+  if(selected_source != "None"){
+    var splited = selected_source.split(";");
+    var selected_category = splited[0];
+    selected_source = splited[1];
+
+
+    showCategoryData(selected_category);
+    for(var i = 0; i < selBox_source_display.options.length; i++){
+      opt = selBox_source_display.options[i];
+      if(opt.value.toLowerCase() == selected_source){
+        opt.selected = true;
+        showLayer(selected_source);
+
+        setVariableSelection(selBox_variable_display, selected_source);
+      }
+    }
+  }
+  else{
+    showCategoryData("observados");
+    map.addLayer(layers_dic["ana"]);
+  }
+});
 
 
 var btn_submit = document.getElementById("btn_submit");

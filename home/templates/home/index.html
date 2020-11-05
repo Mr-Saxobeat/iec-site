@@ -47,64 +47,28 @@
 			</section>
 		</section><br><br>
 
-
     <!-- Content Row -->
     <div class="row" ali>
+      {% for cat in categories %}
       <div class="col-md-4 mb-5">
         <div class="card h-100">
           <div class="card-body">
-            <h2 class="card-title">{{ observados.display_name }}</h2>
-            <p class="card-text">{{ observados.desc }}</p>
-            <ul>
-              {% for src_data in observados.sources.all %}
-                <li>{{ src_data.display_name }}</li>
+            <h2 class="card-title">{{ cat.display_name }}</h2>
+            <p class="card-text">{{ cat.desc }}</p>
+            <form class="" action="{% url 'vismet:vismet' %}" method="post">
+              {% csrf_token %}
+              {% for src_data in cat.sources.all %}
+                <button type="submit" name="selected_source" value="{{ cat.name }};{{ src_data.name }}">{{ src_data.display_name }}</button><br>
               {% endfor %}
-            </ul>
+            </form>
           </div>
           <div class="card-footer">
             <a href="../" class="btn btn-primary btn-sm">Plataforma</a>
           </div>
         </div>
       </div>
-      <!-- /.col-md-4 -->
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <div class="card-body">
-            <h2 class="card-title">{{ reanalise.display_name }}</h2>
-            <p class="card-text">{{ reanalise.desc }}</p>
-            <ul>
-              {% for src_data in reanalise.sources.all %}
-                <li>{{ src_data.display_name }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-          <div class="card-footer">
-            <a href="../" class="btn btn-primary btn-sm">Plataforma</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- /.col-md-4 -->
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <div class="card-body">
-            <h2 class="card-title">{{ simulados.display_name }}</h2>
-            <p class="card-text">{{ simulados.desc }}</p>
-            <ul>
-              {% for src_data in simulados.sources.all %}
-                <li>{{ src_data.display_name }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-          <div class="card-footer">
-            <a href="../" class="btn btn-primary btn-sm">Plataforma</a>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
-      <!-- /.col-md-4 -->
-
-
 
 		<footer id="footer" align="middle">
       <a class="anchor" id="fo"></a>
