@@ -2,6 +2,7 @@ import os
 import csv
 import datetime
 from vismet.models import ElementCategory, ElementSource, Station
+from django.contrib.gis.geos import Point
 import requests
 
 # Esse script pega as estações xavier da API do INMET
@@ -51,6 +52,7 @@ def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'd
                 finalDate = None
 
             if station["CD_ESTACAO"] in list_inmet_codes:
+                point = Point(station["VL_LATITUDE"], station["VL_ALTITUDE"], None, 4326)
                 newObj, created = Station.objects.get_or_create(
                     source = source,
                     inmet_code = station["CD_ESTACAO"],
@@ -63,6 +65,7 @@ def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'd
                     startDate = startDate,
                     finalDate = finalDate,
                     status = station["CD_SITUACAO"],
+                    point = point,
                 )
 
             print(newObj)

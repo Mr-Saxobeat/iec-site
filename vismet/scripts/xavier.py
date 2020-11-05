@@ -1,4 +1,5 @@
 from vismet.models import ElementCategory, ElementSource, Station, XavierStationData
+from django.contrib.gis.geos import Point
 from datetime import datetime
 import os
 import csv
@@ -28,6 +29,8 @@ def LoadXavierStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', '
             latitude = row[5]
             longitude = row[6]
             altitude = row[7]
+
+            point = Point(latitude, longitude, None, 4326)
 
             newObj, created = Station.objects.get_or_create(
                 source = source,

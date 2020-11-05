@@ -2,6 +2,7 @@ import os
 import csv
 import datetime
 from vismet.models import ElementCategory, ElementSource, Station
+from django.contrib.gis.geos import Point
 
 # Este script carrega as estações PLUVIOMÉTRICAS ANA a partir do arquivo csv especificado
 # na variável csv_path
@@ -33,6 +34,8 @@ def LoadANAStations(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/an
             startDate = datetime.date(int(row[12]), 1, 1)
             finalDate = datetime.date(int(row[13]), 12, 31)
 
+            point = Point(latitude, longitude, None, 4326)
+
             newObj, created = Station.objects.get_or_create(
                 source = source,
                 omm_code = omm_code,
@@ -44,6 +47,7 @@ def LoadANAStations(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/an
                 altitude = altitude,
                 startDate = startDate,
                 finalDate = finalDate,
+                point = point,
             )
 
             print(newObj)
