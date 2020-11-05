@@ -53,8 +53,13 @@
       <div class="col-md-4 mb-5">
         <div class="card h-100">
           <div class="card-body">
-            <h2 class="card-title">Observacionais</h2>
+            <h2 class="card-title">{{ observados.display_name }}</h2>
             <p class="card-text">{{ observados.desc }}</p>
+            <ul>
+              {% for src_data in observados.sources.all %}
+                <li>{{ src_data.display_name }}</li>
+              {% endfor %}
+            </ul>
           </div>
           <div class="card-footer">
             <a href="../" class="btn btn-primary btn-sm">Plataforma</a>
@@ -65,20 +70,31 @@
       <div class="col-md-4 mb-5">
         <div class="card h-100">
           <div class="card-body">
-            <h2 class="card-title">Reanálise</h2>
+            <h2 class="card-title">{{ renalise.display_name }}</h2>
             <p class="card-text">{{ reanalise.desc }}</p>
+            <ul>
+              {% for src_data in reanalise.sources.all %}
+                <li>{{ src_data.display_name }}</li>
+              {% endfor %}
+            </ul>
           </div>
           <div class="card-footer">
             <a href="../" class="btn btn-primary btn-sm">Plataforma</a>
           </div>
         </div>
       </div>
+
       <!-- /.col-md-4 -->
       <div class="col-md-4 mb-5">
         <div class="card h-100">
           <div class="card-body">
-            <h2 class="card-title">Simulados</h2>
+            <h2 class="card-title">{{ simulados.display_name }}</h2>
             <p class="card-text">{{ simulados.desc }}</p>
+            <ul>
+              {% for src_data in simulados.sources.all %}
+                <li>{{ src_data.display_name }}</li>
+              {% endfor %}
+            </ul>
           </div>
           <div class="card-footer">
             <a href="../" class="btn btn-primary btn-sm">Plataforma</a>
