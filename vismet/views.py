@@ -20,16 +20,32 @@ def Api_Stations(request):
     response = Station.objects.all()
     return HttpResponse(response, content_type='application/json')
 
-def Api_Stations_Source(request, format, source):
-    station_source = ElementSource.objects.get(name=source)
-    stations = Station.objects.filter(source=station_source)
+class Api_Stations_Source(GeoJSONLayerView):
+    def get_queryset(self):
+        station_source = ElementSource.objects.get(name=self.kwargs['source'])
+        if self.kwargs['type'] == '0':
+            stations = Station.objects.filter(source=station_source)
+        else:
+            stations = Station.objects.filter(source=station_source, type=self.kwargs['type'])
 
-    if format == 'json':
-        response = serializers.serialize('json', stations)
-        return HttpResponse(response, content_type="application/json")
-    elif format == 'csv':
-        response = stations.values()
-        return render_to_csv_response(response)
+        return stations
+
+    properties = [
+                    'id',
+                    'source',
+                    'omm_code',
+                    'inmet_code',
+                    'state',
+                    'city',
+                    'type',
+                    'latitude',
+                    'longitude',
+                    'altitude',
+                    'startDate',
+                    'finalDate',
+                    'status',
+                    'popup_content',
+                ]
 
 def Api_Stations_Data(request, format, source, code, start_day, start_month, start_year, final_day, final_month, final_year):
     try:
