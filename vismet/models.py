@@ -5,6 +5,7 @@ import csv
 
 # Categoria de dados, (dados observados, reanálise ou simulados)
 class ElementCategory(models.Model):
+    display_name = models.CharField(max_length=100, default="none")
     name = models.CharField(max_length=100)
     desc = models.TextField(verbose_name="Descrição da categoria", blank=True, null=True)
 
