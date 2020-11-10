@@ -42,8 +42,8 @@ class ElementSource(models.Model):
 class SubSource(models.Model):
     name = models.CharField(max_length=100)
     display_name = models.CharField(max_length=100, verbose_name="nome de visualização")
-    desc = models.TextField(max_length=200, verbose_name="descrição adicional", null=True)
-    related_source = models.ForeignKey(ElementSource, related_name='subsource', on_delete=models.CASCADE)
+    desc = models.TextField(max_length=200, verbose_name="descrição adicional", null=True, blank=True)
+    related_source = models.ForeignKey(ElementSource, verbose_name="fonte relacionada", related_name='subsource', on_delete=models.CASCADE)
     time_interval = models.CharField(max_length=100, verbose_name="intervalo de ano")
 
 # Modelo que representa uma única estação meteorológica
