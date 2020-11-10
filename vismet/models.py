@@ -3,11 +3,8 @@ import django.contrib.postgres.fields as pgField
 import os
 import csv
 
-# Categoria de dados, (dados observados, reanálise ou simulados)
-class ElementCategory(models.Model):
-    display_name = models.CharField(max_length=100, default="none")
-    name = models.CharField(max_length=100)
-    desc = models.TextField(verbose_name="Descrição da categoria", blank=True, null=True)
+class DataModel(models.Model):
+    name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name
@@ -22,8 +19,11 @@ class ElementVariable(models.Model):
     def __str__(self):
         return self.init
 
-class DataModel(models.Model):
-    name = models.CharField(max_length=200)
+# Categoria de dados, (dados observados, reanálise ou simulados)
+class ElementCategory(models.Model):
+    display_name = models.CharField(max_length=100, default="none")
+    name = models.CharField(max_length=100)
+    desc = models.TextField(verbose_name="Descrição da categoria", blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -38,6 +38,13 @@ class ElementSource(models.Model):
 
     def __str__(self):
         return self.name
+
+class SubSource(models.Model):
+    name = models.CharField(max_length=100)
+    display_name = models.CharField(max_length=100, verbose_name="nome de visualização")
+    desc = models.TextField(max_length=200, verbose_name="descrição adicional", null=True)
+    related_source = models.ForeignKey(ElementSource, related_name='subsource', on_delete=models.CASCADE)
+    time_interval = models.CharField(max_length=100, verbose_name="intervalo de ano")
 
 # Modelo que representa uma única estação meteorológica
 class Station(models.Model):
