@@ -59,17 +59,17 @@ class ElementSource(models.Model):
 
 # Modelo que representa uma única estação meteorológica
 class Station(models.Model):
-    source = models.ForeignKey(ElementSource, related_name='stations', on_delete=models.CASCADE)
-    omm_code = models.CharField(max_length=100, blank=True, null=True)
-    inmet_code = models.CharField(max_length=100, blank=True, null=True)
-    state = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
-    type = models.CharField(max_length=100)
-    altitude = models.FloatField(blank=True, null=True)
-    startDate = models.DateField('Data de início de operação', blank=True, null=True)
-    finalDate = models.DateField('Data de fim de operação', blank=True, null=True)
-    status = models.CharField(max_length=100, blank=True, null=True)
-    geom = models.PointField(null=True)
+    source = models.ForeignKey(ElementSource, verbose_name='fonte', related_name='stations', on_delete=models.CASCADE)
+    omm_code = models.CharField(max_length=100, verbose_name='código OMM', blank=True, null=True)
+    inmet_code = models.CharField(max_length=100, verbose_name='código INMET', blank=True, null=True)
+    state = models.CharField(max_length=100, verbose_name='estado')
+    city = models.CharField(max_length=100, verbose_name='cidade')
+    type = models.CharField(max_length=100, verbose_name='tipo')
+    altitude = models.FloatField(verbose_name='altitude', blank=True, null=True)
+    startDate = models.DateField(verbose_name='Data de início de operação', blank=True, null=True)
+    finalDate = models.DateField(verbose_name='Data de fim de operação', blank=True, null=True)
+    status = models.CharField(verbose_name='estado de operação', max_length=100, blank=True, null=True)
+    geom = models.PointField(verbose_name='localização', null=True)
 
     def get_station_codes(self):
         popup_codes_content = ""
