@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.gis import admin as geoadmin
 from vismet.models import Station, ElementCategory, ElementVariable, DataModel, ElementSource, SubSource, SubSourceDetail
 
 class ElementCategoryAdmin(admin.ModelAdmin):
@@ -19,4 +20,4 @@ admin.site.register(SubSource, SubSourceAdmin)
 admin.site.register(SubSourceDetail, SubSourceDetailAdmin)
 admin.site.register(ElementVariable)
 admin.site.register(ElementSource, ElementSourceAdmin)
-admin.site.register(Station)
+admin.site.register(Station, geoadmin.OSMGeoAdmin)
