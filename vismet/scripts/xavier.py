@@ -30,7 +30,7 @@ def LoadXavierStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', '
             longitude = row[6]
             altitude = row[7]
 
-            point = Point(latitude, longitude, None, 4326)
+            point = Point(longitude, latitude, None, 4326)
 
             newObj, created = Station.objects.get_or_create(
                 source = source,
@@ -39,9 +39,8 @@ def LoadXavierStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', '
                 state = state,
                 city = city,
                 type = type,
-                latitude = latitude,
-                longitude = longitude,
                 altitude = altitude,
+                geom = point,
             )
 
             print(newObj)

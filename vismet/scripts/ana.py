@@ -34,7 +34,7 @@ def LoadANAStations(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/an
             startDate = datetime.date(int(row[12]), 1, 1)
             finalDate = datetime.date(int(row[13]), 12, 31)
 
-            point = Point(latitude, longitude, None, 4326)
+            point = Point(longitude, latitude, None, 4326)
 
             newObj, created = Station.objects.get_or_create(
                 source = source,
@@ -42,12 +42,10 @@ def LoadANAStations(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/an
                 state = state,
                 city = city,
                 type = type,
-                latitude = latitude,
-                longitude = longitude,
                 altitude = altitude,
                 startDate = startDate,
                 finalDate = finalDate,
-                point = point,
+                geom = point,
             )
 
             print(newObj)

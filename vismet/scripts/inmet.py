@@ -52,20 +52,18 @@ def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'd
                 finalDate = None
 
             if station["CD_ESTACAO"] in list_inmet_codes:
-                point = Point(station["VL_LATITUDE"], station["VL_ALTITUDE"], None, 4326)
+                point = Point(station["VL_LONGITUDE"], station["VL_LATITUDE"], None, 4326)
                 newObj, created = Station.objects.get_or_create(
                     source = source,
                     inmet_code = station["CD_ESTACAO"],
                     state = station["SG_ESTADO"],
                     city = station["DC_NOME"],
                     type = station["TP_ESTACAO"],
-                    latitude = station["VL_LATITUDE"],
-                    longitude = station["VL_LONGITUDE"],
                     altitude = station["VL_ALTITUDE"],
                     startDate = startDate,
                     finalDate = finalDate,
                     status = station["CD_SITUACAO"],
-                    point = point,
+                    geom = point,
                 )
 
             print(newObj)
