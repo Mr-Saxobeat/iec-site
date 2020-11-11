@@ -3,11 +3,8 @@ import django.contrib.postgres.fields as pgField
 import os
 import csv
 
-# Categoria de dados, (dados observados, reanálise ou simulados)
-class ElementCategory(models.Model):
-    display_name = models.CharField(max_length=100, default="none")
-    name = models.CharField(max_length=100)
-    desc = models.TextField(verbose_name="Descrição da categoria", blank=True, null=True)
+class DataModel(models.Model):
+    name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name
@@ -22,8 +19,28 @@ class ElementVariable(models.Model):
     def __str__(self):
         return self.init
 
-class DataModel(models.Model):
-    name = models.CharField(max_length=200)
+# Categoria de dados, (dados observados, reanálise ou simulados)
+class ElementCategory(models.Model):
+    display_name = models.CharField(max_length=100, default="none")
+    name = models.CharField(max_length=100)
+    desc = models.TextField(verbose_name="Descrição da categoria", blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+class SubSourceDetail(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    text = models.TextField(max_length=200)
+    url = models.CharField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+class SubSource(models.Model):
+    name = models.CharField(max_length=100, blank=True, null=True)
+    display_name = models.CharField(max_length=100, verbose_name="nome de visualização")
+    details = models.ManyToManyField(SubSourceDetail)
+    url = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -35,6 +52,7 @@ class ElementSource(models.Model):
     category = models.ForeignKey(ElementCategory, related_name='sources', on_delete=models.CASCADE)
     data_model = models.ManyToManyField(DataModel)
     variables = models.ManyToManyField(ElementVariable)
+    subsources = models.ManyToManyField(SubSource)
 
     def __str__(self):
         return self.name
