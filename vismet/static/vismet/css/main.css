@@ -53,3 +53,7 @@
 .w3-bar-item {
   display: inline-block;
 }
+
+#linkplataforma{
+  position: absolute;
+}
