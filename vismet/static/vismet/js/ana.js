@@ -21,6 +21,7 @@ function ANAStations_Layer_onEachFeature(feature, layer){
     station_city = feature.properties.city;
     station_state = feature.properties.state;
     station_inmet = feature.properties.omm_code;
+    botoes = true;
 
     chart.options.title.text = "Estação nº " + station_inmet + ", " + station_city + " - " + station_state;
     chart.update();
