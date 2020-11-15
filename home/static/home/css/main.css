@@ -27,6 +27,9 @@
 			all:unset;
 		}
 	}
+	.portal{
+		color:#ADD8E6;
+	}
 	button,
 	.button {
 		-moz-appearance: none;
