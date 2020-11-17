@@ -67,7 +67,6 @@ function chart_addData(json_data, variable){
     date = data.fields.date;
     date = date.substring(8,10) + '/' + date.substring(5,7) + '/' + date.substring(0,4);
     chart.data.labels.push(date);
-
     value = data.fields[variable];
 
     chart.data.datasets.forEach((dataset) => {
