@@ -17,17 +17,18 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
         category=eCategory,
         )
 
+    eVar, created = ElementVariable.objects.get_or_create(
+    name = 'evapotranspiração',
+    init = 'evapo',
+    unit = 'mm',
+    chartType = 'bar',
+    chartColor = 'blue',
+    )
+    
     eSource.data_model.add(data_model)
     eSource.variables.add(eVar)
     eSource.save()
 
-    eVar, created = ElementVariable.objects.get_or_create(
-        name = 'evapotranspiração',
-        init = 'evapo',
-        unit = 'mm',
-        chartType = 'bar',
-        chartColor = 'blue',
-    )
 
 
     evapo_ds = nc.Dataset(path)
