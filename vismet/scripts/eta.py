@@ -17,7 +17,7 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
         category=eCategory,
         )
 
-    eSourcr.data_model.add(data_model)
+    eSource.data_model.add(data_model)
     eSource.variables.add(eVar)
     eSource.save()
 
