@@ -46,7 +46,8 @@ function Show_Xavier_Data(code, startDate, finalDate){
     var variable = 'evapo';
     switch (selBox_variable_display.value.toLowerCase()) {
       case 'evapotranspiração':
-        variable = 'evapo'
+        variable = 'evapo';
+        break;        
       case 'umidade relativa':
         variable = 'relHum';
         break;
