@@ -171,6 +171,21 @@ class Pixel(models.Model):
 
         return popup
 
+class PixelData(models.Model):
+    pixel = models.ForeignKey(Pixel, related_name='pixel_data', on_delete=models.CASCADE)
+    data_model = models.ForeignKey(DataModel, related_name='pixel_data', on_delete=models.CASCADE)
+    date = models.DateField()
+    evapo = models.FloatField(default=None, null=True, blank=True)
+    minTemp = models.FloatField(default=None, null=True, blank=True)
+    maxTemp = models.FloatField(default=None, null=True, blank=True)
+    ocis = models.FloatField(default=None, null=True, blank=True)
+    precip = models.FloatField(default=None, null=True, blank=True)
+    rnof = models.FloatField(default=None, null=True, blank=True)
+    tp2m = models.FloatField(default=None, null=True, blank=True)
+
+    def __str__(self):
+        return f'{ self.pixel.latitude }, { self.pixel.longitude } --- { self.date }'
+
 
 # Dados dos pixels do estado do Espírito Santo
 # class PixelData(models.Model):
