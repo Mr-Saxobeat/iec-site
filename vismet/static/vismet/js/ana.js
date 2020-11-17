@@ -21,6 +21,18 @@ function ANAStations_Layer_onEachFeature(feature, layer){
     station_city = feature.properties.city;
     station_state = feature.properties.state;
     station_inmet = feature.properties.omm_code;
+
+    station_startDate = feature.properties.startDate;
+    calendar_startDate = station_startDate.split("-").slice(0, 1).join("-");
+    station_finalDate = feature.properties.finalDate;
+    if (station_finalDate == null) {
+      calendar_finalDate = "c";
+    } else {
+    calendar_finalDate = station_finalDate.split("-").slice(0, 1).join("-");
+  };
+    yearRange = calendar_startDate+":"+calendar_finalDate;
+    $( ".dateinput" ).datepicker( "option", "yearRange", yearRange);
+    $( ".dateinput" ).datepicker( "option", "minDate", new Date(station_startDate));
     botoes = true;
 
     chart.options.title.text = "Estação nº " + station_inmet + ", " + station_city + " - " + station_state;

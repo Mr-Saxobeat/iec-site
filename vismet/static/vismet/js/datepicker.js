@@ -9,9 +9,7 @@ $(".dateinput").datepicker({
  monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
  nextText: 'Próximo',
  prevText: 'Anterior',
- minDate: new Date(1980, 0, 1),
- maxDate: '-1d',
+ showOtherMonths: true,
  changeYear: true,
- yearRange: "1960:2020",
  changeMonth: true,
 });
