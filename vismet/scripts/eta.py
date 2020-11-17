@@ -55,7 +55,7 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
         if (month % 12 != 0):
             date = datetime.date(year, month % 12, 1)
         else:
-            date = datetime.date(year, month, 1)
+            date = datetime.date(year, 12, 1)
             year = year + 1
 
         for px in pixels:
