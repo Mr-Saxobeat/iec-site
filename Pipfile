@@ -15,6 +15,7 @@ djangorestframework = "*"
 requests = "*"
 django-queryset-csv = "*"
 geopandas = "*"
+netcdf4 = "*"
 
 [requires]
 python_version = "3.8"
