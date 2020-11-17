@@ -13,10 +13,10 @@ urlpatterns = [
          views.Api_Stations_Data,
          name='api_station_data'),
 
-    path('api/pixels/', views.Api_Pixel.as_view(), name='pixel'),
-    # path('api/pixels/<str:format>/<int:pk>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
-    #      views.Api_Pixel_Data),
-    #
+    path('api/pixels/', views.Api_Pixel.as_view(), name='pixels'),
+    path('api/pixels/<str:format>/<int:pk>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
+         views.Api_Pixel_Data),
+
     path('api/cities/', views.Api_Cities.as_view(), name='cities'),
     path('api/cities/<str:format>/<str:name>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
          views.Api_Cities_Data),
