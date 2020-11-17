@@ -51,32 +51,7 @@ function loadANALayer(){
   $.getJSON(url_stations + 'json/ana/Fluviométrica/', function (data){
     ANA_Flow_Layer.addData(data);
   })
-  // $.getJSON(url_stations + 'json/ana/' , function (data) {
-  //   data.forEach(station => {
-  //     station_geojson = {
-  //       "type": "Feature",
-  //       "properties": {
-  //         "omm_code": station.fields.omm_code,
-  //         "inmet_code": station.fields.inmet_code,
-  //         "state": station.fields.state,
-  //         "city": station.fields.city,
-  //         "type": station.fields.type,
-  //         "startDate": station.fields.startDate,
-  //         "finalDate": station.fields.finalDate,
-  //       },
-  //       "geometry": {
-  //         "type": "Point",
-  //         "coordinates": [station.fields.longitude, station.fields.latitude],
-  //       }
-  //     }
-  //
-  //     if(station.fields.type == "Pluviométrica"){
-  //       ANA_Precip_Layer.addData(station_geojson);
-  //     }else if(station.fields.type == "Fluviométrica"){
-  //       ANA_Flow_Layer.addData(station_geojson);
-  //     }
-  //   });
-  // });
+
   control.addOverlay(ANA_Precip_Layer, "ana-precip");
   control.addOverlay(ANA_Flow_Layer, "ana-flow");
 
