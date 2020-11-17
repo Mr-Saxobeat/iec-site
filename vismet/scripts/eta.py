@@ -9,10 +9,12 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
     model_name = 'RCP 4.5, 5Km'
     data_model, created = DataModel.objects.get_or_create(name=model_name)
 
+    eCategory, created = ElementCategory.objects.get_or_create(name='simulados')
+
     eSource, created = ElementSource.objects.get_or_create(
         name='eta por pixel',
         display_name='ETA Por Pixels',
-        category=ElementCategory.objects.get_or_create(name='simulados'),
+        category=eCategory,
         data_model=data_model,
         )
 
