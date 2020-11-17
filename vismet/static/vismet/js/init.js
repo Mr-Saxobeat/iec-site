@@ -55,5 +55,8 @@ btn_submit.addEventListener("click", function() {
     Show_Xavier_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
   }else if (selBox_source_display.value.toUpperCase() == "ETA POR CIDADE"){
     showCityData(input_city_name.value, input_startDate.value, input_finalDate.value);
+  }else if (selBox_source_display.value.toUpperCase() == "ETA POR PIXEL"){
+    Show_ETA_Data(selected_pixel_id, input_startDate.value, input_finalDate.value);
   }
+
 })
