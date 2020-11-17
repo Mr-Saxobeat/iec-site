@@ -12,11 +12,14 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
     eCategory, created = ElementCategory.objects.get_or_create(name='simulados')
 
     eSource, created = ElementSource.objects.get_or_create(
-        name='eta por pixel',
         display_name='ETA Por Pixels',
+        name='eta por pixel',
         category=eCategory,
-        data_model=data_model,
         )
+
+    eSourcr.data_model.add(data_model)
+    eSource.variables.add(eVar)
+    eSource.save()
 
     eVar, created = ElementVariable.objects.get_or_create(
         name = 'evapotranspiração',
@@ -26,8 +29,6 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
         chartColor = 'blue',
     )
 
-    eSource.variables.add(eVar)
-    eSource.save()
 
     evapo_ds = nc.Dataset(path)
 
