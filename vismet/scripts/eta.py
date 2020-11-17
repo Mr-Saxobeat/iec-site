@@ -24,7 +24,7 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
     chartType = 'bar',
     chartColor = 'blue',
     )
-    
+
     eSource.data_model.add(data_model)
     eSource.variables.add(eVar)
     eSource.save()
@@ -45,22 +45,23 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
 
     time_len = len(evapo_ds['time'][:].data.tolist())
     year = 2006
-    month = 1
     pixels = Pixel.objects.all()
 
     for i_time in range(time_len):
-        month = month + i_time
+        print("I-TIME")
+        month = i_time + 1
 
         if rm != 0:
             if month == rm:
                 print("ACABOU RUN_MONTH")
                 return 0
 
-        if (month % 12 != 0):
+        if month % 12 != 0:
             date = datetime.date(year, month % 12, 1)
         else:
             date = datetime.date(year, 12, 1)
             year = year + 1
+            print("NOVO ANO  " + str(year))
 
         for px in pixels:
             try:
