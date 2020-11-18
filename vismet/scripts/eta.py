@@ -9,7 +9,7 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
     if year == 0:
         print("Configure o ano inicial e tente novamente.")
         return 0
-        
+
     model_name = 'RCP 4.5, 5Km'
     data_model, created = DataModel.objects.get_or_create(name=model_name)
 
@@ -66,9 +66,6 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
             date = datetime.date(year, 12, 1)
             year = year + 1
             print("NOVO ANO  " + str(year))
-
-        if year < 2025:
-            continue
 
         for px in pixels:
             try:
