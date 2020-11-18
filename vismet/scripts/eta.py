@@ -47,7 +47,7 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
     year = 2006
     pixels = Pixel.objects.all()
 
-    for i_time in range(200, time_len):
+    for i_time in range(time_len):
         print("I-TIME")
         month = i_time + 1
 
@@ -63,18 +63,23 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
             year = year + 1
             print("NOVO ANO  " + str(year))
 
+
         for px in pixels:
             try:
-                i_lat = round_latitudes.index(px.latitude)
-                i_lon = round_longitudes.index(px.longitude)
-                pixel_data, created = PixelData.objects.get_or_create(
-                                        pixel = px,
-                                        data_model = data_model,
-                                        date = date,
-                                        evapo = evapo_ds['evtp'][i_time, i_lat, i_lon].data.tolist()
-                                        )
-                print(pixel_data)
+                pixel_data = PixelData.objects.get(pixel=px, date=date)
+                continue
+            except PixelData.DoesNotExist:
+                try:
+                    i_lat = round_latitudes.index(px.latitude)
+                    i_lon = round_longitudes.index(px.longitude)
+                    pixel_data, created = PixelData.objects.get_or_create(
+                                            pixel = px,
+                                            data_model = data_model,
+                                            date = date,
+                                            evapo = evapo_ds['evtp'][i_time, i_lat, i_lon].data.tolist()
+                                            )
+                    print(pixel_data)
 
-            except ValueError:
-                raise ValueError
+                except ValueError:
+                    raise ValueError
     print("FIM")
