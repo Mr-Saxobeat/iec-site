@@ -4,8 +4,12 @@ import datetime
 from vismet.models import DataModel, ElementSource, Pixel, PixelData, ElementCategory, ElementVariable
 
 def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/novo-netcdf-eta/NetCDF --- Eta 5km HadGEM2-ES-20201111T141546Z-001/NetCDF --- Eta 5km HadGEM2-ES/Mensal/EVTP/RCP 4.5/EtaHADGEM2_5km_EVTP_RCP4.5_2006-2040.nc',
-        rm=0):
+        rm=0, year=0):
 
+    if year == 0:
+        print("Configure o ano inicial e tente novamente.")
+        return 0
+        
     model_name = 'RCP 4.5, 5Km'
     data_model, created = DataModel.objects.get_or_create(name=model_name)
 
@@ -44,7 +48,6 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
         round_longitudes.append(round(lon, 2))
 
     time_len = len(evapo_ds['time'][:].data.tolist())
-    year = 2006
     pixels = Pixel.objects.all()
 
     for i_time in range(time_len):
