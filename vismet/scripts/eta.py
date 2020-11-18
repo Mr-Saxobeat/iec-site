@@ -12,7 +12,6 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
     eCategory, created = ElementCategory.objects.get_or_create(name='simulados')
 
     eSource, created = ElementSource.objects.get_or_create(
-        display_name='ETA Por Pixels',
         name='eta por pixel',
         category=eCategory,
         )
@@ -58,6 +57,9 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
 
         if month % 12 != 0:
             date = datetime.date(year, month % 12, 1)
+
+            if year < 2025:
+                continue
         else:
             date = datetime.date(year, 12, 1)
             year = year + 1
