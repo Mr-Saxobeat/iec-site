@@ -47,7 +47,7 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
     year = 2006
     pixels = Pixel.objects.all()
 
-    for i_time in range(time_len):
+    for i_time in range(200, time_len):
         print("I-TIME")
         month = i_time + 1
 
