@@ -79,7 +79,9 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
                                             pixel = px,
                                             data_model = data_model,
                                             date = date,
-                                            evapo = evapo_ds['evtp'][i_time, i_lat, i_lon].data.tolist()
+                                            defaults = {
+                                                'evapo': evapo_ds['evtp'][i_time, i_lat, i_lon].data.tolist(),
+                                            }
                                             )
                     print(pixel_data)
 
