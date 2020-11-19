@@ -134,8 +134,13 @@ def Api_Pixel_Data(request, format, pk, start_day, start_month, start_year, fina
     startDate = datetime.date(start_year, start_month, start_day)
     finalDate = datetime.date(final_year, final_month, final_day)
 
-    pixel = Pixel.objects.get(pk=pk)
-    data = pixel.pixel_data.filter(date__gte=startDate, date__lte=finalDate)
+    try:
+        pixel = Pixel.objects.get(pk=pk)
+        data = pixel.pixel_data.filter(date__gte=startDate, date__lte=finalDate)
+    except Pixel.DoesNotExist:
+        return JsonResponse({'mensagem': 'Pixel não encontrado.'}, status=404)
+    except PixelData.DoesNotExist:
+        return JsonResponse({'mensagem': 'PixelData não encontrado.'}, status=404)
 
     if(format == 'json'):
         queryset_serialized = serializers.serialize('json', data)
