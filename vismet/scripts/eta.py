@@ -3,14 +3,14 @@ import glob
 import datetime
 from vismet.models import DataModel, ElementSource, Pixel, PixelData, ElementCategory, ElementVariable
 
-def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/novo-netcdf-eta/NetCDF --- Eta 5km HadGEM2-ES-20201111T141546Z-001/NetCDF --- Eta 5km HadGEM2-ES/Mensal/EVTP/RCP 4.5/EtaHADGEM2_5km_EVTP_RCP4.5_2006-2040.nc',
+def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/eta-correto/historico/',
         rm=0, year=0):
 
     if year == 0:
         print("Configure o ano inicial e tente novamente.")
         return 0
 
-    model_name = 'RCP 4.5, 5Km'
+    model_name = 'Histórico, 5Km'
     data_model, created = DataModel.objects.get_or_create(name=model_name)
 
     eCategory, created = ElementCategory.objects.get_or_create(name='simulados')
@@ -20,28 +20,95 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
         category=eCategory,
         )
 
-    eVar, var_created = ElementVariable.objects.get_or_create(
-    name = 'evapotranspiração',
-    init = 'evapo',
-    unit = 'mm',
-    chartType = 'bar',
-    chartColor = 'blue',
+    evapo, created = ElementVariable.objects.get_or_create(
+    init = 'evapo_mm',
+    defaults = {
+        'name': 'evapotranspiração',
+        'unit': 'mm',
+        'chartType': 'line',
+        'chartColor': 'red',
+        }
     )
 
-    if source_created:
-        eSource.data_model.add(data_model)
-        eSource.variables.add(eVar)
-        eSource.save()
+    minTemp, created = ElementVariable.objects.get_or_create(
+    init = 'minTemp',
+    defaults = {
+        'name': 'temperatura mínima',
+        'unit': 'ºC',
+        'chartType': 'line',
+        'chartColor': 'blue',
+        }
+    )
 
+    maxTemp, created = ElementVariable.objects.get_or_create(
+        init = 'maxTemp',
+        defaults = {
+            'name': 'temperatura máxima',
+            'unit': 'ºC',
+            'chartType': 'line',
+            'chartColor': 'red',
+        }
+    )
 
+    ocis, created = ElementVariable.objects.get_or_create(
+        init = 'ocis',
+        defaults = {
+            'name': 'radiação de onda curta incidente à superficie',
+            'unit': 'W/m²',
+            'chartType': 'line',
+            'chartColor': 'red',
+        }
+    )
 
-    evapo_ds = nc.Dataset(path)
+    precip, created = ElementVariable.objects.get_or_create(
+        init = 'precip',
+        defaults = {
+            'name': 'precipitação',
+            'unit': 'mm',
+            'chartType': 'bar',
+            'chartColor': 'blue',
+        }
+    )
 
+    rnof, created = ElementVariable.objects.get_or_create(
+        init = 'rnof',
+        defaults = {
+            'name': 'escoamento superficial',
+            'unit': 'mm',
+            'chartType': 'bar',
+            'chartColor': 'blue',
+        }
+    )
+
+    tp2m, created = ElementVariable.objects.get_or_create(
+        init = 'tp2m',
+        defaults = {
+            'name': 'temperatura a 2m da superfície',
+            'unit': 'ºC',
+            'chartType': 'line',
+            'chartColor': 'black',
+        }
+    )
+
+    eSource.data_model.add(data_model)
+    eSource.variables.add(evapo, minTemp, maxTemp, ocis, precip, rnof, tp2m)
+    eSource.save()
+
+    evapo_ds = nc.Dataset(path + 'EVTP_Historical.nc')
+    minTemp_ds = nc.Dataset(path + 'MNTP_Historical.nc')
+    maxTemp_ds = nc.Dataset(path + 'MXTP_Historical.nc')
+    ocis_ds = nc.Dataset(path + 'OCIS_Historical.nc')
+    precip_ds = nc.Dataset(path + 'PREC_Historical.nc')
+    rnof_ds = nc.Dataset(path + 'RNOF_Historical.nc')
+    tp2m_ds = nc.Dataset(path + 'TP2M_Historical.nc')
+
+    # Arredonda o valor das latitudes
     list_latitudes = evapo_ds['lat'][:].data.tolist()
     round_latitudes = []
     for lat in list_latitudes:
         round_latitudes.append(round(lat, 2))
 
+    # Arredonda o valor das longitudestguh6
     list_longitudes = evapo_ds['lon'][:].data.tolist()
     round_longitudes = []
     for lon in list_longitudes:
@@ -51,7 +118,6 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
     pixels = Pixel.objects.all()
 
     for i_time in range(time_len):
-        print("I-TIME")
         month = i_time + 1
 
         if rm != 0:
@@ -65,7 +131,9 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
         else:
             date = datetime.date(year, 12, 1)
             year = year + 1
-            print("NOVO ANO  " + str(year))
+            print(" ")
+
+        print(date.strftime("%m/%Y"), end = " ")
 
         for px in pixels:
             try:
@@ -81,9 +149,14 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/no
                                             date = date,
                                             defaults = {
                                                 'evapo': evapo_ds['evtp'][i_time, i_lat, i_lon].data.tolist(),
-                                            }
+                                                'minTemp': minTemp_ds['mntp'][i_time, i_lat, i_lon].data.tolist(),
+                                                'maxTemp': maxTemp_ds['mxtp'][i_time, i_lat, i_lon].data.tolist(),
+                                                'ocis': ocis_ds['ocis'][i_time, i_lat, i_lon].data.tolist(),
+                                                'precip': precip_ds['prec'][i_time, i_lat, i_lon].data.tolist(),
+                                                'rnof': rnof_ds['rnof'][i_time, i_lat, i_lon].data.tolist(),
+                                                'tp2m': tp2m_ds['tp2m'][i_time, i_lat, i_lon].data.tolist(),
+                                                }
                                             )
-                    print(pixel_data)
 
                 except ValueError:
                     raise ValueError
