@@ -133,7 +133,7 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/et
             year = year + 1
             print(" ")
 
-        print(date.strftime("%m/%Y"), end = " ")
+        print(date.strftime("%m/%Y"))
 
         for px in pixels:
             try:
