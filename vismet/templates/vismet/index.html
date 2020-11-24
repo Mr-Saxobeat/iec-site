@@ -35,7 +35,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-3" id="sidebar">
-            <button class="w3-button w3-white w3-xlarge" onclick="w3_open()">☰</button>
+            <button id="linkplataforma" class="w3-button w3-white w3-xlarge" onclick="w3_open()">☰</button>
             <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
             <div id="div-observados">
               <h3>Dados Observados:</h3>
@@ -173,8 +173,9 @@
     <script type="text/javascript" src="{% static 'vismet/js/cities.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/pixels.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/layers.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vismet/js/botoes.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/datepicker.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/init.js' %}"></script>
-
+  <script type="text/javascript" src="{% static 'vismet/js/validadata.js' %}"></script>
   </body>
 </html>
