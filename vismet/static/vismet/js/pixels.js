@@ -52,20 +52,23 @@ function Show_ETA_Data(pixel_id, startDate, finalDate){
       case 'evapotranspiração':
         variable = 'evapo'
         break;
-      case 'umidade relativa':
-        variable = 'relHum';
-        break;
-      case 'radiação solar':
-        variable = 'solarIns';
+      case 'temperatura mínima':
+        variable = "minTemp";
         break;
       case 'temperatura máxima':
         variable = "maxTemp";
         break;
-      case 'temperatura mínima':
-        variable = "minTemp";
+      case 'radiação de onda curta incidente à superficie':
+        variable = 'ocis';
         break;
-      case 'velocidade do vento':
-        variable = 'windSpeed';
+      case 'precipitação':
+        variable = 'precip';
+        break;
+      case 'escoamento superficial':
+        variable = 'rnof';
+        break;
+      case 'temperatura a 2m da superfície':
+        variable = 'tp2m';
         break;
       default:
         variable = 'evapo';
