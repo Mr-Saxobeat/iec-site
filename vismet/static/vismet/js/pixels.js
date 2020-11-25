@@ -8,6 +8,19 @@ function ETA_Pixel_Layer_onEachFeature(feature, layer) {
   layer.bindPopup(feature.properties.popup_content);
   layer.on("click", function() {
     selected_pixel_id = feature.properties.id;
+
+    station_startDate = "1960-01-01";
+    calendar_startDate = station_startDate.split("-").slice(0, 1).join("-");
+    station_finalDate = "2099-12-01";
+    if (station_finalDate == null) {
+      calendar_finalDate = "c";
+    } else {
+    calendar_finalDate = station_finalDate.split("-").slice(0, 1).join("-");
+    };
+    yearRange = calendar_startDate+":"+calendar_finalDate;
+    $( ".dateinput" ).datepicker( "option", "yearRange", yearRange);
+    $( ".dateinput" ).datepicker( "option", "minDate", new Date(station_startDate));
+    botoes = true;
   });
 }
 
