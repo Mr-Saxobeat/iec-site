@@ -4,13 +4,16 @@ import datetime
 from vismet.models import DataModel, ElementSource, Pixel, PixelData, ElementCategory, ElementVariable
 
 def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/eta-correto/historico/',
-        rm=0, year=0):
+        rm=0, year=0, model_name=''):
 
     if year == 0:
         print("Configure o ano inicial e tente novamente.")
         return 0
 
-    model_name = 'Histórico, 5Km'
+    if model_name == '':
+        print("Defina o model_name e tente novamente.")
+        return 0
+
     data_model, created = DataModel.objects.get_or_create(name=model_name)
 
     eCategory, created = ElementCategory.objects.get_or_create(name='simulados')
@@ -94,13 +97,13 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/et
     eSource.variables.add(evapo, minTemp, maxTemp, ocis, precip, rnof, tp2m)
     eSource.save()
 
-    evapo_ds = nc.Dataset(path + 'EVTP_Historical.nc')
-    minTemp_ds = nc.Dataset(path + 'MNTP_Historical.nc')
-    maxTemp_ds = nc.Dataset(path + 'MXTP_Historical.nc')
-    ocis_ds = nc.Dataset(path + 'OCIS_Historical.nc')
-    precip_ds = nc.Dataset(path + 'PREC_Historical.nc')
-    rnof_ds = nc.Dataset(path + 'RNOF_Historical.nc')
-    tp2m_ds = nc.Dataset(path + 'TP2M_Historical.nc')
+    evapo_ds = nc.Dataset(path + 'EVTP.nc')
+    minTemp_ds = nc.Dataset(path + 'MNTP.nc')
+    maxTemp_ds = nc.Dataset(path + 'MXTP.nc')
+    ocis_ds = nc.Dataset(path + 'OCIS.nc')
+    precip_ds = nc.Dataset(path + 'PREC.nc')
+    rnof_ds = nc.Dataset(path + 'RNOF.nc')
+    tp2m_ds = nc.Dataset(path + 'TP2M.nc')
 
     # Arredonda o valor das latitudes
     list_latitudes = evapo_ds['lat'][:].data.tolist()
