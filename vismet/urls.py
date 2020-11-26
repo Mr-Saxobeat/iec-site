@@ -14,7 +14,7 @@ urlpatterns = [
          name='api_station_data'),
 
     path('api/pixels/', views.Api_Pixel.as_view(), name='pixels'),
-    path('api/pixels/<str:format>/<int:pk>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
+    path('api/pixels/<str:format>/<int:pk>/<str:data_model>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
          views.Api_Pixel_Data),
 
     path('api/cities/', views.Api_Cities.as_view(), name='cities'),

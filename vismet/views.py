@@ -130,13 +130,13 @@ class Api_Pixel(GeoJSONLayerView):
     properties = ['id', 'city', 'state', 'latitude', 'longitude', 'popup_content']
 
 
-def Api_Pixel_Data(request, format, pk, start_day, start_month, start_year, final_day, final_month, final_year):
+def Api_Pixel_Data(request, format, pk, data_model, start_day, start_month, start_year, final_day, final_month, final_year):
     startDate = datetime.date(start_year, start_month, start_day)
     finalDate = datetime.date(final_year, final_month, final_day)
 
     try:
         pixel = Pixel.objects.get(pk=pk)
-        data = pixel.pixel_data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+        data = pixel.pixel_data.filter(data_model__name=data_model, date__gte=startDate, date__lte=finalDate).order_by('date')
     except Pixel.DoesNotExist:
         return JsonResponse({'mensagem': 'Pixel não encontrado.'}, status=404)
     except PixelData.DoesNotExist:
