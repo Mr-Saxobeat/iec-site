@@ -140,7 +140,7 @@ def run(path='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/et
 
         for px in pixels:
             try:
-                pixel_data = PixelData.objects.get(pixel=px, date=date)
+                pixel_data = PixelData.objects.get(pixel=px, date=date, data_model=data_model)
                 continue
             except PixelData.DoesNotExist:
                 try:
