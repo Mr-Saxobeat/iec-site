@@ -33,6 +33,8 @@ function ANAStations_Layer_onEachFeature(feature, layer){
     yearRange = calendar_startDate+":"+calendar_finalDate;
     $( ".dateinput" ).datepicker( "option", "yearRange", yearRange);
     $( ".dateinput" ).datepicker( "option", "minDate", new Date(station_startDate));
+    $( ".dateinput" ).datepicker( "option", "defaultDate", new Date(station_startDate));
+
     botoes = true;
 
     chart.options.title.text = "Estação nº " + station_inmet + ", " + station_city + " - " + station_state;

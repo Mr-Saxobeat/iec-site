@@ -39,6 +39,9 @@
             <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
             <div id="div-observados">
               <h3>Dados Observados:</h3>
+              <div class="help-tip">
+                  <p>Para utilizar a plataforma, selecione:<br>1. Fonte<br>2. Variável<br>3. Estação<br>4. Datas inicial e final</p>
+              </div>
               <p>Dados históricos coletados pelas estações meteorológicas.</p>
 
               <label for="fonte-dados-observados">Fonte:</label>
@@ -93,10 +96,10 @@
             </div>
 
             <label for="startDate">Data inicial:</label>
-            <input class="dateinput" type="text" id="startDate" name="startDate">
+            <input class="dateinput" type="text" id="startDate" name="startDate"><br>
 
             <label for="finalDate">Data final:</label>
-            <input class="dateinput" type="text" id="finalDate" name="finalDate">
+            <input class="dateinput" type="text" id="finalDate" name="finalDate"><br>
 
             <button type="button" id="btn_submit">Visualizar</button>
             <button type="button" id="btn_download" name="btn_download">Baixar</button>

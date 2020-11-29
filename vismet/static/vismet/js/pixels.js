@@ -18,8 +18,10 @@ function ETA_Pixel_Layer_onEachFeature(feature, layer) {
     calendar_finalDate = station_finalDate.split("-").slice(0, 1).join("-");
     };
     yearRange = calendar_startDate+":"+calendar_finalDate;
-    $( ".dateinput" ).datepicker( "option", "yearRange", yearRange);
+    $( ".dateinput" ).datepicker( "option", "yearRange", "1960:2099");
     $( ".dateinput" ).datepicker( "option", "minDate", new Date(station_startDate));
+    $( ".dateinput" ).datepicker( "option", "defaultDate", "01/01/1960");
+
     botoes = true;
   });
 }
