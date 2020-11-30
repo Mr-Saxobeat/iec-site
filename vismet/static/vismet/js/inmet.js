@@ -25,6 +25,7 @@ function INMETStations_Layer_onEachFeature(feature, layer) {
     yearRange = calendar_startDate+":"+calendar_finalDate;
     $( ".dateinput" ).datepicker( "option", "yearRange", yearRange);
     $( ".dateinput" ).datepicker( "option", "minDate", new Date(station_startDate));
+    $( ".dateinput" ).datepicker( "option", "defaultDate", new Date(station_startDate));
 
     botoes = true;
 
