@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from djgeojson.views import GeoJSONLayerView
-from .models import ElementCategory, ElementSource, Station, Pixel, City
+from .models import ElementCategory, ElementSource, Station, Pixel, PixelData, City, CityData, DataModel
 from django.http import HttpResponse, JsonResponse, Http404
 import json
 import datetime
@@ -161,6 +161,7 @@ def Api_Cities_Data(request, format, name, start_day, start_month, start_year, f
     finalDate = datetime.date(final_year, final_month, final_day)
 
     city = City.objects.get(name=name)
+
     queryset = city.city_data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
 
     if format == "json":
@@ -169,3 +170,74 @@ def Api_Cities_Data(request, format, name, start_day, start_month, start_year, f
         return response
     elif format == "csv":
         return render_to_csv_response(queryset)
+
+def Api_Cities_PixelData(request, format, name, data_model,start_day, start_month, start_year, final_day, final_month, final_year):
+    startDate = datetime.date(start_year, start_month, 1)
+    finalDate = datetime.date(final_year, final_month, 28)
+    delta = finalDate  - startDate
+    date = startDate
+
+    city = City.objects.get(name=name)
+    city_pixels = city.pixels.all()
+    dm = DataModel.objects.get(name=data_model)
+
+    queryset = CityData.objects.filter(city=city, data_model=dm, date__gte=startDate, date__lte=finalDate).order_by('date')
+
+    n_months = round(delta.days / 28)
+    if queryset.count() < n_months:
+        n_pixel = city_pixels.count()
+
+        while date <= finalDate:
+            evapo = 0
+            minTemp = 0
+            maxTemp = 0
+            ocis = 0
+            precip = 0
+            rnof = 0
+            tp2m = 0
+
+            for pixel in city_pixels:
+
+                try:
+                    # pixel_data = pixel.pixel_data.filter(date=date).first()
+                    pixel_data = PixelData.objects.get(pixel=pixel, date=date)
+                except PixelData.DoesNotExist:
+                    continue
+
+                evapo += pixel_data.evapo
+                minTemp += pixel_data.minTemp
+                maxTemp += pixel_data.maxTemp
+                ocis += pixel_data.ocis
+                precip += pixel_data.precip
+                rnof += pixel_data.rnof
+                tp2m += pixel_data.tp2m
+
+            city_data, created = CityData.objects.get_or_create(
+                                    city = city,
+                                    data_model = dm,
+                                    date = date,
+                                    defaults = {
+                                        'evapo': evapo / n_pixel,
+                                        'minTemp': minTemp / n_pixel,
+                                        'maxTemp': maxTemp / n_pixel,
+                                        'ocis': ocis /n_pixel,
+                                        'precip': precip /n_pixel,
+                                        'rnof': rnof / n_pixel,
+                                        'tp2m': tp2m / n_pixel,
+                                    }
+                                )
+
+            if date.month < 12:
+                date = datetime.date(date.year, date.month + 1, date.day)
+            else:
+                date = datetime.date(date.year + 1, 1, date.day)
+
+        queryset = CityData.objects.filter(city=city, data_model=dm, date__gte=startDate, date__lte=finalDate).order_by('date')
+
+    if(format == 'json'):
+        queryset_serialized = serializers.serialize('json', queryset)
+        response = HttpResponse(queryset_serialized, content_type="application/json")
+        return response
+    elif format == 'csv':
+        qs_csv = queryset.values()
+        return render_to_csv_response(qs_csv)
