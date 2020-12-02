@@ -1,5 +1,5 @@
 from vismet.models import ElementCategory, ElementSource, ElementVariable, DataModel
-from vismet.models import City, CityData
+from vismet.models import City, CityData, Pixel
 from django.contrib.gis.utils import LayerMapping
 import os
 import csv
@@ -116,3 +116,29 @@ def LoadCityData(csv_path = os.path.join(os.getcwd(), 'vismet/scripts/data/city/
 
         file.close()
         print("acbouasflaskdjfalskdfj")
+
+def runpixel(path='/home/weiglas/Documents/iec/'):
+
+    with open(path + 'qgis_table.csv') as file:
+        reader = csv.reader(file)
+
+        for i, row in enumerate(reader):
+            if i == 0:
+                continue
+
+            city_name = row[1]
+            lat = row[4]
+            lon = row[3]
+
+            try:
+                pixel = Pixel.objects.get(latitude=lat, longitude=lon)
+                city = City.objects.get(name=city_name)
+            except Pixel.DoesNotExist:
+                print("Pixel não existe.")
+            except City.DoesNotExist:
+                print("Cidade não existe.")
+
+            city.pixels.add(pixel)
+            city.save()
+    file.close()
+    print("Acabou mano")
