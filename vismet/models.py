@@ -152,7 +152,6 @@ class ANAStationData(models.Model):
 # Pixels do estado do Espírito Santo.
 # Cada pixel tem 5Km de lado. (verificar isso)
 class Pixel(models.Model):
-    city = models.CharField(max_length=100, null=True, blank=True)
     state = models.CharField(max_length=100, null=True, blank=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
@@ -187,16 +186,6 @@ class PixelData(models.Model):
         return f'{ self.pixel.latitude }, { self.pixel.longitude } --- { self.date }'
 
 
-# Dados dos pixels do estado do Espírito Santo
-# class PixelData(models.Model):
-#     pixel = models.ForeignKey(Pixel, related_name='pixel_data', on_delete=models.CASCADE)
-#     date = models.DateField()
-#     preciptation = models.FloatField()
-#
-#     def __str__(self):
-#         return f'{ self.pixel.pixel_id }: { self.date }'
-
-
 # Este modelo é usado como uma layer no mapa
 # para destacar os municípios do Espírito Santo.
 class City(models.Model):
@@ -216,16 +205,23 @@ class City(models.Model):
     esc_local = models.CharField(max_length=30,blank=True,null=True)
     lei_criacao = models.CharField(max_length=250,blank=True,null=True)
     geom = models.PolygonField(srid=4326,blank=True,null=True)
+    pixels = models.ManyToManyField(Pixel)
 
     def __str__(self):
         return self.name
 
 
 class CityData(models.Model):
-    date = models.DateField()
     city = models.ForeignKey(City, related_name='city_data', on_delete=models.CASCADE)
-    precip = models.FloatField(null=True)
-    medTemp = models.FloatField(null=True)
+    data_model = models.ForeignKey(DataModel, related_name='city_data', on_delete=models.CASCADE, default=None)
+    date = models.DateField()
+    evapo = models.FloatField(default=None, null=True, blank=True)
+    minTemp = models.FloatField(default=None, null=True, blank=True)
+    maxTemp = models.FloatField(default=None, null=True, blank=True)
+    ocis = models.FloatField(default=None, null=True, blank=True)
+    precip = models.FloatField(default=None, null=True, blank=True)
+    rnof = models.FloatField(default=None, null=True, blank=True)
+    tp2m = models.FloatField(default=None, null=True, blank=True)
 
     def __str__(self):
         return f'{ self.city.name }: { self.date }'
