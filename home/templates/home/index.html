@@ -77,7 +77,7 @@
                 <button class="button" type="submit" name="selected_source" value="{{ cat.name }};{{ src_data.name }}">{{ src_data.display_name }}</button><br>
                 <ul>
                 {% for subsource in src_data.subsources.all %}
-                  <li><a href="{{ subsource.url }}" style="color:#292929;">{{ subsource.display_name }}</a></li>
+                  <li>{{ subsource.display_name }}<div class="help-tip"><a href="{{ subsource.url }}">Fonte</div></a></li>
                     <ul>
                       {% for detail in subsource.details.all %}
                         <li>{{ detail.text }}</li>
