@@ -54,9 +54,22 @@ btn_submit.addEventListener("click", function() {
   } else if (selBox_source_display.value.toUpperCase() == "XAVIER"){
     Show_Xavier_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
   }else if (selBox_source_display.value.toUpperCase() == "ETA POR CIDADE"){
-    showCityData(input_city_name.value, input_startDate.value, input_finalDate.value);
+    Show_City_Data(input_city_name.value, input_startDate.value, input_finalDate.value);
   }else if (selBox_source_display.value.toUpperCase() == "ETA POR PIXEL"){
     Show_ETA_Data(selected_pixel_id, input_startDate.value, input_finalDate.value);
   }
+})
 
+btn_download.addEventListener("click", function() {
+  if (selBox_source_display.value.toUpperCase() == "ANA"){
+    Download_ANA_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
+  } else if (selBox_source_display.value.toUpperCase() == "INMET"){
+    Download_INMET_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
+  } else if (selBox_source_display.value.toUpperCase() == "XAVIER"){
+    Download_Xavier_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
+  }else if (selBox_source_display.value.toUpperCase() == "ETA POR CIDADE"){
+    Download_City_Data(input_city_name.value, input_startDate.value, input_finalDate.value);
+  }else if (selBox_source_display.value.toUpperCase() == "ETA POR PIXEL"){
+    Download_ETA_Data(selected_pixel_id, input_startDate.value, input_finalDate.value);
+  }
 })

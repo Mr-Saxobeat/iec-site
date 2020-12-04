@@ -79,3 +79,13 @@ function Show_INMET_Data(code, startDate, finalDate){
     chart_update(chart, data, variable);
   })
 }
+
+function Download_INMET_Data(code, startDate, finalDate){
+  for(var i = 0; i <= 2; i++){
+    startDate = startDate.replace("/", "-");
+    finalDate = finalDate.replace("/", "-");
+  }
+
+  var url = url_stations + "csv/inmet/" + code + "/" + startDate + "/" + finalDate;
+  window.location.href = url;
+}

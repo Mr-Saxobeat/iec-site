@@ -79,3 +79,13 @@ function Show_ETA_Data(pixel_id, startDate, finalDate){
     chart_update(chart, data, variable);
   })
 }
+
+function Download_ETA_Data(pixel_id, startDate, finalDate){
+  for(var i = 0; i <= 2; i++){
+    startDate = startDate.replace("/", "-");
+    finalDate = finalDate.replace("/", "-");
+  }
+
+  var url = url_pixels + "csv/" + pixel_id + "/" + selBox_model_display.value + "/" +startDate + "/" + finalDate;
+  window.location.href = url;
+}

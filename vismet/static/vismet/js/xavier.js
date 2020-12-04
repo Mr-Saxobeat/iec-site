@@ -50,7 +50,7 @@ function Show_Xavier_Data(code, startDate, finalDate){
     switch (selBox_variable_display.value.toLowerCase()) {
       case 'evapotranspiração':
         variable = 'evapo';
-        break;        
+        break;
       case 'umidade relativa':
         variable = 'relHum';
         break;
@@ -72,4 +72,14 @@ function Show_Xavier_Data(code, startDate, finalDate){
     }
     chart_update(chart, data, variable);
   })
+}
+
+function Download_Xavier_Data(code, startDate, finalDate){
+  for(var i = 0; i <= 2; i++){
+    startDate = startDate.replace("/", "-");
+    finalDate = finalDate.replace("/", "-");
+  }
+
+  var url = url_stations + "csv/xavier/" + code + "/" + startDate + "/" + finalDate;
+  window.location.href = url;
 }

@@ -66,7 +66,7 @@ function LoadETACity(){
 }
 
 
-function showCityData(cityName, startDate, finalDate){
+function Show_City_Data(cityName, startDate, finalDate){
   for(var i = 0; i <= 2; i++){
     startDate = startDate.replace("/", "-");
     finalDate = finalDate.replace("/", "-");
