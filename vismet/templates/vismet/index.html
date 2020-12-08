@@ -40,57 +40,59 @@
             <div id="div-observados">
               <h3>Dados Observados:</h3>
               <div class="help-tip">
-                  <p>Para utilizar a plataforma, selecione:<br>1. Fonte<br>2. Variável<br>3. Estação<br>4. Datas inicial e final</p>
+                  <p>Para utilizar a plataforma, selecione:<br>1. Fonte<br>2. Variável<br>3. Estação<br>4. Datas inicial e final<br>5. Clique em "Visualizar" ou "Baixar"</p>
               </div>
               <p>Dados históricos coletados pelas estações meteorológicas.</p>
+              <div class="selectdiv">
+                <label for="fonte-dados-observados">Fonte:</label>
+                <select class="sel-data-source" name="fonte-dados-observados">
+                </select><br>
 
-              <label for="fonte-dados-observados">Fonte:</label>
-              <select class="sel-data-source" name="fonte-dados-observados">
-              </select><br>
-
-              <form action="" method="get">
-                {% csrf_token %}
-                <label for="variable">Variável:</label>
-                <select class="sel-data-variable" name="variable">
-                </select>
-              </form><br>
-
+                <form action="" method="get">
+                  {% csrf_token %}
+                  <label for="variable">Variável:</label>
+                  <select class="sel-data-variable" name="variable">
+                  </select>
+                </form><br>
+              </div>
               <input type="hidden" value="0" id="input_station_code">
             </div>
 
             <div id="div-reanálise">
               <h3>Dados de Reanálise:</h3>
               <p>Dados de reanálise bla bla bla bla bla bla bla bla bla bla bla bla.</p>
-
-              <label for="fonte-dados-observados">Fonte:</label>
-              <select class="sel-data-source" name="fonte-dados-observados">
-              </select>
-
-              <form action="" method="get">
-                {% csrf_token %}
-                <label for="variable">Variável:</label>
-                <select class="sel-data-variable" name="variable">
+              <div class="selectdiv">
+                <label for="fonte-dados-observados">Fonte:</label>
+                <select class="sel-data-source" name="fonte-dados-observados">
                 </select>
-              </form><br>
+
+                <form action="" method="get">
+                  {% csrf_token %}
+                  <label for="variable">Variável:</label>
+                  <select class="sel-data-variable" name="variable">
+                  </select>
+                </form><br>
+              </div>
             </div>
 
 
             <div id="div-simulados">
               <h3>Dados Simulados:</h3>
               <!-- <p>Média por município dos dados do Modelo Eta HADGEM2-ES 5km para o estado de Espírito Santo.</p> -->
+              <div class="selectdiv">
+                <label for="fonte-dados-simulados">Fonte:</label>
+                <select class="sel-data-source" name="fonte-dados-simulados"></select><br>
 
-              <label for="fonte-dados-simulados">Fonte:</label>
-              <select class="sel-data-source" name="fonte-dados-simulados"></select><br>
+                <label for="sel-data-model">Modelo:</label>
+                <select class="sel-data-model" name="sel-data-model"></select><br>
 
-              <label for="sel-data-model">Modelo:</label>
-              <select class="sel-data-model" name="sel-data-model"></select><br>
-
-              <form action="" method="get">
-                {% csrf_token %}
-                <label for="variable">Variável:</label>
-                <select class="sel-data-variable" name="variable">
-                </select><br>
-              </form><br>
+                <form action="" method="get">
+                  {% csrf_token %}
+                  <label for="variable">Variável:</label>
+                  <select class="sel-data-variable" name="variable">
+                  </select><br>
+                </form><br>
+              </div>  
 
               <input type="hidden" value="0" id="input_city_name">
             </div>
