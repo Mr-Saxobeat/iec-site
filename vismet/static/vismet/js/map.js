@@ -3,13 +3,32 @@ var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStree
              'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
 var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
 
-var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox/light-v9', attribution: mbAttr});
 var streets  = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11',   attribution: mbAttr});
+
+function City_Layer_onEachFeature(feature, layer) {
+  var popupContent = feature.properties.name;
+  layer.bindPopup(popupContent);
+}
+
+var City_Style = {
+  color: 'black',
+  weight: 2,
+};
+
+var City_Layer = L.geoJson([], {
+  style: City_Style,
+  onEachFeature: City_Layer_onEachFeature,
+})
+
+$.getJSON("/plataforma/api/cities/", function (data) {
+  City_Layer.addData(data);
+  City_Layer.bringToBack();
+})
 
 var map = L.map('map', {
   center: [-19.145, -40.407],
   zoom: 6,
-  layers: [streets],
+  layers: [streets, City_Layer],
 });
 
 var baseLayers = {
