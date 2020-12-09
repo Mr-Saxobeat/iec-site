@@ -44,7 +44,9 @@ function showLayer(layer_name){
     layer_name = "ana-precip";
   }
 
-  map.addLayer(layers_dic[layer_name]);
+  var curLay = layers_dic[layer_name];
+  map.addLayer(curLay);
+  curLay.bringToFront();
 }
 
 function capitalize(word){
