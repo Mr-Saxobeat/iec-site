@@ -37,7 +37,7 @@ function selectFeature(e) {
 }
 
 function ETA_City_Layer_onEachFeature(feature, layer) {
-  var popupContent = "Nome:" + feature.properties.name;
+  var popupContent = feature.properties.name;
   layer.bindPopup(popupContent);
   layer.on({
     click: selectFeature,
@@ -52,7 +52,6 @@ var ETA_City_Style = {
 
 var ETA_City_Layer = L.geoJson([], {
   style: ETA_City_Style,
-
   onEachFeature: ETA_City_Layer_onEachFeature,
 })
 
@@ -61,10 +60,9 @@ function LoadETACity(){
   $.getJSON(url_cities, function (data) {
     ETA_City_Layer.addData(data);
   })
-  control.addOverlay(ETA_City_Layer, "eta-city");
+  // control.addOverlay(ETA_City_Layer, "eta-city");
   layers_dic["eta por cidade"] = ETA_City_Layer;
 }
-
 
 function Show_City_Data(cityName, startDate, finalDate){
   for(var i = 0; i <= 2; i++){

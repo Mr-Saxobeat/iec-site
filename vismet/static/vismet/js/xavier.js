@@ -34,7 +34,7 @@ function loadXavierLayer(){
   $.getJSON(url_stations + "json/xavier/0/", function (data) {
     XavierStations_Layer.addData(data);
   });
-  control.addOverlay(XavierStations_Layer, "xavier");
+  // control.addOverlay(XavierStations_Layer, "xavier");
 
   layers_dic["xavier"] = XavierStations_Layer;
 }

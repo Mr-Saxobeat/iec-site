@@ -67,8 +67,8 @@ function loadANALayer(){
     ANA_Flow_Layer.addData(data);
   })
 
-  control.addOverlay(ANA_Precip_Layer, "ana-precip");
-  control.addOverlay(ANA_Flow_Layer, "ana-flow");
+  // control.addOverlay(ANA_Precip_Layer, "ana-precip");
+  // control.addOverlay(ANA_Flow_Layer, "ana-flow");
 
   layers_dic["ana-precip"] = ANA_Precip_Layer;
   layers_dic["ana-flow"] = ANA_Flow_Layer;

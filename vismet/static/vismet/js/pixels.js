@@ -37,7 +37,7 @@ function loadETALayer(){
   $.getJSON(url_pixels, function(data) {
     ETA_Pixel_Layer.addData(data);
   })
-  control.addOverlay(ETA_Pixel_Layer, "pixels");
+  // control.addOverlay(ETA_Pixel_Layer, "pixels");
   layers_dic["eta por pixel"] = ETA_Pixel_Layer;
 }
 

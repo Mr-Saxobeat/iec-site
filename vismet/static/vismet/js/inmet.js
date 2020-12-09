@@ -46,7 +46,7 @@ function loadINMETLayer(){
   $.getJSON(url_stations + "json/inmet/0/", function(data){
     INMETStations_Layer.addData(data);
   })
-  control.addOverlay(INMETStations_Layer, "inmet");
+  // control.addOverlay(INMETStations_Layer, "inmet");
 
   layers_dic["inmet"] = INMETStations_Layer;
 }
