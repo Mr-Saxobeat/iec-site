@@ -44,13 +44,13 @@
               </div>
               <p>Dados históricos coletados pelas estações meteorológicas.</p>
               <div class="selectdiv">
-                <label for="fonte-dados-observados">Fonte:</label>
+                <label for="fonte-dados-observados">Fonte</label><br>
                 <select class="sel-data-source" name="fonte-dados-observados">
                 </select><br>
 
                 <form action="" method="get">
                   {% csrf_token %}
-                  <label for="variable">Variável:</label>
+                  <br><label for="variable">Variável</label><br>
                   <select class="sel-data-variable" name="variable">
                   </select>
                 </form><br>
@@ -60,15 +60,16 @@
 
             <div id="div-reanálise">
               <h3>Dados de Reanálise:</h3>
-              <p>Dados de reanálise bla bla bla bla bla bla bla bla bla bla bla bla.</p>
+              <p style="color:#b30000">Os dados de reanálise estão sendo adaptados para a plataforma e serão disponibilizados em breve.</p>
+              <p>As reanálises são um conjunto de dados de clima que combinam informações a partir de observações de estações meteorológicas, modelagem, imagens de satélites e utilizam análises estatísticas na reconstrução da base de dados.</p>
               <div class="selectdiv">
-                <label for="fonte-dados-observados">Fonte:</label>
+                <label for="fonte-dados-observados">Fonte</label><br>
                 <select class="sel-data-source" name="fonte-dados-observados">
                 </select>
 
                 <form action="" method="get">
                   {% csrf_token %}
-                  <label for="variable">Variável:</label>
+                  <br><label for="variable">Variável</label><br>
                   <select class="sel-data-variable" name="variable">
                   </select>
                 </form><br>
@@ -80,15 +81,15 @@
               <h3>Dados Simulados:</h3>
               <!-- <p>Média por município dos dados do Modelo Eta HADGEM2-ES 5km para o estado de Espírito Santo.</p> -->
               <div class="selectdiv">
-                <label for="fonte-dados-simulados">Fonte:</label>
+                <br><label for="fonte-dados-simulados">Fonte</label><br>
                 <select class="sel-data-source" name="fonte-dados-simulados"></select><br>
 
-                <label for="sel-data-model">Modelo:</label>
+                <br><label for="sel-data-model">Modelo</label><br>
                 <select class="sel-data-model" name="sel-data-model"></select><br>
 
                 <form action="" method="get">
                   {% csrf_token %}
-                  <label for="variable">Variável:</label>
+                  <br><label for="variable">Variável</label><br>
                   <select class="sel-data-variable" name="variable">
                   </select><br>
                 </form><br>
@@ -97,11 +98,11 @@
               <input type="hidden" value="0" id="input_city_name">
             </div>
 
-            <label for="startDate">Data inicial:</label>
+            <label for="startDate">Data inicial</label><br>
             <input class="dateinput" type="text" id="startDate" name="startDate"><br>
 
-            <label for="finalDate">Data final:</label>
-            <input class="dateinput" type="text" id="finalDate" name="finalDate"><br>
+            <label for="finalDate">Data final</label><br>
+            <input class="dateinput" type="text" id="finalDate" name="finalDate"><br><br>
 
             <button type="button" id="btn_submit">Visualizar</button>
             <button type="button" id="btn_download" name="btn_download">Baixar</button>
