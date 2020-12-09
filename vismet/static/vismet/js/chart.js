@@ -24,6 +24,12 @@ function createNewChart(type, color, unit, legend){
           }
         }],
         xAxes: [{
+          ticks: {
+            autoSkip: true,
+            autoSkipPadding: 30,
+            maxRotation: 0,
+            minRotation: 0,
+          },
           display: true,
           labelString: "Data",
           fontColor: '#666',
@@ -64,12 +70,18 @@ function chart_removeData(chart) {
 }
 
 function chart_addData(json_data, variable){
+  var day;
+  var month;
+  var year;
   json_data.forEach(data => {
     date = data.fields.date;
-    date = date.substring(8,10) + '/' + date.substring(5,7) + '/' + date.substring(0,4);
+    day = date.substring(8,10);
+    month = date.substring(5,7);
+    year = date.substring(2,4);
+    date = day + '/' + month + '/' + year;
     chart.data.labels.push(date);
-    value = data.fields[variable];
 
+    value = data.fields[variable];
     chart.data.datasets.forEach((dataset) => {
       dataset.data.push(value);
     });
