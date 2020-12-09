@@ -31,9 +31,8 @@
     <!--<a href="#" class="w3-bar-item w3-button">Sobre</a>-->
     </div>
 
-    <div class="main">
-      <div class="container-fluid">
-        <div class="row">
+    <div class="main container-fluid">
+        <div class="row conteudo">
           <div class="col-md-3" id="sidebar">
             <button id="linkplataforma" class="w3-button w3-white w3-xlarge" onclick="w3_open()">☰</button>
             <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
@@ -108,11 +107,11 @@
           </div>
 
           <div class="col-md-9">
-            <div class="row">
+            <div class="row conteudo">
               <div id="map"></div>
             </div>
-            <div class="row">
-              <canvas id="chart" height="65"></canvas>
+            <div class="row chart-container">
+              <canvas id="chart"></canvas>
             </div>
           </div>
         </div>
@@ -121,7 +120,6 @@
         <input type="hidden" id="url-pixels" value="{% url 'vismet:pixels' %}">
         <input type="hidden" id="url-stations" value="{% url 'vismet:api_stations' %}">
         <input type="hidden" id="url-data-options" value="{% url 'vismet:data_options' %}">
-      </div>
     </div>
 
     <!-- CDNs das bibliotecas -->

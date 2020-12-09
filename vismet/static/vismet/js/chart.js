@@ -9,6 +9,7 @@ function createNewChart(type, color, unit, legend){
 
   var config = {
     options: {
+      maintainAspectRatio: false,
       title: {
         display: false,
         fontSize: 10,
