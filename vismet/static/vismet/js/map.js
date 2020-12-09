@@ -13,6 +13,7 @@ function City_Layer_onEachFeature(feature, layer) {
 var City_Style = {
   color: 'black',
   weight: 2,
+  opacity: 0.1,
 };
 
 var City_Layer = L.geoJson([], {
