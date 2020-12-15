@@ -27,7 +27,7 @@ $.getJSON("/plataforma/api/cities/", function (data) {
 })
 
 var map = L.map('map', {
-  center: [-19.145, -40.407],
+  center: [-25.721192685455318, -40.47385442274963],
   zoom: 6,
   layers: [streets, City_Layer],
 });
