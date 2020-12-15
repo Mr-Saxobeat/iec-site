@@ -74,10 +74,10 @@
             <form class="" action="{% url 'vismet:vismet' %}" method="post">
               {% csrf_token %}
               {% for src_data in cat.sources.all %}
-                <button class="button" type="submit" name="selected_source" value="{{ cat.name }};{{ src_data.name }}">{{ src_data.display_name }}</button><br>
+                <button class="button" type="submit" name="selected_source" value="{{ cat.name }};{{ src_data.name }}">{{ src_data.display_name }}</button><div hidden class="help-tip"><p>Fonte: <a href="{{ subsource.url }}">{{ subsource.url }}</a></p></div><br>
                 <ul>
                 {% for subsource in src_data.subsources.all %}
-                  <li><a href="{{ subsource.url }}" style="color:#292929;">{{ subsource.display_name }}</a></li>
+                  <li>{{ subsource.display_name }}</li>
                     <ul>
                       {% for detail in subsource.details.all %}
                         <li>{{ detail.text }}</li>
@@ -89,7 +89,8 @@
             </form>
           </div>
           <div class="card-footer">
-            <a href="plataforma" class="btn btn-primary btn-sm">Plataforma</a>
+            <!--<a href="plataforma" class="btn btn-primary btn-sm">Plataforma</a>-->
+            <a href="plataforma" class="button">Plataforma</a>
           </div>
         </div>
       </div>
