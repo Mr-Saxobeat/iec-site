@@ -34,10 +34,10 @@ def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'd
     finalDate = None
     created_station = None
 
-    minLat = -20
-    minLon = -40
-    maxLat = -15
-    maxLon = -39
+    minLat = -22.0
+    minLon = -44.0
+    maxLat = -16.0
+    maxLon = -39.0
 
     pt1 = (minLon, minLat)
     pt2 = (minLon, maxLat)
@@ -49,13 +49,21 @@ def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'd
     for station in automatic_stations_response:
         station_lat = float(station["VL_LATITUDE"])
         station_lon = float(station["VL_LONGITUDE"])
-        station_point = Point(station_lon, station_lat, None, 4326)
+
+        if(station["CD_ESTACAO"] == "A612"):
+            print(str(station_lat) + " >= -20.0  = " + str(station_lat >= minLat))
+            print(str(station_lon) + " >= -43.0  = " + str(station_lat >= minLon))
+            print(str(station_lat) + " <= -15.0  = " + str(station_lat <= maxLat))
+            print(str(station_lat) + " <= -38.0  = " + str(station_lat >= maxLon))
 
         if (station_lat >= minLat and station_lon >= minLon and
             station_lat <= maxLat and station_lon <= maxLon):
+
+            print(str(station_lat) + " -- " + str(station_lon))
     # # Cria models das estações automáticas
     # for station in automatic_stations_response:
     #     if station["CD_ESTACAO"] in list_inmet_codes:
+            station_point = Point(station_lon, station_lat, None, 4326)
             startDate = station["DT_INICIO_OPERACAO"]
             finalDate = station["DT_FIM_OPERACAO"]
 
@@ -81,7 +89,7 @@ def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'd
                 startDate = startDate,
                 finalDate = finalDate,
                 status = station["CD_SITUACAO"],
-                geom = point,
+                geom = station_point,
             )
 
             if created:
@@ -109,7 +117,7 @@ def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'd
                 finalDate = None
 
             # if station["CD_ESTACAO"] in list_inmet_codes:
-            point = Point(station_lon, station_lat, None, 4326)
+            station_point = Point(station_lon, station_lat, None, 4326)
             newObj, created = Station.objects.get_or_create(
                 source = source,
                 inmet_code = station["CD_ESTACAO"],
@@ -120,7 +128,7 @@ def LoadINMETStations(csv_path=os.path.join(os.getcwd(), 'vismet', 'scripts', 'd
                 startDate = startDate,
                 finalDate = finalDate,
                 status = station["CD_SITUACAO"],
-                geom = point,
+                geom = station_point,
             )
 
             if created:
