@@ -1,14 +1,18 @@
-var INMETStations_Style = {
-  fillColor: 'red',
-  weight: 1,
-  opacity: 1,
-  color: 'black',
-  fillOpacity: 1,
-};
+
+function style(feature){
+  return {
+    fillColor: feature.properties.type.toLowerCase() == "automatica" ? "red" : "green",
+    weight: 1,
+    opacity: 1,
+    color: 'black',
+    fillOpacity: 1,
+  }
+}
 
 function INMETStations_Layer_onEachFeature(feature, layer) {
   layer.bindPopup(feature.properties.popup_content);
   layer.on('click', function() {
+    console.log(layer.target);
     input_station_code.value = feature.properties.inmet_code;
     station_city = feature.properties.city;
     station_state = feature.properties.state;
@@ -35,7 +39,7 @@ function INMETStations_Layer_onEachFeature(feature, layer) {
 }
 
 var INMETStations_Layer = L.geoJson([], {
-  style: INMETStations_Style,
+  style: style,
   pointToLayer: function(feature, latlng) {
     return new L.CircleMarker(latlng, {radius: 5});
   },
