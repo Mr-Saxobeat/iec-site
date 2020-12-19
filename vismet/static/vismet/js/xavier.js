@@ -13,8 +13,8 @@ function XavierStations_Layer_onEachFeature(feature, layer) {
     station_city = feature.properties.name;
     station_state = feature.properties.state;
     station_inmet = feature.properties.inmet_code;
-    $( ".dateinput" ).datepicker( "option", "yearRange", "1970:2014");
-    $( ".dateinput" ).datepicker( "option", "defaultDate", "01/01/1970");
+    $( ".dateinput" ).datepicker( "option", "yearRange", "1980:2014");
+    $( ".dateinput" ).datepicker( "option", "defaultDate", "01/01/1980");
     botoes = true;
 
     chart.options.title.text = "Estação nº " + station_inmet + ", " + station_city + " - " + station_state;
