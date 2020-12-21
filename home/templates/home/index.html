@@ -63,39 +63,200 @@
       </div>
     </div>
 
-    <!-- Content Row -->
-    <div class="row" ali>
-      {% for cat in categories %}
+<div class="row" ali>
       <div class="col-md-4 mb-5">
         <div class="card h-100">
           <div class="card-body">
-            <h2 class="card-title">{{ cat.display_name }}</h2>
-            <p class="card-text">{{ cat.desc }}</p>
+            <h2 id="obs" class="card-title">Observacionais</h2>
+            <p class="card-text text-justify">Nesta categoria podem ser obtidos conjuntos de dados diários observados, para o estado do Espírito Santo, a partir da rede de estações convencionais e automáticas de instituições nacionais, tais como: temperatura, precipitação, vazão, evapotranspiração, radiação solar, vento e umidade relativa do ar. Estes conjuntos de dados podem ser obtidos no formato csv (comma separated values, que podem ser usados, por exemplo, no Excel) e em formato NetCDF (.nc), que podem ser lidos em softwares como Matlab, Grads, GIS ou utilizando linguagem de programação como Python, Fortran, R, entre outras. Os dados disponíveis podem ser obtidos clicando nos links abaixo.</p><div class="help-tip"><p>Fontes:<br>
+              <a href="https://portal.inmet.gov.br/">INMET</a><br>
+              <a href="http://www.cemaden.gov.br/">CEMADEN</a><br>
+              <a href="https://www.gov.br/ana/pt-br">ANA</a><br>
+              <a href="https://sites.google.com/site/alexandrecandidoxavierufes/">Xavier</a><br>
+            </div>
             <form class="" action="{% url 'vismet:vismet' %}" method="post">
               {% csrf_token %}
-              {% for src_data in cat.sources.all %}
-                <button class="button" type="submit" name="selected_source" value="{{ cat.name }};{{ src_data.name }}">{{ src_data.display_name }}</button><div hidden class="help-tip"><p>Fonte: <a href="{{ subsource.url }}">{{ subsource.url }}</a></p></div><br>
-                <ul>
-                {% for subsource in src_data.subsources.all %}
-                  <li>{{ subsource.display_name }}</li>
+              <ul>
+                <button class="button" type="submit" name="selected_source" value="observados;inmet"><b>INMET</b></button>
+                  <ul>
+                    <li>Estações Automáticas</li>
                     <ul>
-                      {% for detail in subsource.details.all %}
-                        <li>{{ detail.text }}</li>
-                      {% endfor %}
+                      <li>2000 até a presente data</li>
                     </ul>
-                  {% endfor %}
+                  </ul>
+                  <ul>
+                    <li>Convencional</li>
+                    <ul>
+                      <li>A partir de 1924</li>
+                    </ul>
+                  </ul>
+                </li>
+              </ul>
+
+              <ul>
+                <b>CEMADEN</b>
+                  <ul>
+                    <li>Pluviômetros</li>
+                    <ul>
+                      <li>2010 até a presente data</li>
+                    </ul>
+                  </ul>
+                </li>
+              </ul>
+
+              <ul>
+                <button class="button" type="submit" name="selected_source" value="observados;ana"><b>ANA</b></button>
+                <ul>
+                  <li>Pluviômetros</li>
+                  <ul>
+                    <li>1925-2019</li>
+                  </ul>
                 </ul>
-              {% endfor %}
+                <ul>
+                  <li>Fluviométricos</li>
+                  <ul>
+                    <li>1925-2019</li>
+                  </ul>
+                </ul>
+              </ul>
+
+              <ul>
+                <button class="button" type="submit" name="selected_source" value="observados;xavier"><b>Xavier</b></button>
+                <ul>
+                  <li>Dados Meteorológicos do Brasil</li>
+                  <ul>
+                    <li>1980-2017</li>
+                    <li>Xavier et al. 2016</li>                      
+                  </ul>
+                </ul>
+              </ul>
             </form>
+
           </div>
           <div class="card-footer">
-            <!--<a href="plataforma" class="btn btn-primary btn-sm">Plataforma</a>-->
-            <a href="plataforma" class="button">Plataforma</a>
+            <a href="../plataforma" class="button">Plataforma</a>
           </div>
         </div>
       </div>
-      {% endfor %}
-    </div>
+      <!-- /.col-md-4 -->
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 id="rea" class="card-title">Reanálise</h2>
+            <p class="card-text text-justify">As reanálises são um conjunto de dados de clima que combinam informações a partir de observações de estações meteorológicas, modelagem, imagens de satélites e utilizam análises estatísticas na reconstrução da base de dados. Nesta categoria podem ser obtidos conjuntos de dados de reanálises de instituições nacionais e internacionais para o estado do Espírito Santo. Os dados são disponibilizados em ponto de grade ou pixel que cobrem o estado do Espírito Santo. Assim como nos dados observacionais, as informações das reanálises podem ser obtidas no formato csv (comma separated values, que podem ser usados, por exemplo, no Excel) e em formato NetCDF (.nc), que podem ser lidos em softwares como Matlab, Grads, GIS ou utilizando linguagem de programação como Python, Fortran, R, entre outras.</p><div class="help-tip"><p>Fontes:<br>
+              <a href="https://www.cptec.inpe.br/">MERGE-CPTEC</a><br>
+              <a href="https://psl.noaa.gov/">GPCP<br>
+              <a href="https://www.chc.ucsb.edu/">CHIRPS</a><br>
+              <a href="https://psl.noaa.gov/">DELAWARE</a><br>
+              <a href="https://www.ncdc.noaa.gov/">GFS</a><br>
+            </div>
+            <form class="" action="{% url 'vismet:vismet' %}" method="post">
+              {% csrf_token %}
+              <ul>
+                <li><b>MERGE-CPTEC</b>
+                  <ul>
+                    <li>Rozante et al. (2010)</li>
+                    <ul>
+                      <li>2014 até a presente data</li>
+                      <li>Resolução Espacial: 0.1°</li>
+                    </ul>
+                  </ul>
+              </ul>
+
+                  <ul><li><b>GPCP</b>
+                  <ul>
+                    <li>Huffmann et al. (2001)</li>
+                    <ul>
+                      <li>1979 até a presente data</li>
+                      <li>Resolução Espacial: 2.5°</li>
+
+                    </ul>
+                  </ul>
+                  </li></ul>
+
+                <ul>
+                  <li><b>CHIRPS</b>
+                  <ul>
+                    <li>Fuck et al.(2015)</li>
+                    <ul>
+                      <li>1981 até a presente data</li>
+                      <li>Resolução Espacial: 0.05°</li>                      
+                    </ul>
+                  </ul>
+                </li></ul>
+
+              <ul>
+                <li><b>DELAWARE</b>
+                  <ul>
+                    <li>Willmott and Matsuura (2001)</li>
+                    <ul>
+                      <li>1900 a 2017</li>
+                      <li>Resolução Espacial: 0.25°</li>                      
+                    </ul>
+                  </ul>
+                </li>
+              </ul>              
+
+              <ul>
+                <li><b>GFS</b>
+                  <ul>
+                    <li>NCEP- NOAA</li>
+                    <ul>
+                      <li>2003 até a presente data</li>
+                      <li>Resolução Espacial: 0.5°</li>                      
+                    </ul>
+                  </ul>
+                </li>
+              </ul>  
+            </form>
+          </div>
+          <div class="card-footer">
+            <a href="../plataforma" class="button">Plataforma</a>          
+          </div>
+        </div>
+      </div>
+      <!-- /.col-md-4 -->
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 id="sim" class="card-title">Simulados</h2>
+            <p class="card-text text-justify">Nesta categoria podem ser obtidos dados mensais de Cenários Climáticos das simulações do modelo regional Eta-CPTEC com resolução espacial de 5km aninhado ao modelo global HadGen2-ES para o estado do Espírito Santo. Esses dados compreendem três conjuntos principais: período histórico (1960-2005), e dois cenários de emissões de gases de efeito estufa (GEE), o cenário RCP 4.5 (médias emissões de GEE) e o cenário RCP 8.5 (altas emissões de GEE) desde 2006 até 2099. Estes conjuntos de dados podem ser obtidos no formato csv (comma separated values, que podem ser usados, por exemplo, no Excel) e em formato NetCDF (.nc), que podem ser lidos em softwares como Matlab, Grads, GIS ou utilizando linguagem de programação como Python, Fortran, R, entre outras.</p><div class="help-tip"><p>Fonte:<br>
+              <a href="https://projeta.cptec.inpe.br/#/about">ProjEta</a><br>
+            </div>
+            <form class="" action="{% url 'vismet:vismet' %}" method="post">
+              {% csrf_token %}
+              <ul><button class="button" type="submit" name="selected_source" value="simulados;eta por cidade"><b>ETA Por Cidade</b></button>
+                <ul>
+                    <li>Eta HADGEM2-ES RCP 4.5, RCP 8.5
+                    <ul>
+                      <li>1960-2005</li>
+                      <li>2006-2099</li>
+                      <li>Resolução Espacial: 5 km</li>                      
+                    </ul>
+                  </li>
+                </ul>
+              </ul>
+
+              <ul><button class="button" type="submit" name="selected_source" value="simulados;eta por pixel"><b>ETA Por pixel</b></button>
+                <ul>
+                  <li>Eta HADGEM2-ES RCP 4.5, RCP 8.5
+                    <ul>
+                      <li>1960-2005</li>
+                      <li>2006-2099</li>
+                      <li>Resolução Espacial: 5 km</li>                      
+                    </ul>
+                  </li>
+                </ul>
+              </ul>
+            </form>
+          </div>
+
+          <div class="card-footer">
+            <a href="../plataforma" class="button">Plataforma</a>      
+          </div>
+        </div>
+      </div></div>
+      <!-- /.col-md-4 -->
 
 		<footer id="footer" align="middle">
       <a class="anchor" id="fo"></a>
