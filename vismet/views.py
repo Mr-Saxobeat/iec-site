@@ -10,6 +10,7 @@ from rest_framework import serializers as rest_serializers
 from django.core.serializers import serialize as sr
 from djqscsv import render_to_csv_response
 from vismet.retrieve_functions import GetXavierStationData, GetINMETStationData, GetANAStationData
+from django.db.models import Q
 
 # Esta view apenas retorna o template pricipal
 # da plataforma de dados.
@@ -136,7 +137,7 @@ def Api_Pixel_Data(request, format, pk, data_model, start_day, start_month, star
 
     try:
         pixel = Pixel.objects.get(pk=pk)
-        data = pixel.pixel_data.filter(data_model__name=data_model, date__gte=startDate, date__lte=finalDate).order_by('date')
+        data = pixel.pixel_data.filter(Q(data_model__name='Histórico, 5Km') | Q(data_model__name=data_model), date__gte=startDate, date__lte=finalDate).order_by('date')
     except Pixel.DoesNotExist:
         return JsonResponse({'mensagem': 'Pixel não encontrado.'}, status=404)
     except PixelData.DoesNotExist:
