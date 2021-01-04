@@ -4,6 +4,7 @@ html, body {
 
 .main {
   height: 100%;
+  background-color: #fffff0;
 }
 
 .conteudo {
@@ -43,7 +44,7 @@ html, body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #ededed;
+  background-color: #F8F0C6;
   overflow-x: hidden;
   padding-top: 20px;
 }
@@ -74,6 +75,7 @@ html, body {
 
 #linkplataforma{
   position: absolute;
+  background-color: #fffff0 !important;
 }
 
 #btn_download{
@@ -103,6 +105,7 @@ button {
   background-color: #ffffff;
   color: #242424;
   padding: 3px 8px;
+
 }
 
 button:hover {
@@ -124,6 +127,7 @@ button[disabled]{
 
 .dateinput {
   position: relative;
+  display: block;
   z-index: 1001;
 }
 
@@ -143,7 +147,7 @@ label {
 }
 
 .alert {
-  padding: 20px;
+  margin: 10px;
   background-color: #f44336;
   color: white;
 }
@@ -161,4 +165,43 @@ label {
 
 .closebtn:hover {
   color: black;
+}
+
+.data-container{
+  display: grid;
+  background-color: #FFFDD1;
+  padding: 10px;
+  border: 2px #D4CAA3;
+  border-style: double;
+}
+
+#data-container{
+  border-top-style: none !important;
+}
+
+#datafinal{
+  padding-top: 10px;
+}
+
+.data-text{
+  padding-left: 10px;
+  display: grid;
+  background-color: #F8F0C6;
+  border: solid #D4CAA3; 
+  border-width: 1px;
+}
+
+.padded-data-text{
+  margin-top: 10px;
+  padding-top: 15px !important;
+  padding: 10px;
+}
+
+#texto-reanalise{
+  margin-right: 10px;
+}
+
+.chart-container{
+  padding: 20px;
+  display: none;
 }

@@ -25,3 +25,7 @@ toValidate.change(function () {
         jQuery("#btn_submit, #btn_download").prop('disabled', true);
     }
 });
+
+$('#btn_submit').click(function(){
+   $('.chart-container').toggle();
+});

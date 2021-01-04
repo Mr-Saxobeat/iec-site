@@ -36,13 +36,15 @@
           <div class="col-md-3" id="sidebar">
             <button id="linkplataforma" class="w3-button w3-white w3-xlarge" onclick="w3_open()">☰</button>
             <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
-            <div id="div-observados">
-              <h3>Dados Observados:</h3>
-              <div class="help-tip">
-                  <p>Para utilizar a plataforma, selecione:<br>1. Fonte<br>2. Variável<br>3. Estação<br>4. Datas inicial e final<br>5. Clique em "Visualizar" ou "Baixar"</p>
+            <div class="help-tip">
+                <p>Para utilizar a plataforma, selecione:<br>1. Fonte<br>2. Variável<br>3. Estação<br>4. Datas inicial e final<br>5. Clique em "Visualizar" ou "Baixar"</p>
+            </div>
+            <div class="data-container" id="div-observados">
+              <div class="data-text">
+                <h3>Dados Observados:</h3>
+                <p>Dados históricos coletados pelas estações meteorológicas.</p>
               </div>
-              <p>Dados históricos coletados pelas estações meteorológicas.</p>
-              <div class="selectdiv">
+              <div class="data-text padded-data-text selectdiv">
                 <label for="fonte-dados-observados">Fonte</label><br>
                 <select class="sel-data-source" name="fonte-dados-observados">
                 </select><br>
@@ -57,14 +59,16 @@
               <input type="hidden" value="0" id="input_station_code">
             </div>
 
-            <div id="div-reanálise">
+            <div class="data-container" id="div-reanálise">
+              <div class="data-text">
               <h3>Dados de Reanálise:</h3>
-              <div class="alert">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                <strong>Os dados de reanálise estão sendo adaptados para a plataforma e serão disponibilizados em breve.</strong>
+                <div class="alert">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                  <strong>Os dados de reanálise estão sendo adaptados para a plataforma e serão disponibilizados em breve.</strong>
+                </div>
+                <p id="texto-reanalise" align="justify">As reanálises são um conjunto de dados de clima que combinam informações a partir de observações de estações meteorológicas, modelagem, imagens de satélites e utilizam análises estatísticas na reconstrução da base de dados.</p>
               </div>
-              <p>As reanálises são um conjunto de dados de clima que combinam informações a partir de observações de estações meteorológicas, modelagem, imagens de satélites e utilizam análises estatísticas na reconstrução da base de dados.</p>
-              <div class="selectdiv">
+              <div class="data-text padded-data-text selectdiv">
                 <label for="fonte-dados-observados">Fonte</label><br>
                 <select class="sel-data-source" name="fonte-dados-observados">
                 </select>
@@ -74,54 +78,58 @@
                   <br><label for="variable">Variável</label><br>
                   <select class="sel-data-variable" name="variable">
                   </select>
-                </form><br>
+                </form>
               </div>
             </div>
 
 
-            <div id="div-simulados">
-              <h3>Dados Simulados:</h3>
-              <!-- <p>Média por município dos dados do Modelo Eta HADGEM2-ES 5km para o estado de Espírito Santo.</p> -->
-              <div class="selectdiv">
+            <div class="data-container" id="div-simulados">
+              <div class="data-text">
+                <h3>Dados Simulados:</h3>
+                <p>Média por município dos dados do Modelo Eta HADGEM2-ES 5km para o estado de Espírito Santo.</p>
+              </div>
+              <div class="data-text padded-data-text selectdiv">
                 <br><label for="fonte-dados-simulados">Fonte</label><br>
-                <select class="sel-data-source" name="fonte-dados-simulados"></select><br>
-
-                <br><label for="sel-data-model">Modelo</label><br>
+                <select class="sel-data-source" name="fonte-dados-simulados"></select>
+                <div id="divmodelo">
+                  <label for="sel-data-model">Modelo</label><br>
+                </div>
                 <select class="sel-data-model" name="sel-data-model"></select><br>
-
                 <form action="" method="get">
                   {% csrf_token %}
-                  <br><label for="variable">Variável</label><br>
+                  <label for="variable">Variável</label><br>
                   <select class="sel-data-variable" name="variable">
-                  </select><br>
-                </form><br>
-              </div>  
-
+                  </select>
+                </form>
+              </div> 
               <input type="hidden" value="0" id="input_city_name">
             </div>
+            <div class="data-container" id="data-container">
+              <div class="data-text padded-data-text">
+                <label for="startDate">Data inicial</label>
+                <input class="dateinput" type="text" id="startDate" name="startDate"><br>
+                <div id="datafinal">
+                  <label for="finalDate">Data final</label><br>
+                  <input class="dateinput" type="text" id="finalDate" name="finalDate">
+                </div>
+              </div>
+            </div>
+              <br><button type="button" id="btn_submit">Visualizar</button>
+              <button type="button" id="btn_download" name="btn_download">Baixar</button>
 
-            <label for="startDate">Data inicial</label><br>
-            <input class="dateinput" type="text" id="startDate" name="startDate"><br>
-
-            <label for="finalDate">Data final</label><br>
-            <input class="dateinput" type="text" id="finalDate" name="finalDate"><br><br>
-
-            <button type="button" id="btn_submit">Visualizar</button>
-            <button type="button" id="btn_download" name="btn_download">Baixar</button>
-
-            <input type="hidden" id="selected_source" value="{{ selected_source }}">
+              <input type="hidden" id="selected_source" value="{{ selected_source }}">
           </div>
 
           <div class="col-md-9">
             <div class="row conteudo">
               <div id="map"></div>
             </div>
-            <div class="row chart-container">
-              <canvas id="chart"></canvas>
-            </div>
           </div>
         </div>
-
+        <div class="row chart-container">
+          <canvas id="chart"></canvas>
+        </div>
+        
         <input type="hidden" id="url-cities" value="{% url 'vismet:cities' %}">
         <input type="hidden" id="url-pixels" value="{% url 'vismet:pixels' %}">
         <input type="hidden" id="url-stations" value="{% url 'vismet:api_stations' %}">
