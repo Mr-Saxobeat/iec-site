@@ -1,10 +1,11 @@
 html, body {
   height: 100%;
+  background-color: #E1EAFF;
+  min-height: 800px;
 }
 
 .main {
   height: 100%;
-  background-color: #fffff0;
 }
 
 .conteudo {
@@ -75,7 +76,7 @@ html, body {
 
 #linkplataforma{
   position: absolute;
-  background-color: #fffff0 !important;
+  background-color: #E1EAFF !important;
 }
 
 #btn_download{
@@ -168,15 +169,25 @@ label {
 }
 
 .data-container{
+  border-radius: 6px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   display: grid;
-  background-color: #FFFDD1;
+  background-color: #B2C6F9;
   padding: 10px;
-  border: 2px #D4CAA3;
+  border: 2px #4160AD;
   border-style: double;
 }
 
 #data-container{
   border-top-style: none !important;
+  border-top-right-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+}
+
+#div-observados, #div-reanálise, #div-simulados {
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
 }
 
 #datafinal{
@@ -186,8 +197,8 @@ label {
 .data-text{
   padding-left: 10px;
   display: grid;
-  background-color: #F8F0C6;
-  border: solid #D4CAA3; 
+  background-color: #D6E1FD;
+  border: solid #7EA1F8; 
   border-width: 1px;
 }
 
@@ -204,4 +215,18 @@ label {
 .chart-container{
   padding: 20px;
   display: none;
+  margin: 2px;
+  margin-top: 10px;
+  background-color: white !important;
+}
+
+#chart{
+  position: absolute;
+  margin: 10px;
+  overflow: scroll;
+}
+
+#map{
+  position: absolute !important;
+  height: 85.3%;
 }
