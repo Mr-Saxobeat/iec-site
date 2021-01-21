@@ -7,3 +7,4 @@ stations_data/data/
 stations_data/eta/
 stations_data/esmunicipios.zip
 static/*
+.vscode/
