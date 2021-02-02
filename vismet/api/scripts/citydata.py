@@ -96,7 +96,7 @@ def run(base_dir='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuro
                         'date': date.strftime('%Y-%m-%d')
                     }
 
-                    response = requests.post(url, data=data)
+                    response = requests.post(url, data=data, verify=False)
 
                     if response.status_code == 201:
                         print(data_model_name + ' ' + str(fid) + ' ' + date.strftime('%d/%m/%Y'))
