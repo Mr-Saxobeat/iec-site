@@ -13,7 +13,8 @@ def get_cities_fid(shp_file_dir):
 # Script para carregar dados de municípios via rest
 def run(base_dir='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuros/Media por Munucipios --- Eta 5km HADGEM2-ES /',
         shp_file_dir = 'esmunicpios/',
-        data_file_dir = 'dados-municipios/'):
+        data_file_dir = 'dados-municipios/',
+        url='http://127.0.0.1:8000/api2/citydata/'):
 
     fids = get_cities_fid(os.path.join(base_dir, shp_file_dir))
 
@@ -83,7 +84,6 @@ def run(base_dir='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuro
                     tp2m_value = tp2m_row[i_col]
                     fid = fids[i_col - 2]
 
-                    url = 'http://127.0.0.1:8000/api2/citydata/'
                     data = {
                         'evapo': evtp_value,
                         'minTemp': mntp_value,
