@@ -3,6 +3,7 @@ import geopandas
 import csv
 import requests
 import datetime
+import sys
 
 def get_cities_fid(shp_file_dir):
     shp_file = geopandas.read_file(os.path.join(shp_file_dir, 'ES_Municipios.shp'))
@@ -58,12 +59,25 @@ def run(base_dir='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuro
             tp2m = list(csv.reader(tp2m_f))
 
             for i_row, row in enumerate(evtp):
-                evtp_row = evtp[i_row]
-                mntp_row = mntp[i_row]
-                mxtp_row = mxtp[i_row]
-                ocis_row = ocis[i_row]
-                prec_row = prec[i_row]
-                tp2m_row = tp2m[i_row]
+                try:
+                    evtp_row = evtp[i_row]
+                    mntp_row = mntp[i_row]
+                    mxtp_row = mxtp[i_row]
+                    ocis_row = ocis[i_row]
+                    prec_row = prec[i_row]
+                    tp2m_row = tp2m[i_row]
+                except IndexError as e:
+                        print('i_row = ' + str(i_row))
+                        print(os.path.join(mxtp_dir, model_name, mxtp_files[i_file]))
+
+                        
+                        e_type, e_value, e_traceback = sys.exc_info()
+                        print('e_type = ' + str(e_type))
+                        print('e_value = ' + str(e_value))
+                        print('e_traceback = ' + str(e_traceback.print_exception()))
+                        os.system('play -nq -t alsa synth {} sine {}'.format(0.5, 880))
+                        return 0
+
 
                 if len(evtp_row[0]) > 4:
                     date = datetime.date(int(evtp_row[0][1:]), int(evtp_row[1]), 1)
@@ -71,18 +85,28 @@ def run(base_dir='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuro
                     date = datetime.date(int(evtp_row[0]), int(evtp_row[1]), 1)
 
                 # remover isso depois !K!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-                # if date.year < 2082:
-                #     print(date.year)
-                #     continue
+                if (date.year <= 2036 or date.year >= 2069):
+                    print('CONTINUOU')
+                    continue
 
                 for i_col, col in enumerate(evtp_row[2:]):
                     i_col = i_col + 2
-                    evtp_value = evtp_row[i_col]
-                    mntp_value = mntp_row[i_col]
-                    mxtp_value = mxtp_row[i_col]
-                    ocis_value = ocis_row[i_col]
-                    prec_value = prec_row[i_col]
-                    tp2m_value = tp2m_row[i_col]
+
+                    try:
+                        evtp_value = evtp_row[i_col]
+                        mntp_value = mntp_row[i_col]
+                        mxtp_value = mxtp_row[i_col]
+                        ocis_value = ocis_row[i_col]
+                        prec_value = prec_row[i_col]
+                        tp2m_value = tp2m_row[i_col]
+                    except IndexError as e:
+                        e_type, e_value, e_traceback = sys.exc_info()
+                        print('e_type = ' + str(e_type))
+                        print('e_value = ' + str(e_value))
+                        print('e_traceback = ' + str(e_traceback.print_exception()))
+                        os.system('play -nq -t alsa synth {} sine {}'.format(0.5, 880))
+                        return 0
+
                     fid = fids[i_col - 2]
 
                     data = {
