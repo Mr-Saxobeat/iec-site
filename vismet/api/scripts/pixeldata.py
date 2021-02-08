@@ -33,8 +33,6 @@ def run(url='http://127.0.0.1:8000/api2/pixeldata/',
     for lon in list_longitudes:
         round_longitudes.append(round_dot_zero_five(lon))
 
-    data_model, created = DataModel.objects.get_or_create(name='Chirps')
-
     pixels = Pixel.objects.all()
     time_len = ds['time'].shape[0]
 
