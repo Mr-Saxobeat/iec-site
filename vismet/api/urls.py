@@ -1,7 +1,8 @@
 from django.urls import path
-from vismet.api.views import CityDataAPIView
+from vismet.api.views import CityDataAPIView, PixelDataAPIView
 
 
 urlpatterns = [
     path('citydata/', CityDataAPIView.as_view(), name='city-data-list'),
+    path('pixeldata/', PixelDataAPIView.as_view(), name='pixel-data-list'),
 ]
