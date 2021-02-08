@@ -71,7 +71,8 @@ def run(base_dir='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuro
                     date = datetime.date(int(evtp_row[0]), int(evtp_row[1]), 1)
 
                 # remover isso depois !K!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-                if date.year < 2039:
+                if date.year < 2082:
+                    print(date.year)
                     continue
 
                 for i_col, col in enumerate(evtp_row[2:]):
