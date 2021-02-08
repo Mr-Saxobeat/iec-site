@@ -28,7 +28,7 @@ def run(base_dir='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuro
     for model_name in os.listdir(evtp_dir):
 
         # remover isso depois !K!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-        if model_name != 'RCP 4.5':
+        if model_name != 'RCP 8.5':
             continue
 
         evtp_files = os.listdir(os.path.join(evtp_dir, model_name))
@@ -71,9 +71,9 @@ def run(base_dir='/home/weiglas/Documents/iec/dados/3. Dados de Cenários Futuro
                     date = datetime.date(int(evtp_row[0]), int(evtp_row[1]), 1)
 
                 # remover isso depois !K!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-                if date.year < 2082:
-                    print(date.year)
-                    continue
+                # if date.year < 2082:
+                #     print(date.year)
+                #     continue
 
                 for i_col, col in enumerate(evtp_row[2:]):
                     i_col = i_col + 2
