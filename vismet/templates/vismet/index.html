@@ -115,11 +115,13 @@
                 </div>
               </div>
             </div>
+            <div id="div-buttons">
               <br><button type="button" class="gbutton" id="btn_submit">Visualizar</button>
               <button type="button" class="gbutton" id="btn_download" name="btn_download">Baixar</button>
-              <button style="display:none;" type="button" class="gbutton" id="chart_download">Baixar Gráfico</button>
+              <a style="display:none;" type="button" class="gbutton" id="chart_download" download="Grafico.jpg">Baixar Gráfico</a>
 
               <input type="hidden" id="selected_source" value="{{ selected_source }}">
+            </div>
           </div>
 
           <div class="col-md-9">
@@ -128,7 +130,7 @@
             </div>
           </div>
         </div>
-        <div class="row chart-container">
+        <div id="chartdiv" class="row chart-container">
           <canvas id="chart"></canvas>
         </div>
         
@@ -158,6 +160,9 @@
 
     <!-- Popper -->
     <script type="text/javascript" src="https://unpkg.com/@popperjs/core@2"></script>
+
+    <!-- html2canvas -->
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
     <!-- Bootstrap 4 -->
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

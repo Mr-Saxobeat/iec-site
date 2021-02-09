@@ -31,3 +31,10 @@ $(document).ready(function(){
     $("#chart_download, .chart-container").show();
   });
 });
+
+
+document.getElementById("chart_download").addEventListener('click', function(){
+  var url_base64jp = document.getElementById("chart").toDataURL("image/jpg");
+  var a =  document.getElementById("chart_download");
+  a.href = url_base64jp;
+});
