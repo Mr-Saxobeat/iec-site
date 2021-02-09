@@ -1,5 +1,7 @@
 html, body {
   height: 100%;
+  background-color: #E1EAFF;
+  min-height: 800px;
 }
 
 .main {
@@ -17,11 +19,6 @@ html, body {
     border: 1px solid #cfcfcf;
 }
 
-.chart-container {
-  position: relative;
-  /* width: 100%; */
-  height: 40%;
-}
 
 #sidebar{
   margin-top: 10px;
@@ -43,7 +40,7 @@ html, body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #ededed;
+  background-color: #F8F0C6;
   overflow-x: hidden;
   padding-top: 20px;
 }
@@ -74,6 +71,7 @@ html, body {
 
 #linkplataforma{
   position: absolute;
+  background-color: #E1EAFF !important;
 }
 
 #btn_download{
@@ -103,6 +101,7 @@ button {
   background-color: #ffffff;
   color: #242424;
   padding: 3px 8px;
+
 }
 
 button:hover {
@@ -124,6 +123,7 @@ button[disabled]{
 
 .dateinput {
   position: relative;
+  display: block;
   z-index: 1001;
 }
 
@@ -143,7 +143,7 @@ label {
 }
 
 .alert {
-  padding: 20px;
+  margin: 10px;
   background-color: #f44336;
   color: white;
 }
@@ -161,4 +161,94 @@ label {
 
 .closebtn:hover {
   color: black;
+}
+
+.data-container{
+  border-radius: 6px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  display: grid;
+  background-color: #B2C6F9;
+  padding: 10px;
+  border: 2px #4160AD;
+  border-style: double;
+}
+
+#data-container{
+  border-top-style: none !important;
+  border-top-right-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+}
+
+#div-observados, #div-reanálise, #div-simulados {
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+#datafinal{
+  padding-top: 10px;
+}
+
+.data-text{
+  padding-left: 10px;
+  display: grid;
+  background-color: #D6E1FD;
+  border: solid #7EA1F8; 
+  border-width: 1px;
+}
+
+.padded-data-text{
+  margin-top: 10px;
+  padding-top: 15px !important;
+  padding: 10px;
+}
+
+#texto-reanalise{
+  margin-right: 10px;
+}
+
+.chart-container{
+  padding: 20px;
+  display: none;
+  margin: 2px;
+  margin-top: 10px;
+  background-color: white !important;
+  position: relative;
+  height: 40%;
+}
+
+#chart{
+  position: absolute;
+  margin: 10px;
+  overflow: scroll;
+}
+
+#map{
+  position: absolute !important;
+  height: 85.3%;
+}
+
+#chart_download {
+  border: 1px solid #303030;
+  background-color: #ffffff;
+  color: #242424;
+  padding: 6px 8px;
+}
+
+#chart_download:hover {
+  border: 1px solid #303030;
+  background-color: #e3dcdc;
+  color: #030303;
+  padding: 6px 8px;
+}
+
+#chart_download:disabled,
+#chart_download[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.conteudo{
+  margin-bottom: 25px;
 }

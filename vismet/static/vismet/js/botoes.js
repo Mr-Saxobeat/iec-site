@@ -25,3 +25,16 @@ toValidate.change(function () {
         jQuery("#btn_submit, #btn_download").prop('disabled', true);
     }
 });
+
+$(document).ready(function(){
+  $("#btn_submit").click(function(){
+    $("#chart_download, .chart-container").show();
+  });
+});
+
+
+document.getElementById("chart_download").addEventListener('click', function(){
+  var url_base64jp = document.getElementById("chart").toDataURL("image/jpg");
+  var a =  document.getElementById("chart_download");
+  a.href = url_base64jp;
+});
