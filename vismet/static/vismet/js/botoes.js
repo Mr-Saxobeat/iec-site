@@ -26,6 +26,8 @@ toValidate.change(function () {
     }
 });
 
-$('#btn_submit').click(function(){
-   $('.chart-container').toggle();
+$(document).ready(function(){
+  $("#btn_submit").click(function(){
+    $("#chart_download, .chart-container").show();
+  });
 });
