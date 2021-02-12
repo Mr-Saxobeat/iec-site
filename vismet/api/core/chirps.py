@@ -64,7 +64,7 @@ def retrieveChirpsData(pixel, startDate, finalDate):
                         chirps_data = request_data.json()
 
                         try:
-                            verifyData = chirps_data.json()['data']
+                            verifyData = chirps_data['data']
                         except KeyError:
                             return {'message': 'O SERV Chirps não retornou dados.',
                                     'status': status.HTTP_400_BAD_REQUEST}
