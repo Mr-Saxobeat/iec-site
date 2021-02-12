@@ -158,26 +158,3 @@ class PixelDataRetrieveCreateAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-        
-    def test():
-        {
-            "latitude": -20.75,
-            "longitude": -41.85,
-            "data_model_name": "Chirps",
-            "date": "2006-01-01",
-            "evapo": 4.955981731414795,
-            "minTemp": 18.73649024963379,
-            "maxTemp": 27.216341018676758,
-            "ocis": 268.4227294921875,
-            "precip": 11.016281127929688,
-            "rnof": 0.6231554746627808,
-            "tp2m": 22.5782413482666
-        }
-
-        a = '/api2/pixeldata/?latitude=20.75&longitude=-41.85&data_model_name=Chirps&startDate=2006-01-01&finalDate=2006-01-05'
-        
-
-        
-
-    
