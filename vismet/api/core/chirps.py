@@ -38,7 +38,7 @@ def retrieveChirpsData(pixel, startDate, finalDate):
                                 )
 
     # Se o request de dados foi sucesso
-    if response_of_submit_request.status_code == 200:
+    if response_of_submit_request.status_code == status.HTTP_200_OK:
         request_id = response_of_submit_request.json()[0]
         count_tries = 0
 
@@ -60,8 +60,15 @@ def retrieveChirpsData(pixel, startDate, finalDate):
                                         params={'id': request_id}
                                     )
 
-                    if request_data.status_code == 200:
+                    if request_data.status_code == status.HTTP_200_OK:
                         chirps_data = request_data.json()
+
+                        try:
+                            verifyData = chirps_data.json()['data']
+                        except KeyError:
+                            return {'message': 'O SERV Chirps não retornou dados.',
+                                    'status': status.HTTP_400_BAD_REQUEST}
+
                         chirps_data['status'] = status.HTTP_200_OK
                         return chirps_data
                     else:
@@ -72,7 +79,7 @@ def retrieveChirpsData(pixel, startDate, finalDate):
                                 'status': status.HTTP_400_BAD_REQUEST
                             }
             else:
-                return {'status': request_progress, 'progress': request_progress.json()}
+                return {'progress': request_progress.json(), 'status': request_progress}
             
             count_tries += 1
 
