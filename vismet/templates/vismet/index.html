@@ -118,7 +118,8 @@
             <div id="div-buttons">
               <br><button type="button" class="gbutton" id="btn_submit">Visualizar</button>
               <button type="button" class="gbutton" id="btn_download" name="btn_download">Baixar</button>
-              <a style="display:none;" type="button" class="gbutton" id="chart_download" download="Grafico.jpg">Baixar Gráfico</a>
+              <!--<a style="display:none;" type="button" class="gbutton" id="chart_download" download="Grafico.jpg">Baixar Gráfico</a>-->
+              <button id="chartdownload" style="display: none;" onclick="screenshot()">Salvar Gráfico</button>
 
               <input type="hidden" id="selected_source" value="{{ selected_source }}">
             </div>
@@ -198,6 +199,5 @@
     <script type="text/javascript" src="{% static 'vismet/js/botoes.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/datepicker.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/init.js' %}"></script>
-  <script type="text/javascript" src="{% static 'vismet/js/validadata.js' %}"></script>
   </body>
 </html>

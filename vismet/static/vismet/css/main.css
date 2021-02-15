@@ -249,3 +249,8 @@ label {
 .conteudo{
   margin-bottom: 25px;
 }
+
+#chartdiv{
+  border:2px solid #000;
+  margin-bottom: 10px;
+}
