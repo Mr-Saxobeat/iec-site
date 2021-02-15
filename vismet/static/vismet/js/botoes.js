@@ -28,13 +28,24 @@ toValidate.change(function () {
 
 $(document).ready(function(){
   $("#btn_submit").click(function(){
-    $("#chart_download, .chart-container").show();
+    $("#chartdownload, .chart-container").show();
   });
 });
 
+function screenshot(){
+    html2canvas(document.getElementById("chartdownload")).addEventListener('click', function(){canvas=>{
+      var url_base64jp = document.getElementById("chart").toDataURL("image/png");
+      var a =  document.getElementById("chartdownload");
+      a.href = url_base64jp;
+    }
+  });
+}
 
-document.getElementById("chart_download").addEventListener('click', function(){
-  var url_base64jp = document.getElementById("chart").toDataURL("image/jpg");
-  var a =  document.getElementById("chart_download");
-  a.href = url_base64jp;
-});
+function screenshot(){
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;  
+  html2canvas(document.getElementById("chart")).then(canvas=>{
+    var image = canvas.toDataURL("image/png").replace("image/png","image/octet-stream");  
+    window.location.href=image
+  });
+}

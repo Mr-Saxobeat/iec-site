@@ -124,13 +124,10 @@ button[disabled]{
 .dateinput {
   position: relative;
   display: block;
-  z-index: 1001;
 }
 
-.sel-data-model, .sel-data-variable {
+.sel-data-model, .sel-data-variable, .sel-data-source {
   width: max-content !important;
-}
-.sel-data-model, .sel-data-variable {
   max-height: max-content;
   max-width: 370px !important;
 }
@@ -251,4 +248,9 @@ label {
 
 .conteudo{
   margin-bottom: 25px;
+}
+
+#chartdiv{
+  border:2px solid #000;
+  margin-bottom: 10px;
 }
