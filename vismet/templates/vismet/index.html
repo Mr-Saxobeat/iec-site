@@ -69,9 +69,10 @@
                 </div>
                 <p id="texto-reanalise" align="justify">As reanálises são um conjunto de dados de clima que combinam informações a partir de observações de estações meteorológicas, modelagem, imagens de satélites e utilizam análises estatísticas na reconstrução da base de dados.</p>
               </div>
-              <div class="data-text padded-data-text selectdiv">
-                <label for="fonte-dados-observados">Fonte</label><br>
-                <select class="sel-data-source" name="fonte-dados-observados">
+              <p>As reanálises são um conjunto de dados de clima que combinam informações a partir de observações de estações meteorológicas, modelagem, imagens de satélites e utilizam análises estatísticas na reconstrução da base de dados.</p>
+              <div class="selectdiv">
+                <label for="fonte-dados-reanalise">Fonte</label><br>
+                <select class="sel-data-source" name="fonte-dados-reanalise">
                 </select>
 
                 <form action="" method="get">
@@ -139,6 +140,7 @@
         <input type="hidden" id="url-pixels" value="{% url 'vismet:pixels' %}">
         <input type="hidden" id="url-stations" value="{% url 'vismet:api_stations' %}">
         <input type="hidden" id="url-data-options" value="{% url 'vismet:data_options' %}">
+        <input type="hidden" id="url-api" value="{% url 'vismet:pixel-data-list' %}">
     </div>
 
     <!-- CDNs das bibliotecas -->
@@ -195,9 +197,12 @@
     <script type="text/javascript" src="{% static 'vismet/js/ana.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/cities.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/pixels.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vismet/js/chirps.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/layers.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/botoes.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/datepicker.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vismet/js/validadata.js' %}"></script>
+
   </body>
 </html>

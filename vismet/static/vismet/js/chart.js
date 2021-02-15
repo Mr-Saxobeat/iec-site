@@ -93,3 +93,29 @@ function chart_update(chart, json_data, variable){
   chart_addData(json_data, variable);
   chart.update();
 }
+
+
+function chart_addData2(json_data, variable){
+  var day;
+  var month;
+  var year;
+  json_data.forEach(data => {
+    date = data.date;
+    day = date.substring(8,10);
+    month = date.substring(5,7);
+    year = date.substring(2,4);
+    date = day + '/' + month + '/' + year;
+    chart.data.labels.push(date);
+
+    value = data[variable];
+    chart.data.datasets.forEach((dataset) => {
+      dataset.data.push(value);
+    });
+  });
+}
+
+function chart_update2(chart, json_data, variable){
+  chart_removeData(chart);
+  chart_addData2(json_data, variable);
+  chart.update();
+}

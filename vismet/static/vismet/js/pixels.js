@@ -8,6 +8,7 @@ function ETA_Pixel_Layer_onEachFeature(feature, layer) {
   layer.bindPopup(feature.properties.popup_content);
   layer.on("click", function() {
     selected_pixel_id = feature.properties.id;
+    selected_pixel = feature;
 
     station_startDate = "1960-01-01";
     calendar_startDate = station_startDate.split("-").slice(0, 1).join("-");
@@ -39,6 +40,7 @@ function loadETALayer(){
   })
   // control.addOverlay(ETA_Pixel_Layer, "pixels");
   layers_dic["eta por pixel"] = ETA_Pixel_Layer;
+  layers_dic["chirps"] = ETA_Pixel_Layer;
 }
 
 function Show_ETA_Data(pixel_id, startDate, finalDate){

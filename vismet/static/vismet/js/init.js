@@ -2,6 +2,7 @@
 var selected_source = document.getElementById("selected_source").value;
 var url_stations = document.getElementById("url-stations").value;
 var url_data_options = document.getElementById("url-data-options").value;
+var url_api = document.getElementById("url-api").value;
 
 // Essa variável armazena as opções que poderão ser selecionadas
 // de acordo com a categoria, fonte, modelo.
@@ -50,13 +51,15 @@ btn_submit.addEventListener("click", function() {
   if (selBox_source_display.value.toUpperCase() == "ANA"){
     Show_ANA_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
   } else if (selBox_source_display.value.toUpperCase() == "INMET"){
-      Show_INMET_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
+    Show_INMET_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
   } else if (selBox_source_display.value.toUpperCase() == "XAVIER"){
     Show_Xavier_Data(input_station_code.value, input_startDate.value, input_finalDate.value);
   }else if (selBox_source_display.value.toUpperCase() == "ETA POR CIDADE"){
     Show_City_Data(input_city_name.value, input_startDate.value, input_finalDate.value);
   }else if (selBox_source_display.value.toUpperCase() == "ETA POR PIXEL"){
     Show_ETA_Data(selected_pixel_id, input_startDate.value, input_finalDate.value);
+  }else if(selBox_source_display.value.toUpperCase() == 'CHIRPS'){
+    Show_Chirps_Data(selected_pixel, input_startDate.value, input_finalDate.value);
   }
 })
 
