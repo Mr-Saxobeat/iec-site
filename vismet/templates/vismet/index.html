@@ -63,18 +63,16 @@
             <div class="data-container" id="div-reanálise">
               <div class="data-text">
               <h3>Dados de Reanálise:</h3>
-                <div class="alert">
+                <!-- <div class="alert">
                   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
                   <strong>Os dados de reanálise estão sendo adaptados para a plataforma e serão disponibilizados em breve.</strong>
-                </div>
+                </div> -->
                 <p id="texto-reanalise" align="justify">As reanálises são um conjunto de dados de clima que combinam informações a partir de observações de estações meteorológicas, modelagem, imagens de satélites e utilizam análises estatísticas na reconstrução da base de dados.</p>
               </div>
               <p>As reanálises são um conjunto de dados de clima que combinam informações a partir de observações de estações meteorológicas, modelagem, imagens de satélites e utilizam análises estatísticas na reconstrução da base de dados.</p>
               <div class="selectdiv">
                 <label for="fonte-dados-reanalise">Fonte</label><br>
-                <select class="sel-data-source" name="fonte-dados-reanalise">
-                </select>
-
+                <select class="sel-data-source" name="fonte-dados-reanalise"></select>
                 <form action="" method="get">
                   {% csrf_token %}
                   <br><label for="variable">Variável</label><br>
@@ -106,6 +104,7 @@
               </div> 
               <input type="hidden" value="0" id="input_city_name">
             </div>
+
             <div class="data-container" id="data-container">
               <div class="data-text padded-data-text">
                 <label for="startDate">Data inicial</label>
