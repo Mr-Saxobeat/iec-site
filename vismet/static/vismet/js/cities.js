@@ -34,6 +34,8 @@ function selectFeature(e) {
 
   var feature = e.target.feature;
   input_city_name.value = feature.properties.name;
+
+  botoes = true;
 }
 
 function ETA_City_Layer_onEachFeature(feature, layer) {
