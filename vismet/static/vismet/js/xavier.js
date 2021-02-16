@@ -10,7 +10,8 @@ function XavierStations_Layer_onEachFeature(feature, layer) {
   layer.bindPopup(feature.properties.popup_content);
   layer.on('click', function() {
     input_station_code.value = feature.properties.inmet_code;
-    station_city = feature.properties.name;
+    station_city = feature.properties.city;
+    alert(station_city);
     station_state = feature.properties.state;
     station_inmet = feature.properties.inmet_code;
     $( ".dateinput" ).datepicker( "option", "yearRange", "1980:2014");
