@@ -23,6 +23,7 @@ function ETA_Pixel_Layer_onEachFeature(feature, layer) {
     $( ".dateinput" ).datepicker( "option", "minDate", new Date(station_startDate));
     $( ".dateinput" ).datepicker( "option", "defaultDate", "01/01/1960");
 
+    chart.options.title.text = "Pixel: " + feature.properties.latitude + "º, " + feature.properties.longitude + "º"
     botoes = true;
   });
 }
