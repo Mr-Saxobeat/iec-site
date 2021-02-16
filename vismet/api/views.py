@@ -83,7 +83,7 @@ class PixelDataRetrieveCreateAPIView(APIView):
                         data_model=data_model,
                         date__gte=startDate,
                         date__lte=finalDate
-                    )
+                    ).order_by('date')
         
         deltadays = (finalDate - startDate).days
 
@@ -111,7 +111,7 @@ class PixelDataRetrieveCreateAPIView(APIView):
                         data_model=data_model,
                         date__gte=startDate,
                         date__lte=finalDate
-                    )
+                    ).order_by('date')
                 else:
                     return Response(data=retrieved_data)
 
