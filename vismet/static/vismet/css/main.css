@@ -12,13 +12,6 @@ html, body {
   height: 80%;
 }
 
-#map {
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    border: 1px solid #cfcfcf;
-}
-
 
 #sidebar{
   margin-top: 10px;
@@ -205,7 +198,7 @@ label {
 }
 
 .chart-container{
-  padding: 20px;
+  padding: 10px;
   display: none;
   margin: 2px;
   margin-top: 10px;
@@ -222,7 +215,10 @@ label {
 
 #map{
   position: absolute !important;
-  height: 85.3%;
+  height: 100%;
+  padding: 0;
+  width: 100%;
+  border: 1px solid #cfcfcf;
 }
 
 #chart_download {
@@ -247,7 +243,7 @@ label {
 }
 
 .conteudo{
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 #chartdiv{
