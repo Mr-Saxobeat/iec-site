@@ -2,26 +2,29 @@ var selectedOption = $("#variable");
 
 // selectedOption.change(function () { updateChart(chart, selectedOption.val()); });
 var chart;
-function createNewChart(type, color, unit, legend){
+function createNewChart(type, color, unit, legend_data){
   if(chart){
     chart.destroy();
   }
+
 
   var config = {
     options: {
       maintainAspectRatio: false,
       title: {
-        display: false,
-        fontSize: 10,
-        text: legend,
+        display: true,
+        fontSize: 20,
+        text: "",
       },
       scales:{
         yAxes: [{
-          fontColor: '#666',
           scaleLabel: {
             labelString: unit,
             display: true,
-          }
+          },
+          // display: true,
+          // labelString: "Data",
+          fontColor: '#666',
         }],
         xAxes: [{
           ticks: {
@@ -35,14 +38,15 @@ function createNewChart(type, color, unit, legend){
           fontColor: '#666',
         }],
       },
-      legend: {
-        display: true,
-        labels: ["teste"]
-      }
+      // legend: {
+      //   display: true,
+      //   labels: ["teste"]
+      // }
     },
     type: type,
     data: {
       datasets: [{
+        label: legend_data,
         data: [],
         borderColor: color,
       }]
