@@ -8,6 +8,10 @@ var divObservedData = document.getElementById("div-observados");
 var divReanaliseData = document.getElementById("div-reanálise");
 var divSimulatedData = document.getElementById("div-simulados");
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function variable_display_change(selBox_source, selBox_variable){
   var selected_source = selBox_source.value;
   var selected_variable = selBox_variable.value;
@@ -23,7 +27,7 @@ function variable_display_change(selBox_source, selBox_variable){
   var chartType = json_current_category["sources"][selected_source][selected_variable]["chartType"];
   var chartColor = json_current_category["sources"][selected_source][selected_variable]["chartColor"];
   var chartUnit = json_current_category["sources"][selected_source][selected_variable]["unit"];
-  createNewChart(chartType, chartColor, chartUnit, selected_variable);
+  createNewChart(chartType, chartColor, chartUnit, capitalizeFirstLetter(selected_variable));
   chart.update();
 }
 
