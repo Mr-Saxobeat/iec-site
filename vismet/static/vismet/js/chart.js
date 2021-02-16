@@ -2,11 +2,10 @@ var selectedOption = $("#variable");
 
 // selectedOption.change(function () { updateChart(chart, selectedOption.val()); });
 var chart;
-function createNewChart(type, color, unit, legend_data){
+function createNewChart(type, color, unit, legend_data, y_max_value){
   if(chart){
     chart.destroy();
   }
-
 
   var config = {
     options: {
@@ -21,6 +20,9 @@ function createNewChart(type, color, unit, legend_data){
           scaleLabel: {
             labelString: unit,
             display: true,
+          },
+          ticks: {
+            max: parseFloat(y_max_value),
           },
           // display: true,
           // labelString: "Data",
