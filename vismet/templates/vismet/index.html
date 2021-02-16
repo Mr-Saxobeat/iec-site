@@ -43,7 +43,7 @@
             <div class="data-container" id="div-observados">
               <div class="data-text">
                 <h3>Dados Observados:</h3>
-                <p>Dados históricos coletados pelas estações meteorológicas.</p>
+                <p>Dados diários observados, para o estado do Espírito Santo, a partir da rede de estações convencionais e automáticas de instituições nacionais.</p>
               </div>
               <div class="data-text padded-data-text selectdiv">
                 <label for="fonte-dados-observados">Fonte</label><br>
@@ -83,7 +83,6 @@
               </div>
             </div>
 
-
             <div class="data-container" id="div-simulados">
               <div class="data-text">
                 <h3>Dados Simulados:</h3>
@@ -114,31 +113,31 @@
                   <input class="dateinput" type="text" id="finalDate" name="finalDate">
                 </div>
               </div>
-            </div>
-            <div id="div-buttons">
-              <br><button type="button" class="gbutton" id="btn_submit">Visualizar</button>
-              <button type="button" class="gbutton" id="btn_download" name="btn_download">Baixar</button>
-              <!--<a style="display:none;" type="button" class="gbutton" id="chart_download" download="Grafico.jpg">Baixar Gráfico</a>-->
-              <button id="chartdownload" style="display: none;" onclick="screenshot()">Salvar Gráfico</button>
+              <div id="div-buttons">
+                <br><button type="button" class="gbutton" id="btn_submit">Visualizar</button>
+                <button type="button" class="gbutton" id="btn_download" name="btn_download">Baixar</button>
+                <!--<a style="display:none;" type="button" class="gbutton" id="chart_download" download="Grafico.jpg">Baixar Gráfico</a>-->
+                <button id="chartdownload" style="display: none;" onclick="screenshot()">Salvar Gráfico</button>
 
-              <input type="hidden" id="selected_source" value="{{ selected_source }}">
+                <input type="hidden" id="selected_source" value="{{ selected_source }}">
+              </div>
             </div>
           </div>
 
           <div class="col-md-9">
-            <div class="row conteudo">
+            <div class="row">
               <div id="map"></div>
             </div>
           </div>
         </div>
-        <div id="chartdiv" class="row chart-container">
-          <canvas id="chart"></canvas>
-        </div>
-        
+      
         <input type="hidden" id="url-cities" value="{% url 'vismet:cities' %}">
         <input type="hidden" id="url-pixels" value="{% url 'vismet:pixels' %}">
         <input type="hidden" id="url-stations" value="{% url 'vismet:api_stations' %}">
         <input type="hidden" id="url-data-options" value="{% url 'vismet:data_options' %}">
+    </div>
+    <div id="chartdiv" class="row chart-container">
+      <canvas id="chart"></canvas>
     </div>
 
     <!-- CDNs das bibliotecas -->
