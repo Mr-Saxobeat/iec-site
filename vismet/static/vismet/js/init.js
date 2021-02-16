@@ -7,7 +7,7 @@ var url_api = document.getElementById("url-api").value;
 // Essa variável armazena as opções que poderão ser selecionadas
 // de acordo com a categoria, fonte, modelo.
 $.getJSON(url_data_options, function (data) {
-  createNewChart('line');
+  // createNewChart('line');
 
   json_data_options = JSON.parse(JSON.stringify(data));
   loadXavierLayer();
