@@ -72,25 +72,23 @@
               <a href="https://portal.inmet.gov.br/">INMET</a><br>
               <a href="http://www.cemaden.gov.br/">CEMADEN</a><br>
               <a href="https://www.gov.br/ana/pt-br">ANA</a><br>
-              <a href="https://sites.google.com/site/alexandrecandidoxavierufes/">Xavier</a><br>
             </div>
             <form class="" action="{% url 'vismet:vismet' %}" method="post">
               {% csrf_token %}
               <ul>
                 <button class="button" type="submit" name="selected_source" value="observados;inmet"><b>INMET</b></button>
+                <ul>
+                  <li>Estações Automáticas</li>
                   <ul>
-                    <li>Estações Automáticas</li>
-                    <ul>
-                      <li>2000 até a presente data</li>
-                    </ul>
+                    <li>2000 até a presente data</li>
                   </ul>
+                </ul>
+                <ul>
+                  <li>Convencional</li>
                   <ul>
-                    <li>Convencional</li>
-                    <ul>
-                      <li>A partir de 1924</li>
-                    </ul>
+                    <li>A partir de 1924</li>
                   </ul>
-                </li>
+                </ul>
               </ul>
 
               <ul>
@@ -116,17 +114,6 @@
                   <li>Fluviométricos</li>
                   <ul>
                     <li>1925-2019</li>
-                  </ul>
-                </ul>
-              </ul>
-
-              <ul>
-                <button class="button" type="submit" name="selected_source" value="observados;xavier"><b>Xavier</b></button>
-                <ul>
-                  <li>Dados Meteorológicos do Brasil</li>
-                  <ul>
-                    <li>1980-2017</li>
-                    <li>Xavier et al. 2016</li>                      
                   </ul>
                 </ul>
               </ul>
@@ -175,7 +162,7 @@
                   </li></ul>
 
                 <ul>
-                  <li><b>CHIRPS</b>
+                <button class="button" type="submit" name="selected_source" value="reanálise;chirps"><b>CHIRPS</b></button>
                   <ul>
                     <li>Fuck et al.(2015)</li>
                     <ul>
@@ -183,7 +170,7 @@
                       <li>Resolução Espacial: 0.05°</li>                      
                     </ul>
                   </ul>
-                </li></ul>
+                </ul>
 
               <ul>
                 <li><b>DELAWARE</b>
