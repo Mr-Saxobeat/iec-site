@@ -3,10 +3,54 @@ var ETA_Pixel_Style = {
   weight: 0.5,
 };
 var selected_pixel_id;
+
+function highlightFeature(e) {
+  var layer = e.target;
+
+  layer.setStyle({
+    color: 'red',
+    weight: 1,
+  });
+
+  if(!L.Browser.ie && !L.Browser.opera && !L.Browser.edge){
+    layer.bringToFront();
+  }
+}
+
+function resetHighlight(e) {
+  if(e.target != oldLayer){
+    ETA_Pixel_Layer.resetStyle(e.target);
+  }
+}
+
+var oldLayer = null;
+
+function selectFeature(e) {
+
+  if(oldLayer){
+    ETA_Pixel_Layer.resetStyle(oldLayer);
+  }
+
+  var layer = e.target;
+
+  layer.setStyle({
+    color: 'blue',
+    weight: 3,
+  });
+
+  oldLayer = e.target;
+
+  var feature = e.target.feature;
+  input_city_name.value = feature.properties.name;
+
+  botoes = true;
+}
+
+
 function ETA_Pixel_Layer_onEachFeature(feature, layer) {
   var pixel_id = feature.properties.id;
   layer.bindPopup(feature.properties.popup_content);
-  layer.on("click", function() {
+  layer.on("click", function(e) {
     selected_pixel_id = feature.properties.id;
     selected_pixel = feature;
 
@@ -25,7 +69,12 @@ function ETA_Pixel_Layer_onEachFeature(feature, layer) {
 
     chart.options.title.text = "Pixel: " + feature.properties.latitude + "º, " + feature.properties.longitude + "º"
     botoes = true;
+    selectFeature(e);
   });
+  layer.on({
+    mouseout: resetHighlight,
+    mouseover: highlightFeature,
+  })
 }
 
 var ETA_Pixel_Layer = L.geoJson([], {
