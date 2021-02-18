@@ -4,7 +4,7 @@ var ETA_Pixel_Style = {
 };
 var selected_pixel_id;
 
-function highlightFeature(e) {
+function highlightFeature_pixel(e) {
   var layer = e.target;
 
   layer.setStyle({
@@ -17,7 +17,7 @@ function highlightFeature(e) {
   }
 }
 
-function resetHighlight(e) {
+function resetHighlight_pixel(e) {
   if(e.target != oldLayer){
     ETA_Pixel_Layer.resetStyle(e.target);
   }
@@ -25,7 +25,7 @@ function resetHighlight(e) {
 
 var oldLayer = null;
 
-function selectFeature(e) {
+function selectFeature_pixel(e) {
 
   if(oldLayer){
     ETA_Pixel_Layer.resetStyle(oldLayer);
@@ -69,11 +69,11 @@ function ETA_Pixel_Layer_onEachFeature(feature, layer) {
 
     chart.options.title.text = "Pixel: " + feature.properties.latitude + "º, " + feature.properties.longitude + "º"
     botoes = true;
-    selectFeature(e);
+    selectFeature_pixel(e);
   });
   layer.on({
-    mouseout: resetHighlight,
-    mouseover: highlightFeature,
+    mouseout: resetHighlight_pixel,
+    mouseover: highlightFeature_pixel,
   })
 }
 

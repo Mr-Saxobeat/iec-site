@@ -1,4 +1,4 @@
-function highlightFeature(e) {
+function highlightFeature_city(e) {
   var layer = e.target;
 
   layer.setStyle({
@@ -10,7 +10,7 @@ function highlightFeature(e) {
   }
 }
 
-function resetHighlight(e) {
+function resetHighlight_city(e) {
   if(e.target != oldLayer){
     ETA_City_Layer.resetStyle(e.target);
   }
@@ -18,7 +18,7 @@ function resetHighlight(e) {
 
 var oldLayer = null;
 
-function selectFeature(e) {
+function selectFeature_city(e) {
 
   if(oldLayer){
     ETA_City_Layer.resetStyle(oldLayer);
@@ -42,9 +42,9 @@ function ETA_City_Layer_onEachFeature(feature, layer) {
   var popupContent = feature.properties.name;
   layer.bindPopup(popupContent);
   layer.on({
-    click: selectFeature,
-    mouseout: resetHighlight,
-    mouseover: highlightFeature,
+    click: selectFeature_city,
+    mouseout: resetHighlight_city,
+    mouseover: highlightFeature_city,
   })
 }
 
