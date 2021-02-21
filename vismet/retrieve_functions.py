@@ -20,6 +20,28 @@ def GetXavierStationData(source, inmet_code, startDate, finalDate):
 
     return station_data
 
+
+def GetINMETSolarInsolation(code, date):
+    url = 'https://apitempo.inmet.gov.br/estacao/'
+    
+    response = requests.get(url + date.strftime('%Y-%m-%d') + '/' + date.strftime('%Y-%m-%d') + '/' + str(code))
+
+    solarIns = 0
+    for data in response.json():
+        if data['RAD_GLO'] is None:
+            value = 0
+        else:
+            value = float(data['RAD_GLO'])
+
+        if value > 0:
+            solarIns += value
+    
+    if solarIns == 0:
+        return None
+    else:
+        return (solarIns / 1000)
+
+
 # Esta retorna em os dados das estações INMET,
 # dado o inmet_code e o intervalo de data.
 def GetINMETStationData(source, code, startDate, finalDate):
@@ -48,6 +70,13 @@ def GetINMETStationData(source, code, startDate, finalDate):
             )
 
         station_data = station.inmet_data.filter(date__gte=startDate, date__lte=finalDate).order_by('date')
+
+    if station.type == 'Automatica':
+        for data in station_data:
+            if data.solarIns == None:
+                data.solarIns = GetINMETSolarInsolation(data.station.inmet_code, data.date)
+                data.save()
+
     return station_data
 
 def GetANAStationData(source, code, startDate, finalDate):
