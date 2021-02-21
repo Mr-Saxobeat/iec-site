@@ -76,6 +76,9 @@ function Show_INMET_Data(code, startDate, finalDate){
       case 'precipitação':
         variable = 'precip';
         break;
+      case 'radiação solar':
+        variable = 'solarIns';
+        break;
       default:
         variable = 'maxTemp';
         break;
