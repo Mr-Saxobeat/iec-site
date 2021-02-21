@@ -140,6 +140,7 @@ class INMETStationData(models.Model):
     minTemp = models.FloatField('Temperatura Mínima', blank=True, null=True)
     relHum = models.FloatField('Umidade Relativa', blank=True, null=True)
     precip = models.FloatField('Precipitação', blank=True, null=True)
+    solarIns = models.FloatField('Radiação Solar', blank=True, null=True, default=None)
 
     def __str__(self):
         return str('nº ' + str(self.station.inmet_code) + '---' + str(self.date))
