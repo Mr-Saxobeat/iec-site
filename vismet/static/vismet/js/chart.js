@@ -79,12 +79,22 @@ function chart_addData(json_data, variable){
   var day;
   var month;
   var year;
+
   json_data.forEach(data => {
     date = data.fields.date;
     day = date.substring(8,10);
     month = date.substring(5,7);
     year = date.substring(2,4);
-    date = day + '/' + month + '/' + year;
+
+    
+
+    if(json_current_category.name == "simulados" || 
+       json_current_category.name == "reanálise"){
+      date = month + '/' + year;
+    }else{
+      date = day + '/' + month + '/' + year;
+    }
+    
     chart.data.labels.push(date);
 
     value = data.fields[variable];
@@ -110,7 +120,7 @@ function chart_addData2(json_data, variable){
     day = date.substring(8,10);
     month = date.substring(5,7);
     year = date.substring(2,4);
-    date = day + '/' + month + '/' + year;
+    date = month + '/' + year;
     chart.data.labels.push(date);
 
     value = data[variable];
