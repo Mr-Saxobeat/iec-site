@@ -71,9 +71,6 @@
               <p>Dados da Rede de Estações Meteorológicas Automáticas do INMET desde 2000 até a presente data e dados da Rede de Estações Meteorológicas Convencionais do INMET desde 1924 até a presente data.</p>
             </li>
             <li>
-              <p>Dados da Rede de Pluviômetros do CEMADEN desde 2010 até a presente data.</p>
-            </li>
-            <li>
               <p>Dados de Pluviômetros e Fluviométricos da Agência Nacional de Águas (ANA) desde 1925 até 2019.</p>
             </li>
           </ul>
@@ -94,6 +91,7 @@
           {% csrf_token %}
           <ul>
             <li><p>CHIRPS: dados mensais disponibilizados pela University of California desde 1981 até a presente data, com Resolução Espacial: 0.05°</p></li>
+            <li><p>ERA5: Os dados estão disponíveis em grades regulares de latitude-longitude com resolução espacial de 0.25°, com resolução temporal de 1979 até a presente data.</p></li>
           </ul>
         </form>
         <p class="text-justify">Assim como nos dados observacionais, as informações das reanálises podem ser obtidas no formato csv (comma separated values, que podem ser usados, por exemplo, no Excel) e em formato NetCDF (.nc), que podem ser lidos em softwares como Matlab, Grads, GIS ou utilizando linguagem de programação como Python, Fortran, R, entre outras.</p>
@@ -101,7 +99,7 @@
       <!-- /.col-md-4 -->
       <div class="col-md-4 mb-5 card card-body">
         <form class="" action="{% url 'vismet:vismet' %}" method="post">
-          <h3><button class="btn btn-secondary btn-lg btn-block" type="submit" name="selected_source" value="simulados"><b style="color:whitesmoke;">Projeção para Cenários Futuros</b></button></h3>
+          <h3><button class="btn btn-secondary btn-lg btn-block" type="submit" name="selected_source" value="simulados"><b style="color:whitesmoke;">Projeção de Cenários Futuros</b></button></h3>
           <p class="card-text text-justify">Nesta categoria podem ser obtidos dados mensais de Cenários Climáticos das projeções de mudança do clima para a América do Sul regionalizadas pelo modelo Eta do Centro de Previsão de Tempo e Estudos Climáticos (CPTEC) do INPE, no âmbito do ProjETA (https://projeta.cptec.inpe.br). As projeções são baseadas no modelo regional Eta-CPTEC com resolução espacial de 5km aninhado ao modelo global HadGen2-ES para o Estado do Espírito Santo. Esses dados compreendem simulações para o período que vai desde 1960 até 2099.<br><br>Os dados estão divididos em três conjuntos principais: Período histórico (1960-2005), e dois cenários de emissões de gases de efeito estufa (GEE), o cenário RCP 4.5 (médias emissões de GEE) e o cenário RCP 8.5 (altas emissões de GEE) desde 2006 até 2099. Todos os dados podem ser obtidos por pixel (coordenada geográfica) ou integrado para cada município do estado. Estes conjuntos de dados podem ser obtidos no formato csv (comma separated values, que podem ser usados, por exemplo, no Excel) e em formato NetCDF (.nc), que podem ser lidos em softwares como Matlab, Grads, GIS ou utilizando linguagem de programação como Python, Fortran, R, entre outras.</p><div class="help-tip"><p>Fonte:<br>
           <a href="https://projeta.cptec.inpe.br/#/about">ProjEta</a><br></div>
           {% csrf_token %}
