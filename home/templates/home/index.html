@@ -1,26 +1,26 @@
 {% load static %}
 <html>
-<head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-129681391-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', 'UA-129681391-1');
-	</script>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-129681391-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-129681391-1');
+    </script>
 
-	<title>Instituto de Estudos Climáticos do Espírito Santo</title>
-	<meta name="description" content="Plataforma do Instituto de Estudos Climáticos do Espírito Santo.">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="{% static 'home/css/main.css' %}">
-  <link rel="stylesheet" href="{% static 'home/css/typography.css' %}">
-  <link href="{% static 'home/css/landingpage.css' %}" rel="stylesheet">
-  <link href="css/small-business.css" rel="stylesheet">
-  <link href="{% static 'home/css/bootstrap.min.css' %}" rel="stylesheet">
- 
-</head>
+    <title>Instituto de Estudos Climáticos do Espírito Santo</title>
+    <meta name="description" content="Plataforma do Instituto de Estudos Climáticos do Espírito Santo.">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'home/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/typography.css' %}">
+    <link href="{% static 'home/css/landingpage.css' %}" rel="stylesheet">
+    <link href="css/small-business.css" rel="stylesheet">
+    <link href="{% static 'home/css/bootstrap.min.css' %}" rel="stylesheet">
+  
+  </head>
 
 	<body class="landing">
 		<header id="header" class="alt">
@@ -53,15 +53,14 @@
       <div class="card-body">
         <p class="text-white m-0"><b id="introtext">Caro (a) usuário (a), seja bem-vindo (a) ao Banco de dados Ambientais do Instituto de Estudos Climáticos (IEC).</b><br><br>O Instituto de Estudos de Mudanças Climáticas do ES (IEC-ES) consolidou bases de dados históricas de clima para o ES e projeções para os cenários futuros de mudanças climáticas. A Plataforma de Dados Ambientais (PDA) tem o objetivo de permitir que pesquisadores, gestores públicos e privados tenham acesso a informações de históricas do clima do ES e projeções de mudanças climáticas futuras com base nos mais recentes estudos científicos disponíveis, incluindo dados de precipitação, umidade, temperatura e demais dados climáticos para orientar as pesquisa na área e os processos de gestão e tomada de decisão quanto à ações de preparação, prevenção e/ou de mitigação dos efeitos das mudanças climáticas previstas.<br><br>
         Nesta plataforma os pesquisadores e a sociedade civil poderão encontrar, gratuitamente, uma compilação das informações de diversas outras plataformas do Brasil e no Mundo e estão disponibilizadas da seguinte forma: Dados Observacionais, Dados de Reanálise, Dados Simulados, Dados de Satélite, Dados de uso e cobertura da terra entre outros, em várias escalas temporais. Na PDA/IEC, o usuário poderá acessar as informações e realizar suas consultas por meio do Portal do Mapa interativo, utilizando o navegador que melhor lhe convir. Mais detalhes sobre a Plataforma de Dados Ambientais do IEC podem ser obtidas aqui.<br><br>
-        Os dados históricos incluem series históricas desde 1925 até a data atual, obtidas das estações de monitoramento da Instituto Nacional de Meteorologia (INMET), Centro Nacional de Monitoramento e Alerta de Desastres Naturais (CEMADEN), Agência Nacional de Águas (ANA). Os dados de projeções para os cenários futuros de mudanças climáticas são obtidos pelo modelo regional Eta-CPTEC do Instituto Nacional de Pesquisas Espaciais (INPE).
-</p>
+        Os dados históricos incluem series históricas desde 1925 até a data atual, obtidas das estações de monitoramento da Instituto Nacional de Meteorologia (INMET), Centro Nacional de Monitoramento e Alerta de Desastres Naturais (CEMADEN), Agência Nacional de Águas (ANA). Os dados de projeções para os cenários futuros de mudanças climáticas são obtidos pelo modelo regional Eta-CPTEC do Instituto Nacional de Pesquisas Espaciais (INPE).</p>
       </div>
     </div>
 
-<div class="row" ali>
-      <div class="col-md-4 mb-5 card h-100 card-body">
+    <div class="row" ali>
+      <div class="col-md-4 mb-5 card card-body">
         <form class="" action="{% url 'vismet:vismet' %}" method="post">
-        <h3><button type="submit" name="selected_source" value="observados"><b>Dados Observados</b></button></h3>
+        <h3><button class="btn btn-secondary btn-lg btn-block" type="submit" name="selected_source" value="observados"><b style="color:whitesmoke;">Dados Observacionais</b></button></h3>
         <p class="card-text text-justify">Nesta categoria podem ser obtidos conjuntos de dados diários observados, para o estado do Espírito Santo, a partir da rede de estações convencionais e automáticas de instituições nacionais, tais como: temperatura, precipitação, vazão, evapotranspiração, radiação solar, vento e umidade relativa do ar. Estão disponibilizados nesta base de dados:</p><div class="help-tip"><p>Fontes:<br>
           <a href="https://portal.inmet.gov.br/">INMET</a><br>
           <a href="http://www.cemaden.gov.br/">CEMADEN</a><br>
@@ -82,10 +81,10 @@
         <p class="text-justify" >Estes conjuntos de dados podem ser obtidos no formato csv (comma separated values, que podem ser usados, por exemplo, no Excel) e em formato NetCDF (.nc), que podem ser lidos em softwares como Matlab, Grads, GIS ou utilizando linguagem de programação como Python, Fortran, R, entre outras. Os dados disponíveis também podem ser obtidos diretamente das fontes indicadas.</p>
       </div>
       <!-- /.col-md-4 -->
-      <div class="col-md-4 mb-5 card h-100 card-body">
+      <div class="col-md-4 mb-5 card card-body">
         <form class="" action="{% url 'vismet:vismet' %}" method="post">
-        <h3><button type="submit" name="selected_source" value="reanálise"><b>Dados de Reanálise</b></button></h3>
-        <p class="card-text text-justify">Os dados provenientes de reanálises meteorológicas combinam os dados medidos e fornecidos pelos institutos nacionais de meteorologia com dados obtidos a partir de modelos de circulação global de alta resolução, desta forma reanálises são um conjunto de dados que combinam informações a partir de observações de estações meteorológicas, modelagem, imagens de satélites e utilizam análises estatísticas na reconstrução da base de dados. Nesta categoria podem ser obtidos conjuntos de dados de reanálises de instituições nacionais e internacionais para o Estado do Espírito Santo. Os dados são disponibilizados em ponto de grade ou pixel que cobrem o Estado do Espírito Santo.<br>Estão disponibilizados na plataforma dados de 5 fontes primárias:</p>
+        <h3><button class="btn btn-secondary btn-lg btn-block" type="submit" name="selected_source" value="reanálise"><b style="color:whitesmoke;">Dados de Reanálise</b></button></h3>
+        <p class="card-text text-justify">Os dados provenientes de reanálises meteorológicas combinam os dados medidos e fornecidos pelos institutos nacionais de meteorologia com dados obtidos a partir de modelos de circulação global de alta resolução, desta forma reanálises são um conjunto de dados que combinam informações a partir de observações de estações meteorológicas, modelagem, imagens de satélites e utilizam análises estatísticas na reconstrução da base de dados. Nesta categoria podem ser obtidos conjuntos de dados de reanálises de instituições nacionais e internacionais para o Estado do Espírito Santo. Os dados são disponibilizados em ponto de grade ou pixel que cobrem o Estado do Espírito Santo.<br>Estão disponibilizados na plataforma dados das seguintes fontes primárias:</p>
         <div class="help-tip"><p>Fontes:<br>
           <a href="https://www.cptec.inpe.br/">MERGE-CPTEC</a><br>
           <a href="https://psl.noaa.gov/">GPCP<br>
@@ -94,26 +93,22 @@
           <a href="https://www.ncdc.noaa.gov/">GFS</a><br></div>
           {% csrf_token %}
           <ul>
-            <li><p>CHIRPS: dados disponibilizados pela University of California desde 1981 até a presente data, com Resolução Espacial: 0.05°</p></li>
-            <li><p>GPCP: dados disponibilizados pelo Physical Sciences Laboratory do National Oceanic and Atmospheric Administration dos Estados Unidos (PSL-NOAA) desde 1979 até a presente data, com Resolução Espacial: 2.5°</p></li>
-            <li><p>MERGE-CPTEC: dados disponibilizados pelo Centro de Previsão de Tempo e Estudos Climáticos (CPTEC) desde 2014 até a presente data, com Resolução Espacial: 0.1°</p></li>
-            <li><p>DELAWARE: dados disponibilizados desde 1900 até 2017, com Resolução Espacial: 0.25°</p></li>
-            <li><p>GFS: dados disponibilizados pelo National Centers for Environmental Protection do National Oceanic and Atmospheric Administration dos Estados Unidos (NCEP – NOA) desde 2003 até a presente data, com Resolução Espacial: 0.5°</p></li>
+            <li><p>CHIRPS: dados mensais disponibilizados pela University of California desde 1981 até a presente data, com Resolução Espacial: 0.05°</p></li>
           </ul>
         </form>
         <p class="text-justify">Assim como nos dados observacionais, as informações das reanálises podem ser obtidas no formato csv (comma separated values, que podem ser usados, por exemplo, no Excel) e em formato NetCDF (.nc), que podem ser lidos em softwares como Matlab, Grads, GIS ou utilizando linguagem de programação como Python, Fortran, R, entre outras.</p>
       </div>
       <!-- /.col-md-4 -->
-      <div class="col-md-4 mb-5 card h-100 card-body">
+      <div class="col-md-4 mb-5 card card-body">
         <form class="" action="{% url 'vismet:vismet' %}" method="post">
-          <h3><button type="submit" name="selected_source" value="simulados"><b>Projeção para Cenários Futuros</b></button></h3>
+          <h3><button class="btn btn-secondary btn-lg btn-block" type="submit" name="selected_source" value="simulados"><b style="color:whitesmoke;">Projeção para Cenários Futuros</b></button></h3>
           <p class="card-text text-justify">Nesta categoria podem ser obtidos dados mensais de Cenários Climáticos das projeções de mudança do clima para a América do Sul regionalizadas pelo modelo Eta do Centro de Previsão de Tempo e Estudos Climáticos (CPTEC) do INPE, no âmbito do ProjETA (https://projeta.cptec.inpe.br). As projeções são baseadas no modelo regional Eta-CPTEC com resolução espacial de 5km aninhado ao modelo global HadGen2-ES para o Estado do Espírito Santo. Esses dados compreendem simulações para o período que vai desde 1960 até 2099.<br><br>Os dados estão divididos em três conjuntos principais: Período histórico (1960-2005), e dois cenários de emissões de gases de efeito estufa (GEE), o cenário RCP 4.5 (médias emissões de GEE) e o cenário RCP 8.5 (altas emissões de GEE) desde 2006 até 2099. Todos os dados podem ser obtidos por pixel (coordenada geográfica) ou integrado para cada município do estado. Estes conjuntos de dados podem ser obtidos no formato csv (comma separated values, que podem ser usados, por exemplo, no Excel) e em formato NetCDF (.nc), que podem ser lidos em softwares como Matlab, Grads, GIS ou utilizando linguagem de programação como Python, Fortran, R, entre outras.</p><div class="help-tip"><p>Fonte:<br>
           <a href="https://projeta.cptec.inpe.br/#/about">ProjEta</a><br></div>
           {% csrf_token %}
         </form>
       </div>
     </div>
-		<footer id="footer" align="middle">
+		<footer id="footer">
       <a class="anchor" id="fo"></a>
       	<link rel="stylesheet" href="{% static 'home/css/fontawesome_all.css' %}">
       	<link rel="stylesheet" href="{% static 'home/css/academicons.min.css' %}">
