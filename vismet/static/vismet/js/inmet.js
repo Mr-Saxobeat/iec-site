@@ -12,7 +12,6 @@ function style(feature){
 function INMETStations_Layer_onEachFeature(feature, layer) {
   layer.bindPopup(feature.properties.popup_content);
   layer.on('click', function() {
-    console.log(layer.target);
     input_station_code.value = feature.properties.inmet_code;
     station_city = feature.properties.city;
     station_state = feature.properties.state;

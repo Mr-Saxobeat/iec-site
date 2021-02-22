@@ -39,7 +39,6 @@ function Show_Chirps_Data(pixel, startDate, finalDate){
   }
 
   $.getJSON(url_api, pixel_data, function(data) {
-    console.log(data);
     var variable = 'evapo';
     switch (selBox_variable_display.value.toLowerCase()) {
       case 'evapotranspiração':

@@ -100,7 +100,6 @@ function Show_ETA_Data(pixel_id, startDate, finalDate){
   }
 
   $.getJSON(url_pixels + "json/" + pixel_id + "/" + selBox_model_display.value + "/" +startDate + "/" + finalDate, function(data) {
-    console.log(data);
     var variable = 'evapo';
     switch (selBox_variable_display.value.toLowerCase()) {
       case 'evapotranspiração':
