@@ -22,121 +22,129 @@
     <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
       <button onclick="w3_close()" class="w3-bar-item w3-button">Fechar</button>
       <div class="w3-dropdown-hover">
-        <button class="w3-button">Dados<i class="fa fa-caret-down"></i></button>
-        <div class="w3-dropdown-content w3-bar-block">
-          <button onclick="w3_close()" id="btn-observados" value="observados" class="w3-bar-item w3-button">Observados</button>
-          <button onclick="w3_close()" id="btn-reanálise" value="reanálise" class="w3-bar-item w3-button">Reanálise</button>
-          <button onclick="w3_close()" id="btn-simulados" value="simulados" class="w3-bar-item w3-button">Simulados</button>
+        <div class=" w3-bar-block">
+          <button onclick="w3_close()" id="btn-observados" value="observados" class="w3-bar-item w3-button">Dados Observacionais</button>
+          <button onclick="w3_close()" id="btn-reanálise" value="reanálise" class="w3-bar-item w3-button">Dados de Reanálise</button>
+          <button onclick="w3_close()" id="btn-simulados" value="simulados" class="w3-bar-item w3-button">Projeções de Cenários Futuros</button>
         </div>
       </div>
     <!--<a href="#" class="w3-bar-item w3-button">Sobre</a>-->
     </div>
 
     <div class="main container-fluid">
-        <div class="row conteudo">
-          <div class="col-md-3" id="sidebar">
-            <button id="linkplataforma" class="w3-button w3-white w3-xlarge" onclick="w3_open()">☰</button>
-            <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
-            <div class="help-tip">
-                <p>Para utilizar a plataforma, selecione:<br>1. Fonte<br>2. Variável<br>3. Estação<br>4. Datas inicial e final<br>5. Clique em "Visualizar" ou "Baixar"</p>
+      <div class="row conteudo">
+        <div class="col-md-3" id="sidebar">
+          <button id="linkplataforma" class="w3-button w3-white w3-xlarge" onclick="w3_open()">☰</button>
+          <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
+          <div class="help-tip">
+              <p>Para utilizar a plataforma, selecione:<br>1. Fonte<br>2. Variável<br>3. Estação<br>4. Datas inicial e final<br>5. Clique em "Visualizar" ou "Baixar"</p>
+          </div>
+          <div class="data-container" id="div-observados">
+            <div class="data-text small-font">
+              <h3>Dados Observacionais:</h3>
+              <p>Nesta categoria podem ser obtidos conjuntos de dados diários observados, para o estado do Espírito Santo, a partir da rede de estações convencionais e automáticas de instituições nacionais, tais como: temperatura, precipitação, vazão, evapotranspiração, radiação solar, vento e umidade relativa do ar. Estão disponibilizados nesta base de dados:</p>
+              <ul>
+                <li>INMET: Dados da Rede de Estações Meteorológicas Automáticas do INMET desde 2000 até a presente data e dados da Rede de Estações Meteorológicas Convencionais do INMET desde 1924 até a presente data.</li>
+                <li>ANA: Dados de Pluviômetros e Fluviométricos da ANA desde 1925 até 2019.</li>
+              </ul>
             </div>
-            <div class="data-container" id="div-observados">
-              <div class="data-text">
-                <h3>Dados Observados:</h3>
-                <p>Dados diários observados, para o estado do Espírito Santo, a partir da rede de estações convencionais e automáticas de instituições nacionais.</p>
-              </div>
-              <div class="data-text padded-data-text selectdiv">
-                <label for="fonte-dados-observados">Fonte</label><br>
-                <select class="sel-data-source" name="fonte-dados-observados">
-                </select><br>
+            <div class="data-text padded-data-text selectdiv">
+              <label for="fonte-dados-observados">Fonte</label><br>
+              <select class="sel-data-source" name="fonte-dados-observados">
+              </select><br>
 
-                <form action="javascript:void(0);" method="get">
-                  {% csrf_token %}
-                  <label for="variable">Variável</label>
-                  <br>
-                  <select class="sel-data-variable" name="variable"></select>
-                  <br>
-                  <label for="scale">Valor máximo do gráfico</label>
-                  <br>
-                  <input class="sel-chart-max-value" type="number" min=0, step=1, value=50>
-                </form><br>
-              </div>
-              <input type="hidden" value="0" id="input_station_code">
+              <form action="javascript:void(0);" method="get">
+                {% csrf_token %}
+                <label for="variable">Variável</label>
+                <br>
+                <select class="sel-data-variable" name="variable"></select>
+                <br>
+                <label for="scale">Valor máximo do gráfico</label>
+                <br>
+                <input class="sel-chart-max-value" type="number" min=0, step=1, value=50>
+              </form><br>
             </div>
+            <input type="hidden" value="0" id="input_station_code">
+          </div>
 
-            <div class="data-container" id="div-reanálise">
-              <div class="data-text">
-              <h3>Dados de Reanálise:</h3>
-                <!-- <div class="alert">
-                  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-                  <strong>Os dados de reanálise estão sendo adaptados para a plataforma e serão disponibilizados em breve.</strong>
-                </div> -->
-                <p id="texto-reanalise" align="justify">As reanálises são um conjunto de dados de clima que combinam informações a partir de observações de estações meteorológicas, modelagem, imagens de satélites e utilizam análises estatísticas na reconstrução da base de dados.</p>
-              </div>
-              <div class="selectdiv">
-                <label for="fonte-dados-reanalise">Fonte</label><br>
-                <select class="sel-data-source" name="fonte-dados-reanalise"></select>
-                <form action="javascript:void(0);" method="get">
-                  {% csrf_token %}
-                  <label for="variable">Variável</label><br>
-                  <select class="sel-data-variable" name="variable">
-                  </select>
-                  <br><label for="scale">Valor máximo do gráfico</label><br>
-                  <input class="sel-chart-max-value" type="number" min=0, value=50>
-                </form>
-              </div>
+          <div class="data-container" id="div-reanálise">
+            <div class="data-text small-font">
+            <h3>Dados de Reanálise:</h3>
+              <!-- <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <strong>Os dados de reanálise estão sendo adaptados para a plataforma e serão disponibilizados em breve.</strong>
+              </div> -->
+              <p id="texto-reanalise">As reanálises são um conjunto de dados de clima que combinam informações a partir de observações de estações meteorológicas, modelagem, imagens de satélites e utilizam análises estatísticas na reconstrução da base de dados.</p>
+              <ul>
+                <li>CHIRPS: dados disponibilizados pela University of California desde 1981 até a presente data, com Resolução Espacial: 0.05°.</li>
+                <li>ERA5: Os dados estão disponíveis em grades regulares de latitude-longitude com resolução espacial de 0.25°, com resolução temporal de 1979 até a presente data.</li>
+              </ul>
             </div>
-
-            <div class="data-container" id="div-simulados">
-              <div class="data-text">
-                <h3>Dados Simulados:</h3>
-                <p>Média por município dos dados do Modelo Eta HADGEM2-ES 5km para o estado de Espírito Santo.</p>
-              </div>
-              <div class="data-text padded-data-text selectdiv">
-                <br><label for="fonte-dados-simulados">Fonte</label><br>
-                <select class="sel-data-source" name="fonte-dados-simulados"></select>
-                <div id="divmodelo">
-                  <label for="sel-data-model">Cenário Climático</label><br>
-                </div>
-                <select class="sel-data-model" name="sel-data-model"></select><br>
-                <form action="javascript:void(0);" method="get">
-                  {% csrf_token %}
-                  <label for="variable">Variável</label><br>
-                  <select class="sel-data-variable" name="variable">
-                  </select>
-                  <br><label for="scale">Valor máximo do gráfico</label><br>
-                  <input class="sel-chart-max-value" type="number" min=0, step=1, value=50>
-                </form>
-              </div> 
-              <input type="hidden" value="0" id="input_city_name">
-            </div>
-
-            <div class="data-container" id="data-container">
-              <div class="data-text padded-data-text">
-                <label for="startDate">Data inicial</label>
-                <input class="dateinput" type="text" id="startDate" name="startDate"><br>
-                <div id="datafinal">
-                  <label for="finalDate">Data final</label><br>
-                  <input class="dateinput" type="text" id="finalDate" name="finalDate">
-                </div>
-              </div>
-              <div id="div-buttons">
-                <br><button type="button" class="gbutton" id="btn_submit">Visualizar</button>
-                <button type="button" class="gbutton" id="btn_download" name="btn_download">Baixar</button>
-                <!--<a style="display:none;" type="button" class="gbutton" id="chart_download" download="Grafico.jpg">Baixar Gráfico</a>-->
-                <button id="chartdownload" style="display: none;" onclick="screenshot()">Salvar Gráfico</button>
-
-                <input type="hidden" id="selected_source" value="{{ selected_source }}">
-              </div>
+            <div class="selectdiv">
+              <label for="fonte-dados-reanalise">Fonte</label><br>
+              <select class="sel-data-source" name="fonte-dados-reanalise"></select>
+              <form action="javascript:void(0);" method="get">
+                {% csrf_token %}
+                <label for="variable">Variável</label><br>
+                <select class="sel-data-variable" name="variable">
+                </select>
+                <br><label for="scale">Valor máximo do gráfico</label><br>
+                <input class="sel-chart-max-value" type="number" min=0, value=50>
+              </form>
             </div>
           </div>
 
-          <div class="col-md-9">
-            <div class="row">
-              <div id="map"></div>
+          <div class="data-container" id="div-simulados">
+            <div class="data-text small-font">
+              <h3 id="header-cenarios">Projeção de Cenários Futuros:</h3>
+              <p>Os dados estão divididos em três conjuntos principais: Período histórico (1960-2005), e dois cenários de emissões de gases de efeito estufa (GEE), o cenário RCP 4.5 (médias emissões de GEE) e o cenário RCP 8.5 (altas emissões de GEE) desde 2006 até 2099. Todos os dados podem ser obtidos por pixel (coordenada geográfica) ou integrado para cada município do estado.</p>
+              <p>Estes conjuntos de dados podem ser obtidos no formato csv (comma separated values, que podem ser usados, por exemplo, no Excel) e em formato NetCDF (.nc), que podem ser lidos em softwares como Matlab, Grads, GIS ou utilizando linguagem de programação como Python, Fortran, R, entre outras.</p>
+            </div>
+            <div class="data-text padded-data-text selectdiv">
+              <br><label for="fonte-dados-simulados">Fonte</label><br>
+              <select class="sel-data-source" name="fonte-dados-simulados"></select>
+              <div id="divmodelo">
+                <label for="sel-data-model">Cenário Climático</label><br>
+              </div>
+              <select class="sel-data-model" name="sel-data-model"></select><br>
+              <form action="javascript:void(0);" method="get">
+                {% csrf_token %}
+                <label for="variable">Variável</label><br>
+                <select class="sel-data-variable" name="variable">
+                </select>
+                <br><label for="scale">Valor máximo do gráfico</label><br>
+                <input class="sel-chart-max-value" type="number" min=0, step=1, value=50>
+              </form>
+            </div> 
+            <input type="hidden" value="0" id="input_city_name">
+          </div>
+
+          <div class="data-container" id="data-container">
+            <div class="data-text padded-data-text">
+              <label for="startDate">Data inicial</label>
+              <input class="dateinput" type="text" id="startDate" name="startDate"><br>
+              <div id="datafinal">
+                <label for="finalDate">Data final</label><br>
+                <input class="dateinput" type="text" id="finalDate" name="finalDate">
+              </div>
+            </div>
+            <div id="div-buttons">
+              <br><button type="button" class="gbutton" id="btn_submit">Visualizar</button>
+              <button type="button" class="gbutton" id="btn_download" name="btn_download">Baixar</button>
+              <!--<a style="display:none;" type="button" class="gbutton" id="chart_download" download="Grafico.jpg">Baixar Gráfico</a>-->
+              <button id="chartdownload" style="display: none;" onclick="screenshot()">Salvar Gráfico</button>
+
+              <input type="hidden" id="selected_source" value="{{ selected_source }}">
             </div>
           </div>
         </div>
+
+        <div class="col-md-9">
+          <div class="row">
+            <div id="map"></div>
+          </div>
+        </div>
+      </div>
       
         <input type="hidden" id="url-cities" value="{% url 'vismet:cities' %}">
         <input type="hidden" id="url-pixels" value="{% url 'vismet:pixels' %}">
