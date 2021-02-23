@@ -86,7 +86,8 @@ def Api_Data_Options(request):
             "sources": {}
         }
 
-        sources = ElementSource.objects.filter(category=cat).exclude(name__in=['eta por cidade', 'xavier'])
+        exclude_list = ['eta por cidade', 'xavier', 'gfs', 'delaware', 'gpcp', 'merge-cptec', ]
+        sources = ElementSource.objects.filter(category=cat).exclude(name__in=exclude_list)
         for src in sources:
 
             # Este dictionary armazena as variáveis que cada
