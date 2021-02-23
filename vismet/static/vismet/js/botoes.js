@@ -49,3 +49,8 @@ function screenshot(){
     window.location.href=image
   });
 }
+
+$("#btn_submit").click(function() {
+  $("html, body").animate({ scrollTop: $(document).height() });
+  return false;
+});
