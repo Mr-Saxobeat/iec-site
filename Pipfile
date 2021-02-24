@@ -16,6 +16,8 @@ requests = "*"
 django-queryset-csv = "*"
 geopandas = "*"
 netcdf4 = "*"
+cfgrib = "*"
+xarray = "*"
 
 [requires]
 python_version = "3.8"
