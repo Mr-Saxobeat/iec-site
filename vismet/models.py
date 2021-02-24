@@ -157,9 +157,10 @@ class Pixel(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     geom = models.PolygonField(null=True)
+    resolution = models.FloatField(default=0.05)
 
     def __str__(self):
-        return f'{ self.latitude }, { self.longitude }'
+        return f'{ self.latitude }, { self.longitude }, res = { self.resolution }º'
 
     @property
     def popup_content(self):
