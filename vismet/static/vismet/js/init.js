@@ -12,6 +12,7 @@ $.getJSON(url_data_options, function (data) {
   json_data_options = JSON.parse(JSON.stringify(data));
   loadXavierLayer();
   loadANALayer();
+  loadPixel_025_Layer();
   loadINMETLayer();
   loadETALayer();
   LoadETACity();

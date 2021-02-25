@@ -82,9 +82,10 @@ var ETA_Pixel_Layer = L.geoJson([], {
   onEachFeature: ETA_Pixel_Layer_onEachFeature,
 });
 
-var url_pixels = $("#url-pixels").val();
+// var url_pixels = $("#url-pixels").val();
 
 function loadETALayer(){
+  var url_pixels = $("#url-pixels").val();
   $.getJSON(url_pixels, function(data) {
     ETA_Pixel_Layer.addData(data);
   })

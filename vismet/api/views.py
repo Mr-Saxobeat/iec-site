@@ -36,10 +36,12 @@ class PixelDataRetrieveCreateAPIView(APIView):
         try:
             lat = request.GET['latitude']
             lon = request.GET['longitude']
+            resolution = request.GET['resolution']
             data_model_name = request.GET['data_model_name']
             startDate = request.GET['startDate']
             finalDate = request.GET['finalDate']
-        except KeyError:
+        except KeyError as err:
+            print(err)
             return Response(
                         data= {
                             'message': 'Preencha todos os parâmetros corretamente: latitude, longitude, data_model_name, startDate, finalDate.'
@@ -59,7 +61,7 @@ class PixelDataRetrieveCreateAPIView(APIView):
                 )
 
         try:
-            pixel = Pixel.objects.get(latitude=lat, longitude=lon)
+            pixel = Pixel.objects.get(latitude=lat, longitude=lon, resolution=resolution)
         except Pixel.DoesNotExist:
             return Response(
                         data = {
@@ -117,6 +119,14 @@ class PixelDataRetrieveCreateAPIView(APIView):
 
         serializer = PixelDataSerializer(pixel_data_queryset, many=True)
 
+        print('')
+        print('')
+        print('')
+        print(pixel)
+        print('')
+        print('')
+        print('')
+
         return Response(data=serializer.data)
 
 
@@ -126,6 +136,7 @@ class PixelDataRetrieveCreateAPIView(APIView):
         try:
             lat = request.data['latitude']
             lon = request.data['longitude']
+            resolution = request.data['resolution']
             data_model_name = request.data['data_model_name']
             date = datetime.datetime.strptime(request.data['date'], '%Y-%m-%d')
         except KeyError:
@@ -133,7 +144,7 @@ class PixelDataRetrieveCreateAPIView(APIView):
                     data={'message': 'Preencha todos os parâmetros corretamente: latitude, longitude, data_model_name, date, e as variáveis.'}
             )
 
-        pixel = Pixel.objects.get(latitude=lat, longitude=lon)
+        pixel = Pixel.objects.get(latitude=lat, longitude=lon, resolution=resolution)
         data_model = DataModel.objects.get(name=data_model_name)
 
         # Verify if the PixelData already exists
