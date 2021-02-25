@@ -76,8 +76,8 @@ function loadPixel_025_Layer(){
   $.getJSON(url_pixels_025, function(data) {
     Pixel_025_Layer.addData(data);
   })
-  control.addOverlay(Pixel_025_Layer, "pixels 025");
-  layers_dic["pixel 025"] = Pixel_025_Layer;
+  // control.addOverlay(Pixel_025_Layer, "pixels 025");
+  layers_dic["era5"] = Pixel_025_Layer;
 }
 
 // function Show_ETA_Data(pixel_id, startDate, finalDate){
