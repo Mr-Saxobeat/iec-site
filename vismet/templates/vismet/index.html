@@ -98,7 +98,6 @@
             <div class="data-text small-font">
               <h3 id="header-cenarios">Projeção de Cenários Futuros:</h3>
               <p>Os dados estão divididos em três conjuntos principais: Período histórico (1960-2005), e dois cenários de emissões de gases de efeito estufa (GEE), o cenário RCP 4.5 (médias emissões de GEE) e o cenário RCP 8.5 (altas emissões de GEE) desde 2006 até 2099. Todos os dados podem ser obtidos por pixel (coordenada geográfica) ou integrado para cada município do estado.</p>
-              <p>Estes conjuntos de dados podem ser obtidos no formato csv (comma separated values, que podem ser usados, por exemplo, no Excel) e em formato NetCDF (.nc), que podem ser lidos em softwares como Matlab, Grads, GIS ou utilizando linguagem de programação como Python, Fortran, R, entre outras.</p>
             </div>
             <div class="data-text padded-data-text selectdiv">
               <br><label for="fonte-dados-simulados">Fonte</label><br>
@@ -132,17 +131,14 @@
               <br><button type="button" class="gbutton" id="btn_submit">Visualizar</button>
               <button type="button" class="gbutton" id="btn_download" name="btn_download">Baixar</button>
               <!--<a style="display:none;" type="button" class="gbutton" id="chart_download" download="Grafico.jpg">Baixar Gráfico</a>-->
-              <button id="chartdownload" style="display: none;" onclick="screenshot()">Salvar Gráfico</button>
+              <button download="grafico.png" id="chartdownload" style="display: none;" onclick="screenshot()">Salvar Gráfico</button>
 
               <input type="hidden" id="selected_source" value="{{ selected_source }}">
             </div>
           </div>
         </div>
-
-        <div class="col-md-9">
-          <div class="row">
-            <div id="map"></div>
-          </div>
+        <div class="row col-md-9">
+          <div id="map"></div>
         </div>
       </div>
       
@@ -152,7 +148,7 @@
         <input type="hidden" id="url-data-options" value="{% url 'vismet:data_options' %}">
         <input type="hidden" id="url-api" value="{% url 'vismet:pixel-data-list' %}">
     </div>
-    <div id="chartdiv" class="row chart-container">
+    <div id="chartdiv" class="chart-container">
       <canvas id="chart"></canvas>
     </div>
 
