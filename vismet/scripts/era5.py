@@ -125,7 +125,7 @@ def run2(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/descompressed'
                 'ocis': val_tp,
             }
 
-            response = requests.post(url, data=data)
+            response = requests.post(url, data=data, verify=False)
 
             if response.status_code == 200:
                 print(str(response.status_code) + ': ' + str(p.latitude) + ', ' + str(p.longitude) + ' - ' + date.strftime('%m/%Y'))
