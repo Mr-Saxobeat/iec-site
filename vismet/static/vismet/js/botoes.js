@@ -45,7 +45,7 @@ function screenshot(){
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;  
   html2canvas(document.getElementById("chart")).then(canvas=>{
-    var image = canvas.toDataURL("image/png");  
+    var image = canvas.toDataURL("image/png").replace("image/png","image/octet-stream");  
     window.location.href=image
   });
 }
