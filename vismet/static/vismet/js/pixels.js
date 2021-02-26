@@ -95,6 +95,7 @@ function loadETALayer(){
 }
 
 function Show_ETA_Data(pixel_id, startDate, finalDate){
+  var url_pixels = $("#url-pixels").val();
   for(var i = 0; i <= 2; i++){
     startDate = startDate.replace("/", "-");
     finalDate = finalDate.replace("/", "-");
