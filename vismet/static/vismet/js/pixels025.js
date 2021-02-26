@@ -80,50 +80,51 @@ function loadPixel_025_Layer(){
   layers_dic["era5"] = Pixel_025_Layer;
 }
 
-// function Show_ETA_Data(pixel_id, startDate, finalDate){
-//   for(var i = 0; i <= 2; i++){
-//     startDate = startDate.replace("/", "-");
-//     finalDate = finalDate.replace("/", "-");
-//   }
+function Show_Pixel025_Data(pixel_id, startDate, finalDate){
+  var url_pixels_025 = $("#url-pixels-025").val();
+  for(var i = 0; i <= 2; i++){
+    startDate = startDate.replace("/", "-");
+    finalDate = finalDate.replace("/", "-");
+  }
 
-//   $.getJSON(url_pixels + "json/" + pixel_id + "/" + selBox_model_display.value + "/" +startDate + "/" + finalDate, function(data) {
-//     var variable = 'evapo';
-//     switch (selBox_variable_display.value.toLowerCase()) {
-//       case 'evapotranspiração':
-//         variable = 'evapo'
-//         break;
-//       case 'temperatura mínima':
-//         variable = "minTemp";
-//         break;
-//       case 'temperatura máxima':
-//         variable = "maxTemp";
-//         break;
-//       case 'radiação de onda curta incidente à superficie':
-//         variable = 'ocis';
-//         break;
-//       case 'precipitação':
-//         variable = 'precip';
-//         break;
-//       case 'escoamento superficial':
-//         variable = 'rnof';
-//         break;
-//       case 'temperatura a 2m da superfície':
-//         variable = 'tp2m';
-//         break;
-//       default:
-//         variable = 'evapo';
-//         break;
-//     }
-//     chart_update(chart, data, variable);
-//   })
-// }
+  $.getJSON(url_pixels + "json/" + pixel_id + "/" + selBox_model_display.value + "/" +startDate + "/" + finalDate, function(data) {
+    var variable = 'evapo';
+    switch (selBox_variable_display.value.toLowerCase()) {
+      case 'evapotranspiração':
+        variable = 'evapo'
+        break;
+      case 'temperatura mínima':
+        variable = "minTemp";
+        break;
+      case 'temperatura máxima':
+        variable = "maxTemp";
+        break;
+      case 'radiação de onda curta incidente à superficie':
+        variable = 'ocis';
+        break;
+      case 'precipitação':
+        variable = 'precip';
+        break;
+      case 'escoamento superficial':
+        variable = 'rnof';
+        break;
+      case 'temperatura a 2m da superfície':
+        variable = 'tp2m';
+        break;
+      default:
+        variable = 'evapo';
+        break;
+    }
+    chart_update(chart, data, variable);
+  })
+}
 
-// function Download_ETA_Data(pixel_id, startDate, finalDate){
-//   for(var i = 0; i <= 2; i++){
-//     startDate = startDate.replace("/", "-");
-//     finalDate = finalDate.replace("/", "-");
-//   }
+function Download_Pixel025_Data(pixel_id, startDate, finalDate){
+  for(var i = 0; i <= 2; i++){
+    startDate = startDate.replace("/", "-");
+    finalDate = finalDate.replace("/", "-");
+  }
 
-//   var url = url_pixels + "csv/" + pixel_id + "/" + selBox_model_display.value + "/" +startDate + "/" + finalDate;
-//   window.location.href = url;
-// }
+  var url = url_pixels + "csv/" + pixel_id + "/" + selBox_model_display.value + "/" +startDate + "/" + finalDate;
+  window.location.href = url;
+}
