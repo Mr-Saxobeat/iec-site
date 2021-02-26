@@ -33,6 +33,7 @@ function Show_Chirps_Data(pixel, startDate, finalDate){
   pixel_data = {
     "latitude": pixel.properties.latitude,
     "longitude": pixel.properties.longitude,
+    "resolution": 0.05,
     "data_model_name": "Chirps",
     "startDate": startDate, // YYYY-MM-DD
     "finalDate": finalDate, // YYYY-MM-DD
