@@ -183,6 +183,7 @@ class PixelData(models.Model):
     precip = models.FloatField(default=None, null=True, blank=True)
     rnof = models.FloatField(default=None, null=True, blank=True)
     tp2m = models.FloatField(default=None, null=True, blank=True)
+    relHum = models.FloatField(default=None, null=True, blank=True)
 
     def __str__(self):
         return f'{ self.pixel.latitude }, { self.pixel.longitude } --- { self.date }'
