@@ -157,7 +157,8 @@ class PixelDataRetrieveCreateAPIView(APIView):
         if queryset.count() != 0:
             print(queryset)
             return Response(
-                    data={'message': 'Já existe um dado com as coordenadas e data fornecida.'}
+                    data={'message': 'Já existe um dado com as coordenadas e data fornecida.'},
+                    status=status.HTTP_204_NO_CONTENT
             )
 
         serializer = PixelDataSerializer(data=request.data)
