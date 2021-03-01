@@ -110,7 +110,7 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/monthly/descomp
                 'latitude': p.latitude,
                 'longitude': p.longitude,
                 'resolution': 0.25,
-                'data_model_name': 'era5',
+                'data_model_name': 'ERA5',
                 'tp2m': val_2t,
                 'relHum': val_r2,
                 'precip': val_tp,
