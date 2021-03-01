@@ -144,8 +144,19 @@ class PixelDataRetrieveCreateAPIView(APIView):
                     data={'message': 'Preencha todos os parâmetros corretamente: latitude, longitude, data_model_name, date, e as variáveis.'}
             )
 
-        pixel = Pixel.objects.get(latitude=lat, longitude=lon, resolution=resolution)
-        data_model = DataModel.objects.get(name=data_model_name)
+        try:
+            pixel = Pixel.objects.get(latitude=lat, longitude=lon, resolution=resolution)
+            data_model = DataModel.objects.get(name=data_model_name)
+        except Pixel.DoesNotExist:
+            return Response(
+                    data={'message': 'O pixel com as coordenadas informadas não existe.'},
+                    status=status.HTTP_400_BAD_REQUEST
+            )
+        except DataModel.DoesNotExist:
+            return Response(
+                    data={'message': 'O data_model com o nome informado não existe.'},
+                    status=status.HTTP_400_BAD_REQUEST
+            )
 
         # Verify if the PixelData already exists
         queryset = PixelData.objects.filter(
