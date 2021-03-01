@@ -124,7 +124,7 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/monthly/descomp
                 print(str(response.status_code) + ': ' + str(p.latitude) + ', ' + str(p.longitude) + ' - ' + date.strftime('%m/%Y'))
             else:
                 print(response.content)
-                log_file.write(p.latitude + ', ' + p.longitude + ' -- ' + )
+                log_file.write(str(p.latitude) + ', ' + str(p.longitude) + ' -- ' + date.strftime('%d/%m/%Y'))
         
         date = addMonth(date)
     
