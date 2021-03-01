@@ -44,7 +44,7 @@ class PixelDataRetrieveCreateAPIView(APIView):
             print(err)
             return Response(
                         data= {
-                            'message': 'Preencha todos os parâmetros corretamente: latitude, longitude, data_model_name, startDate, finalDate.'
+                            'message': 'Preencha todos os parâmetros corretamente: latitude, longitude, resolution, data_model_name, startDate, finalDate.'
                         },
                         status=status.HTTP_400_BAD_REQUEST
                     )
