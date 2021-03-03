@@ -181,3 +181,99 @@ class PixelDataRetrieveCreateAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PixelDataCreateFromListAPIView(generics.CreateAPIView):
+    queryset = PixelData.objects.all()
+    serializer_class = PixelDataSerializer
+
+    def post(self, request, *args, **kwargs):
+        for data in request.data:
+            try:
+                lat = data.pop('latitude')
+                lon = data.pop('longitude')
+                resolution = data.pop('resolution')
+                data_model_name = data.pop('data_model_name')
+                date = datetime.datetime.strptime(data.pop('date'), '%Y-%m-%d').date()
+            except KeyError:
+                raise KeyError('Preencha todos os parâmetros corretamente: latitude, longitude, data_model_name, date, e as variáveis.')
+
+            try:
+                pixel = Pixel.objects.get(latitude=lat, longitude=lon, resolution=resolution)
+                data_model = DataModel.objects.get(name=data_model_name)
+            except Pixel.DoesNotExist:
+                raise ObjectDoesNotExist('O pixel com as coordenadas informadas não existe.')
+            except DataModel.DoesNotExist:
+                raise ObjectDoesNotExist('O data_model com o nome informado não existe.')
+            
+            data['pixel'] = pixel
+            data['date'] = date
+            data['data_model'] = data_model
+
+            self.create(data, *args, **kwargs)
+
+        return Response(status=status.HTTP_200_OK)
+
+
+    def create(self, data, *args, **kwargs):
+        print(data)
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer, data)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def perform_create(self, serializer, otherData):
+        print(otherData)
+        serializer.save(pixel=otherData['pixel'], data_model=otherData['data_model'])
+
+    # def post(self, request):
+        # # Get parameters to filter Pixel and DataModel
+        # try:
+        #     lat = request.data['latitude']
+        #     lon = request.data['longitude']
+        #     resolution = request.data['resolution']
+        #     data_model_name = request.data['data_model_name']
+        #     date = datetime.datetime.strptime(request.data['date'], '%Y-%m-%d')
+        # except KeyError:
+        #     return Response(
+        #             data={'message': 'Preencha todos os parâmetros corretamente: latitude, longitude, data_model_name, date, e as variáveis.'}
+        #     )
+
+        # try:
+        #     pixel = Pixel.objects.get(latitude=lat, longitude=lon, resolution=resolution)
+        #     data_model = DataModel.objects.get(name=data_model_name)
+        # except Pixel.DoesNotExist:
+        #     return Response(
+        #             data={'message': 'O pixel com as coordenadas informadas não existe.'},
+        #             status=status.HTTP_400_BAD_REQUEST
+        #     )
+        # except DataModel.DoesNotExist:
+        #     return Response(
+        #             data={'message': 'O data_model com o nome informado não existe.'},
+        #             status=status.HTTP_400_BAD_REQUEST
+        #     )
+
+        # # Verify if the PixelData already exists
+        # queryset = PixelData.objects.filter(
+        #             pixel=pixel,
+        #             data_model=data_model,
+        #             date=date,
+        # )
+
+        # if queryset.count() != 0:
+        #     print(queryset)
+        #     return Response(
+        #             data={'message': 'Já existe um dado com as coordenadas e data fornecida.'},
+        #             status=status.HTTP_204_NO_CONTENT
+        #     )
+
+        # serializer = PixelDataSerializer(data=request.data)
+        # if serializer.is_valid():
+        #     serializer.save(
+        #         pixel=pixel,
+        #         data_model=data_model
+        #     )
+        #     return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # else:
+        #     return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
