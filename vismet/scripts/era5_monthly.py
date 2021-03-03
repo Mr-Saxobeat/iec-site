@@ -1,11 +1,15 @@
 import datetime
 import math
 import os
+import json
 
 import requests
 import xarray as xr
 
 from vismet.models import DataModel, Pixel, PixelData
+
+# from vismet.scripts import era5_monthly
+# era5_monthly.run(url='http://127.0.0.1:8000/plataforma/api/pixeldatalist/', finalDate_str='1979-01-01')
 
 def addMonth(date):
     if date.month == 12:
@@ -16,7 +20,7 @@ def addMonth(date):
 def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/monthly/descompressed',
          date_str='1979-01-01',
          finalDate_str='2021-01-01',
-         url='https://iec.ufes.br/plataforma/api/pixeldata/'):
+         url='https://iec.ufes.br/plataforma/api/pixeldatalist/'):
 
     # Strings padrões do início e final de cada arquivo do ERA5
     file_init = '1month_mean_Global_ea_'
@@ -45,6 +49,8 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/monthly/descomp
 
     pixels = Pixel.objects.filter(resolution=0.25)
     data_model, created = DataModel.objects.get_or_create(name='era5')
+
+    data_list = []
 
     while(date.date() <= finalDate.date()):
         strDate = '_' + date.strftime('%Y%m')
@@ -118,15 +124,22 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/monthly/descomp
                 # 'minTemp': val_swvl1,
             }
 
-            response = requests.post(url, data=data, verify=False)
+            data_list.append(data)
+            contador += 1
+            print(str(p.latitude) + ', ' + str(p.longitude) + ' ' + date.strftime('%d/%m/%Y'))
 
-            if response.status_code == 200:
-                print(str(response.status_code) + ': ' + str(p.latitude) + ', ' + str(p.longitude) + ' - ' + date.strftime('%m/%Y'))
-            else:
-                print(response.content)
-                log_file.write(str(p.latitude) + ', ' + str(p.longitude) + ' -- ' + date.strftime('%d/%m/%Y'))
         
         date = addMonth(date)
+
+    headers = {'content-type': 'application/json'}
+    response = requests.post(url, data=json.dumps(data_list), headers=headers, verify=False)
+
+    if response.status_code == 201:
+        # print(str(response.status_code) + ': ' + str(p.latitude) + ', ' + str(p.longitude) + ' - ' + date.strftime('%m/%Y'))
+        print(str(reesponse.status_code))
+    else:
+        print(response.content)
+        # log_file.write(str(p.latitude) + ', ' + str(p.longitude) + ' -- ' + date.strftime('%d/%m/%Y'))
     
     print('Data final alcançada. Finalizar.')
     log_file.close()
