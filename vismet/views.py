@@ -128,14 +128,14 @@ def Api_Data_Options(request):
 # Esta view retorna os pixels do Espírito Santo
 # para serem usados como uma layer no mapa.
 class Api_Pixel(GeoJSONLayerView):
-    properties = ['id', 'city', 'state', 'latitude', 'longitude', 'popup_content']
+    properties = ['id', 'city', 'state', 'latitude', 'longitude', 'resolution','popup_content']
 
     def get_queryset(self):
         pixels = Pixel.objects.filter(resolution=0.05)
         return pixels
 
 class Pixel25(GeoJSONLayerView):
-    properties = ['id', 'city', 'state', 'latitude', 'longitude', 'popup_content']
+    properties = ['id', 'city', 'state', 'latitude', 'longitude', 'resolution','popup_content']
 
     def get_queryset(self):
         pixels = Pixel.objects.filter(resolution=0.25)
