@@ -125,7 +125,6 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/monthly/descomp
             }
 
             data_list.append(data)
-            contador += 1
             print(str(p.latitude) + ', ' + str(p.longitude) + ' ' + date.strftime('%d/%m/%Y'))
 
         
