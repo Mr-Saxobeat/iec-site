@@ -119,6 +119,9 @@ function Show_Pixel025_Data(selected_pixel, startDate, finalDate){
       case 'temperatura a 2m da superfície':
         variable = 'tp2m';
         break;
+      case "umidade relativa":
+        variable = 'relHum';
+        break;
       default:
         variable = 'evapo';
         break;
