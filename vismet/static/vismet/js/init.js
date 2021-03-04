@@ -61,7 +61,7 @@ btn_submit.addEventListener("click", function() {
     Show_ETA_Data(selected_pixel_id, input_startDate.value, input_finalDate.value);
   }else if(selBox_source_display.value.toUpperCase() == 'CHIRPS'){
     Show_Chirps_Data(selected_pixel, input_startDate.value, input_finalDate.value);
-  }else if(selBox_source_display.value.toUpperCase() == 'ERA 5'){
+  }else if(selBox_source_display.value.toUpperCase() == 'ERA5'){
     Show_Pixel025_Data(selected_pixel, input_startDate.value, input_finalDate.value);
   }
 })
