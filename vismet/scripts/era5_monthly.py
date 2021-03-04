@@ -69,11 +69,11 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/monthly/descomp
             # Converte a longitude '0 ~ 360' para '-180 ~ +180'
             longitudes = ((ds_2t['longitude'] + 180) % 360 - 180).data.tolist()
 
-        xr_2t = ds_2t['t2m']
+        xr_2t = ds_2t['t2m'].data.tolist()
         # xr_ci = ds_ci['siconc']
         # xr_swvl1 = ds_swvl1['swvl1']
-        xr_r2 = ds_r2['r']
-        xr_tp = ds_tp['tp']
+        xr_r2 = ds_r2['r'].data.tolist()
+        xr_tp = ds_tp['tp'].data.tolist()
 
         ds_2t.close()
         # ds_ci.close()
@@ -99,11 +99,15 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/monthly/descomp
                     log_file.write(p.latitude + ', ' + p.longitude)
                     continue
 
-            val_2t = xr_2t[i_lat, i_lon].data.tolist()
+            # val_2t = xr_2t[i_lat, i_lon].data.tolist()
             # val_ci = xr_ci[i_lat, i_lon].data.tolist()
             # val_swvl1 = xr_swvl1[i_lat, i_lon].data.tolist()
-            val_r2 = xr_r2[i_lat, i_lon].data.tolist()
-            val_tp = xr_tp[i_lat, i_lon].data.tolist()
+            # val_r2 = xr_r2[i_lat, i_lon].data.tolist()
+            # val_tp = xr_tp[i_lat, i_lon].data.tolist()
+
+            val_2t = xr_2t[i_lat][i_lon] - 273.15
+            val_r2 = xr_r2[i_lat][i_lon]
+            val_tp = xr_tp[i_lat][i_lon]
 
             val_2t = None if math.isnan(val_2t) else val_2t
             # val_ci = None if math.isnan(val_ci) else val_ci
