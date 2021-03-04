@@ -2,7 +2,7 @@ var Pixel_025_Style = {
   color: "purple",
   weight: 0.5,
 };
-var selected_pixel_id;
+var selected_pixel025 = {};
 
 function highlightFeature_pixel_025(e) {
   var layer = e.target;
@@ -52,6 +52,11 @@ function Pixel_025_Layer_onEachFeature(feature, layer) {
   layer.bindPopup(feature.properties.popup_content);
   layer.on("click", function(e) {
     selected_pixel_id = feature.properties.id;
+    selected_pixel025["latitude"] = feature.properties.latitude;
+    selected_pixel025["longitude"] = feature.properties.longitude;
+    selected_pixel025["resolution"] = feature.properties.resolution;
+    selected_pixel025["data_model_name"] = "ERA5";
+    
     selected_pixel = feature;
 
     chart.options.title.text = "Coordenadas " + feature.properties.latitude + "º, " + feature.properties.longitude + "º"
@@ -80,14 +85,17 @@ function loadPixel_025_Layer(){
   layers_dic["era5"] = Pixel_025_Layer;
 }
 
-function Show_Pixel025_Data(pixel_id, startDate, finalDate){
+function Show_Pixel025_Data(selected_pixel, startDate, finalDate){
   var url_pixels_025 = $("#url-pixels-025").val();
-  for(var i = 0; i <= 2; i++){
-    startDate = startDate.replace("/", "-");
-    finalDate = finalDate.replace("/", "-");
-  }
+  startDateList = startDate.split("/");
+  finalDateList = finalDate.split("/");
+  console.log(selected_pixel);
 
-  $.getJSON(url_pixels + "json/" + pixel_id + "/" + selBox_model_display.value + "/" +startDate + "/" + finalDate, function(data) {
+  selected_pixel025["startDate"] = startDateList[2] + "-" + startDateList[1] + "-" + startDateList[0];
+  selected_pixel025["finalDate"] = finalDateList[2] + "-" + finalDateList[1] + "-" + finalDateList[0];
+
+  $.getJSON("/plataforma/api/pixeldata/", selected_pixel025, function(data) {
+    console.log(data);
     var variable = 'evapo';
     switch (selBox_variable_display.value.toLowerCase()) {
       case 'evapotranspiração':
@@ -115,7 +123,7 @@ function Show_Pixel025_Data(pixel_id, startDate, finalDate){
         variable = 'evapo';
         break;
     }
-    chart_update(chart, data, variable);
+    chart_update2(chart, data, variable);
   })
 }
 
