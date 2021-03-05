@@ -90,12 +90,12 @@ meteorológicas no mapa:
     ```
   - Para importar o script que usaremos use:
     ```
-    from vismet.scripts.inmet import run
+    from vismet.scripts.inmet import LoadINMETStations
     ```
   - Este script se encontra na pasta ***iec-site/vismet/scripts/inmet.py***. Enfim
   execute-0:
     ```
-    run()
+    LoadINMETStations()
     ```
   - Agora rode o servidor de novo e selecione a camada ***Estações INMET*** no
   canto superior direito do mapa e você verá as posições das estações.
