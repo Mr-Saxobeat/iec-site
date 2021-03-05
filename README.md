@@ -88,12 +88,20 @@ meteorológicas no mapa:
     ```
     python manage.py shell
     ```
+  - Para carregar as categorias de dados, rode o comando:
+    ```
+    from vismet.scripts.categories import LoadCategories
+    ```
+  - Em seguida, carregue as categorias:
+    ```
+    LoadCategories()
+    ```
   - Para importar o script que usaremos use:
     ```
     from vismet.scripts.inmet import LoadINMETStations
     ```
   - Este script se encontra na pasta ***iec-site/vismet/scripts/inmet.py***. Enfim
-  execute-0:
+  execute:
     ```
     LoadINMETStations()
     ```
