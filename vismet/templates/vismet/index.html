@@ -65,6 +65,15 @@
               </form><br>
             </div>
             <input type="hidden" value="0" id="input_station_code">
+
+            <div class="data-text padded-data-text">
+              <label for="startDate">Data inicial</label>
+              <input class="dateinput" type="text" id="startDate" name="startDate"><br>
+              <div id="datafinal">
+                <label for="finalDate">Data final</label><br>
+                <input class="dateinput" type="text" id="finalDate" name="finalDate">
+              </div>
+            </div>
           </div>
 
           <div class="data-container" id="div-reanálise">
@@ -92,6 +101,15 @@
                 <input class="sel-chart-max-value" type="number" min=0, value=50>
               </form>
             </div>
+
+            <div class="data-text padded-data-text">
+              <label for="startDate">Data inicial</label>
+              <input class="dateinput" type="text" id="startDate" name="startDate"><br>
+              <div id="datafinal">
+                <label for="finalDate">Data final</label><br>
+                <input class="dateinput" type="text" id="finalDate" name="finalDate">
+              </div>
+            </div>
           </div>
 
           <div class="data-container" id="div-simulados">
@@ -116,19 +134,19 @@
               </form>
             </div> 
             <input type="hidden" value="0" id="input_city_name">
+            <div class="data-text padded-data-text">
+              <label for="startDate">Data inicial</label>
+              <input class="month-picker" type="text" id="startDate" name="startDate"><br>
+              <div id="datafinal">
+                <label for="finalDate">Data final</label><br>
+                <input class="month-picker" type="text" id="finalDate" name="finalDate">
+              </div>
+            </div>
           </div>
 
           <div class="data-container" id="data-container">
-            <div class="data-text padded-data-text">
-              <label for="startDate">Data inicial</label>
-              <input class="dateinput" type="text" id="startDate" name="startDate"><br>
-              <div id="datafinal">
-                <label for="finalDate">Data final</label><br>
-                <input class="dateinput" type="text" id="finalDate" name="finalDate">
-              </div>
-            </div>
             <div id="div-buttons">
-              <br><button type="button" class="gbutton" id="btn_submit">Visualizar</button>
+              <button type="button" class="gbutton" id="btn_submit">Visualizar</button>
               <button type="button" class="gbutton" id="btn_download" name="btn_download">Baixar</button>
               <!--<a style="display:none;" type="button" class="gbutton" id="chart_download" download="Grafico.jpg">Baixar Gráfico</a>-->
               <button id="chartdownload" style="display: none;" onclick="screenshot()">Salvar Gráfico</button>

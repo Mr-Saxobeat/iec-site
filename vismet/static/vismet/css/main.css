@@ -176,6 +176,7 @@ label {
 #div-observados, #div-reanálise, #div-simulados {
   border-bottom-right-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
+  border-bottom: none;
 }
 
 #datafinal{
