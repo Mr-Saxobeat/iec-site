@@ -4,10 +4,6 @@ html, body {
   min-height: 800px;
 }
 
-.main {
-  height: 100%;
-  margin-bottom: 20%;
-}
 
 .conteudo {
   height: 100%;
@@ -259,4 +255,8 @@ label {
 
 #header-cenarios{
   text-align: left !important;
+}
+
+#div-buttons{
+  padding-top: 5px;
 }
