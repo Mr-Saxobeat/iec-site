@@ -31,6 +31,14 @@ function INMETStations_Layer_onEachFeature(feature, layer) {
     $( ".dateinput" ).datepicker( "option", "defaultDate", new Date(station_startDate));
 
     botoes = true;
+    document.getElementById("station_startDate").innerHTML = station_startDate;
+    if(station_finalDate == null){
+    document.getElementById("station_finalDate").innerHTML = "Até o presente";
+   } else {
+    document.getElementById("station_finalDate").innerHTML = station_finalDate;
+   }
+   $("#stationdata").show();
+
 
     chart.options.title.text = "Estação nº " + station_inmet + ", " + station_city + " - " + station_state;
     chart.update();
