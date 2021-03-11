@@ -63,6 +63,8 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/daily/',
                 longitudes = ds['longitude'].data.tolist()
 
             for p in pixels:
+                data_list = []
+                
                 # Blocos try para registrar o index da latitude
                 # e longitude no dataset.
                 try:
