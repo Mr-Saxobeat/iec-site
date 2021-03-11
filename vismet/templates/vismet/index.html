@@ -13,7 +13,6 @@
     <link type="text/css" rel="stylesheet" href="{% static 'vismet/css/main.css' %}">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
   </head>
 
   <body>
@@ -49,31 +48,28 @@
               </ul>
             </div>
             <div class="data-text padded-data-text selectdiv">
-              <label for="fonte-dados-observados">Fonte</label><br>
-              <select class="sel-data-source" name="fonte-dados-observados">
-              </select><br>
-
+                <div>
+                <label for="fonte-dados-observados">Fonte</label><br>
+                <select class="sel-data-source" name="fonte-dados-observados">
+                </select><br>
+            </div>
               <form action="javascript:void(0);" method="get">
                 {% csrf_token %}
-                <label for="variable">Variável</label>
-                <br>
-                <select class="sel-data-variable" name="variable"></select>
-                <br>
-                <label for="scale">Valor máximo do gráfico</label>
+                <div>
+                  <br>
+                  <!--<input type="radio" name="type" class="frequency" value="0">
+                  <label for="0">Dado mensal</option>-->
+                  <input type="radio" name="type" class="frequency" value="1">
+                  <label for="1">Dado diário</option><br>
+                </div>
+                <br><label for="variable">Variável</label><br>
+                <select class="sel-data-variable" name="variable"></select><br>
+                <br><label for="scale">Valor máximo do gráfico</label>
                 <br>
                 <input class="sel-chart-max-value" type="number" min=0, step=1, value=50>
               </form><br>
             </div>
             <input type="hidden" value="0" id="input_station_code">
-
-            <div class="data-text padded-data-text">
-              <label for="startDate">Data inicial</label>
-              <input class="dateinput" type="text" id="startDate" name="startDate"><br>
-              <div id="datafinal">
-                <label for="finalDate">Data final</label><br>
-                <input class="dateinput" type="text" id="finalDate" name="finalDate">
-              </div>
-            </div>
           </div>
 
           <div class="data-container" id="div-reanálise">
@@ -89,26 +85,28 @@
                 <li>ERA5: Os dados estão disponíveis em grades regulares de latitude-longitude com resolução espacial de 0.25°, com resolução temporal de 1979 até a presente data.</li>
               </ul>
             </div>
-            <div class="selectdiv">
+            <div class="data-text padded-data-text selectdiv">
               <label for="fonte-dados-reanalise">Fonte</label><br>
               <select class="sel-data-source" name="fonte-dados-reanalise"></select>
               <form action="javascript:void(0);" method="get">
                 {% csrf_token %}
-                <label for="variable">Variável</label><br>
+                <div>
+                  <br>
+                  <div><input type="radio" name="type" class="frequency" value="0" disabled>
+                  <label for="0" style="color: grey;">Dado diário</option>
+                  </div>
+                  <div>
+                  <input type="radio" name="type" class="frequency" value="1">
+                  <label for="1" style="color: black;">Dado mensal</option>
+                  </div>
+                </div>
+                <br><label for="variable">Variável</label><br>
                 <select class="sel-data-variable" name="variable">
                 </select>
+                <div></div>
                 <br><label for="scale">Valor máximo do gráfico</label><br>
                 <input class="sel-chart-max-value" type="number" min=0, value=50>
               </form>
-            </div>
-
-            <div class="data-text padded-data-text">
-              <label for="startDate">Data inicial</label>
-              <input class="dateinput" type="text" id="startDate" name="startDate"><br>
-              <div id="datafinal">
-                <label for="finalDate">Data final</label><br>
-                <input class="dateinput" type="text" id="finalDate" name="finalDate">
-              </div>
             </div>
           </div>
 
@@ -121,36 +119,63 @@
               <br><label for="fonte-dados-simulados">Fonte</label><br>
               <select class="sel-data-source" name="fonte-dados-simulados"></select>
               <div id="divmodelo">
-                <label for="sel-data-model">Cenário Climático</label><br>
+                <br><label for="sel-data-model">Cenário Climático</label><br>
               </div>
               <select class="sel-data-model" name="sel-data-model"></select><br>
               <form action="javascript:void(0);" method="get">
                 {% csrf_token %}
-                <label for="variable">Variável</label><br>
+                <div>
+                  <br>
+                  <div><input type="radio" name="type" class="frequency" value="0" disabled>
+                  <label for="0" style="color: grey;">Dado diário</option>
+                  </div>
+                  <div>
+                  <input type="radio" name="type" class="frequency" value="1">
+                  <label for="1" style="color: black;">Dado mensal</option>
+                  </div>
+                </div>
+                <br><label for="variable">Variável</label><br>
                 <select class="sel-data-variable" name="variable">
                 </select>
-                <br><label for="scale">Valor máximo do gráfico</label><br>
+                <br><br><label for="scale">Valor máximo do gráfico</label><br>
                 <input class="sel-chart-max-value" type="number" min=0, step=1, value=50>
               </form>
             </div> 
             <input type="hidden" value="0" id="input_city_name">
-            <div class="data-text padded-data-text">
-              <label for="startDate">Data inicial</label>
-              <input class="month-picker" type="text" id="startDate" name="startDate"><br>
-              <div id="datafinal">
-                <label for="finalDate">Data final</label><br>
-                <input class="month-picker" type="text" id="finalDate" name="finalDate">
+          </div>
+          
+          <div class="data-container" id="data-container">
+            <div id="dateselect">
+              <div id="dateinput" style='display:none;' class="data-text padded-data-text day">
+                <label for="startDate">Data inicial</label>
+                <input class="dateinput startDate" type="text" id="startDate" name="startDate"><br>
+                <div id="datafinal">
+                  <label for="finalDate">Data final</label><br>
+                  <input class="dateinput finalDate" type="text" id="finalDate" name="finalDate">
+                </div>
+              </div>
+              <!--<div style='display:none;' class="data-text padded-data-text month">
+                <select class="dateinput" id="year"></select>
+                <select class="dateinput" id="month"></select>
+              </div>-->
+            </div>
+
+            <div id="stationdata" class="data-text padded-data-text selectdiv" style="display: none;">
+              <p>Data inicial da estação selecionada: <div id="station_startDate"></div></p>
+              <p>Data final da estação selecionada:</p>
+              <div id="station_finalDate"></div>
+              <div class="container">
+                <div id="loader" style="display: none;">
+                  <img src="../../static/vismet/images/ajax-loader.gif">
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="data-container" id="data-container">
             <div id="div-buttons">
               <button type="button" class="gbutton" id="btn_submit">Visualizar</button>
               <button type="button" class="gbutton" id="btn_download" name="btn_download">Baixar</button>
               <!--<a style="display:none;" type="button" class="gbutton" id="chart_download" download="Grafico.jpg">Baixar Gráfico</a>-->
               <button id="chartdownload" style="display: none;" onclick="screenshot()">Salvar Gráfico</button>
-
               <input type="hidden" id="selected_source" value="{{ selected_source }}">
             </div>
           </div>
