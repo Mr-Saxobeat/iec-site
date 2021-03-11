@@ -184,6 +184,10 @@ class PixelData(models.Model):
     rnof = models.FloatField(default=None, null=True, blank=True)
     tp2m = models.FloatField(default=None, null=True, blank=True)
     relHum = models.FloatField(default=None, null=True, blank=True)
+    u10 = models.FloatField(default=None, null=True, blank=True)
+    v10 = models.FloatField(default=None, null=True, blank=True)
+    slhf = models.FloatField(default=None, null=True, blank=True)
+    sshf = models.FloatField(default=None, null=True, blank=True)
 
     def __str__(self):
         return f'{ self.pixel.latitude }, { self.pixel.longitude } --- { self.date }'
