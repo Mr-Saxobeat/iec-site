@@ -64,7 +64,7 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/daily/',
 
             for p in pixels:
                 data_list = []
-                
+
                 # Blocos try para registrar o index da latitude
                 # e longitude no dataset.
                 try:
@@ -133,7 +133,6 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/daily/',
                     print(pandas.to_datetime(time[i_time]).date().strftime('%d/%m/%Y'))
 
                     data_list.append(pixel_data)
-                    print(str(p.latitude) + ', ' + str(p.longitude) + ' ' + curDate.strftime('%d/%m/%Y'))
 
                 headers = {'content-type': 'application/json'}
                 response = requests.post(url, data=json.dumps(data_list), headers=headers, verify=False)
@@ -145,7 +144,7 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/daily/',
                     print(response.content)
                     # log_file.write(str(p.latitude) + ', ' + str(p.longitude) + ' -- ' + date.strftime('%d/%m/%Y'))
 
-            curDate = pandas.to_datetime(time[-1]).date() + datetime.timedelta(days=1)
+            curDate = pandas.to_datetime(time[-1]) + datetime.timedelta(days=1)
 
         print('Data final alcançada. Finalizar.')
         log_file.close()
