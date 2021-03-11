@@ -142,6 +142,14 @@ class Pixel25(GeoJSONLayerView):
         return pixels
 
 
+class Pixel01(GeoJSONLayerView):
+    properties = ['id', 'city', 'state', 'latitude', 'longitude', 'resolution','popup_content']
+
+    def get_queryset(self):
+        pixels = Pixel.objects.filter(resolution=0.1)
+        return pixels
+
+
 def Api_Pixel_Data(request, format, pk, data_model, start_day, start_month, start_year, final_day, final_month, final_year):
     startDate = datetime.date(start_year, start_month, start_day)
     finalDate = datetime.date(final_year, final_month, final_day)

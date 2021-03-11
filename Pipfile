@@ -18,6 +18,9 @@ geopandas = "*"
 netcdf4 = "*"
 cfgrib = "*"
 xarray = "*"
+xgrads = "*"
+cartopy = "*"
+toolz = "*"
 
 [requires]
 python_version = "3.8"

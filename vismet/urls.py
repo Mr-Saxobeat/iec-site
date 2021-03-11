@@ -15,6 +15,7 @@ urlpatterns = [
 
      path('api/pixels/', views.Api_Pixel.as_view(), name='pixels'),
      path('api/pixels025/', views.Pixel25.as_view(), name='pixels-025'),
+     path('api/pixels01/', views.Pixel01.as_view(), name='pixels-01'),
      path('api/pixels/<str:format>/<int:pk>/<str:data_model>/<int:start_day>-<int:start_month>-<int:start_year>/<int:final_day>-<int:final_month>-<int:final_year>/',
           views.Api_Pixel_Data),
 
