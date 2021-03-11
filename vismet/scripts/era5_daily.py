@@ -128,6 +128,8 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/daily/',
                         'precip': val_tp * 1000
                     }
 
+                    print(pandas.to_datetime(time[i_time]).date().strftime('%d/%m/%Y'))
+
                     data_list.append(pixel_data)
                     print(str(p.latitude) + ', ' + str(p.longitude) + ' ' + curDate.strftime('%d/%m/%Y'))
 
