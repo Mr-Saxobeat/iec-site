@@ -148,13 +148,23 @@
         </div>
       </div>
       
-        <input type="hidden" id="url-cities" value="{% url 'vismet:cities' %}">
+      {% if use_production_api == True %}
+        <input type="hidden" id="url-cities" value="https://iec.ufes.br/plataforma/api/cities/">
+        <input type="hidden" id="url-pixels" value="https://iec.ufes.br/plataforma/api/pixels/">
+        <input type="hidden" id="url-pixels-025" value="https://iec.ufes.br/plataforma/api/pixels025/">
+        <input type="hidden" id="url-pixels-01" value="https://iec.ufes.br/plataforma/api/pixels01/">
+        <input type="hidden" id="url-stations" value="https://iec.ufes.br/plataforma/api/estacoes/">
+        <input type="hidden" id="url-data-options" value="https://iec.ufes.br/plataforma/api/opcoes/">
+        <input type="hidden" id="url-api" value="https://iec.ufes.br/plataforma/api/pixeldata/">
+      {% else %}
+        <input type="hidden" id="url-cities" value="{% url 'vismet:cities' %}"> 
         <input type="hidden" id="url-pixels" value="{% url 'vismet:pixels' %}">
         <input type="hidden" id="url-pixels-025" value="{% url 'vismet:pixels-025' %}">
         <input type="hidden" id="url-pixels-01" value="{% url 'vismet:pixels-01' %}">
         <input type="hidden" id="url-stations" value="{% url 'vismet:api_stations' %}">
         <input type="hidden" id="url-data-options" value="{% url 'vismet:data_options' %}">
         <input type="hidden" id="url-api" value="{% url 'vismet:pixel-data-list' %}">
+      {% endif %}
     </div>
     <div id="chartdiv" class="chart-container">
       <canvas id="chart"></canvas>
