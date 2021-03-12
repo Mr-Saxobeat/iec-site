@@ -124,14 +124,7 @@ def Api_Data_Options(request):
         # à lista de categorias de dados.
         categories_list[cat.name] = category_dict
 
-    response = JsonResponse()
-    response['Access-Control-Allow-Origin'] = '*'
-    response['Access-Control-Allow-Methods'] = 'GET'
-    response['Access-Control-Allow-Headers'] = '*'
-    response.data = categories_list
-    response.safe = False
-
-    return response
+    return JsonResponse(data=categories_list, safe=False)
 
 # Esta view retorna os pixels do Espírito Santo
 # para serem usados como uma layer no mapa.
