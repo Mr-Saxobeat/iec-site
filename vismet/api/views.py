@@ -5,6 +5,7 @@ from vismet.models import City, DataModel, CityData, Pixel, PixelData
 from vismet.api.serializers import CityDataSerializer, PixelDataSerializer
 import datetime
 from vismet.api.core.chirps import retrieveChirpsData
+from djqscsv import render_to_csv_response
 
 
 class CityDataAPIView(generics.ListCreateAPIView):
@@ -119,15 +120,18 @@ class PixelDataRetrieveCreateAPIView(APIView):
 
         serializer = PixelDataSerializer(pixel_data_queryset, many=True)
 
-        print('')
-        print('')
-        print('')
-        print(pixel)
-        print('')
-        print('')
-        print('')
-
-        return Response(data=serializer.data)
+        try:
+            data_format = request.GET['data_format']
+            if data_format == 'csv':
+                qs_csv = pixel_data_queryset.values()
+                print('foi nocsv ')
+                return render_to_csv_response(qs_csv)
+            else:
+                print('foi json ')
+                return Response(data=serializer.data)
+        except KeyError:
+            print('foi keyerror ')
+            return Response(data=serializer.data)
 
 
     def post(self, request):
