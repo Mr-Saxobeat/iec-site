@@ -4,6 +4,7 @@ var json_current_category = [];
 var selBox_source_display = null;
 var selBox_variable_display = null;
 var selBox_chart_max_value = null;
+var selBox_chart_min_value = null;
 
 var divObservedData = document.getElementById("div-observados");
 var divReanaliseData = document.getElementById("div-reanálise");
@@ -13,10 +14,11 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function variable_display_change(selBox_source, selBox_variable, selBox_chart_max_value){
+function variable_display_change(selBox_source, selBox_variable, selBox_chart_max_value, selBox_chart_min_value){
   var selected_source = selBox_source.value;
   var selected_variable = selBox_variable.value;
   var y_max_value = selBox_chart_max_value.value
+  var y_min_value = selBox_chart_min_value.value
 
   if(selected_source.toLowerCase() == 'ana'){
     if(selected_variable.toLowerCase() == 'precipitação'){
@@ -29,7 +31,7 @@ function variable_display_change(selBox_source, selBox_variable, selBox_chart_ma
   var chartType = json_current_category["sources"][selected_source][selected_variable]["chartType"];
   var chartColor = json_current_category["sources"][selected_source][selected_variable]["chartColor"];
   var chartUnit = json_current_category["sources"][selected_source][selected_variable]["unit"];
-  createNewChart(chartType, chartColor, chartUnit, capitalizeFirstLetter(selected_variable), y_max_value);
+  createNewChart(chartType, chartColor, chartUnit, capitalizeFirstLetter(selected_variable), y_max_value, y_min_value);
   chart.update();
 }
 
@@ -126,6 +128,7 @@ function showCategoryData(div_last_name){
   selBox_variable_display = selectedDiv.getElementsByClassName("sel-data-variable")[0];
   selBox_model_display = selectedDiv.getElementsByClassName("sel-data-model")[0];
   selBox_chart_max = selectedDiv.getElementsByClassName("sel-chart-max-value")[0];
+  selBox_chart_min = selectedDiv.getElementsByClassName("sel-chart-min-value")[0];
   setSourceDataSelection(selBox_source_display, json_current_category);
 
   selBox_source_display.addEventListener("change", function() {
@@ -135,15 +138,16 @@ function showCategoryData(div_last_name){
     setVariableSelection(selBox_variable_display, selBox_source_display.value);
     showLayer(selBox_source_display.value);
 
-    variable_display_change(selBox_source_display, selBox_variable_display, selBox_chart_max);
+    variable_display_change(selBox_source_display, selBox_variable_display, selBox_chart_max, selBox_chart_min);
     });
 
   selBox_variable_display.addEventListener("change", function() {
-    variable_display_change(selBox_source_display, selBox_variable_display, selBox_chart_max);
+    variable_display_change(selBox_source_display, selBox_variable_display, selBox_chart_max, selBox_chart_min);
   })
 
   selBox_chart_max.addEventListener("change", function() {
     chart.options.scales.yAxes[0].ticks.max = parseFloat(selBox_chart_max.value);
+    chart.options.scales.yAxes[0].ticks.min = parseFloat(selBox_chart_min.value);
     chart.update();
   })
 
