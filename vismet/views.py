@@ -11,12 +11,13 @@ from django.core.serializers import serialize as sr
 from djqscsv import render_to_csv_response
 from vismet.retrieve_functions import GetXavierStationData, GetINMETStationData, GetANAStationData
 from django.db.models import Q
+from django.conf import settings
 
 # Esta view apenas retorna o template pricipal
 # da plataforma de dados.
 def VisMetView(request):
     value = request.POST.get('selected_source')
-    return render(request, 'vismet/index.html', {'selected_source': value})
+    return render(request, 'vismet/index.html', {'selected_source': value, 'use_production_api': settings.USE_PRODUCTION_API})
 
 def Api_Stations(request):
     response = Station.objects.all()
@@ -123,7 +124,14 @@ def Api_Data_Options(request):
         # à lista de categorias de dados.
         categories_list[cat.name] = category_dict
 
-    return JsonResponse(categories_list, safe=False)
+    response = JsonResponse()
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Methods'] = 'GET'
+    response['Access-Control-Allow-Headers'] = '*'
+    response.data = categories_list
+    response.safe = False
+
+    return response
 
 # Esta view retorna os pixels do Espírito Santo
 # para serem usados como uma layer no mapa.
