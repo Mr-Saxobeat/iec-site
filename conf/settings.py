@@ -33,6 +33,8 @@ DEBUG = config('DEBUG', default='False', cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default=[], cast=Csv())
 
+USE_PRODUCTION_API = config('USE_PRODUCTION_API', default=False, cast=bool)
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
