@@ -42,7 +42,7 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/daily/',
         except FileNotFoundError:
             print('Arquivo não encontrado  ' + path + curDate.date().strftime('%Y') + '.grib')
             log_file.write('Arquivo não encontrado   ' + path + curDate.date().strftime('%Y') + '.grib')
-            continue
+            # continue
 
         u10 = ds['u10'].data.tolist() # 10m u-component of wind
         v10 = ds['v10'].data.tolist() # 10m v-component of wind
@@ -59,8 +59,8 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/daily/',
         # apenas na primeira vez, pois todos os arquivos
         # têm os mesmos valores.
         if len(latitudes) == 0:
-            latitudes = ds['latitude'].data.tolist()
-            longitudes = ds['longitude'].data.tolist()
+            latitudes = [round(lat, 2) for lat in ds['latitude'].data.tolist()]
+            longitudes = [round(lon, 2) for lon in ds['longitude'].data.tolist()]
 
         for p in pixels:
             data_list = []
