@@ -36,7 +36,7 @@
           <button id="linkplataforma" class="w3-button w3-white w3-xlarge" onclick="w3_open()">☰</button>
           <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
           <div class="help-tip">
-              <p>Para utilizar a plataforma, selecione:<br>1. Fonte<br>2. Variável<br>3. Estação<br>4. Datas inicial e final<br>5. Clique em "Visualizar" ou "Baixar"</p>
+              <p>Para utilizar a plataforma, selecione:<br>1. Fonte<br>2. Selecione no mapa a fonte ou pixel<br>3. Dado diário ou mensal<br>4. Variável<br>5. Datas inicial e final<br>6. Clique em "Visualizar" ou "Baixar"</p>
           </div>
           <div class="data-container" id="div-observados">
             <div class="data-text small-font">
@@ -57,8 +57,8 @@
                 {% csrf_token %}
                 <div>
                   <br>
-                  <!--<input type="radio" name="type" class="frequency" value="0">
-                  <label for="0">Dado mensal</option>-->
+                  <input type="radio" name="type" class="frequency" value="0">
+                  <label for="0">Dado mensal</option>
                   <input type="radio" name="type" class="frequency" value="1">
                   <label for="1">Dado diário</option><br>
                 </div>
@@ -92,13 +92,10 @@
                 {% csrf_token %}
                 <div>
                   <br>
-                  <div><input type="radio" name="type" class="frequency" value="0" disabled>
-                  <label for="0" style="color: grey;">Dado diário</option>
-                  </div>
-                  <div>
+                  <input type="radio" name="type" class="frequency" value="0">
+                  <label for="0">Dado mensal</option>
                   <input type="radio" name="type" class="frequency" value="1">
-                  <label for="1" style="color: black;">Dado mensal</option>
-                  </div>
+                  <label for="1">Dado diário</option><br>
                 </div>
                 <br><label for="variable">Variável</label><br>
                 <select class="sel-data-variable" name="variable">
@@ -126,13 +123,10 @@
                 {% csrf_token %}
                 <div>
                   <br>
-                  <div><input type="radio" name="type" class="frequency" value="0" disabled>
-                  <label for="0" style="color: grey;">Dado diário</option>
-                  </div>
-                  <div>
+                  <input type="radio" name="type" class="frequency" value="0">
+                  <label for="0">Dado mensal</option>
                   <input type="radio" name="type" class="frequency" value="1">
-                  <label for="1" style="color: black;">Dado mensal</option>
-                  </div>
+                  <label for="1">Dado diário</option><br>
                 </div>
                 <br><label for="variable">Variável</label><br>
                 <select class="sel-data-variable" name="variable">
@@ -148,16 +142,53 @@
             <div id="dateselect">
               <div id="dateinput" style='display:none;' class="data-text padded-data-text day">
                 <label for="startDate">Data inicial</label>
-                <input class="dateinput startDate" type="text" id="startDate" name="startDate"><br>
+                <input class="dateinput startDate" type="text" id="startDate" name="startDate" autocomplete="off"><br>
                 <div id="datafinal">
                   <label for="finalDate">Data final</label><br>
-                  <input class="dateinput finalDate" type="text" id="finalDate" name="finalDate">
+                  <input class="dateinput finalDate" type="text" id="finalDate" name="finalDate" autocomplete="off">
                 </div>
               </div>
-              <!--<div style='display:none;' class="data-text padded-data-text month">
-                <select class="dateinput" id="year"></select>
-                <select class="dateinput" id="month"></select>
-              </div>-->
+              <div style='display:none;' class="data-text padded-data-text month">
+                <div style="display: inline-block;">
+                  <p>Mês inicial:</p>
+                  <select name="start_Month" id="startMonth">
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+                <select name="start_Year" id="startYear">
+                </select>
+                </div>
+                <div style="display: inline-block;">
+                 <br> <p>Mês final:</p>
+                 <select name="final_Month" id="finalMonth">
+                  <option value="01">Janeiro</option>
+                  <option value="02">Fevereiro</option>
+                  <option value="03">Março</option>
+                  <option value="04">Abril</option>
+                  <option value="05">Maio</option>
+                  <option value="06">Junho</option>
+                  <option value="07">Julho</option>
+                  <option value="08">Agosto</option>
+                  <option value="09">Setembro</option>
+                  <option value="10">Outubro</option>
+                  <option value="11">Novembro</option>
+                  <option value="12">Dezembro</option>
+              </select>
+              <select name="final_Year" id="finalYear">
+                <option value="" disabled>Ano</option>
+              </select>
+                </div>
+              </div>
             </div>
 
             <div id="stationdata" class="data-text padded-data-text selectdiv" style="display: none;">

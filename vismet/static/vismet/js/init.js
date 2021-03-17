@@ -45,8 +45,8 @@ var btn_submit = document.getElementById("btn_submit");
 var btn_download = document.getElementById("btn_download");
 var input_station_code = document.getElementById("input_station_code");
 var input_city_name = document.getElementById("input_city_name");
-var input_startDate = document.getElementById("startDate");
-var input_finalDate = document.getElementById("finalDate");
+var input_startDate = document.getElementsById("startDate");
+var input_finalDate = document.getElementsById("finalDate");
 
 btn_submit.addEventListener("click", function() {
   if (selBox_source_display.value.toUpperCase() == "ANA"){
