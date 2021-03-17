@@ -117,7 +117,7 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/daily/',
 
                     pixel_data = {
                         'date': pandas.to_datetime(time[i_time]).date().strftime('%Y-%m-%d'),
-                        'time_interval': 'diário',
+                        'time_interval': 'diario',
                         'latitude': p.latitude,
                         'longitude': p.longitude,
                         'resolution': 0.1,
