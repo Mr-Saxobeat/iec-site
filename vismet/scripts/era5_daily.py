@@ -135,15 +135,15 @@ def run(path = '/home/weiglas/Documents/iec/dados/reanalise/era5/daily/',
 
                 data_list.append(pixel_data)
 
-                headers = {'content-type': 'application/json'}
-                response = requests.post(url, data=json.dumps(data_list), headers=headers, verify=False)
+            headers = {'content-type': 'application/json'}
+            response = requests.post(url, data=json.dumps(data_list), headers=headers, verify=False)
 
-                if response.status_code == 201:
-                    # print(str(response.status_code) + ': ' + str(p.latitude) + ', ' + str(p.longitude) + ' - ' + date.strftime('%m/%Y'))
-                    print(str(reesponse.status_code))
-                else:
-                    print(response.content)
-                    # log_file.write(str(p.latitude) + ', ' + str(p.longitude) + ' -- ' + date.strftime('%d/%m/%Y'))
+            if response.status_code == 201:
+                # print(str(response.status_code) + ': ' + str(p.latitude) + ', ' + str(p.longitude) + ' - ' + date.strftime('%m/%Y'))
+                print(str(reesponse.status_code))
+            else:
+                print(response.content)
+                # log_file.write(str(p.latitude) + ', ' + str(p.longitude) + ' -- ' + date.strftime('%d/%m/%Y'))
 
             # curDate = pandas.to_datetime(time[-1]) + datetime.timedelta(days=1)
 
