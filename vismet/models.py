@@ -176,6 +176,7 @@ class PixelData(models.Model):
     pixel = models.ForeignKey(Pixel, related_name='pixel_data', on_delete=models.CASCADE)
     data_model = models.ForeignKey(DataModel, related_name='pixel_data', on_delete=models.CASCADE)
     date = models.DateField()
+    time_interval = models.CharField('intervalo de tempo', default='mensal', max_length=7)
     evapo = models.FloatField('evapotranspiração (mm)', default=None, null=True, blank=True)
     minTemp = models.FloatField('temperatura mínima (ºC)', default=None, null=True, blank=True)
     maxTemp = models.FloatField('temperatura máxima (ºC)', default=None, null=True, blank=True)
