@@ -31,11 +31,11 @@ function INMETStations_Layer_onEachFeature(feature, layer) {
     $( ".dateinput" ).datepicker( "option", "defaultDate", new Date(station_startDate));
 
     botoes = true;
-    document.getElementById("station_startDate").innerHTML = station_startDate;
+    document.getElementById("stationn_startDate").innerHTML = station_startDate;
     if(station_finalDate == null){
-    document.getElementById("station_finalDate").innerHTML = "Até o presente";
+    document.getElementById("stationn_finalDate").innerHTML = "Até o presente";
    } else {
-    document.getElementById("station_finalDate").innerHTML = station_finalDate;
+    document.getElementById("stationn_finalDate").innerHTML = station_finalDate;
    }
    $("#stationdata").show();
 

@@ -92,7 +92,7 @@
                 {% csrf_token %}
                 <div>
                   <br>
-                  <input type="radio" name="type" class="frequency" value="0">
+                  <input type="radio" name="type" id="reanal" class="frequency" value="0">
                   <label for="0">Dado mensal</option>
                   <input type="radio" name="type" class="frequency" value="1">
                   <label for="1">Dado diário</option><br>
@@ -192,14 +192,9 @@
             </div>
 
             <div id="stationdata" class="data-text padded-data-text selectdiv" style="display: none;">
-              <p>Data inicial da estação selecionada: <div id="station_startDate"></div></p>
+              <p>Data inicial da estação selecionada: <div id="stationn_startDate"></div></p>
               <p>Data final da estação selecionada:</p>
-              <div id="station_finalDate"></div>
-              <div class="container">
-                <div id="loader" style="display: none;">
-                  <img src="../../static/vismet/images/ajax-loader.gif">
-                </div>
-              </div>
+              <div id="stationn_finalDate"></div>
             </div>
 
             <div id="div-buttons">

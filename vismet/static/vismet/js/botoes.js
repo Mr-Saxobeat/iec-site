@@ -46,6 +46,8 @@ $(document).ready(function(){
       },
     });
   });
+  selfinalYear = finalDate.substring(6);
+  tempogrande = finalDate - startDate
 });
 
 function screenshot(){
@@ -89,19 +91,28 @@ $(document).ready(function(){
 });
 
 
+$(".frequency").click(function(event){
+  var $msd = $("#startDate");
+  var $month = $("#startMonth");
+  var $year = $("#startYear");
 
+  let min;
+  let max;
+  if (event.target.id === "reanal"){
+    $('#startYear').empty();
+    min = 1960
+    max = 2099
+  } else{
+    $('#startYear').empty();
+    min = 1979
+    max = 2021
+  }
 
-var $msd = $("#startDate");
-var $month = $("#startMonth");
-var $year = $("#startYear");
+  $('select').change(function () {
+    var val = "01/" + $month.val() + "/" + $year.val();
+      $msd.val(val);
+  });
 
-$('select').change(function () {
-	var val = "01/" + $month.val() + "/" + $year.val();
-    $msd.val(val);
-});
-
-    var min = 1960,
-    max = 2099,
     select = document.getElementById('startYear');
 
     for (var i = min; i<=max; i++){
@@ -115,22 +126,20 @@ $('select').change(function () {
     var $monthf = $("#finalMonth");
     var $yearf = $("#finalYear");
     
-    $('select').change(function () {
-      var val = "01/" + $monthf.val() + "/" + $yearf.val();
-        $mfd.val(val);
-    });
-      
-        var min = 1960,
-        max = 2099,
-        selectf = document.getElementById('finalYear');
-    
-        for (var i = min; i<=max; i++){
-           var opt = document.createElement('option');
-           opt.value = i;
-           opt.innerHTML = i;
-           selectf.appendChild(opt);
-        }
+  $('select').change(function () {
+    var val = "01/" + $monthf.val() + "/" + $yearf.val();
+      $mfd.val(val);
+  });
+  
+    selectf = document.getElementById('finalYear');
 
+    for (var i = min; i<=max; i++){
+        var opt = document.createElement('option');
+        opt.value = i;
+        opt.innerHTML = i;
+        selectf.appendChild(opt);
+    }
+});
 
 $('input:radio').on('click', function() {
   if($(this).attr('class') == 'frequency') {
