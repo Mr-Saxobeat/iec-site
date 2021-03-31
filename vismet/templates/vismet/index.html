@@ -58,9 +58,9 @@
                 <div>
                   <br>
                   <!--<input type="radio" name="type" class="frequency" value="0">
-                  <label for="0">Dado mensal</option>-->
+                  <label for="1">Dado mensal</option>-->
                   <input type="radio" name="type" class="frequency" value="1">
-                  <label for="1">Dado diário</option><br>
+                  <label for="0">Dado diário</option><br>
                 </div>
                 <br><label for="variable">Variável</label><br>
                 <select class="sel-data-variable" name="variable"></select><br>
@@ -94,8 +94,8 @@
                   <br>
                   <input type="radio" name="type" id="reanal" class="frequency" value="0">
                   <label for="0">Dado mensal</option>
-                  <input type="radio" name="type" class="frequency" value="1">
-                  <label for="1">Dado diário</option><br>
+                  <input disabled type="radio" name="type" class="frequency" value="1">
+                  <label for="1" style="color: grey;">Dado diário</option><br>
                 </div>
                 <br><label for="variable">Variável</label><br>
                 <select class="sel-data-variable" name="variable">
@@ -123,10 +123,10 @@
                 {% csrf_token %}
                 <div>
                   <br>
-                  <input type="radio" name="type" class="frequency" value="0">
+                  <input type="radio" name="type" id="simulal" class="frequency" value="0">
                   <label for="0">Dado mensal</option>
-                  <input type="radio" name="type" class="frequency" value="1">
-                  <label for="1">Dado diário</option><br>
+                  <input disabled type="radio" name="type" class="frequency" value="1">
+                  <label for="1" style="color: grey;">Dado diário</option><br>
                 </div>
                 <br><label for="variable">Variável</label><br>
                 <select class="sel-data-variable" name="variable">
