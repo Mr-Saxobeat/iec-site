@@ -37,7 +37,6 @@ function Show_Chirps_Data(pixel, startDate, finalDate){
     "data_model_name": "Chirps",
     "startDate": startDate, // YYYY-MM-DD
     "finalDate": finalDate, // YYYY-MM-DD
-    "frequency": "daily",
   }
 
   $.getJSON(url_api, pixel_data, function(data) {
