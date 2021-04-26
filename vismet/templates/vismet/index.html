@@ -55,6 +55,7 @@
             </div>
               <form action="javascript:void(0);" method="get">
                 {% csrf_token %}
+
                 <div>
                   <br>
                   <!--<input type="radio" name="type" class="frequency" value="0">
@@ -62,9 +63,11 @@
                   <input type="radio" name="type" class="frequency" value="1">
                   <label for="0">Dado diário</option><br>
                 </div>
-                <br><label for="variable">Variável</label><br>
+                <label for="variable">Variável</label><br>
                 <select class="sel-data-variable" name="variable"></select><br>
-                <br><label for="scale">Valor máximo do gráfico</label>
+                <br><label for="scale">Valor mínimo do gráfico</label><br>
+                <input class="sel-chart-min-value" type="number" min=0, step=0.1, value=0>
+                <label for="scale">Valor máximo do gráfico</label>
                 <br>
                 <input class="sel-chart-max-value" type="number" min=0, step=1, value=50>
               </form><br>
@@ -101,6 +104,8 @@
                 <select class="sel-data-variable" name="variable">
                 </select>
                 <div></div>
+                <br><label for="scale">Valor mínimo do gráfico</label><br>
+                <input class="sel-chart-min-value" type="number" min=0, step=0.1, value=0>
                 <br><label for="scale">Valor máximo do gráfico</label><br>
                 <input class="sel-chart-max-value" type="number" min=0, value=50>
               </form>
@@ -131,8 +136,10 @@
                 <br><label for="variable">Variável</label><br>
                 <select class="sel-data-variable" name="variable">
                 </select>
-                <br><br><label for="scale">Valor máximo do gráfico</label><br>
-                <input class="sel-chart-max-value" type="number" min=0, step=1, value=50>
+                <br><label for="scale">Valor mínimo do gráfico</label><br>
+                <input class="sel-chart-min-value" type="number" min=0, step=0.1, value=0>
+                <br><label for="scale">Valor máximo do gráfico</label><br>
+                <input class="sel-chart-max-value" type="number" min=0, step=0.1, value=50>
               </form>
             </div> 
             <input type="hidden" value="0" id="input_city_name">
@@ -211,12 +218,23 @@
         </div>
       </div>
       
-        <input type="hidden" id="url-cities" value="{% url 'vismet:cities' %}">
+      {% if use_production_api == True %}
+        <input type="hidden" id="url-cities" value="https://iec.ufes.br/plataforma/api/cities/">
+        <input type="hidden" id="url-pixels" value="https://iec.ufes.br/plataforma/api/pixels/">
+        <input type="hidden" id="url-pixels-025" value="https://iec.ufes.br/plataforma/api/pixels025/">
+        <input type="hidden" id="url-pixels-01" value="https://iec.ufes.br/plataforma/api/pixels01/">
+        <input type="hidden" id="url-stations" value="https://iec.ufes.br/plataforma/api/estacoes/">
+        <input type="hidden" id="url-data-options" value="https://iec.ufes.br/plataforma/api/opcoes/">
+        <input type="hidden" id="url-api" value="https://iec.ufes.br/plataforma/api/pixeldata/">
+      {% else %}
+        <input type="hidden" id="url-cities" value="{% url 'vismet:cities' %}"> 
         <input type="hidden" id="url-pixels" value="{% url 'vismet:pixels' %}">
         <input type="hidden" id="url-pixels-025" value="{% url 'vismet:pixels-025' %}">
+        <input type="hidden" id="url-pixels-01" value="{% url 'vismet:pixels-01' %}">
         <input type="hidden" id="url-stations" value="{% url 'vismet:api_stations' %}">
         <input type="hidden" id="url-data-options" value="{% url 'vismet:data_options' %}">
         <input type="hidden" id="url-api" value="{% url 'vismet:pixel-data-list' %}">
+      {% endif %}
     </div>
     <div id="chartdiv" class="chart-container">
       <canvas id="chart"></canvas>
@@ -277,6 +295,7 @@
     <script type="text/javascript" src="{% static 'vismet/js/cities.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/pixels.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/pixels025.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vismet/js/pixels01.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/chirps.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/layers.js' %}"></script>
     <script type="text/javascript" src="{% static 'vismet/js/botoes.js' %}"></script>

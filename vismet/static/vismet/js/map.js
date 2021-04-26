@@ -37,3 +37,4 @@ var baseLayers = {
 };
 
 var control = L.control.layers(baseLayers).addTo(map);
+control.addTo(map);

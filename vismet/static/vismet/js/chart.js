@@ -2,7 +2,7 @@ var selectedOption = $("#variable");
 
 // selectedOption.change(function () { updateChart(chart, selectedOption.val()); });
 var chart;
-function createNewChart(type, color, unit, legend_data, y_max_value){
+function createNewChart(type, color, unit, legend_data, y_max_value, y_min_value){
   if(chart){
     chart.destroy();
   }
@@ -23,6 +23,7 @@ function createNewChart(type, color, unit, legend_data, y_max_value){
           },
           ticks: {
             max: parseFloat(y_max_value),
+            min: parseFloat(y_min_value),
           },
           // display: true,
           // labelString: "Data",

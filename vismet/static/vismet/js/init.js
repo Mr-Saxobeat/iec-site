@@ -13,6 +13,7 @@ $.getJSON(url_data_options, function (data) {
   loadXavierLayer();
   loadANALayer();
   loadPixel_025_Layer();
+  loadPixel_01_Layer();
   loadINMETLayer();
   loadETALayer();
   LoadETACity();

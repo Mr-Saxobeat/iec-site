@@ -71,13 +71,41 @@ function Show_Chirps_Data(pixel, startDate, finalDate){
   })
 }
   
-  function Download_ETA_Data(pixel_id, startDate, finalDate){
-    for(var i = 0; i <= 2; i++){
-      startDate = startDate.replace("/", "-");
-      finalDate = finalDate.replace("/", "-");
+  function Download_Chirps_Data(pixel_id, startDate, finalDate){
+    startDay = startDate.slice(0, 2)
+    startMonth = startDate.slice(3, 5)
+    startYear = startDate.slice(6)
+  
+    finalDay = finalDate.slice(0, 2)
+    finalMonth = finalDate.slice(3, 5)
+    finalYear = finalDate.slice(6)
+  
+    startDate = startYear + "-" + startMonth + "-" + startDay
+    finalDate = finalYear + "-" + finalMonth + "-" + finalDay
+  
+    pixel_data = {
+      "latitude": pixel.properties.latitude,
+      "longitude": pixel.properties.longitude,
+      "resolution": 0.05,
+      "data_model_name": "Chirps",
+      "startDate": startDate, // YYYY-MM-DD
+      "finalDate": finalDate, // YYYY-MM-DD
+      "data_format": "csv"
     }
   
     var url = url_pixels + "csv/" + pixel_id + "/" + selBox_model_display.value + "/" +startDate + "/" + finalDate;
+    var url = url_api + 
+
+    $.ajax({
+        url: url_api,
+        type: 'GET',
+        data: pixel_data,
+        success: function(response) {
+            console.log(response);
+            window.location = url_api;
+        }
+    });
+
     window.location.href = url;
   }
   
