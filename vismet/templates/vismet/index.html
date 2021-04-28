@@ -13,7 +13,6 @@
     <link type="text/css" rel="stylesheet" href="{% static 'vismet/css/main.css' %}">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
   </head>
 
   <body>
@@ -37,7 +36,7 @@
           <button id="linkplataforma" class="w3-button w3-white w3-xlarge" onclick="w3_open()">☰</button>
           <h1><a href="{% url 'home:index' %}">IEC-ES</a></h1>
           <div class="help-tip">
-              <p>Para utilizar a plataforma, selecione:<br>1. Fonte<br>2. Variável<br>3. Estação<br>4. Datas inicial e final<br>5. Clique em "Visualizar" ou "Baixar"</p>
+              <p>Para utilizar a plataforma, selecione:<br>1. Fonte<br>2. Selecione no mapa a fonte ou pixel<br>3. Dado diário ou mensal<br>4. Variável<br>5. Datas inicial e final<br>6. Clique em "Visualizar" ou "Baixar"</p>
           </div>
           <div class="data-container" id="div-observados">
             <div class="data-text small-font">
@@ -49,16 +48,23 @@
               </ul>
             </div>
             <div class="data-text padded-data-text selectdiv">
-              <label for="fonte-dados-observados">Fonte</label><br>
-              <select class="sel-data-source" name="fonte-dados-observados">
-              </select><br>
-
+                <div>
+                <label for="fonte-dados-observados">Fonte</label><br>
+                <select class="sel-data-source" name="fonte-dados-observados">
+                </select><br>
+            </div>
               <form action="javascript:void(0);" method="get">
                 {% csrf_token %}
-                <label for="variable">Variável</label>
-                <br>
-                <select class="sel-data-variable" name="variable"></select>
-                <br>
+
+                <div>
+                  <br>
+                  <!--<input type="radio" name="type" class="frequency" value="0">
+                  <label for="1">Dado mensal</option>-->
+                  <input type="radio" name="type" class="frequency" value="1">
+                  <label for="0">Dado diário</option><br>
+                </div>
+                <label for="variable">Variável</label><br>
+                <select class="sel-data-variable" name="variable"></select><br>
                 <br><label for="scale">Valor mínimo do gráfico</label><br>
                 <input class="sel-chart-min-value" type="number" min=0, step=0.1, value=0>
                 <label for="scale">Valor máximo do gráfico</label>
@@ -82,14 +88,22 @@
                 <li>ERA5: Os dados estão disponíveis em grades regulares de latitude-longitude com resolução espacial de 0.25°, com resolução temporal de 1979 até a presente data.</li>
               </ul>
             </div>
-            <div class="selectdiv">
+            <div class="data-text padded-data-text selectdiv">
               <label for="fonte-dados-reanalise">Fonte</label><br>
               <select class="sel-data-source" name="fonte-dados-reanalise"></select>
               <form action="javascript:void(0);" method="get">
                 {% csrf_token %}
-                <label for="variable">Variável</label><br>
+                <div>
+                  <br>
+                  <input type="radio" name="type" id="reanal" class="frequency" value="0">
+                  <label for="0">Dado mensal</option>
+                  <input disabled type="radio" name="type" class="frequency" value="1">
+                  <label for="1" style="color: grey;">Dado diário</option><br>
+                </div>
+                <br><label for="variable">Variável</label><br>
                 <select class="sel-data-variable" name="variable">
                 </select>
+                <div></div>
                 <br><label for="scale">Valor mínimo do gráfico</label><br>
                 <input class="sel-chart-min-value" type="number" min=0, step=0.1, value=0>
                 <br><label for="scale">Valor máximo do gráfico</label><br>
@@ -107,12 +121,19 @@
               <br><label for="fonte-dados-simulados">Fonte</label><br>
               <select class="sel-data-source" name="fonte-dados-simulados"></select>
               <div id="divmodelo">
-                <label for="sel-data-model">Cenário Climático</label><br>
+                <br><label for="sel-data-model">Cenário Climático</label><br>
               </div>
               <select class="sel-data-model" name="sel-data-model"></select><br>
               <form action="javascript:void(0);" method="get">
                 {% csrf_token %}
-                <label for="variable">Variável</label><br>
+                <div>
+                  <br>
+                  <input type="radio" name="type" id="simulal" class="frequency" value="0">
+                  <label for="0">Dado mensal</option>
+                  <input disabled type="radio" name="type" class="frequency" value="1">
+                  <label for="1" style="color: grey;">Dado diário</option><br>
+                </div>
+                <br><label for="variable">Variável</label><br>
                 <select class="sel-data-variable" name="variable">
                 </select>
                 <br><label for="scale">Valor mínimo do gráfico</label><br>
@@ -123,22 +144,71 @@
             </div> 
             <input type="hidden" value="0" id="input_city_name">
           </div>
-
+          
           <div class="data-container" id="data-container">
-            <div class="data-text padded-data-text">
-              <label for="startDate">Data inicial</label>
-              <input class="dateinput" type="text" id="startDate" name="startDate"><br>
-              <div id="datafinal">
-                <label for="finalDate">Data final</label><br>
-                <input class="dateinput" type="text" id="finalDate" name="finalDate">
+            <div id="dateselect">
+              <div id="dateinput" style='display:none;' class="data-text padded-data-text day">
+                <label for="startDate">Data inicial</label>
+                <input class="dateinput startDate" type="text" id="startDate" name="startDate" autocomplete="off"><br>
+                <div id="datafinal">
+                  <label for="finalDate">Data final</label><br>
+                  <input class="dateinput finalDate" type="text" id="finalDate" name="finalDate" autocomplete="off">
+                </div>
+              </div>
+              <div style='display:none;' class="data-text padded-data-text month">
+                <div style="display: inline-block;">
+                  <p>Mês inicial:</p>
+                  <select name="start_Month" id="startMonth">
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+                <select name="start_Year" id="startYear">
+                </select>
+                </div>
+                <div style="display: inline-block;">
+                 <br> <p>Mês final:</p>
+                 <select name="final_Month" id="finalMonth">
+                  <option value="01">Janeiro</option>
+                  <option value="02">Fevereiro</option>
+                  <option value="03">Março</option>
+                  <option value="04">Abril</option>
+                  <option value="05">Maio</option>
+                  <option value="06">Junho</option>
+                  <option value="07">Julho</option>
+                  <option value="08">Agosto</option>
+                  <option value="09">Setembro</option>
+                  <option value="10">Outubro</option>
+                  <option value="11">Novembro</option>
+                  <option value="12">Dezembro</option>
+              </select>
+              <select name="final_Year" id="finalYear">
+                <option value="" disabled>Ano</option>
+              </select>
+                </div>
               </div>
             </div>
+
+            <div id="stationdata" class="data-text padded-data-text selectdiv" style="display: none;">
+              <p>Data inicial da estação selecionada: <div id="stationn_startDate"></div></p>
+              <p>Data final da estação selecionada:</p>
+              <div id="stationn_finalDate"></div>
+            </div>
+
             <div id="div-buttons">
-              <br><button type="button" class="gbutton" id="btn_submit">Visualizar</button>
+              <button type="button" class="gbutton" id="btn_submit">Visualizar</button>
               <button type="button" class="gbutton" id="btn_download" name="btn_download">Baixar</button>
               <!--<a style="display:none;" type="button" class="gbutton" id="chart_download" download="Grafico.jpg">Baixar Gráfico</a>-->
               <button id="chartdownload" style="display: none;" onclick="screenshot()">Salvar Gráfico</button>
-
               <input type="hidden" id="selected_source" value="{{ selected_source }}">
             </div>
           </div>
