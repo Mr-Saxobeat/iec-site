@@ -1,0 +1,14 @@
+django
+python-decouple
+dj-database-url
+psycopg2-binary
+django-geojson
+djangorestframework
+requests
+django-queryset-csv
+geopandas
+netcdf4
+cfgrib
+xarray
+xgrads
+toolz
