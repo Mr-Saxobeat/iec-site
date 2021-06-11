@@ -36,11 +36,19 @@
 
 for ano in {1961..2006}
 do
-    for nome_arquivo in $(ls $1/*$ano????.bin)
+    if [ $# -eq 0 ]
+    then
+        echo "Forneça o caminho dos arqivos .bin"
+        echo "Exemplo: sudo ./corrige-eta-diario.sh /home/dados/eta/"
+    fi
+
+    cd $1
+
+    for nome_arquivo in $(ls *$ano????.bin)
     do
         ## Pega o nome do arquivo sem a data,
         ## ex: Eta_Eta_HadGEM2-ES_5km_Historical_Diario_MXTP_
-        nome_arquivo_variavel=$(echo $nome_arquivo | cut -d_ -f7)_
+        nome_arquivo_variavel=$(echo $nome_arquivo | cut -d_ -f1-7)_
 
         # Armazena a data no formato YYYYMMDD.
         data=$(echo $nome_arquivo | cut -d_ -f8)
@@ -63,7 +71,7 @@ do
         if [ $mes = 12 ] ; then mesc="Dec" ; fi
         
         # Copia o ".ctl" modelo para cada arquivo ".bin".
-        cp ${nome_arquivo_variavel}_template.ctl $(basename $nome_arquivo .bin).ctl
+        cp ${nome_arquivo_variavel}template.ctl $(basename $nome_arquivo .bin).ctl
 
         ## Corrige a primeira linha do ctl
         sed -i "/DSET/c\DSET ^$nome_arquivo" $(basename $nome_arquivo .bin).ctl
@@ -72,7 +80,7 @@ do
         sed -i "3d" $(basename $nome_arquivo .bin).ctl
 
         ## Substitui a linha TDEF
-        sed -i "/TDEF/c\TDEF 1 LINEAR ${dia}${mesc}${ano} 1dy"
+        sed -i "/TDEF/c\TDEF 1 LINEAR ${dia}${mesc}${ano} 1dy" $(basename $nome_arquivo .bin).ctl
 
         # Converte de bin�rio (.ctl) para NetCDF (.nc).
         cdo -s -r -f nc -setcalendar,360_day -import_binary $(basename $nome_arquivo .bin).ctl $(basename $nome_arquivo .bin).nc
@@ -109,7 +117,7 @@ do
     do
         echo $ano$mes
         # Junta m�s a m�s para ver se tudo est� sendo feito corretamente.
-        cdo -s -O mergetime ${nome_arquivo_variavel}${ano}${ano}??.nc tmp01.$ano$mes.nc
+        cdo -s -O mergetime $nome_arquivo_variavel$ano$mes??.nc tmp01.$ano$mes.nc
     done
 
     # Junta todos arquivos (360 tempos) no arquivo final => Eta_Eta_HadGEM2-ES_5km_Historical_$ano.nc
