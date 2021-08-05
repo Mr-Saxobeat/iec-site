@@ -21,7 +21,6 @@ xarray = "*"
 xgrads = "*"
 cartopy = "*"
 toolz = "*"
-django-directory = "*"
 
 [requires]
 python_version = "3.8"

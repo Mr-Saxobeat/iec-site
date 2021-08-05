@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "debbff0830ca76c1cf8bcf8b2e15e8a22b132c84fe663cf52316fa361fe2cbef"
+            "sha256": "e578081cfeafa243a2b20974f2ec033cb1803732fb8e61230cc9a66ba78d5c3d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -200,13 +200,6 @@
             ],
             "index": "pypi",
             "version": "==3.2.6"
-        },
-        "django-directory": {
-            "hashes": [
-                "sha256:284349926b7b7db23c3c96fa8ef6f1ea61e174468a1c67fd8c0a220045060d10"
-            ],
-            "index": "pypi",
-            "version": "==0.0.4"
         },
         "django-geojson": {
             "hashes": [
