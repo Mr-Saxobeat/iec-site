@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
 
     'rest_framework',
+    'directory',
     'djqscsv',
     'home',
     'vismet',
@@ -128,3 +129,5 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
 }
+
+DIRECTORY_DIRECTORY = '.'

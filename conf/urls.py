@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('plataforma/', include('vismet.urls')),
     path('', include('home.urls')),
+    path('arquivos/', include('directory.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
